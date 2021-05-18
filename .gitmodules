@@ -1,0 +1,42 @@
+[submodule "sources/app-XRM-launcher-ffmpeg"]
+	path = sources/app-XRM-launcher-ffmpeg
+	url = https://github.com/Xilinx/app-XRM-launcher-ffmpeg
+[submodule "sources/app-ffmpeg4-xma"]
+	path = sources/app-ffmpeg4-xma
+	url = https://github.com/Xilinx/app-ffmpeg4-xma
+[submodule "sources/app-jobslot-reservation-xrm"]
+	path = sources/app-jobslot-reservation-xrm
+	url = https://github.com/Xilinx/app-jobslot-reservation-xrm
+[submodule "sources/app-xcdr"]
+	path = sources/app-xcdr
+	url = https://github.com/Xilinx/app-xcdr
+[submodule "sources/app-xma-props-to-json-xrm"]
+	path = sources/app-xma-props-to-json-xrm
+	url = https://github.com/Xilinx/app-xma-props-to-json-xrm
+[submodule "sources/codec-decoder-xrm-plg-u30"]
+	path = sources/codec-decoder-xrm-plg-u30
+	url = https://github.com/Xilinx/codec-decoder-xrm-plg-u30
+[submodule "sources/codec-encoder-xrm-plg-u30"]
+	path = sources/codec-encoder-xrm-plg-u30
+	url = https://github.com/Xilinx/codec-encoder-xrm-plg-u30
+[submodule "sources/codec-lookahead-xma-plg"]
+	path = sources/codec-lookahead-xma-plg
+	url = https://github.com/Xilinx/codec-lookahead-xma-plg
+[submodule "sources/codec-vcu-xma-plg"]
+	path = sources/codec-vcu-xma-plg
+	url = https://github.com/Xilinx/codec-vcu-xma-plg
+[submodule "sources/filter-multiscaler-xma-plg-u30"]
+	path = sources/filter-multiscaler-xma-plg-u30
+	url = https://github.com/Xilinx/filter-multiscaler-xma-plg-u30
+[submodule "sources/filter-scaler-xrm-plg-u30"]
+	path = sources/filter-scaler-xrm-plg-u30
+	url = https://github.com/Xilinx/filter-scaler-xrm-plg-u30
+[submodule "sources/lib-xvbm-xrt"]
+	path = sources/lib-xvbm-xrt
+	url = https://github.com/Xilinx/lib-xvbm-xrt
+[submodule "sources/xrm"]
+	path = sources/xrm
+	url = https://github.com/Xilinx/xrm
+[submodule "sources/xrt"]
+	path = sources/xrt
+	url = https://github.com/Xilinx/xrt
