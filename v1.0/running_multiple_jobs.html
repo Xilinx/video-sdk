@@ -1,0 +1,889 @@
+
+
+
+<!DOCTYPE HTML>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description"/>
+		<meta name="keywords"/>
+		<meta property="og:title" content=""/>
+		<meta property="og:description"/>
+		<!-- favicon -->
+		<link rel="icon" type="image/vnd.microsoft.icon" href="_static/favicon.ico"/>
+		<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="_static/favicon.ico"/>
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css"/>
+
+  
+  
+  
+  
+
+  
+      <script type="text/javascript" src="_static/js/jquery.min.js"></script>
+	  <script type="text/javascript" src="_static/js/gtm.js"></script>
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+    <script type="text/javascript" src="_static/js/d3dd8c60ed.js"></script>
+    <script type="text/javascript" src="_static/js/common-ui-all.min.js"></script>
+    <script type="text/javascript" src="_static/js/header-footer.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="_static/js/CoveoJsSearch.Lazy.min.js"></script>
+    <script type="text/javascript" src="_static/js/linkid.js"></script>
+    <script type="text/javascript" src="_static/js/Searchbox.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/common-ui-all.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/header-footer.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/pro.min.css" media="all" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="C API Programming Guide" href="c_apis.html" />
+    <link rel="prev" title="Using FFmpeg" href="using_ffmpeg.html" /> 
+	</head>
+	<body>
+		<div class="xilinx-bs3"/>
+		<div class="root responsivegrid">
+			<div class="aem-Grid aem-Grid--16 aem-Grid--default--16 aem-Grid--large--16 aem-Grid--xlarge--16 aem-Grid--xxlarge--16 aem-Grid--xxxlarge--16 ">
+				<div class="xilinxExperienceFragments experiencefragment aem-GridColumn aem-GridColumn--default--12">
+					<div class="xf-content-height">
+						<div class="aem-Grid aem-Grid--16 aem-Grid--default--16 ">
+							<div class="header parbase aem-GridColumn aem-GridColumn--default--12">
+								<noindex>
+									<header data-component="header">
+										<nav class="navbar navbar-default aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid main-nav">
+													<div class="row">
+														<div class="col-xs-12">
+															<div class="logo-column">
+																<div class="logo">
+																	<a href="https://www.xilinx.com/">
+																	<img src="https://github.com/Xilinx/Image-Collateral/blob/main/xilinx-header-logo.svg?raw=true" title="Xilinx Inc"/>
+																	</a>
+																</div>
+															</div>
+															<div class="navbar-column">
+																<div class="navbar navbar-collapse collapse" id="xilinx-main-menu">
+																	<div class="mobile-search-container">
+																		<div id="headerSearchBox" class="headerSearch"
+																			data-component="header-search"
+																			data-redirect-if-empty="false"
+																			data-coveo-access-token="xxa237d4dd-f0aa-47fc-9baa-af9121851b33"
+																			data-coveo-organization-id="xilinxcomprode2rjoqok">
+																			<div class='coveo-search-section'>
+																				<div class="CoveoAnalytics" data-search-hub="Site"></div>
+																				<ul class="dropdown-menu options">
+																					<li class="option" data-label="All" data-action-link="https://www.xilinx.com/search/site-keyword-search.html" data-search-hub="Site">
+																						<a href="#">
+																						All</a>
+																					</li>
+																					<li data-label="Silicon Devices" data-action-link="https://www.xilinx.com//products/silicon-devices/si-keyword-search.html" data-search-hub="Product">
+																						<a href="#">
+																						Silicon Devices</a>
+																					</li>
+																					<li data-label="Boards and Kits" data-action-link="https://www.xilinx.com//products/boards-and-kits/bk-keyword-search.html" data-search-hub="Product">
+																						<a href="#">
+																						Boards and Kits</a>
+																					</li>
+																					<li data-label="Intellectual Property" data-action-link="https://www.xilinx.com//products/intellectual-property/ip-keyword-search.html" data-search-hub="Product">
+																						<a href="#">
+																						Intellectual Property</a>
+																					</li>
+																					<li data-label="Support" class="option" data-action-link="https://www.xilinx.com/search/support-keyword-search.html" data-search-hub="Support">
+																						<a href="#">
+																						Support</a>
+																						<ul>
+																							<li data-label="Documentation" data-action-link="https://www.xilinx.com//support/documentation-navigation/documentation-keyword-search.html" data-search-hub="Document">
+																								<a href="#">
+																								Documentation</a>
+																							</li>
+																							<li data-label="Knowledge Base" data-action-link="https://www.xilinx.com//support/answer-navigation/answer-keyword-search.html" data-search-hub="AnswerRecord">
+																								<a href="#">
+																								Knowledge Base</a>
+																							</li>
+																							<li data-label="Community Forums" data-action-link="https://www.xilinx.com/search/forums-keyword-search.html" data-search-hub="Forums">
+																								<a href="#">
+																								Community Forums</a>
+																							</li>
+																						</ul>
+																					</li>
+																					<li data-label="Partners" data-action-link="https://www.xilinx.com//alliance/member-keyword-search.html" data-search-hub="Partner">
+																						<a href="#">
+																						Partners</a>
+																					</li>
+																					<li data-label="Videos" data-action-link="https://www.xilinx.com/video/video-keyword-search.html" data-search-hub="Video">
+																						<a href="#">
+																						Videos</a>
+																					</li>
+																					<li data-label="Press" data-action-link="https://www.xilinx.com/search/press-keyword-search.html" data-search-hub="Press">
+																						<a href="#">
+																						Press</a>
+																					</li>
+																				</ul>
+																				<a href="#" class="btn dropdown-toggle value" data-toggle="dropdown"></a>
+																				<div class="CoveoSearchbox" data-id="coveosearchbox" data-action-link="https://www.xilinx.com/search/site-keyword-search.html" data-placeholder="Search Xilinx"></div>
+																			</div>
+																		</div>
+																	</div>
+<!-- 																	<ul class="nav navbar-nav nav-justified">
+																		<li class="accordion-toggle-icons" data-component="toggle-dropdown">
+																			<a href="https://www.xilinx.com/applications.html">
+																			Applications</a>
+																		</li>
+																		<li class="accordion-toggle-icons" data-component="toggle-dropdown">
+																			<a href="https://www.xilinx.com/products/silicon-devices.html">
+																			Products</a>
+																		</li>
+																		<li class="accordion-toggle-icons" data-component="toggle-dropdown">
+																			<a href="https://developer.xilinx.com/">
+																			Developers</a>
+																		</li>
+																		<li class="accordion-toggle-icons" data-component="toggle-dropdown">
+																			<a href="https://www.xilinx.com/support.html">
+																			Support</a>
+																		</li>
+																		<li class="accordion-toggle-icons" data-component="toggle-dropdown">
+																			<a href="https://www.xilinx.com/about/company-overview.html">
+																			About</a>
+																		</li>
+																	</ul> -->
+																</div>
+															</div>
+															<script type="text/javascript" src="_static/js/gtm.js"></script>
+															<!--<div class="mini-nav">
+																<button type="button" data-function="xilinx-mobile-menu" id="nav-toggle" class="navbar-toggle collapsed visible-xs-block" aria-expanded="false">
+																<span></span>
+																<span></span>
+																<span></span>
+																<span></span>
+																</button>
+																<ul class="list-inline">
+																	<li class="dropdown user-menu">
+																		<button data-toggle="dropdown">
+																		<span class="sr-only">Account</span>
+																		<span class="fas fa-user"></span>
+																		</button>
+																		<ul class="dropdown-menu">
+																			<li>
+																				<a href="https://www.xilinx.com/myprofile/subscriptions.html">
+																				My Account</a>
+																			</li>
+																			<li>
+																				<a href="https://www.xilinx.com/registration/create-account.html">
+																				Create Account</a>
+																			</li>
+																			<li>
+																				<a href="https://www.xilinx.com/bin/protected/en/signout">
+																				Sign Out</a>
+																			</li>
+																		</ul>
+																	</li>
+																	<li class="hidden-xs">
+																		<button data-function="search-toggle">
+																		<span class="sr-only">Search</span>
+																		<span class="far fa-search"></span>
+																		</button>
+																	</li>
+																</ul>
+															</div>
+															-->
+															<div class="search-container">
+																<div id="headerSearchBox" class="headerSearch"
+																	data-component="header-search"
+																	data-redirect-if-empty="false"
+																	data-coveo-access-token="xxa237d4dd-f0aa-47fc-9baa-af9121851b33"
+																	data-coveo-organization-id="xilinxcomprode2rjoqok">
+																	<div class='coveo-search-section'>
+																		<div class="CoveoAnalytics" data-search-hub="Site"></div>
+																		<ul class="dropdown-menu options">
+																			<li class="option" data-label="All" data-action-link="https://www.xilinx.com/search/site-keyword-search.html" data-search-hub="Site">
+																				<a href="#">
+																				All</a>
+																			</li>
+																			<li data-label="Silicon Devices" data-action-link="https://www.xilinx.com/products/silicon-devices/si-keyword-search.html" data-search-hub="Product">
+																				<a href="#">
+																				Silicon Devices</a>
+																			</li>
+																			<li data-label="Boards and Kits" data-action-link="https://www.xilinx.com/products/boards-and-kits/bk-keyword-search.html" data-search-hub="Product">
+																				<a href="#">
+																				Boards and Kits</a>
+																			</li>
+																			<li data-label="Intellectual Property" data-action-link="https://www.xilinx.com/products/intellectual-property/ip-keyword-search.html" data-search-hub="Product">
+																				<a href="#">
+																				Intellectual Property</a>
+																			</li>
+																			<li data-label="Support" class="option" data-action-link="https://www.xilinx.com/search/support-keyword-search.html" data-search-hub="Support">
+																				<a href="#">
+																				Support</a>
+																				<ul>
+																					<li data-label="Documentation" data-action-link="https://www.xilinx.com/support/documentation-navigation/documentation-keyword-search.html" data-search-hub="Document">
+																						<a href="#">
+																						Documentation</a>
+																					</li>
+																					<li data-label="Knowledge Base" data-action-link="https://www.xilinx.com/support/answer-navigation/answer-keyword-search.html" data-search-hub="AnswerRecord">
+																						<a href="#">
+																						Knowledge Base</a>
+																					</li>
+																					<li data-label="Community Forums" data-action-link="https://www.xilinx.com/search/forums-keyword-search.html" data-search-hub="Forums">
+																						<a href="#">
+																						Community Forums</a>
+																					</li>
+																				</ul>
+																			</li>
+																			<li data-label="Partners" data-action-link="https://www.xilinx.com/alliance/member-keyword-search.html" data-search-hub="Partner">
+																				<a href="#">
+																				Partners</a>
+																			</li>
+																			<li data-label="Videos" data-action-link="https://www.xilinx.com/video/video-keyword-search.html" data-search-hub="Video">
+																				<a href="#">
+																				Videos</a>
+																			</li>
+																			<li data-label="Press" data-action-link="https://www.xilinx.com/search/press-keyword-search.html" data-search-hub="Press">
+																				<a href="#">
+																				Press</a>
+																			</li>
+																		</ul>
+																		<a href="#" class="btn dropdown-toggle value" data-toggle="dropdown"></a>
+																		<div class="CoveoSearchbox" data-id="coveosearchbox" data-action-link="https://www.xilinx.com/search/site-keyword-search.html" data-placeholder="Search Xilinx"></div>
+																	</div>
+																</div>
+																<button data-function="search-toggle">
+																<span class="sr-only">Search</span>
+																<span class="far fa-times"></span>
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</nav>
+									</header>
+								</noindex>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="parsys aem-GridColumn--xxxlarge--none aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+						<div class="container-fluid">
+							<div class="row">
+							<div class="col-xs-12">
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Xilinx Video SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.0
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+      
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+            
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Installation and Setup</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Instructions</a></li>
+<li class="toctree-l1"><a class="reference internal" href="setup.html">Environment Setup</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="examples/ffmpeg/tutorials.html">FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/ffmpeg/filters.html">Software Filters</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/ffmpeg/quality_analysis.html">Visual Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples/xma/xma_apps.html">XMA-based Apps</a></li>
+</ul>
+<p class="caption"><span class="caption-text">User Guide</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Specs and Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_ffmpeg.html">Using FFmpeg</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Running Multiple Jobs</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#using-explicit-device-ids">Using Explicit Device IDs</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#examples-using-explicit-device-ids">Examples using Explicit Device IDs</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#managing-resource-utilization">Managing Resource Utilization</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#using-job-descriptions">Using Job Descriptions</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#video-transcode-job-description">Video Transcode Job Description</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-job-slot-reservations">Using Job Slot Reservations</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-ffmpeg-launcher-example">The FFmpeg Launcher Example</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="card_management.html">Card Management and Recovery</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+            
+			
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Xilinx Video SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Running Multiple FFmpeg Jobs</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="running-multiple-ffmpeg-jobs">
+<h1>Running Multiple FFmpeg Jobs<a class="headerlink" href="#running-multiple-ffmpeg-jobs" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id4">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#using-explicit-device-ids" id="id5">Using Explicit Device IDs</a></p></li>
+<li><p><a class="reference internal" href="#using-job-descriptions" id="id6">Using Job Descriptions</a></p></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id4">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>The Xilinx Video SDK provides two distinct methods of running multiple FFmpeg jobs simultaneously on one or more devices:</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#using-explicit-device-ids"><span class="std std-ref">Using explicit device IDs</span></a> - This is the recommended method. It is the simplest to use and will work for most use cases.</p></li>
+<li><p><a class="reference internal" href="#using-job-descriptions"><span class="std std-ref">Using the job description and reservation service</span></a> - This method is considered an advanced feature. It is provided for users who need to develop custom job management services.</p></li>
+</ol>
+<p>Both methods rely on the Xilinx® FPGA resource manager (XRM). XRM is the software which manages the hardware accelerators available in the system. XRM keeps track of total system capacity for each of the compute units such as the decoder, scaler, and encoder. XRM guarantees capacity for a given use case and prevents over-allocation. For example, each of the two devices on the Alveo U30 card, can process an aggregate load of 4K pixels at 60 frames per second. It is possible to run multiple streams if the overall throughput does not exceed the limit of 4kp60.</p>
+<p>The accelerators on the Alveo U30 card are abstracted as compute unit (CU) resources in XRM. XRM provides an interface to reserve, allocate and release CUs. The smallest allocation unit is a channel, which is a fraction of one CU. More details on the XRM command line tool (xrmadm) and the XRM daemon (xrmd) can be found in the <a class="reference internal" href="card_management.html#xrmadm-and-xrmd-commands"><span class="std std-ref">xrmadm and xrmd Commands</span></a> section of this documentation.</p>
+<p class="rubric">System Considerations</p>
+<ul class="simple">
+<li><p>When a job ends and releases CU resources to XRM, it takes a few milliseconds before they become available for another job.</p></li>
+<li><p>On certain servers, it may be needed to reduce the stack size (using <code class="docutils literal notranslate"><span class="pre">ulimit</span> <span class="pre">-s</span> <span class="pre">1000</span></code>) in order to run more than 200 processes simultaneously.</p></li>
+</ul>
+</div>
+<div class="section" id="using-explicit-device-ids">
+<span id="id1"></span><h2><a class="toc-backref" href="#id5">Using Explicit Device IDs</a><a class="headerlink" href="#using-explicit-device-ids" title="Permalink to this headline">¶</a></h2>
+<p>The simplest way to run multiple FFmpeg jobs across all available devices is to use the FFmpeg <a class="reference internal" href="using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option.</p>
+<p>By default (if the option is not specified) the FFmpeg job will be submitted to device 0. When running multiple jobs, device 0 will likely run out resources rapidly and additional jobs will error out due to insufficient resources.</p>
+<p>The <a class="reference internal" href="using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option is used to specify the device on which the job should be run. This makes it easy and straightforward to leverage the entire video acceleration capacity of your system, regardless of the number of cards and devices. In addition, this method allows running different types of jobs on the same device (i.e.: jobs with different resolutions, frame rates, etc…).</p>
+<p>Given that each device has a 2160p60 (4K) input and output bandwidth limit, the user is responsible for only submitting jobs which will not exceed the capacity of the specified device. The section below about <a class="reference internal" href="#managing-resource-utilization">Managing Resource Utilization</a> provides information on how to estimate CU requirements and check current device load.</p>
+<div class="section" id="examples-using-explicit-device-ids">
+<h3>Examples using Explicit Device IDs<a class="headerlink" href="#examples-using-explicit-device-ids" title="Permalink to this headline">¶</a></h3>
+<p>Specific examples of how to run multiple FFmpeg processes using explicit device IDs can be found in the <a class="reference internal" href="examples/ffmpeg/tutorials.html#multiple-ffmpeg-jobs-example"><span class="std std-ref">FFmpeg Tutorials</span></a> included in this repository.</p>
+</div>
+<div class="section" id="managing-resource-utilization">
+<h3>Managing Resource Utilization<a class="headerlink" href="#managing-resource-utilization" title="Permalink to this headline">¶</a></h3>
+<p class="rubric">Checking System Load</p>
+<p>To check the current loading of all the devices in your system, use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xrmadm</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrm</span><span class="o">/</span><span class="n">test</span><span class="o">/</span><span class="n">list_cmd</span><span class="o">.</span><span class="n">json</span>
+</pre></div>
+</div>
+<p>This will generate a report in JSON format containing the load information for all the compute unit (CU) resources. The report contains a section for each device in the system. The device sections contain sub-sections for each of the CUs (decoder, scaler, lookahead, encoder) in that device. For example, the load information for the encoder on device 0 may look as follows:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="s2">&quot;device_0&quot;</span><span class="p">:</span> <span class="p">{</span>
+    <span class="o">...</span>
+    <span class="s2">&quot;cu_4&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;cuId         &quot;</span><span class="p">:</span> <span class="s2">&quot;4&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cuType       &quot;</span><span class="p">:</span> <span class="s2">&quot;IP Kernel&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;kernelName   &quot;</span><span class="p">:</span> <span class="s2">&quot;encoder&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;kernelAlias  &quot;</span><span class="p">:</span> <span class="s2">&quot;ENCODER_MPSOC&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;instanceName &quot;</span><span class="p">:</span> <span class="s2">&quot;encoder_1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;cuName       &quot;</span><span class="p">:</span> <span class="s2">&quot;encoder:encoder_1&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;kernelPlugin &quot;</span><span class="p">:</span> <span class="s2">&quot;/opt/xilinx/xma_plugins/libvcu-xma-enc-plg.so&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;maxCapacity  &quot;</span><span class="p">:</span> <span class="s2">&quot;497664000&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;numChanInuse &quot;</span><span class="p">:</span> <span class="s2">&quot;20&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;usedLoad     &quot;</span><span class="p">:</span> <span class="s2">&quot;831472 of 1000000&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;reservedLoad &quot;</span><span class="p">:</span> <span class="s2">&quot;0 of 1000000&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;resrvUsedLoad&quot;</span><span class="p">:</span> <span class="s2">&quot;0 of 1000000&quot;</span>
+    <span class="p">},</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">usedLoad</span></code> value indicates how much of that resource is currently being used. The value will range from 0 (nothing running) to 1000000 (fully loaded). The <code class="docutils literal notranslate"><span class="pre">reservedLoad</span></code> value indicates how much of that resource is being reserved using XRM. The <code class="docutils literal notranslate"><span class="pre">resrvUsedLoad</span></code> value indicates how much of the reserved load is actually being used.</p>
+<p>In the above example, the encoder is 83.14% utilized. An additional job may only be run on this device if it requires less than 17% of the encoder resources.</p>
+<p class="rubric">Insufficient Resources</p>
+<p>If there are not enough compute unit resources available on the device to support a FFmpeg job, the job will error out with a message about resource allocation failure:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">xrm_allocation</span><span class="p">:</span> <span class="n">failed</span> <span class="n">to</span> <span class="n">allocate</span> <span class="n">decoder</span> <span class="n">resources</span> <span class="kn">from</span> <span class="nn">device</span> <span class="mi">0</span>
+<span class="p">[</span><span class="n">MPSOC</span> <span class="n">HEVC</span> <span class="n">decoder</span> <span class="o">@</span> <span class="mh">0x562c7695b200</span><span class="p">]</span> <span class="n">xrm_allocation</span><span class="p">:</span> <span class="n">resource</span> <span class="n">allocation</span> <span class="n">failed</span>
+</pre></div>
+</div>
+<p>In this case, you can check the system load (as described in the section below) and look for a device with enough free resources, or wait until another job finishes and releases enough resources to run the desired job.</p>
+<p class="rubric">Job Resource Requirements</p>
+<p>The load of a given job can be estimated by taking the resolution of the job as a percentage of the 2160p60 (4K) maximum. For instance, a 1080p60 stream will require 25% of the resources available on a device.</p>
+<p>In addition, it is possible to run FFmpeg with the <a class="reference internal" href="using_ffmpeg.html#cmdoption-loglevel"><code class="xref std std-option docutils literal notranslate"><span class="pre">-loglevel</span></code></a> option set to <code class="docutils literal notranslate"><span class="pre">debug</span></code> to get information about the resource requirements for a given job. The messages generated in the transcript will look as follow:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">---</span><span class="n">decoder</span> <span class="n">xrm</span> <span class="n">out</span><span class="p">:</span> <span class="n">dec_load</span><span class="o">=</span><span class="mi">250000</span><span class="p">,</span> <span class="n">plugin</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xma_plugins</span><span class="o">/</span><span class="n">libvcu</span><span class="o">-</span><span class="n">xma</span><span class="o">-</span><span class="n">dec</span><span class="o">-</span><span class="n">plg</span><span class="o">.</span><span class="n">so</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cu</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">ch</span><span class="o">=</span><span class="mi">0</span>
+<span class="o">---</span><span class="n">encoder</span> <span class="n">xrm</span> <span class="n">out</span><span class="p">:</span> <span class="n">enc_load</span><span class="o">=</span><span class="mi">250000</span><span class="p">,</span> <span class="n">plugin</span><span class="o">=/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xma_plugins</span><span class="o">/</span><span class="n">libvcu</span><span class="o">-</span><span class="n">xma</span><span class="o">-</span><span class="n">enc</span><span class="o">-</span><span class="n">plg</span><span class="o">.</span><span class="n">so</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">cu</span><span class="o">=</span><span class="mi">38</span><span class="p">,</span> <span class="n">ch</span><span class="o">=</span><span class="mi">0</span>
+</pre></div>
+</div>
+<p>Resource loads are reported with a precision of 1/1000000. In the above example, the job requires 25% of the decoder resources and 25% of the encoder resources on the device.</p>
+</div>
+</div>
+<div class="section" id="using-job-descriptions">
+<span id="id2"></span><h2><a class="toc-backref" href="#id6">Using Job Descriptions</a><a class="headerlink" href="#using-job-descriptions" title="Permalink to this headline">¶</a></h2>
+<p>Job descriptions and the associated job reservation system are an alternate way to run multiple jobs. This method is more involved than using explicit device IDs, and it is intended for users who need to develop custom job management applications.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A current limitation of this method is that only one job description file can be used at a time, and a job description file can only contain a single job description. The system will only manage multiple jobs if they match the same description. Simultaneously managing different job types is not supported currently. The jobs need to be stopped before a new job description can be loaded.</p>
+</div>
+<div class="section" id="video-transcode-job-description">
+<h3>Video Transcode Job Description<a class="headerlink" href="#video-transcode-job-description" title="Permalink to this headline">¶</a></h3>
+<p>The Alveo U30 video transcode pipeline needs a conjunction of multiple CUs like decoder, scaler, lookahead, and encoder, together forming a CU pool. Based on the input resolution and type of transcode, the load of CUs within a CU pool varies. This in turn determines how many instances of such a job can be run real-time in parallel on all the cards managed by XRM. If there is free capacity, XRM will send the job to an available device.</p>
+<p>The video transcode job description provides information to the resource manager about what kind of transcode is intended to run on the card. With this information the resource manager calculates the CU load for the specified job as well as the maximum possible number of jobs that can be run real-time in parallel.</p>
+<p>A video transcode job description is specified through a JSON file and the key-value pairs specify the functions, formats, and resolutions needed.</p>
+<dl class="simple">
+<dt>function</dt><dd><p>Which HW resource to use (DECODER, SCALER, ENCODER)</p>
+</dd>
+<dt>format</dt><dd><p>Input/output format (H264, HEVC, yuv420p)</p>
+</dd>
+<dt>resolution</dt><dd><p>Input/output height, width, and frame-rate as a numerator / denominator fraction</p>
+</dd>
+<dt>job-count</dt><dd><p>Optional entry to specify the number of instances of the specified job which can run on one device.
+When this entry is used, the CU load is calculated based on the specified job-count. Any channel-load value is ignored.
+This option is useful to provide an accurate number of possible jobs in the case where the load calculation by XRM is optimistic. This can happen because device memory is currently not an XRM managed resource; and in the case of high-density low-resolution jobs, it is possible to run out device memory before running out of compute resources.</p>
+</dd>
+<dt>channel-load</dt><dd><p>Optional entry to specify a different compute load for a given function than calculated by the resource manager.
+This option will be deprecated and removed in a future release. The job-count option should be used instead.</p>
+</dd>
+</dl>
+<p>Several examples of JSON job slot descriptions can be found in the <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/launcher/scripts/describe_job</span></code> folder once the Xilinx Video SDK has been installed.</p>
+<p>Below is a modified version of the <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/launcher/scripts/describe_job/describe_job.json</span></code> example. This JSON example describes an ABR transcode job which uses a decoder, scaler, and encoder to generate 5 output renditions. A job-count entry has been added to explicitly request 4 instances of this job per device:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+    <span class="s2">&quot;request&quot;</span><span class="p">:</span> <span class="p">{</span>
+        <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;describe_job_h264&quot;</span><span class="p">,</span>
+        <span class="s2">&quot;request_id&quot;</span><span class="p">:</span> <span class="mi">1</span><span class="p">,</span>
+        <span class="s2">&quot;parameters&quot;</span><span class="p">:</span> <span class="p">{</span>
+            <span class="s2">&quot;name&quot;</span><span class="p">:</span> <span class="s2">&quot;testjob&quot;</span><span class="p">,</span>
+            <span class="s2">&quot;job-count&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="p">,</span>
+            <span class="s2">&quot;resources&quot;</span><span class="p">:</span>
+            <span class="p">[</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="s2">&quot;DECODER&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;format&quot;</span><span class="p">:</span>   <span class="s2">&quot;H264&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;resolution&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">1920</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">1080</span><span class="p">,</span> <span class="s2">&quot;frame-rate&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;num&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;den&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="s2">&quot;SCALER&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;format&quot;</span><span class="p">:</span>   <span class="s2">&quot;yuv420p&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;resolution&quot;</span><span class="p">:</span>
+                    <span class="p">{</span>
+                        <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">1920</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">1080</span><span class="p">,</span> <span class="s2">&quot;frame-rate&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;num&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;den&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="p">},</span>
+                        <span class="s2">&quot;output&quot;</span><span class="p">:</span>
+                        <span class="p">[</span>
+                            <span class="p">{</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">1280</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">720</span><span class="p">,</span> <span class="s2">&quot;frame-rate&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;num&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;den&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="p">},</span>
+                            <span class="p">{</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span>  <span class="mi">848</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">480</span><span class="p">,</span> <span class="s2">&quot;frame-rate&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;num&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;den&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="p">},</span>
+                            <span class="p">{</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span>  <span class="mi">640</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">360</span><span class="p">,</span> <span class="s2">&quot;frame-rate&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;num&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;den&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="p">},</span>
+                            <span class="p">{</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span>  <span class="mi">288</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span> <span class="s2">&quot;frame-rate&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;num&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;den&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="p">}</span>
+                        <span class="p">]</span>
+                    <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="s2">&quot;ENCODER&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;format&quot;</span><span class="p">:</span>   <span class="s2">&quot;H264&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;resolution&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">1280</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">720</span><span class="p">,</span> <span class="s2">&quot;frame-rate&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;num&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span> <span class="s2">&quot;den&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="s2">&quot;ENCODER&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;format&quot;</span><span class="p">:</span>   <span class="s2">&quot;H264&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;resolution&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span> <span class="mi">1280</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">720</span><span class="p">,</span> <span class="s2">&quot;frame-rate&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;num&quot;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;den&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="s2">&quot;ENCODER&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;format&quot;</span><span class="p">:</span>   <span class="s2">&quot;H264&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;resolution&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span>  <span class="mi">848</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">480</span><span class="p">,</span> <span class="s2">&quot;frame-rate&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;num&quot;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;den&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="s2">&quot;ENCODER&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;format&quot;</span><span class="p">:</span>   <span class="s2">&quot;H264&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;resolution&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span>  <span class="mi">640</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">360</span><span class="p">,</span> <span class="s2">&quot;frame-rate&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;num&quot;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;den&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+                <span class="p">},</span>
+                <span class="p">{</span>
+                    <span class="s2">&quot;function&quot;</span><span class="p">:</span> <span class="s2">&quot;ENCODER&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;format&quot;</span><span class="p">:</span>   <span class="s2">&quot;H264&quot;</span><span class="p">,</span>
+                    <span class="s2">&quot;resolution&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;input&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;width&quot;</span><span class="p">:</span>  <span class="mi">288</span><span class="p">,</span> <span class="s2">&quot;height&quot;</span><span class="p">:</span> <span class="mi">160</span><span class="p">,</span> <span class="s2">&quot;frame-rate&quot;</span><span class="p">:</span> <span class="p">{</span> <span class="s2">&quot;num&quot;</span><span class="p">:</span><span class="mi">30</span><span class="p">,</span> <span class="s2">&quot;den&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">}</span> <span class="p">}</span> <span class="p">}</span>
+                <span class="p">}</span>
+            <span class="p">]</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>The next sections document the two different ways of using job descriptions to run multiple FFmpeg processes:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#using-job-slot-reservations"><span class="std std-ref">Using the job slot reservation application</span></a></p></li>
+<li><p><a class="reference internal" href="#using-ffmpeg-launcher"><span class="std std-ref">The FFmpeg Launcher example</span></a></p></li>
+</ul>
+</div>
+<div class="section" id="using-job-slot-reservations">
+<span id="id3"></span><h3>Using Job Slot Reservations<a class="headerlink" href="#using-job-slot-reservations" title="Permalink to this headline">¶</a></h3>
+<p>The job slot reservation application takes as input a video transcode job reservation in the form of a JSON file as described in the previous section. The video transcode job description provides information to the resource manager about what kind of transcode is intended to run on the card. With this information the resource manager calculates the CU load for the specified job as well as the maximum possible number of jobs that can be run real-time in parallel.</p>
+<p>Once the maximum possible number of jobs is known, CUs and job slots are reserved, and corresponding reservation IDs are stored in a bash file at <code class="docutils literal notranslate"><span class="pre">/var/tmp/xilinx/xrm_jobReservation.sh</span></code>. A reservation ID is a unique identifier which is valid while the job slot reservation application is running. These reservation IDs are passed to individual FFmpeg process via an environment variable XRM_RESERVE_ID. The FFmpeg processes then use this reservation ID to retrieve the corresponding CUs reserved earlier.</p>
+<p>The <a class="reference external" href="https://github.com/Xilinx/app-jobslot-reservation-xrm/tree/master/jobSlot_reservation.cpp">source code of the job slot reservation application</a> is included in the Github repository of Xilinx Video SDK and can be used as a starting point for developing custom orchestration layers.</p>
+<p>The following steps show how to use the job slot reservation to dispatch multiple parallel instances of an ABR ladder job on an Alveo U30 card:</p>
+<ol class="arabic">
+<li><p>Setup the environment:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xcdr</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+<li><p>Run the job slot reservation application with the desired JSON job description. For example:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>jobSlotReservation /opt/xilinx/launcher/scripts/describe_job/describe_job.json
+
+For describe_job.json, the possible number of job slots available = 8
+--------------------------------------------------------------------------------------
+The Job_slot_reservations are alive as long as this application is alive!
+(press Enter to end)
+--------------------------------------------------------------------------------------
+</pre></div>
+</div>
+<p>The job slot reservation application creates a <code class="docutils literal notranslate"><span class="pre">/var/tmp/xilinx/xrm_jobReservation.sh</span></code> with XRM_RESERVE_ID_n set to unique IDs generated by XRM (with n ranging from 1 to the number of possible job slots for the given job). Here is an example of this generated file:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrm</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
+<span class="n">export</span> <span class="n">XRM_RESERVE_ID_1</span><span class="o">=</span><span class="mi">9</span>
+<span class="n">export</span> <span class="n">XRM_RESERVE_ID_2</span><span class="o">=</span><span class="mi">10</span>
+<span class="n">export</span> <span class="n">XRM_RESERVE_ID_3</span><span class="o">=</span><span class="mi">11</span>
+<span class="n">export</span> <span class="n">XRM_RESERVE_ID_4</span><span class="o">=</span><span class="mi">12</span>
+<span class="n">export</span> <span class="n">XRM_RESERVE_ID_5</span><span class="o">=</span><span class="mi">13</span>
+<span class="n">export</span> <span class="n">XRM_RESERVE_ID_6</span><span class="o">=</span><span class="mi">14</span>
+<span class="n">export</span> <span class="n">XRM_RESERVE_ID_7</span><span class="o">=</span><span class="mi">15</span>
+<span class="n">export</span> <span class="n">XRM_RESERVE_ID_8</span><span class="o">=</span><span class="mi">16</span>
+</pre></div>
+</div>
+</li>
+<li><p>Launch individual FFmpeg processes in distinct shells after sourcing the <code class="docutils literal notranslate"><span class="pre">/var/tmp/xilinx/xrm_jobReservation.sh</span></code> file and setting XRM_RESERVE_ID environment to a unique XRM_RESERVE_ID_n.</p>
+<p>For job 1:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>source /var/tmp/xilinx/xrm_jobReservation.sh
+export XRM_RESERVE_ID=${XRM_RESERVE_ID_1}
+ffmpeg -c:v mpsoc_vcu_h264 ...
+</pre></div>
+</div>
+<p>For job 2:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>source /var/tmp/xilinx/xrm_jobReservation.sh
+export XRM_RESERVE_ID=${XRM_RESERVE_ID_2}
+ffmpeg -c:v mpsoc_vcu_h264 ...
+</pre></div>
+</div>
+<p>And so forth for the other jobs.</p>
+</li>
+<li><p>Press <strong>Enter</strong> in the job reservation app terminal to release the resources after the jobs are complete.</p></li>
+</ol>
+<p class="rubric">Ill-formed JSON Job Descriptions</p>
+<p>If you run the jobSlotReservation tool with a syntactically incorrect JSON description, you will see the following messages:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">decoder</span> <span class="n">plugin</span> <span class="n">function</span><span class="o">=</span><span class="mi">0</span> <span class="n">fail</span> <span class="n">to</span> <span class="n">run</span> <span class="n">the</span> <span class="n">function</span>
+<span class="n">scaler</span> <span class="n">plugin</span> <span class="n">function</span><span class="o">=</span><span class="mi">0</span> <span class="n">fail</span> <span class="n">to</span> <span class="n">run</span> <span class="n">the</span> <span class="n">function</span>
+<span class="n">encoder</span> <span class="n">plugin</span> <span class="n">function</span><span class="o">=</span><span class="mi">0</span> <span class="n">fail</span> <span class="n">to</span> <span class="n">run</span> <span class="n">the</span> <span class="n">function</span>
+</pre></div>
+</div>
+<p>This indicates that the job description is ill-formed and needs to be corrected.</p>
+</div>
+<div class="section" id="the-ffmpeg-launcher-example">
+<span id="using-ffmpeg-launcher"></span><h3>The FFmpeg Launcher Example<a class="headerlink" href="#the-ffmpeg-launcher-example" title="Permalink to this headline">¶</a></h3>
+<p>The FFmpeg launcher is an example application which automates the dispatching of FFmpeg jobs across multiple devices. It simplifies the process of manually setting up XRM reservation IDs and launching FFmpeg for many video streams. The FFmpeg launcher takes a transcode job description, input source files, corresponding FFmpeg run commands and automatically launches child FFmpeg processes based on the job slot availability on the server. In case there are more input streams listed than available job slots, the excess are queued and launched when a job slot becomes available. Note that only a single launcher per server is supported.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The FFmpeg launcher is only an example application. It is provided as an illustration of how an orchestration layer can use Job Descriptions, but it is not an official feature of the Xilinx Video SDK.</p>
+</div>
+<p>The following steps show how to use the FFmpeg launcher for an ABR transcode use case on a single Alveo U30 card. In this use case, one encoded stream is transcoded to five unique renditions based on resolution, bit rate, and other variations.</p>
+<ol class="arabic">
+<li><p>Environment setup</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xcdr</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
+</pre></div>
+</div>
+</li>
+<li><p>To run the FFmpeg launcher, use the following command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">launcher</span> <span class="o">&lt;</span><span class="n">source</span> <span class="n">files</span> <span class="n">file</span> <span class="n">name</span><span class="o">&gt;</span> <span class="o">&lt;</span><span class="n">run</span> <span class="n">params</span> <span class="n">file</span> <span class="n">name</span><span class="o">&gt;</span>
+</pre></div>
+</div>
+<p>Here is an example of the command:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">launcher</span> <span class="n">sources</span><span class="o">.</span><span class="n">txt</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">launcher</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">run_params</span><span class="o">/</span><span class="n">Run_ABR_h264_lowLatencyTranscode_mr_null</span><span class="o">.</span><span class="n">txt</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">sources.txt</span></code> is a text file that lists the input stream names. The launcher parses this list and inserts the sources in the FFmpeg command after <code class="docutils literal notranslate"><span class="pre">-i</span></code> one after another and launches them as a separate process. A sample <code class="docutils literal notranslate"><span class="pre">sources.txt</span></code> is as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1"># List all sources here</span>
+<span class="n">Input1</span><span class="o">.</span><span class="n">mp4</span>
+<span class="n">Video</span><span class="o">.</span><span class="n">flv</span>
+<span class="n">Input2</span><span class="o">.</span><span class="n">h264</span>
+</pre></div>
+</div>
+<p><code class="docutils literal notranslate"><span class="pre">run_params.txt</span></code> is a text file that consists of two fields. The first field is the video transcode job description, and the second field is the FFmpeg command line that needs to be launched and is matching the described job. Description of the job is given through a json file as described already in the previous sections. A sample <code class="docutils literal notranslate"><span class="pre">run_params.txt</span></code> is as follows.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">job_description</span> <span class="o">=</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">launcher</span><span class="o">/</span><span class="n">scripts</span><span class="o">/</span><span class="n">describe_job</span><span class="o">/</span><span class="n">describe_job</span><span class="o">.</span><span class="n">json</span>
+<span class="n">cmdline</span> <span class="o">=</span> <span class="n">ffmpeg</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_h264</span> <span class="o">-</span><span class="n">i</span> <span class="o">-</span><span class="n">filter_complex</span> <span class="s2">&quot;multiscale_xma=:outputs=4:out_1_width=1280:out_1_height=720:out_1_pix_fm t=vcu_nv12:out_2_width=848:out_2_height=480:out_2_pix_fmt=vcu_nv12:out_3_ width=640:out_3_height=360:out_3_pix_fmt=vcu_nv12:out_4_width=288:out_4_h eight=160:out_4_pix_fmt=vcu_nv12 [a][b][c][d]; [a]split[aa][ab]&quot;</span> <span class="o">-</span><span class="nb">map</span> <span class="s1">&#39;[aa]&#39;</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">4</span><span class="n">M</span> <span class="o">-</span><span class="nb">max</span><span class="o">-</span><span class="n">bitrate</span> <span class="mi">4</span><span class="n">M</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_h264</span> <span class="o">-</span><span class="n">f</span> <span class="n">h264</span> <span class="o">-</span><span class="n">y</span> <span class="n">out_720p60</span><span class="o">.</span><span class="mi">264</span> <span class="o">-</span><span class="nb">map</span> <span class="s1">&#39;[ab]&#39;</span> <span class="o">-</span><span class="n">r</span> <span class="mi">30</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">3</span><span class="n">M</span> <span class="o">-</span><span class="nb">max</span><span class="o">-</span><span class="n">bitrate</span> <span class="mi">3</span><span class="n">M</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_h264</span> <span class="o">-</span><span class="n">f</span> <span class="n">h264</span> <span class="o">-</span><span class="n">y</span> <span class="n">out_720p30</span><span class="o">.</span><span class="mi">264</span> <span class="o">-</span><span class="nb">map</span> <span class="s1">&#39;[b]&#39;</span> <span class="o">-</span><span class="n">r</span> <span class="mi">30</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">2500</span><span class="n">K</span> <span class="o">-</span> <span class="nb">max</span><span class="o">-</span><span class="n">bitrate</span> <span class="mi">2500</span><span class="n">K</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_h264</span> <span class="o">-</span><span class="n">f</span> <span class="n">h264</span> <span class="o">-</span><span class="n">y</span> <span class="n">out_480p30</span><span class="o">.</span><span class="mi">264</span> <span class="o">-</span><span class="nb">map</span> <span class="s1">&#39;[c]&#39;</span> <span class="o">-</span><span class="n">r</span> <span class="mi">30</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">1250</span><span class="n">K</span> <span class="o">-</span><span class="nb">max</span><span class="o">-</span><span class="n">bitrate</span> <span class="mi">1250</span><span class="n">K</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_h264</span> <span class="o">-</span><span class="n">f</span> <span class="n">h264</span> <span class="o">-</span><span class="n">y</span> <span class="n">out_360p30</span><span class="o">.</span><span class="mi">264</span> <span class="o">-</span><span class="nb">map</span> <span class="s1">&#39;[d]&#39;</span> <span class="o">-</span><span class="n">r</span> <span class="mi">30</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">625</span><span class="n">K</span> <span class="o">-</span><span class="nb">max</span><span class="o">-</span><span class="n">bitrate</span> <span class="mi">625</span><span class="n">K</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_h264</span> <span class="o">-</span><span class="n">f</span> <span class="n">h264</span> <span class="o">-</span><span class="n">y</span> <span class="n">out_160p30</span><span class="o">.</span><span class="mi">264</span>
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+<!-- Atalwar: Moved the footer code to layout.html to resolve conflict with the Xilinx template -->
+</footer>
+
+        </div>
+      </div>
+
+
+	  <!-- Sphinx Page Footer block -->
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="c_apis.html" class="btn btn-neutral float-right" title="C API Programming Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="using_ffmpeg.html" class="btn btn-neutral float-left" title="Using FFmpeg" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo" class="copyright">
+    <p class="footerinfo">
+      <span class="lastupdated">
+        Last updated on September 03, 2021.
+      </span>
+
+    </p>
+	<br>
+  </div>
+      </div>
+    </section>
+
+
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+   <script type="text/javascript">
+    jQuery(function() { Search.loadIndex("searchindex.js"); });
+  </script>
+
+  <script type="text/javascript" id="searchindexloader"></script>
+
+
+  
+  
+    
+  
+
+
+
+  <!--  Xilinx template footer block -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="xilinxExperienceFragments experiencefragment aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16">
+					<div class="xf-content-height">
+						<div class="aem-Grid aem-Grid--16 aem-Grid--default--16 ">
+							<div class="footer parbase aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16">
+								<noindex>
+                  <!-- make footer fixed - NileshP -->
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+                  <!-- make footer fixed NileshP-->
+									<footer>
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+													<div class="row">
+														<div class="footerSocial parbase">
+															<div class="col-md-push-6 col-lg-push-6 col-md-6 col-lg-6">
+																<ul class="list-inline pull-right social-menu">
+																	<li>
+																		<a href="https://www.linkedin.com/company/xilinx">
+																		<span class="linkedin icon"></span>
+																		<span class="sr-only">Connect on LinkedIn</span>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="https://www.twitter.com/XilinxInc">
+																		<span class="twitter icon"></span>
+																		<span class="sr-only">Follow us on Twitter</span>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="https://www.facebook.com/XilinxInc">
+																		<span class="facebook icon"></span>
+																		<span class="sr-only">Connect on Facebook</span>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="https://www.youtube.com/XilinxInc">
+																		<span class="youtube icon"></span>
+																		<span class="sr-only">Watch us on YouTube</span>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="https://www.xilinx.com/registration/subscriber-signup.html">
+																		<span class="newsletter icon"></span>
+																		<span class="sr-only">Subscribe to Newsletter</span>
+																		</a>
+																	</li>
+																</ul>
+															</div>
+														</div>
+														<div class="col-md-pull-6 col-lg-pull-6 col-md-6 col-lg-6">
+															<span class="copyright">
+                                  
+                                  &copy; 2021, Xilinx, Inc.
+                              </span>
+<!-- 															<ul class="list-inline sub-menu">
+																<li>
+																	<a href="https://www.xilinx.com/about/privacy-policy.html">Privacy</a>
+																</li>
+																<li>
+																	<a href="https://www.xilinx.com/about/legal.html">Legal</a>
+																</li>
+																<li>
+																	<a href="https://www.xilinx.com/about/contact.html">Contact</a>
+																</li>
+															</ul> -->
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</footer>
+								</noindex>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="quicklinks parbase aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16">
+					<noindex>
+						<span class="quickLinks">
+							<ul>
+								<li>
+									<a href="#top" class="btn backToTop">
+									<span class="fas fa-angle-up" aria-hidden="true"></span>
+									</a>
+								</li>
+							</ul>
+						</span>
+					</noindex>
+				</div>
+			</div>
+		</div>
+		<script>window.CQ = window.CQ || {}</script>
+		<script src="https://static.cloud.coveo.com/searchui/v2.4382/js/CoveoJsSearch.Lazy.min.js"></script>
+		<script>
+			var underscoreSetup = function () {
+			  _.templateSettings.interpolate = /\{\{=([^-][\S\s]+?)\}\}/g;
+			  _.templateSettings.evaluate = /\{\{([^-=][\S\s]+?)\}\}/g;
+			  _.templateSettings.escape = /\{\{-([^=][\S\s]+?)\}\}/g;
+			}
+
+			underscoreSetup();
+		</script>
+	</body>
+</html>
