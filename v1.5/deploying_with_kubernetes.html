@@ -1,0 +1,791 @@
+
+
+
+<!DOCTYPE HTML>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+	<head>
+		<meta charset="utf-8">
+		
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+		<meta name="description"/>
+		<meta name="keywords"/>
+		<meta property="og:title" content=""/>
+		<meta property="og:description"/>
+		<!-- favicon -->
+		<link rel="icon" type="image/vnd.microsoft.icon" href="_static/favicon.ico"/>
+		<link rel="shortcut icon" type="image/vnd.microsoft.icon" href="_static/favicon.ico"/>
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500" rel="stylesheet" type="text/css"/>
+
+  
+  
+  
+  
+
+  
+      <script type="text/javascript" src="_static/js/jquery.min.js"></script>
+	  <script type="text/javascript" src="_static/js/gtm.js"></script>
+  <script type="text/javascript" src="_static/js/modernizr.min.js"></script>
+    <script type="text/javascript" src="_static/js/d3dd8c60ed.js"></script>
+    <script type="text/javascript" src="_static/js/common-ui-all.min.js"></script>
+    <script type="text/javascript" src="_static/js/header-footer.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="_static/js/CoveoJsSearch.Lazy.min.js"></script>
+    <script type="text/javascript" src="_static/js/linkid.js"></script>
+    <script type="text/javascript" src="_static/js/Searchbox.min.js"></script>
+  
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+
+    
+
+  
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/common-ui-all.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/header-footer.min.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/pro.min.css" media="all" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="C API Programming Guide" href="c_apis.html" />
+    <link rel="prev" title="Managing Video Acceleration Compute Resources" href="managing_compute_resources.html" /> 
+	</head>
+	<body>
+		<div class="xilinx-bs3"/>
+		<div class="root responsivegrid">
+			<div class="aem-Grid aem-Grid--16 aem-Grid--default--16 aem-Grid--large--16 aem-Grid--xlarge--16 aem-Grid--xxlarge--16 aem-Grid--xxxlarge--16 ">
+				<div class="xilinxExperienceFragments experiencefragment aem-GridColumn aem-GridColumn--default--12">
+					<div class="xf-content-height">
+						<div class="aem-Grid aem-Grid--16 aem-Grid--default--16 ">
+							<div class="header parbase aem-GridColumn aem-GridColumn--default--12">
+								<noindex>
+									<header data-component="header">
+										<nav class="navbar navbar-default aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid main-nav">
+													<div class="row">
+														<div class="col-xs-12">
+															<div class="logo-column">
+																<div class="logo">
+																	<a href="https://www.xilinx.com/">
+																	<img src="https://github.com/Xilinx/Image-Collateral/blob/main/xilinx-header-logo.svg?raw=true" title="Xilinx Inc"/>
+																	</a>
+																</div>
+															</div>
+															<div class="navbar-column">
+																<div class="navbar navbar-collapse collapse" id="xilinx-main-menu">
+																	<div class="mobile-search-container">
+																		<div id="headerSearchBox" class="headerSearch"
+																			data-component="header-search"
+																			data-redirect-if-empty="false"
+																			data-coveo-access-token="xxa237d4dd-f0aa-47fc-9baa-af9121851b33"
+																			data-coveo-organization-id="xilinxcomprode2rjoqok">
+																			<div class='coveo-search-section'>
+																				<div class="CoveoAnalytics" data-search-hub="Site"></div>
+																				<ul class="dropdown-menu options">
+																					<li class="option" data-label="All" data-action-link="https://www.xilinx.com/search/site-keyword-search.html" data-search-hub="Site">
+																						<a href="#">
+																						All</a>
+																					</li>
+																					<li data-label="Silicon Devices" data-action-link="https://www.xilinx.com//products/silicon-devices/si-keyword-search.html" data-search-hub="Product">
+																						<a href="#">
+																						Silicon Devices</a>
+																					</li>
+																					<li data-label="Boards and Kits" data-action-link="https://www.xilinx.com//products/boards-and-kits/bk-keyword-search.html" data-search-hub="Product">
+																						<a href="#">
+																						Boards and Kits</a>
+																					</li>
+																					<li data-label="Intellectual Property" data-action-link="https://www.xilinx.com//products/intellectual-property/ip-keyword-search.html" data-search-hub="Product">
+																						<a href="#">
+																						Intellectual Property</a>
+																					</li>
+																					<li data-label="Support" class="option" data-action-link="https://www.xilinx.com/search/support-keyword-search.html" data-search-hub="Support">
+																						<a href="#">
+																						Support</a>
+																						<ul>
+																							<li data-label="Documentation" data-action-link="https://www.xilinx.com//support/documentation-navigation/documentation-keyword-search.html" data-search-hub="Document">
+																								<a href="#">
+																								Documentation</a>
+																							</li>
+																							<li data-label="Knowledge Base" data-action-link="https://www.xilinx.com//support/answer-navigation/answer-keyword-search.html" data-search-hub="AnswerRecord">
+																								<a href="#">
+																								Knowledge Base</a>
+																							</li>
+																							<li data-label="Community Forums" data-action-link="https://www.xilinx.com/search/forums-keyword-search.html" data-search-hub="Forums">
+																								<a href="#">
+																								Community Forums</a>
+																							</li>
+																						</ul>
+																					</li>
+																					<li data-label="Partners" data-action-link="https://www.xilinx.com//alliance/member-keyword-search.html" data-search-hub="Partner">
+																						<a href="#">
+																						Partners</a>
+																					</li>
+																					<li data-label="Videos" data-action-link="https://www.xilinx.com/video/video-keyword-search.html" data-search-hub="Video">
+																						<a href="#">
+																						Videos</a>
+																					</li>
+																					<li data-label="Press" data-action-link="https://www.xilinx.com/search/press-keyword-search.html" data-search-hub="Press">
+																						<a href="#">
+																						Press</a>
+																					</li>
+																				</ul>
+																				<a href="#" class="btn dropdown-toggle value" data-toggle="dropdown"></a>
+																				<div class="CoveoSearchbox" data-id="coveosearchbox" data-action-link="https://www.xilinx.com/search/site-keyword-search.html" data-placeholder="Search Xilinx"></div>
+																			</div>
+																		</div>
+																	</div>
+<!-- 																	<ul class="nav navbar-nav nav-justified">
+																		<li class="accordion-toggle-icons" data-component="toggle-dropdown">
+																			<a href="https://www.xilinx.com/applications.html">
+																			Applications</a>
+																		</li>
+																		<li class="accordion-toggle-icons" data-component="toggle-dropdown">
+																			<a href="https://www.xilinx.com/products/silicon-devices.html">
+																			Products</a>
+																		</li>
+																		<li class="accordion-toggle-icons" data-component="toggle-dropdown">
+																			<a href="https://developer.xilinx.com/">
+																			Developers</a>
+																		</li>
+																		<li class="accordion-toggle-icons" data-component="toggle-dropdown">
+																			<a href="https://www.xilinx.com/support.html">
+																			Support</a>
+																		</li>
+																		<li class="accordion-toggle-icons" data-component="toggle-dropdown">
+																			<a href="https://www.xilinx.com/about/company-overview.html">
+																			About</a>
+																		</li>
+																	</ul> -->
+																</div>
+															</div>
+															<script type="text/javascript" src="_static/js/gtm.js"></script>
+															<!--<div class="mini-nav">
+																<button type="button" data-function="xilinx-mobile-menu" id="nav-toggle" class="navbar-toggle collapsed visible-xs-block" aria-expanded="false">
+																<span></span>
+																<span></span>
+																<span></span>
+																<span></span>
+																</button>
+																<ul class="list-inline">
+																	<li class="dropdown user-menu">
+																		<button data-toggle="dropdown">
+																		<span class="sr-only">Account</span>
+																		<span class="fas fa-user"></span>
+																		</button>
+																		<ul class="dropdown-menu">
+																			<li>
+																				<a href="https://www.xilinx.com/myprofile/subscriptions.html">
+																				My Account</a>
+																			</li>
+																			<li>
+																				<a href="https://www.xilinx.com/registration/create-account.html">
+																				Create Account</a>
+																			</li>
+																			<li>
+																				<a href="https://www.xilinx.com/bin/protected/en/signout">
+																				Sign Out</a>
+																			</li>
+																		</ul>
+																	</li>
+																	<li class="hidden-xs">
+																		<button data-function="search-toggle">
+																		<span class="sr-only">Search</span>
+																		<span class="far fa-search"></span>
+																		</button>
+																	</li>
+																</ul>
+															</div>
+															-->
+															<div class="search-container">
+																<div id="headerSearchBox" class="headerSearch"
+																	data-component="header-search"
+																	data-redirect-if-empty="false"
+																	data-coveo-access-token="xxa237d4dd-f0aa-47fc-9baa-af9121851b33"
+																	data-coveo-organization-id="xilinxcomprode2rjoqok">
+																	<div class='coveo-search-section'>
+																		<div class="CoveoAnalytics" data-search-hub="Site"></div>
+																		<ul class="dropdown-menu options">
+																			<li class="option" data-label="All" data-action-link="https://www.xilinx.com/search/site-keyword-search.html" data-search-hub="Site">
+																				<a href="#">
+																				All</a>
+																			</li>
+																			<li data-label="Silicon Devices" data-action-link="https://www.xilinx.com/products/silicon-devices/si-keyword-search.html" data-search-hub="Product">
+																				<a href="#">
+																				Silicon Devices</a>
+																			</li>
+																			<li data-label="Boards and Kits" data-action-link="https://www.xilinx.com/products/boards-and-kits/bk-keyword-search.html" data-search-hub="Product">
+																				<a href="#">
+																				Boards and Kits</a>
+																			</li>
+																			<li data-label="Intellectual Property" data-action-link="https://www.xilinx.com/products/intellectual-property/ip-keyword-search.html" data-search-hub="Product">
+																				<a href="#">
+																				Intellectual Property</a>
+																			</li>
+																			<li data-label="Support" class="option" data-action-link="https://www.xilinx.com/search/support-keyword-search.html" data-search-hub="Support">
+																				<a href="#">
+																				Support</a>
+																				<ul>
+																					<li data-label="Documentation" data-action-link="https://www.xilinx.com/support/documentation-navigation/documentation-keyword-search.html" data-search-hub="Document">
+																						<a href="#">
+																						Documentation</a>
+																					</li>
+																					<li data-label="Knowledge Base" data-action-link="https://www.xilinx.com/support/answer-navigation/answer-keyword-search.html" data-search-hub="AnswerRecord">
+																						<a href="#">
+																						Knowledge Base</a>
+																					</li>
+																					<li data-label="Community Forums" data-action-link="https://www.xilinx.com/search/forums-keyword-search.html" data-search-hub="Forums">
+																						<a href="#">
+																						Community Forums</a>
+																					</li>
+																				</ul>
+																			</li>
+																			<li data-label="Partners" data-action-link="https://www.xilinx.com/alliance/member-keyword-search.html" data-search-hub="Partner">
+																				<a href="#">
+																				Partners</a>
+																			</li>
+																			<li data-label="Videos" data-action-link="https://www.xilinx.com/video/video-keyword-search.html" data-search-hub="Video">
+																				<a href="#">
+																				Videos</a>
+																			</li>
+																			<li data-label="Press" data-action-link="https://www.xilinx.com/search/press-keyword-search.html" data-search-hub="Press">
+																				<a href="#">
+																				Press</a>
+																			</li>
+																		</ul>
+																		<a href="#" class="btn dropdown-toggle value" data-toggle="dropdown"></a>
+																		<div class="CoveoSearchbox" data-id="coveosearchbox" data-action-link="https://www.xilinx.com/search/site-keyword-search.html" data-placeholder="Search Xilinx"></div>
+																	</div>
+																</div>
+																<button data-function="search-toggle">
+																<span class="sr-only">Search</span>
+																<span class="far fa-times"></span>
+																</button>
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</nav>
+									</header>
+								</noindex>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="parsys aem-GridColumn--xxxlarge--none aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+						<div class="container-fluid">
+							<div class="row">
+							<div class="col-xs-12">
+   
+  <div class="wy-grid-for-nav">
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+          
+
+          
+            <a href="index.html" class="icon icon-home" alt="Documentation Home"> Xilinx Video SDK
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                1.5
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+      
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+            
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_prem.html">On Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_vt1.html">Amazon EC2 VT1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container_setup.html">Container Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Tutorials and Examples</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Reference Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="specs_and_features.html">Specs and Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_ffmpeg.html">Using FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managing_compute_resources.html">Managing Compute Resources</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deploying with Kubernetes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-the-xilinx-device-plugin-for-kubernetes">Installing the Xilinx device plugin for Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploying-user-pods">Deploying User Pods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="card_management.html">Card Management</a></li>
+</ul>
+<p class="caption"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+            
+			
+          
+        </div>
+        
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Xilinx Video SDK</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+        
+      <li>Deploying with Kubernetes</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="deploying-with-kubernetes">
+<span id="id1"></span><h1>Deploying with Kubernetes<a class="headerlink" href="#deploying-with-kubernetes" title="Permalink to this headline">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites" id="id3">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#installing-the-xilinx-device-plugin-for-kubernetes" id="id4">Installing the Xilinx device plugin for Kubernetes</a></p></li>
+<li><p><a class="reference internal" href="#deploying-user-pods" id="id5">Deploying User Pods</a></p></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>The Xilinx device plugin for Kubernetes is a daemonset deployed on a Kubernetes cluster which:</p>
+<ul class="simple">
+<li><p>Discovers the Xilinx cards inserted in each node of the cluster and expose information about the devices and their properties</p></li>
+<li><p>Enables containers to access Xilinx cards installed in the worker nodes of the Kubernetes cluster</p></li>
+</ul>
+<p>When the plugin mounts a Xilinx card, all the devices located on that card become available to the container. Since there are two Xilinx devices per Alveo U30 card, the Xilinx device plugin will always mount the two devices of each Alveo U30 card. In the pod-description file, the “limits” field can used to control how many cards are mounted, but both devices of the card will always be mave available to the container. For instance, on a vt1.6xl instance, the “xbutil command” will show 4 devices but a description of the Kubernetes worker node will show 2 Xilinx cards. The limit can be set to 1 in the pod-description file, in which case the container will have access to 2 devices.</p>
+<p>The plugin is available on the ECR repository: <a class="reference external" href="https://gallery.ecr.aws/xilinx_dcg/k8s-fpga-device-plugin:1.0.100">https://gallery.ecr.aws/xilinx_dcg/k8s-fpga-device-plugin:1.0.100</a></p>
+<p>The following instructions explain how to install the Xilinx device plugin for Kubernetes and how to deploy user pods with access to Xilinx devices.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="prerequisites">
+<h2><a class="toc-backref" href="#id3">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
+<p>The following instructions assume that your system satisfies the following requirements:</p>
+<ul class="simple">
+<li><p>An Amazon EKS cluster is created and the Xilinx Video SDK is installed on all Amazon EC2 VT1 worker nodes</p></li>
+<li><p>The client is configured to access the EKS cluster:</p>
+<ul>
+<li><p>The AWS CLI is installed and the access key is correctly configured</p></li>
+<li><p>eksctl is installed</p></li>
+<li><p>kubectl is installed and connected to the EKS cluster of Amazon EC2 VT1 nodes</p></li>
+</ul>
+</li>
+</ul>
+<p>For additional information about Amazon EKS, refer to the Amazon EKS user guide: <a class="reference external" href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html">https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html</a></p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="installing-the-xilinx-device-plugin-for-kubernetes">
+<h2><a class="toc-backref" href="#id4">Installing the Xilinx device plugin for Kubernetes</a><a class="headerlink" href="#installing-the-xilinx-device-plugin-for-kubernetes" title="Permalink to this headline">¶</a></h2>
+<p>The following steps require kubectl to be connected to your EKS cluster. After the Xilinx device plugin for Kubernetes is installed, no additional configuration is needed when adding nodes to the cluster.</p>
+<ol class="arabic">
+<li><p>Create a file called xilinx-device-plugin.yml and paste the following content in it:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: fpga-device-plugin-daemonset
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      name: xilinx-fpga-device-plugin
+  template:
+    metadata:
+      annotations:
+        scheduler.alpha.kubernetes.io/critical-pod: &quot;&quot;
+      labels:
+        name: xilinx-fpga-device-plugin
+    spec:
+      tolerations:
+      - key: CriticalAddonsOnly
+        operator: Exists
+      containers:
+      - image: public.ecr.aws/xilinx_dcg/k8s-fpga-device-plugin:1.0.100
+        name: xilinx-fpga-device-plugin
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: [&quot;ALL&quot;]
+        volumeMounts:
+          - name: device-plugin
+            mountPath: /var/lib/kubelet/device-plugins
+      volumes:
+        - name: device-plugin
+          hostPath:
+            path: /var/lib/kubelet/device-plugins
+</pre></div>
+</div>
+</li>
+<li><p>Deploy the Xilinx device plugin as a daemonset:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Apply the Xilinx device plugin
+kubectl apply -f ./xilinx-device-plugin.yml
+
+# Check the status of daemonset:
+kubectl get daemonset -n kube-system
+
+# Check the status of device-plugin pod:
+kubectl get pod -n kube-system
+</pre></div>
+</div>
+</li>
+<li><p>List visible nodes and check Xilinx resources available:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Get node names
+kubectl get node
+
+# Check Xilinx resources available in specific worker node
+kubectl describe node &lt;node-name&gt;
+</pre></div>
+</div>
+<p>For each node, you will see a similar report:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Name:               ip-192-168-58-12.ec2.internal
+Roles:              &lt;none&gt;
+......
+Capacity:
+  attachable-volumes-aws-ebs:                  39
+  cpu:                                         24
+  ephemeral-storage:                           104845292Ki
+  hugepages-1Gi:                               0
+  hugepages-2Mi:                               0
+  memory:                                      47284568Ki
+  pods:                                        15
+  xilinx.com/fpga-xilinx_u30_gen3x4_base_1-0:  2
+Allocatable:
+  attachable-volumes-aws-ebs:                  39
+  cpu:                                         23870m
+  ephemeral-storage:                           95551679124
+  hugepages-1Gi:                               0
+  hugepages-2Mi:                               0
+  memory:                                      46752088Ki
+  pods:                                        15
+  xilinx.com/fpga-xilinx_u30_gen3x4_base_1-0:  2
+</pre></div>
+</div>
+<p>In this example, 2 Alveo U30 cards are available in the node.</p>
+</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="deploying-user-pods">
+<h2><a class="toc-backref" href="#id5">Deploying User Pods</a><a class="headerlink" href="#deploying-user-pods" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Paste and customize the content below in a pod-description yaml file:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>apiVersion: v1
+kind: Pod
+metadata:
+  name: &lt;pod-name&gt;                                     # Choose a unique test pod name
+spec:
+  containers:
+  - name: &lt;container-name&gt;                             # Choose a unique container name
+    image: &lt;path-to-docker-image&gt;                      # Path to the Docker image on ECR
+    resources:
+      limits:
+        xilinx.com/fpga-xilinx_u30_gen3x4_base_1-0: 1  # Number of Alveo U30 cards which should be mounted
+    command: [&quot;/bin/sh&quot;]
+    args: [&quot;-c&quot;, &quot;while true; do echo hello; sleep 10;done&quot;]
+</pre></div>
+</div>
+<p>NOTE: The “limits” field can be used to control how many Xilinx cards should made available to the container. The plugin mounts all the devices present on a card. In the case of Alveo U30 cards, a limit of 1 means that 2 devices are mounted.</p>
+</li>
+<li><p>Create the pod using the pod-description yaml file:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>kubectl create -f &lt;pod-description.yml&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Check the status of the created pod:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>kubectl get pod -o wide
+</pre></div>
+</div>
+<p>You will a similar report when the pod is successfully deployed on the cluster:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>NAME         READY   STATUS    RESTARTS   AGE
+&lt;pod-name&gt;   1/1     Running   0          1m
+</pre></div>
+</div>
+<p>Note: If the pod gets stuck during the container creation process or is being evicted, use the command below to get detailed status information:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>kubectl describe pod &lt;pod-name&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Log into the pod once it is in the running state:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>kubectl exec -it &lt;pod-name&gt; -- /bin/bash
+</pre></div>
+</div>
+</li>
+<li><p>Inside the pod, source the environment and verify that the Xilinx devices are correctly mounted and visible:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xrt/setup.sh
+xbutil examine
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+<!-- Atalwar: Moved the footer code to layout.html to resolve conflict with the Xilinx template -->
+</footer>
+
+        </div>
+      </div>
+
+
+	  <!-- Sphinx Page Footer block -->
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="c_apis.html" class="btn btn-neutral float-right" title="C API Programming Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="managing_compute_resources.html" class="btn btn-neutral float-left" title="Managing Video Acceleration Compute Resources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo" class="copyright">
+    <p class="footerinfo">
+      <span class="lastupdated">
+        Last updated on September 13, 2021.
+      </span>
+
+    </p>
+	<br>
+  </div>
+      </div>
+    </section>
+
+
+  
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+
+   <script type="text/javascript">
+    jQuery(function() { Search.loadIndex("searchindex.js"); });
+  </script>
+
+  <script type="text/javascript" id="searchindexloader"></script>
+
+
+  
+  
+    
+  
+
+
+
+  <!--  Xilinx template footer block -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="xilinxExperienceFragments experiencefragment aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16">
+					<div class="xf-content-height">
+						<div class="aem-Grid aem-Grid--16 aem-Grid--default--16 ">
+							<div class="footer parbase aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16">
+								<noindex>
+                  <!-- make footer fixed - NileshP -->
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+                  <!-- make footer fixed NileshP-->
+									<footer>
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+													<div class="row">
+														<div class="footerSocial parbase">
+															<div class="col-md-push-6 col-lg-push-6 col-md-6 col-lg-6">
+																<ul class="list-inline pull-right social-menu">
+																	<li>
+																		<a href="https://www.linkedin.com/company/xilinx">
+																		<span class="linkedin icon"></span>
+																		<span class="sr-only">Connect on LinkedIn</span>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="https://www.twitter.com/XilinxInc">
+																		<span class="twitter icon"></span>
+																		<span class="sr-only">Follow us on Twitter</span>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="https://www.facebook.com/XilinxInc">
+																		<span class="facebook icon"></span>
+																		<span class="sr-only">Connect on Facebook</span>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="https://www.youtube.com/XilinxInc">
+																		<span class="youtube icon"></span>
+																		<span class="sr-only">Watch us on YouTube</span>
+																		</a>
+																	</li>
+																	<li>
+																		<a href="https://www.xilinx.com/registration/subscriber-signup.html">
+																		<span class="newsletter icon"></span>
+																		<span class="sr-only">Subscribe to Newsletter</span>
+																		</a>
+																	</li>
+																</ul>
+															</div>
+														</div>
+														<div class="col-md-pull-6 col-lg-pull-6 col-md-6 col-lg-6">
+															<span class="copyright">
+                                  
+                                  &copy; 2021, Xilinx, Inc.
+                              </span>
+<!-- 															<ul class="list-inline sub-menu">
+																<li>
+																	<a href="https://www.xilinx.com/about/privacy-policy.html">Privacy</a>
+																</li>
+																<li>
+																	<a href="https://www.xilinx.com/about/legal.html">Legal</a>
+																</li>
+																<li>
+																	<a href="https://www.xilinx.com/about/contact.html">Contact</a>
+																</li>
+															</ul> -->
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</footer>
+								</noindex>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="quicklinks parbase aem-GridColumn--default--none aem-GridColumn aem-GridColumn--offset--default--0 aem-GridColumn--default--16">
+					<noindex>
+						<span class="quickLinks">
+							<ul>
+								<li>
+									<a href="#top" class="btn backToTop">
+									<span class="fas fa-angle-up" aria-hidden="true"></span>
+									</a>
+								</li>
+							</ul>
+						</span>
+					</noindex>
+				</div>
+			</div>
+		</div>
+		<script>window.CQ = window.CQ || {}</script>
+		<script src="https://static.cloud.coveo.com/searchui/v2.4382/js/CoveoJsSearch.Lazy.min.js"></script>
+		<script>
+			var underscoreSetup = function () {
+			  _.templateSettings.interpolate = /\{\{=([^-][\S\s]+?)\}\}/g;
+			  _.templateSettings.evaluate = /\{\{([^-=][\S\s]+?)\}\}/g;
+			  _.templateSettings.escape = /\{\{-([^=][\S\s]+?)\}\}/g;
+			}
+
+			underscoreSetup();
+		</script>
+	</body>
+</html>
