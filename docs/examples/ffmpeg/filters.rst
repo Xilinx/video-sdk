@@ -2,11 +2,14 @@
 FFmpeg Examples using Software Filters
 #######################################
 
+.. highlight:: none
+
 .. contents:: Table of Contents
     :local:
     :depth: 1
+.. .. section-numbering::
 
-The ``./examples/filters/`` folder contains different examples showing how to use FFmpeg combining both Alveo U30 accelerated functions and software filters.
+The ``examples/filters/`` folder contains different examples showing how to use FFmpeg combining both Xilinx accelerated functions and software filters.
 
 Video Rotation
 ==============

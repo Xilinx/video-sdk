@@ -1,32 +1,42 @@
 #####################################################
-FFmpeg Tutorials for the Xilinx Video SDK
+FFmpeg Tutorials for the |SDK|
 #####################################################
 
-This page provides tutorials on how to use FFmpeg with the Xilinx Alveo U30. Detailed documentation for this specific topic can be found in the :doc:`Xilinx Video SDK User Guide </using_ffmpeg>`.
+.. highlight:: none
+
+This page provides tutorials on how to use FFmpeg with the |SDK|. Detailed documentation for this specific topic can be found in the |SDK| :doc:`User Guide </using_ffmpeg>`.
 
 
 .. contents:: Table of Contents
     :local:
     :depth: 3
+.. .. section-numbering::
 
 
-The tutorials break down the commands, starting with simple steps using a single device. These are built upon to show 4K, faster than realtime, and multiple operations on the same device.
+The tutorials break down the commands, starting with simple steps using a single device. These are built upon to show 4K, faster than real-time, and multiple operations on the same device.
 
-************
-System Setup
-************
+*****************
+Environment Setup
+*****************
 
-Ensure you have properly set up the environment via ``source /opt/xilinx/xcdr/setup.sh`` as described in the :doc:`setup instructions </setup>`.
+Ensure you have properly configured the environment::
 
-Xilinx provides a precompiled binary for ffmpeg, which is moved to the top of the system PATH.
+    source /opt/xilinx/xcdr/setup.sh
 
-Some of the examples read or write RAW files from disk (encode-only or decode-only pipelines). There is a chance that due to the massive bandwidth required for operating on these RAW files, you will notice a drop in FPS; this is not due to the U30 but the disk speeds. We recommend reading/writing from ``/dev/shm`` which is a RAM disk.
+The setup script exports important environment variables, starts the Xilinx Resource Manager (XRM) daemon, and ensures that the Xilinx devices and the XRM plugins are properly loaded. It also moves to the top of the system PATH the FFmpeg binary provided as part of the |SDK|.
+
+Sourcing the setup script should be performed each time you open a new terminal on your system. This is required for the environment to be correctly configured. 
+
+Messages indicating "Failed to start xrmd.service" can safely be ignored.
 
 |
 
 **********************
 Simple FFmpeg Examples
 **********************
+
+Some of the examples read or write RAW files from disk (encode-only or decode-only pipelines). There is a chance that due to the massive bandwidth required for operating on these RAW files, you will notice a drop in FPS; this is not due to the |SDK| but the disk speeds. We recommend reading/writing from ``/dev/shm`` which is a RAM disk.
+
 
 .. _decode-only:
 
@@ -45,7 +55,7 @@ This example accepts a clip that is already encoded in H.264, and will decode th
     ffmpeg -c:v mpsoc_vcu_h264 -i <INPUT> \
     -vf xvbm_convert -pix_fmt yuv420p -y /tmp/xil_dec_out.yuv
 
-To break down the flags:
+Explanation of the flags:
 
 - ``ffmpeg``
 
@@ -53,7 +63,7 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
   
-  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated decoder in the Alveo U30 card
+  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated decoder in the Xilinx device
 
 - ``-i <INPUT>``
 
@@ -65,7 +75,7 @@ To break down the flags:
 
 - ``-pix_fmt yuv420p``
 
-  + We need to define the colorspace in the output
+  + We need to define the color space in the output
 
 - ``-y``
 
@@ -92,7 +102,7 @@ This example accepts a RAW 1080p60 clip in YUV420 format. It will pass the clip 
     ffmpeg -f rawvideo -s 1920x1080 -r 60 -pix_fmt yuv420p -i <INPUT> \
     -b:v 8M -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_enc_out.mp4
 
-To break down the flags:
+Explanation of the flags:
 
 - ``ffmpeg``
   
@@ -112,7 +122,7 @@ To break down the flags:
 
 - ``-pix_fmt yuv420p``
 
-  + The colorspace of the encoder is by default yuv420p. this example is defining the input clip as being this same colorspace 
+  + The color space of the encoder is by default yuv420p. this example is defining the input clip as being this same color space 
 
 - ``-i <INPUT>``
 
@@ -128,7 +138,7 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
 
-  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated encoder in the Alveo U30 card
+  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated encoder in the Xilinx device
 
 - ``-y``
 
@@ -146,14 +156,14 @@ Basic Transcode
 
     ./03_ffmpeg_transcode_only.sh <1080p60 H.264 file>
 
-This example takes an H.264 clip and reencodes it to H.264 with a new bitrate of 8Mbps. The output is writen into :file:`/tmp/xil_xcode.mp4`. 
+This example takes an H.264 clip and reencodes it to H.264 with a new bitrate of 8Mbps. The output is written into :file:`/tmp/xil_xcode.mp4`. 
 
 **Command Line**::
 
     ffmpeg -c:v mpsoc_vcu_h264 -i <INPUT> \
     -f mp4 -b:v 8M -c:v mpsoc_vcu_h264 -y /tmp/xil_xcode.mp4 
 
-To break down the flags:
+Explanation of the flags:
 
 - ``ffmpeg``
   
@@ -161,7 +171,7 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
   
-  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated decoder in the Alveo U30 card
+  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated decoder in the Xilinx device
 
 - ``-i <INPUT>``
 
@@ -173,7 +183,7 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
 
-  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated encoder in the Alveo U30 card
+  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated encoder in the Xilinx device
 
 - ``-y``
 
@@ -195,7 +205,7 @@ Decode Only Into Multiple-Resolution Outputs
 
     ./04_ffmpeg_decode_plus_scale.sh <1080p60 h264 clip>
     
-This example decodes an existing H.264 file and then scales it into multiple resolutions as defined below. It will not re-encode them and save the RAW output to disk under ``/tmp/xil_dec_scale<res>.yuv``
+This example decodes an existing H.264 file and then scales it into multiple resolutions as defined below. It will not re-encode them, but save the RAW outputs to disk under ``/tmp/xil_dec_scale<res>.yuv``
 
 **Command Line**::
 
@@ -214,7 +224,7 @@ This example decodes an existing H.264 file and then scales it into multiple res
     -map "[c1]"   -pix_fmt yuv420p -f rawvideo /tmp/xil_dec_scale_360p30.yuv \
     -map "[d1]"   -pix_fmt yuv420p -f rawvideo /tmp/xil_dec_scale_288p30.yuv
 
-To break down the flags:
+Explanation of the flags:
 
 - ``ffmpeg``
   
@@ -222,7 +232,7 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
   
-  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated decoder in the Alveo U30 card
+  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated decoder in the Xilinx device
 
 - ``-i <INPUT>``
 
@@ -280,7 +290,7 @@ This example takes a raw 1080p60 YUV file, scales it down to different resolutio
     -map "[c]"   -b:v 1250K -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_scale_enc_360p30.mp4 \
     -map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_scale_enc_288p30.mp4
 
-To break down the flags:
+Explanation of the flags:
 
 - ``ffmpeg``
   
@@ -319,7 +329,7 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
 
-  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated encoder in the Alveo U30 card
+  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated encoder in the Xilinx device
 
 - ``-f mp4``
 
@@ -344,22 +354,25 @@ Transcode With Multiple-Resolution Outputs
 
 This example implements a complete transcoding pipeline on an 1080p60 H.264 input. It decodes the input stream, scales it down to different resolutions and frame rates, encodes each of the scaled streams to H.264 and saves them to disk under :file:`xil_xcode_scale_<resolution>.mp4`
 
+The command included in the script doesn't handle the audio channel of the input video. For an example of how to include audio in the output streams, refer to the example commented out at the bottom of the script and to the section of the documentation about :ref:`Mapping Audio Streams <mapping-audio-streams>`.
+
+
 **Command Line**::
 
     ffmpeg -c:v mpsoc_vcu_h264 -i $1 \
     -filter_complex "multiscale_xma=outputs=4: \
-    out_1_width=1280: out_1_height=720:  out_1_rate=full: \
-    out_2_width=848:  out_2_height=480:  out_2_rate=half: \
-    out_3_width=640:  out_3_height=360:  out_3_rate=half: \
-    out_4_width=288:  out_4_height=160:  out_4_rate=half  \
-    [a][b][c][d]; [a]split[aa][ab];[ab]fps=30[abb]" \
+    out_1_width=1280: out_1_height=720: out_1_rate=full: \
+    out_2_width=848:  out_2_height=480: out_2_rate=half: \
+    out_3_width=640:  out_3_height=360: out_3_rate=half: \
+    out_4_width=288:  out_4_height=160: out_4_rate=half  \
+    [a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]" \
     -map "[aa]"  -b:v 4M    -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_720p60.mp4 \
     -map "[abb]" -b:v 3M    -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_720p30.mp4 \
     -map "[b]"   -b:v 2500K -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_480p30.mp4 \
     -map "[c]"   -b:v 1250K -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_360p30.mp4 \
     -map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_288p30.mp4
 
-To break down the flags:
+Explanation of the flags:
 
 - ``ffmpeg``
   
@@ -367,7 +380,7 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
   
-  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated decoder in the Alveo U30 card
+  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated decoder in the Xilinx device
 
 - ``-i <INPUT>``
 
@@ -375,13 +388,13 @@ To break down the flags:
 
 - ``-filter_complex``
 
-  + The FFmpeg ``-filter_complex`` flag allows combining multiple filters together using a graph-like syntax. This example uses the :option:`multiscale_xma`, ``split`` and ``fps`` filters to create 5 output resolutions from the input stream.
+  + The FFmpeg ``-filter_complex`` flag allows combining multiple filters together using a graph-like syntax. This example uses the :option:`multiscale_xma`, ``split`` and ``fps`` filters to create 5 output resolutions from the input stream along with the corresponding audio streams.
   + The :option:`multiscale_xma` filter configures the Xilinx hardware-accelerated scaler to produce 4 output resolutions (1280x720p60, 848x480p30, 640x360p30, and 288x160p30). For each output, the width, height and frame rate are defined with ``out_<n>_width``, ``out_<n>_height`` and  ``out_<n>_rate``. The 4 outputs of the :option:`multiscale_xma` filter are identified as ``a``, ``b``, ``c`` and ``d`` respectively. 
   + The ``split`` and ``fps`` software filters are used to split the ``a`` stream into ``aa`` and ``ab`` and then drop the framerate of ``ab`` to 30 fps to produce the ``abb`` 1280x720p30 stream.
 
 - ``-map "[ID]"``
 
-  + Selects an output of the filter graph. The flags that follow apply to the selected stream.
+  + Selects a video output of the filter graph. The flags that follow apply to the selected stream.
 
 - ``-b:v <SIZE>``
 
@@ -389,7 +402,7 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
 
-  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated encoder in the Alveo U30 card
+  + Selects an audio output of the filter graph. The selected audio stream will be combined with the selected video stream. 
 
 - ``-f mp4``
 
@@ -411,13 +424,15 @@ Lower-Latency Transcode With Multiple-Resolution Outputs
 
     ./ffmpeg_transcode_plus_scale_low_latency.sh <1080p60 h264 clip>
 
-This example is the same as #6, which is a full transcode pipeline (decode, scale, encode), saving the scaled outputs into the files :file:`/tmp/xil_ll_xcode_scale_<reso>.mp4`. This differs in that is is a "low latency" version, which removes the B-frames, and reduces the lookahead. This, in short, decreases the latency at the cost of visual quality.
+This example is the same as #6, which is a full transcode pipeline (decode, scale, encode), saving the scaled outputs into the files :file:`/tmp/xil_ll_xcode_scale_<reso>.mp4`. This differs in that is a "low latency" version, which removes the B-frames, and reduces the lookahead. This decreases the latency at the cost of video quality.
 
 This example will output corrupt data if you provide an input file that contains B-Frames.
 
+The command included in the script doesn't handle the audio channel of the input video. For an example of how to include audio in the output streams, refer to the example commented out at the bottom of the script and to the section of the documentation about :ref:`Mapping Audio Streams <mapping-audio-streams>`.
+
 **Command Line**::
 
-    ffmpeg -c:v mpsoc_vcu_h264 -entropy_buffers_count 2 -low_latency 1 -i $1 \
+    ffmpeg -c:v mpsoc_vcu_h264 -low_latency 1 -i $1 \
     -filter_complex "multiscale_xma=outputs=4: \
     out_1_width=1280: out_1_height=720: out_1_rate=full:   \
     out_2_width=848:  out_2_height=480: out_2_rate=half:   \ 
@@ -430,7 +445,8 @@ This example will output corrupt data if you provide an input file that contains
     -map "[c]"   -b:v 1250K -bf 0 -scaling-list 0 -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_ll_xcode_scale_360p30.mp4 \
     -map "[d]"   -b:v 625K  -bf 0 -scaling-list 0 -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_ll_xcode_scale_288p30.mp4
 
-To break down the flags:
+
+Explanation of the flags:
 
 - ``ffmpeg``
   
@@ -438,7 +454,7 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
   
-  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated decoder in the Alveo U30 card
+  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated decoder in the Xilinx device
 
 - ``-low_latency 1``
   
@@ -446,13 +462,11 @@ To break down the flags:
  
   + **If your stream contains B-Frames, you will receive a corrupt output**
 
-  + Remove ``-low_latency 1`` from the commandline if your input has B-Frames
+  + Remove ``-low_latency 1`` from the command line if your input has B-Frames
 
 - ``-filter_complex``
 
-  + The FFmpeg ``-filter_complex`` flag allows combining multiple filters together using a graph-like syntax. This example uses the :option:`multiscale_xma`, ``split`` and ``fps`` filters to create 5 output resolutions from the input stream.
-  + The :option:`multiscale_xma` filter configures the Xilinx hardware-accelerated scaler to produce 4 output resolutions (1280x720p60, 848x480p30, 640x360p30, and 288x160p30). For each output, the width, height and frame rate are defined with ``out_<n>_width``, ``out_<n>_height`` and  ``out_<n>_rate``. The 4 outputs of the :option:`multiscale_xma` filter are identified as ``a``, ``b``, ``c`` and ``d`` respectively. 
-  + The ``split`` and ``fps`` software filters are used to split the ``a`` stream into ``aa`` and ``ab`` and then drop the framerate of ``ab`` to 30 fps to produce the ``abb`` 1280x720p30 stream.
+  + This takes the 1080p60 input, converts it to 5x video streams of 720p60, 720p30, 480p30, 360p30, and 160p30 and creates the corresponding audio streams. For more details, refer to the previous example about Transcode With Multiple-Resolution Outputs.
 
 - ``-map "[ID]"``
 
@@ -464,7 +478,7 @@ To break down the flags:
 
 - ``-bf 0``
   
-  + The number of b-frames inserted in the output stream not only increases encode latency in the Alveo U30 card, but decode latency on the player. Setting it to 0 removes them.
+  + The number of b-frames inserted in the output stream not only increases encode latency in the Xilinx device, but decode latency on the player. Setting it to 0 removes them.
 
 - ``scaling-list 0``
 
@@ -472,7 +486,7 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
 
-  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated encoder in the Alveo U30 card
+  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated encoder in the Xilinx device
 
 - ``-f mp4``
 
@@ -492,9 +506,9 @@ To break down the flags:
 Encoding Streams to 4K
 *****************************
 
-The U30 Video SDK solution supports real-time decoding and encoding of 4k streams with the following notes:
+The |SDK| supports real-time decoding and encoding of 4k streams with the following notes:
 
-- The U30 video pipeline is optimized for live-streaming use cases. For 4k streams with bitrates significantly higher than the ones typically used for live streaming, it may not be possible to sustain real-time performance.
+- The Xilinx video pipeline is optimized for live-streaming use cases. For 4k streams with bitrates significantly higher than the ones typically used for live streaming, it may not be possible to sustain real-time performance.
 - When decoding 4k streams with a high bitrate, increasing the number of entropy buffers using the :option:`-entropy_buffers_count` option can help improve performance
 - When encoding raw video to 4k, set the :option:`-s` option to ``3840x2160`` to specify the desired resolution.
 - When encoding 4k streams to H.264, the :option:`-slices` option is required to sustain real-time performance. A value of 4 is recommended. This option is not required when encoding to HEVC.
@@ -616,11 +630,11 @@ This script transcodes three H264 streams to HEVC, sending the outputs to /tmp/x
 Faster than Realtime
 ************************
 
-The Alveo U30 card is optimized for low latency "realtime" applications. That is to say, it provides deterministic low latency transcoding, while operating at the FPS the human eye would normally process/watch it. This is ideal for ingesting a live video stream where there is minimal buffering.
+Xilinx devices are optimized for low latency "real-time" applications. That is to say, it provides deterministic low latency transcoding, while operating at the FPS the human eye would normally process/watch it. This is ideal for ingesting a live video stream where there is minimal buffering.
 
 Faster Than Real Time (FTRT) is almost the contrary: you have the entire file/clip saved and can therefore "divide and conquer". There are two main flags to consider when processing in this flow: :option:`-cores` and :option:`-slices`.
 
-FTRT on a single Alveo U30 device
+FTRT on a single Xilinx device
 =================================
 :download:`11_ffmpeg_ftrt_transcode_only.sh </../examples/ffmpeg/tutorials/11_ffmpeg_ftrt_transcode_only.sh>`
 
@@ -629,7 +643,7 @@ FTRT on a single Alveo U30 device
     ffmpeg -c:v mpsoc_vcu_h264 -i <INPUT> \
     -f mp4 -b:v 8M -c:v mpsoc_vcu_h264 -cores 4 -slices 4 -y /tmp/xil_ftrt_xcode.mp4 
 
-To break down the flags:
+Explanation of the flags:
 
 - ``ffmpeg``
   
@@ -637,7 +651,7 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
   
-  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated decoder in the Alveo U30 card
+  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated decoder in the Xilinx device
 
 - ``-i <INPUT>``
 
@@ -653,11 +667,11 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
 
-  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated encoder in the Alveo U30 card
+  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated encoder in the Xilinx device
  
 - ``-cores 4``
 
-  + Each device on the Alveo U30 internally uses 4x engines/subcores of 1080p60; when targeting 4k resolutions, it will automatically detect and utilize more subcores to maintain realtime performance. 
+  + Each device internally uses 4x engines/subcores of 1080p60; when targeting 4k resolutions, it will automatically detect and utilize more subcores to maintain real-time performance. 
   + Forcing the device to use more cores than necessary will enable more FPS
   + Using more cores on a clip/stream that cannot provide more FPS will waste resources and have no effect
 
@@ -676,12 +690,12 @@ To break down the flags:
   + This is the output path; most scripts will route here. Change to any output path at your discretion.
 
 
-FTRT across multiple Alveo U30 devices for maximum FPS
+FTRT across multiple Xilinx devices for maximum FPS
 ======================================================
 
-When processing file-based solutions, where you have the entire clip to operate on in a single command, you have the option to split the video into segments, and distribute the segments to individual encoder instances (for Alveo U30, these would be devices on the card). While there is some overhead in "splitting" the clip to begin with, and "stitching" the output files into a single output file, these costs are almost always outweighed by the improvement in FPS.
+When processing file-based solutions, where you have the entire clip to operate on in a single command, you have the option to split the video into segments, and distribute the segments to individual encoder instances across different devices. While there is some overhead in "splitting" the clip to begin with, and "stitching" the output files into a single output file, these costs are almost always outweighed by the improvement in FPS.
 
-The function below will split the clip on a boundary that ensures no visual quality is lost (a closed GOP boundary), and will distribute the clip across all available Alveo U30 cards in the system. If you inspect the script, you may edit it to apply the :option:`-cores` and :option:`-slices` flags as listed above for an even larger increase in FPS. Remember that :option:`-slices` will adversely affect VQ.
+The function below will split the clip on a boundary that ensures no video quality is lost (a closed GOP boundary), and will distribute the clip across all available Xilinx devices in the system. If you inspect the script, you may edit it to apply the :option:`-cores` and :option:`-slices` flags as listed above for an even larger increase in FPS. Remember that :option:`-slices` will adversely affect VQ.
 
 The load-balancing of this example uses the :option:`-xlnx_hwdev` flag, which manually utilizes available slots as they are available, systematically filling the cards from "index 0" to "index N" 
 
@@ -692,7 +706,7 @@ The load-balancing of this example uses the :option:`-xlnx_hwdev` flag, which ma
     python 13_ffmpeg_transcode_only_split_stitch.py \
     -s <INPUT> -d /tmp/xil_split_stitch.mp4 -u <SPLIT_COUNT> -i <INPUT_CODEC> -o <OUTPUT_CODEC> -b <BITRATE>
 
-To break down the flags:
+Explanation of the flags:
 
 - ``python``
 
@@ -708,7 +722,7 @@ To break down the flags:
 
 - ``-u <SPLIT_COUNT>``
 
-  + ``<SPLIT_COUNT>`` is an integer number from ``{1..MAXCARDS*2}``. This is the number of Alveo U30 devices you wish to deploy your workload on to. Since each Alveo U30 card has two devices, the maximum number will be the number of cards in your system times two.
+  + ``<SPLIT_COUNT>`` is an integer number from ``{1..MAXCARDS*2}``. This is the number of Xilinx devices you wish to deploy your workload on to. Since there are two devices on an Alveo U30 card, the maximum number will be the number of cards in your system times two.
 
 - ``-i <INPUT_CODEC>``
 
@@ -728,10 +742,10 @@ To break down the flags:
 Streaming Examples
 ******************
 
-Streaming Examples operate largely on the same principles (and commandline strings) as file-based operations. However, the main difference is how streams are received and transmitted.
+Streaming Examples operate largely on the same principles (and command line strings) as file-based operations. However, the main difference is how streams are received and transmitted.
 
 
-These examples is will leverage example #6, which is a full transcode pipeline (decode, scale, encode), however, instead of saving the scaled outputs into monolithic MP4 files, will create a "manifest" file ``.m3u8`` for streaming along with several ``.ts`` files with the actual playback data. These manifest files, when inspected, will contain a "playlist" of clips with ``.ts`` extentions, which are of duration ``hls_time``. Creating separate clips enables the remote playback players to "drop quality" instanatneously without any buffering to the viewer, or trying to figure out and seek to "where we are in the clip". This is how most live streaming is done, however there are other, similar protocolos (e.g. DASH) which operate on similar principles.
+These examples is will leverage example #6, which is a full transcode pipeline (decode, scale, encode), however, instead of saving the scaled outputs into monolithic MP4 files, will create a "manifest" file ``.m3u8`` for streaming along with several ``.ts`` files with the actual playback data. These manifest files, when inspected, will contain a "playlist" of clips with ``.ts`` extensions, which are of duration ``hls_time``. Creating separate clips enables the remote playback players to "drop quality" instantaneously without any buffering to the viewer, or trying to figure out and seek to "where we are in the clip". This is how most live streaming is done, however there are other, similar protocols (e.g. DASH) which operate on similar principles.
 
 These flags, and others, are defined further on the `FFmpeg main help page <https://ffmpeg.org/ffmpeg-formats.html>`_
 
@@ -743,46 +757,35 @@ Replay Saved Files with Downscaling
 
     ./12_ffmpeg_streaming_transcode_from_file.sh <1080p60 h264 clip>
 
+The flows is for representative use.
 
-The flows is for representative use
+The command included in the script doesn't handle the audio channel of the input video. For an example of how to include audio in the output streams, refer to the example commented out at the bottom of the script and to the section of the documentation about :ref:`Mapping Audio Streams <mapping-audio-streams>`.
 
 **Command Line**::
 
     ffmpeg -c:v mpsoc_vcu_h264 -i  $1 \
-    -filter_complex "multiscale_xma=outputs=4: \  
+    -filter_complex "multiscale_xma=outputs=4: \
     out_1_width=1280: out_1_height=720:  out_1_rate=full: \
     out_2_width=848:  out_2_height=480:  out_2_rate=half: \
     out_3_width=640:  out_3_height=360:  out_3_rate=half: \
     out_4_width=288:  out_4_height=160:  out_4_rate=half  \
-    [a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]"\
+    [a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]" \
     -map "[aa]"  -b:v 4M    -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_720p60.m3u8 \
     -map "[abb]" -b:v 3M    -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_720p30.m3u8 \
     -map "[b]"   -b:v 2500K -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_480p30.m3u8 \
     -map "[c]"   -b:v 1250K -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_360p30.m3u8 \
     -map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_288p30.m3u8
 
-To break down the flags:
+
+Explanation of the flags:
 
 - ``ffmpeg -c:v mpsoc_vcu_h264 -i $1``
   
-  + This calls the Xilinx FFmpeg, decodes using the Alveo U30 hardware decoder, an input file ``$1``
+  + This calls the Xilinx FFmpeg, decodes using the Xilinx hardware decoder, an input file ``$1``
 
+- ``-filter_complex``
 
-- The filter graph::
-  
-    -filter_complex "multiscale_xma=outputs=4: \  
-    out_1_width=1280: out_1_height=720:  out_1_rate=full: \
-    out_2_width=848:  out_2_height=480:  out_2_rate=half: \
-    out_3_width=640:  out_3_height=360:  out_3_rate=half: \
-    out_4_width=288:  out_4_height=160:  out_4_rate=half  \
-    [a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]"\
-    -map "[aa]"  -b:v 4M    -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_720p60.m3u8 \
-    -map "[abb]" -b:v 3M    -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_720p30.m3u8 \
-    -map "[b]"   -b:v 2500K -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_480p30.m3u8 \
-    -map "[c]"   -b:v 1250K -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_360p30.m3u8 \
-    -map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_288p30.m3u8
-
-  + This takes the 1080p60 input and converts it to 5x streams of 720p60, 720p30, 480p30, 360p30, and 160p30
+  + This takes the 1080p60 input, converts it to 5x video streams of 720p60, 720p30, 480p30, 360p30, and 160p30 and creates the corresponding audio streams
 
 - ``-b:v <SIZE>``
 
@@ -790,7 +793,7 @@ To break down the flags:
 
 - ``-c:v mpsoc_vcu_h264``
 
-  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-acclerated encoder in the Alveo U30 card
+  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated encoder in the Xilinx device
 
 - ``-f hls``
 

@@ -1,20 +1,23 @@
 ﻿#####################################################
- XMA Examples for Xilinx U30
+XMA Examples for the |SDK|
 #####################################################
+
+.. highlight:: none
 
 .. contents:: Table of Contents
     :local:
     :depth: 1
+.. .. section-numbering::
 
-The examples in the ``examples/xma`` folder illustrate how C-based applications can natively interact with U30 cards using the U30 plugins and the XMA (Xilinx Media Accelerator) APIs. The examples are for advanced use-cases where using the FFmpeg command-line interface is not appropriate.
+The examples in the ``examples/xma`` folder illustrate how C-based applications can natively interact with Xilinx devices using the |SDK| plugins and the XMA (Xilinx Media Accelerator) APIs. The examples are for advanced use-cases where using the FFmpeg command-line interface is not appropriate.
 
-Detailed documentation on the U30 plugin interface and the XMA APIs can be found in the :doc:`C API Programming Guide </c_apis>` section of the documentation.
+Detailed documentation on the |SDK| plugin interface and the XMA APIs can be found in the :doc:`C API Programming Guide </c_apis>` section of the documentation.
 
 ****************************************************
 Build and Test Instructions
 ****************************************************
 
-To build and test the sample XMA applications, the U30 release packages must be installed on the server, and the U30 devices must to be flashed with the shell provided in the release package.
+To build and test the sample XMA applications, the |SDK| packages must be installed on the server, and the Xilinx devices must to be flashed with the shell provided in the release package.
 
 To build and test all the XMA applications at once, run the following command from within the ``./examples/xma`` directory::
 
@@ -25,25 +28,25 @@ The executables are placed in the ``build`` directory of the corresponding appli
 
 To build and test each application individually, refer to the sections below.
 
+|
+
 .. _xma-decoder-example:
 .. include:: ./include/decode_only.rst
-.. include:: ./include/decode_only_build.rst
-.. include:: ./include/decode_only_test.rst
+
+|
 
 .. _xma-encoder-example:
 .. include:: ./include/encode_only.rst
-.. include:: ./include/encode_only_build.rst
-.. include:: ./include/encode_only_test.rst
+
+|
 
 .. _xma-scaler-example:
 .. include:: ./include/scale_only.rst
-.. include:: ./include/scale_only_build.rst
-.. include:: ./include/scale_only_test.rst
+
+|
 
 .. _xma-transcoder-example:
 .. include:: ./include/transcode.rst
-.. include:: ./include/transcode_build.rst
-.. include:: ./include/transcode_test.rst
 
 ..
   ------------

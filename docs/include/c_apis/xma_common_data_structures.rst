@@ -16,7 +16,7 @@ Data structure describing the frame dimensions for XmaFrame. The declaration of 
 
 Data structure describing a raw video frame and its buffers. :c:struct:`XmaFrame` structures can be received from the decoder or sent to the encoder. They are also used as input and outputs for the scaler and the look-ahead. The declaration of :c:struct:`XmaFrame` can be found in the `xmabuffers.h <https://github.com/Xilinx/XRT/blob/master/src/xma/include/app/xmabuffers.h>`_ file.
 
-The Xilinx Video SDK plugins supports two types of frames:
+The |SDK| plugins supports two types of frames:
 
 - :c:macro:`XMA_HOST_BUFFER_TYPE` frames are explicitly allocated and managed by the host application. They are always copied from the host to the device and back after an operation.
 - :c:macro:`XMA_DEVICE_BUFFER_TYPE` frames are automatically allocated by the plugins and are implemented using the :ref:`XVBM library <xvbm_reference>`. In multistage video pipeline, they allow for zero-copy operations where frames are passed from one hardware accelerator to the next without being copied back to the host. The frame data in the underlying XVBM buffers can be accessed by the host application using the XVBM APIs. 

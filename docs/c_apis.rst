@@ -7,13 +7,14 @@ C API Programming Guide
 .. contents:: Table of Contents
     :local:
     :depth: 1
+.. .. section-numbering::
 
 
 ********
 Overview
 ********
 
-The Xilinx Video SDK provides a C-based application programming interface (API) which facilitates the integration of Alveo U30 transcoding capabilities in proprietary frameworks. This API is provided in the form plugins leveraging the Xilinx Media Accelerator (XMA) library and the Xilinx Resource Manager (XRM) library.
+The |SDK| provides a C-based application programming interface (API) which facilitates the integration of Xilinx transcoding capabilities in proprietary frameworks. This API is provided in the form of plugins leveraging the Xilinx Media Accelerator (XMA) library and the Xilinx Resource Manager (XRM) library.
 
 .. rubric:: The XMA Library
 
@@ -23,7 +24,7 @@ The XMA library (libxmaapi) is meant to simplify the development of applications
 
 - The upper-edge API is a higher-level, generalized interface intended for application developers responsible for integrating control of Xilinx accelerators into software frameworks such as FFmpeg, GStreamer, or proprietary frameworks.
 
-In the case of Alveo U30, the plugins are developed and provided by Xilinx. As such, a software developer integrating Alveo U30 cards in a proprietary framework only needs to be familiar with the XMA upper-edge API and the properties of each plugin. 
+The |SDK| includes plugins optimized for the Xilix video accelerators such as the ones found on Alveo U30 cards. A software developer integrating the hardware-accelerated features of Xilinx devices in a proprietary framework only needs to be familiar with the XMA upper-edge API and the properties of each plugin. 
 
 The XMA library is included as part of the Xilinx Runtime (XRT) library. General documentation on XMA can be found in the `XRT documentation <https://xilinx.github.io/XRT/master/html/xma_user_guide.html>`_. The `XMA Upper Edge API Library <https://xilinx.github.io/XRT/master/html/xmakernels.main.html>`_ section of the XRT documentation provides a complete reference of the XMA upper-edge API.
 
@@ -35,9 +36,9 @@ The XRM library is used to manage the hardware accelerators available in the sys
 Details about XRM can be found in `general XRM documentation <https://xilinx.github.io/XRM/index.html>`_.
 
 
-.. rubric:: The Xilinx Video SDK Plugins
+.. rubric:: The |SDK| Plugins
 
-The Xilinx Video SDK provides 4 different plugins, each corresponding to a specific hardware accelerated feature of the card:
+The |SDK| provides 4 different plugins, each corresponding to a specific hardware accelerated feature of the card:
 
 - The decoder plugin
 - The encoder plugin
@@ -46,7 +47,7 @@ The Xilinx Video SDK provides 4 different plugins, each corresponding to a speci
 
 Any combination of plugins can be used when integrating with a proprietary framework.
 
-Sample source code and applications using the Xilinx Video SDK plugins and the XMA APIs to do video encoding, decoding, scaling and transcoding can be found in the :doc:`XMA Tutorials <examples/xma/xma_apps>` included in this repository.
+Sample source code and applications using the |SDK| plugins and the XMA APIs to do video encoding, decoding, scaling and transcoding can be found in the :doc:`XMA Tutorials </examples/xma/xma_apps>` included in this repository.
 
 |
 
@@ -54,7 +55,7 @@ Sample source code and applications using the Xilinx Video SDK plugins and the X
 General Application Development Guide
 *************************************
 
-Integration layers for applications using the Xilinx Video SDK are organized around the following steps:
+Integration layers for applications using the |SDK| are organized around the following steps:
 
 #. Initialization
 #. Resource Reservation
@@ -86,17 +87,17 @@ The plugins provide functions to send data from the host and receive data from t
 
 Cleanup
 =======
-When the application finishes, it should destroy each plugin session using the corresponding destroy function. Doing so will free the resources on the Alveo U30 cards for other jobs and ensure that everything is released and cleaned-up properly.
+When the application finishes, it should destroy each plugin session using the corresponding destroy function. Doing so will free the resources on the Xilinx devices for other jobs and ensure that everything is released and cleaned-up properly.
 
 The application should also use the :c:func:`xrmDestroyContext()` function to destroy the XRM session, stop the connection to the daemon and ensure all resources are properly released.
 
 |
 
 *****************************************************************
-Compiling and Linking with the Xilinx Video SDK Plugins
+Compiling and Linking with the |SDK| Plugins
 *****************************************************************
 
-The plugins can be dynamically linked to the application. The required packages to build applications are XRT, XRM and XVBM. These packages provided as part of the Xilinx Video SDK. 
+The plugins can be dynamically linked to the application. The required packages to build applications are XRT, XRM and XVBM. These packages provided as part of the |SDK|. 
 
 To provide the necessary declarations in your application, include the following headers in your source code::
 
@@ -122,19 +123,19 @@ These should add the following switches to your gcc commands::
 
 |
 
-.. include:: ./include/c_apis/u30_decoder_plugin_api.rst
+.. include:: ./include/c_apis/xma_decoder_plugin_api.rst
 
 |
 
-.. include:: ./include/c_apis/u30_scaler_plugin_api.rst
+.. include:: ./include/c_apis/xma_scaler_plugin_api.rst
 
 |
 
-.. include:: ./include/c_apis/u30_encoder_plugin_api.rst
+.. include:: ./include/c_apis/xma_encoder_plugin_api.rst
 
 |
 
-.. include:: ./include/c_apis/u30_lookahead_plugin_api.rst
+.. include:: ./include/c_apis/xma_lookahead_plugin_api.rst
 
 |
 

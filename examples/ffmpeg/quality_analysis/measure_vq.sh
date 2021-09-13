@@ -48,4 +48,4 @@ MODEL=vmaf_v0.6.1.pkl
 
 filename="${DISTORTED##*/}"
 
-${FFMPEG_PATH}ffmpeg -i $DISTORTED -framerate $FRAMERATE -s $RESOLUTION -pix_fmt yuv420p -i $MASTER -lavfi libvmaf="log_fmt=json:ms_ssim=1:ssim=1:psnr=1:log_path=/tmp/${filename}.vmaf.json:model_path=${FFMPEG_PATH}/model/${MODEL}" -f null -
+${FFMPEG_PATH}/ffmpeg -i $DISTORTED -framerate $FRAMERATE -s $RESOLUTION -pix_fmt yuv420p -i $MASTER -lavfi libvmaf="log_fmt=json:ms_ssim=1:ssim=1:psnr=1:log_path=/tmp/${filename}.vmaf.json:model_path=${FFMPEG_PATH}/model/${MODEL}" -f null -

@@ -293,23 +293,42 @@ int32_t xlnx_enc_get_xma_props(XlnxEncoderProperties *enc_props,
     }
 
     const char* Level = "1";
+    uint8_t is_level_found = 1;
     switch (enc_props->level) {
         case 10: Level = "1"; break;
-        case 11: Level = "1.1"; break;
-        case 12: Level = "1.2"; break;
-        case 13: Level = "1.3"; break;
         case 20: Level = "2"; break;
         case 21: Level = "2.1"; break;
-        case 22: Level = "2.2"; break;
         case 30: Level = "3"; break;
         case 31: Level = "3.1"; break;
-        case 32: Level = "3.2"; break;
         case 40: Level = "4"; break;
         case 41: Level = "4.1"; break;
-        case 42: Level = "4.2"; break;
         case 50: Level = "5"; break;
         case 51: Level = "5.1"; break;
-        case 52: Level = "5.2"; break;
+        default:
+            is_level_found = 0;
+    }
+    if (!is_level_found) {
+        if(enc_props->codec_id == ENCODER_ID_H264) {
+            switch (enc_props->level) {
+                case 11: Level = "1.1"; break;
+                case 12: Level = "1.2"; break;
+                case 13: Level = "1.3"; break;
+                case 22: Level = "2.2"; break;
+                case 32: Level = "3.2"; break;
+                case 42: Level = "4.2"; break;
+                case 52: Level = "5.2"; break;
+                default:
+                    xma_logmsg(XMA_ERROR_LOG, XLNX_ENC_APP_MODULE,
+                            "Invalid H264 codec level value %d \n",
+                            enc_props->level);
+                    return ENC_APP_FAILURE;
+            }
+        } else if(enc_props->codec_id == ENCODER_ID_HEVC) {
+            xma_logmsg(XMA_ERROR_LOG, XLNX_ENC_APP_MODULE,
+                       "Invalid HEVC codec level value %d \n",
+                       enc_props->level);
+            return ENC_APP_FAILURE;
+        }
     }
 
     const char* Tier = "MAIN_TIER";

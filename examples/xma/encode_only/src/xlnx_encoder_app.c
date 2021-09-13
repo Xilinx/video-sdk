@@ -65,6 +65,7 @@ static int32_t xlnx_enc_set_signal_handler()
     sigaction (SIGINT, &action, NULL);
     sigaction (SIGHUP, &action, NULL);
     sigaction (SIGTERM, &action, NULL);
+    sigaction (SIGABRT, &action, NULL);
     sigaction (SIGQUIT, &action, NULL);
     return ENC_APP_SUCCESS;
 }

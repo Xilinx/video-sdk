@@ -1,5 +1,5 @@
 *********************************************************
-Using FFmpeg for Video Encoding and Decoding on Alveo U30
+Using FFmpeg for Video Encoding and Decoding
 *********************************************************
 
 General FFmpeg Options
@@ -13,27 +13,28 @@ Options                      Descriptions
                              | You can specify this in Mb or Kb. For example -b:v 1M or -b:v 1000K.
                              | Can be specified in Mb or Kb. For example -b:v 1M or -b:v 1000K
 .. option:: -c:v             | Specify the video codec. 
-                             | This option must be set for any video stream sent to a Alveo U30 device.
+                             | This option must be set for any video stream sent to a Xilinx device.
                              | Valid values are ``mpsoc_vcu_hevc`` (for HEVC) or ``mpsoc_vcu_h264`` (for H.264)
+.. option:: -s               | The frame size (WxH). For example 1920x1080 or 3840x2160.
 .. option:: -f               | The container format.
 .. option:: -r               | The frame rate in fps (Hz).
 .. option:: -filter_complex  | Used to specify ABR scaling options. 
-                             | Consult the :ref:`Setting up an ABR ladder <setting-up-an-abr-ladder>` section for more details on how to use this option.
-.. option:: -xlnx_hwdev      | Specify on which Alveo U30 device the FFmpeg job should run
+                             | Consult the section about :ref:`Using the Xilinx Multiscale Filter <using-the-multiscale-filter>` for more details on how to use this option.
+.. option:: -xlnx_hwdev      | Specify on which Xilinx device the FFmpeg job should run
                              | Valid values are positive integers. Default is device 0.
                              | Consult the :ref:`Using Explicit Device IDs <using-explicit-device-ids>` section for more details on how to use this option.
 ===========================  ===========================
 
 
-Alveo U30 Encoder Options
+Encoder Options
 =========================
 
 =============================  ===========================
 Options                        Descriptions
 =============================  ===========================
-.. option:: -cores             | **Number of encoder cores in the Alveo U30 to utilize**
+.. option:: -cores             | **Number of encoder cores in the Xilinx device to utilize**
                                | Valid values: 0 to 4
-                               | The Alveo U30 devices are built of encoder and decoder cores that each run at 1080p60, and 1080p120 speed, respectively. 
+                               | The Xilinx video encoder and decoder cores run at 1080p60, and 1080p120 speed, respectively. 
                                | This means to operate on a 4kp60 (maximum throughput of the chip), all cores are fully utilized automatically.
                                | If you operate on a smaller file (e.g. a single 1080p60 clip), you can leverage all of the cores to increase the FPS at which 
                                | it processes. This is particularly useful in "faster than realtime" (FTRT) use cases, where you want to finish encoding of a clip 
@@ -95,7 +96,7 @@ Options                        Descriptions
 
 
 
-Alveo U30 Decoder Options
+Decoder Options
 =========================
 
 ====================================  ===========================
@@ -113,7 +114,7 @@ Options                               Descriptions
 ====================================  ===========================
 
 
-Alveo U30 Miscellaneous Options
+Miscellaneous Options
 ===============================
 
 ====================================  ===========================
@@ -128,17 +129,20 @@ Options                               Descriptions
 
 .. _tuning-encoder-options:
 
-Tuning Visual Quality of Encoded Video
+Tuning Video Quality of Encoded Video
 ======================================
-The quality of encoded video depends on various factors. It is primarily a function of target bit rate and type of video content. However, there are some encoder parameters which can be used to adjust the video quality in the Alveo U30 card.
+The quality of encoded video depends on various factors. It is primarily a function of target bit rate and type of video content. However, there are some encoder parameters which can be used to adjust the video quality.
 
-The sections below describe the major FFmpeg options impacting visual quality. Various examples illustrating the effect of these settings can be found here: :doc:`Quality analysis examples </examples/ffmpeg/quality_analysis>`.
+The sections below describe the major FFmpeg options impacting video quality. Various examples illustrating the effect of these settings can be found here: :doc:`Quality analysis examples </examples/ffmpeg/quality_analysis>`.
 
 .. _tuning-b-frames:
 
 Number of B Frames
 -------------------------
-The number of B frames can be adjusted according to the amount of motion in the video content. Xilinx suggests setting B frames to 2 for static scenes, slow to medium motion, talking head, or video conferencing type content and 1 for gaming and fast motion content. 
+The default number of B frames is 2, but for most streams, the optimal number of B frames is 1. This provides the best tradeoffs for both video quality and objective quality use cases. The number of B frames can be adjusted according to the amount of motion in the video content. Generally, more B-frames helps compression, but hurts very high motion scenes. Xilinx recommends the following B frames settings:
+
+- :option:`-bf` 2 for static or slow moving scenes, talking heads, or video conferencing type of content
+- :option:`-bf` 1 for all other content, including gaming and fast motion streams. 
 
 To change B frames, use the :option:`-bf` option on the FFmpeg command line. Valid values are 0 to 4, default is 2.
 
@@ -155,13 +159,13 @@ To enable lookahead, use the :option:`-lookahead_depth` option on the FFmpeg com
 
 Adaptive Quantization
 -------------------------
-This tool improves the visual quality by changing the quantization parameter (QP) within a frame. The QP for each frame is determined by the rate control, and adaptive quantization (AQ) adjusts QP on top of that for different regions within a frame. It exploits the fact that the human eye is more sensitive to certain regions of a frame and redistributes more bits to those regions. 
+This tool improves the video qualitity by changing the quantization parameter (QP) within a frame. The QP for each frame is determined by the rate control, and adaptive quantization (AQ) adjusts QP on top of that for different regions within a frame. It exploits the fact that the human eye is more sensitive to certain regions of a frame and redistributes more bits to those regions. 
 
-The Alveo U30 card supports two types of AQ: Spatial Adaptive Quantization and Temporal Adaptive Quantization. Both of these AQ modes are enabled by default, and :option:`-qp-mode` is set to ``relative-load`` when :option:`-lookahead_depth` >= 1.
+The Xilinx video encoders support two types of AQ: Spatial Adaptive Quantization and Temporal Adaptive Quantization. Both of these AQ modes are enabled by default, and :option:`-qp-mode` is set to ``relative-load`` when :option:`-lookahead_depth` >= 1.
 
 Spatial Adaptive Quantization
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Spatial AQ adjusts the QP within a frame based on the spatial characteristics. The human eye is more sensitive to regions which are flat and have low texture than regions which have lots of detail and texture. Spatial AQ exploits this and provides more bits to the low texture and flat regions at the expense of high texture regions. This redistribution of bits to visually perceptible regions of the frame brings about visual improvement. Although spatial AQ improves visual quality, it hurts objective metrics and causes a drop in PSNR and VMAF. It is recommended to turn this feature off when performing PSNR/VMAF based evaluation.
+Spatial AQ adjusts the QP within a frame based on the spatial characteristics. The human eye is more sensitive to regions which are flat and have low texture than regions which have lots of detail and texture. Spatial AQ exploits this and provides more bits to the low texture and flat regions at the expense of high texture regions. This redistribution of bits to visually perceptible regions of the frame brings about visual improvement. Although spatial AQ improves video qualitity, it hurts objective metrics and causes a drop in PSNR and VMAF. It is recommended to turn this feature off when performing PSNR/VMAF based evaluation.
 
 The spatial AQ algorithm can be controlled using the :option:`-spatial-aq-gain` option. The range of this option is from 0 to 100 and indicates the strength of this algorithm as a percentage.
 
@@ -181,7 +185,7 @@ Scaling List
 -------------------------
 Scaling list offers a mechanism to scale the transform coefficients by specifying scaling matrices. This influences the quality of encoded video. There are two options to specify the scaling lists mode: 0 = default and 1 = flat.
 
-For visual quality improvements, the scaling list mode must be set to default. The default scaling mode gives more importance to low-frequency coefficients and less importance to high-frequency coefficients. To improve the objective numbers (such as PSNR and VMAF), the scaling mode must be set to flat, where all the coefficients are scaled equally.
+For video qualitity improvements, the scaling list mode must be set to default. The default scaling mode gives more importance to low-frequency coefficients and less importance to high-frequency coefficients. To improve the objective numbers (such as PSNR and VMAF), the scaling mode must be set to flat, where all the coefficients are scaled equally.
 
 To change the scaling list mode, use the :option:`-scaling-list` option (0 = flat, 1 = default) on the FFmpeg command line.
 
@@ -189,9 +193,9 @@ To change the scaling list mode, use the :option:`-scaling-list` option (0 = fla
 Considerations for Decoding and Encoding 4K Streams
 ===================================================
 
-The Xilinx Video SDK solution supports real-time decoding and encoding of 4k streams with the following notes:
+The |SDK| solution supports real-time decoding and encoding of 4k streams with the following notes:
 
-- The Alveo U30 video pipeline is optimized for live-streaming use cases. For 4k streams with bitrates significantly higher than the ones typically used for live streaming, it may not be possible to sustain real-time performance.
+- The Xilinx video pipeline is optimized for live-streaming use cases. For 4k streams with bitrates significantly higher than the ones typically used for live streaming, it may not be possible to sustain real-time performance.
 - When decoding 4k streams with a high bitrate, increasing the number of entropy buffers using the :option:`-entropy_buffers_count` option can help improve performance
 - When encoding raw video to 4k, set the :option:`-s` option to ``3840x2160`` to specify the desired resolution.
 - When encoding 4k streams to H.264, the :option:`-slices` option is required to sustain real-time performance. A value of 4 is recommended. This option is not required when encoding to HEVC.

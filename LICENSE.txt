@@ -19,12 +19,12 @@ files for the license terms.
 PACKAGE NAME                            |  LICENSE(s) TYPE(S)
 (less rpm|deb extension)                |
 =============================================================================
-xffmpeg-4.1.9-Linux                     | LGPLv2 or LGPLv3
+xffmpeg-4.1.10-Linux                    | LGPLv2 or LGPLv3
                                         |
                                         | See FFMPEG LICENSING NOTE for add'l
                                         | licensing details
 -----------------------------------------------------------------------------
-xcdr-0.2.14-Linux (software)            | Apache v2 (software)
+xcdr-0.2.15-Linux (software)            | Apache v2 (software)
                                         |
                                         | Xilinx non-open source permissive
                                         | (hardware binaries)
@@ -35,15 +35,15 @@ jobSlotReservation-1.0.0-Linux          | Apache v2
 -----------------------------------------------------------------------------
 xmaPropsTOjson-1.0.0-Linux              | Apache v2
 -----------------------------------------------------------------------------
-xmpsoccodecs-1.0.0-Linux                | Apache v2
+xmpsoccodecs-1.0.1-Linux                | Apache v2
 -----------------------------------------------------------------------------
-xmultiscaler-1.0.0-Linux                | Apache v2
+xmultiscaler-1.0.1-Linux                | Apache v2
 -----------------------------------------------------------------------------
 xrmU30Decoder-1.0.0-Linux               | Apache v2
 -----------------------------------------------------------------------------
-xvbm-1.0.0-Linux                        | Apache v2 or LGPLv3
+xvbm-1.0.1-Linux                        | Apache v2 or LGPLv3
 -----------------------------------------------------------------------------
-xlookahead-1.0.0-Linux                  | Apache v2
+xlookahead-1.0.1-Linux                  | Apache v2
 -----------------------------------------------------------------------------
 xrmU30Encoder-1.0.0-Linux               | Apache v2
 -----------------------------------------------------------------------------
@@ -51,7 +51,7 @@ xrmU30Scaler-1.0.0-Linux                | Apache v2
 -----------------------------------------------------------------------------
 xrm_202110.1.2.1168                     | Apache v2
 -----------------------------------------------------------------------------
-xrt_202020.2.10.43                      | Apache v2 (user-space libraries)
+xrt_202020.2.10.50                      | Apache v2 (user-space libraries)
                                         |
                                         | GPLv2 (kernel drivers)
 -----------------------------------------------------------------------------
@@ -66,13 +66,13 @@ xilinx-u30-gen3x4-base_1-3205830        | Xilinx non-open source permissive
                                         | Various open-source
                                         | (embedded  software)
 -----------------------------------------------------------------------------
-xilinx-u30-gen3x4-validate_1-3210381    |Xilinx non-open source permissive 
+xilinx-u30-gen3x4-validate_1-3210381    | Xilinx non-open source permissive
                                         | (hardware binaries)
 -----------------------------------------------------------------------------
 
 
 FFMPEG LICENSING NOTE
-The binary version of ffmpeg included in xffmpeg-4.1.9-Linux package includes
+The binary version of ffmpeg included in xffmpeg-4.1.10-Linux package includes
 the drawtext (vf_drawtext.c) filter plugin.  This plugin creates a dependency
 on two dynamically linked libraries: libfontconfig and libfreetype.  The user
 is advised to review the license terms for these two libraries as they must be

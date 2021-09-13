@@ -2,7 +2,7 @@
 
 </br>
 
-Version: **1.0**
+Version: **1.5**
 
 </br>
 
@@ -11,6 +11,8 @@ The Xilinx Video SDK is a complete software stack allowing users to seamlessly l
 Included in the Xilinx Video SDK is pre-compiled version of FFmpeg which integrates key video transcoding plug-ins, enabling simple hardware offloading of compute-intensive workloads using the popular FFmpeg command line interface. 
 
 The Xilinx Video SDK also provides a C-based application programming interface (API) which facilitates the integration of Alveo U30 transcoding capabilities in proprietary frameworks. 
+
+The Xilinx Video SDK can be leveraged on-premises with Alveo U30 cards and in the cloud with Amazon EC2 VT1 instances.
 
 </br>
 

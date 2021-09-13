@@ -106,7 +106,7 @@ Return:
     DEC_APP_SUCCESS on success
 ------------------------------------------------------------------------------*/
 int32_t xlnx_dec_create_decoder_context(XlnxDecoderArguments arguments, 
-                                   XlnxDecoderCtx* ctx);
+                                        XlnxDecoderCtx* ctx);
 
 /*------------------------------------------------------------------------------
 xlnx_dec_scan_next_au: Scans the next access unit from the input file into 

@@ -35,7 +35,7 @@ ffmpeg -pix_fmt yuv420p -s:v 1920x1080 -r 60 -i $INPUT \
 -b:v ${BITRATE}K \
 -c:v mpsoc_vcu_h264 \
 -f h264 \
--bf 2 \
+-bf 1 \
 -g 120 \
 -periodicity-idr 120 \
 -tune-metrics 1 \

@@ -4,7 +4,7 @@
 Rebuilding FFmpeg
 *********************
 
-There are two methods for rebuilding FFmpeg with the Xilinx Video SDK plugins enabled:
+There are two methods for rebuilding FFmpeg with the |SDK| plugins enabled:
 
 - Using the complete source code
 - Using the git patch file
@@ -12,13 +12,13 @@ There are two methods for rebuilding FFmpeg with the Xilinx Video SDK plugins en
 Using the Source Code
 ============================
 
-The `sources/app-ffmpeg4-xma <https://github.com/Xilinx/app-ffmpeg4-xma/tree/49ceb9d7defdef4c8fb62fe6d373a2a1c07d7497>`_ submodule contains the entire source code for the FFmpeg executable included with the Video SDK. This is a fork of the main FFmpeg GitHub (release 4.1, commid ID bb01cd3cc01c9982e4b57f8ce5cfd6ec4724f848) with a :url_to_repo:`Xilinx patch applied <sources/app-ffmpeg4-xma-patch>` to enable the Xilinx Video SDK plugins. Due to licensing restrictions, the FFmpeg executable included in the Video SDK is enabled with the Xilinx Video SDK plugins only. 
+The `sources/app-ffmpeg4-xma <https://github.com/Xilinx/app-ffmpeg4-xma/tree/49ceb9d7defdef4c8fb62fe6d373a2a1c07d7497>`_ submodule contains the entire source code for the FFmpeg executable included with the Video SDK. This is a fork of the main FFmpeg GitHub (release 4.1, commid ID bb01cd3cc01c9982e4b57f8ce5cfd6ec4724f848) with a :url_to_repo:`Xilinx patch applied <sources/app-ffmpeg4-xma-patch>` to enable the |SDK| plugins. Due to licensing restrictions, the FFmpeg executable included in the Video SDK is enabled with the |SDK| plugins only. 
 
 You can rebuild the FFmpeg executable with optional plugins by following the instructions below. Additionally, comprehensive instructions for compiling FFmpeg can be found `on the FFmpeg wiki page <https://trac.ffmpeg.org/wiki/CompilationGuide>`_. 
 
 #. Make sure ``nasm`` and ``yasm`` are installed on your machine. 
 
-#. Navigate the top of the Xilinx Video SDK repository::
+#. Navigate the top of the |SDK| repository::
 
     cd /path/to/video-sdk
 
@@ -32,7 +32,7 @@ You can rebuild the FFmpeg executable with optional plugins by following the ins
 
 #. Optionally install FFmpeg plugins you wish to enable (either from source or from your package manager like ``yum`` or ``apt``). For example: libx264, or libx265.
 
-#. Configure FFmpeg with ``--enable`` flags to enable the desired plugins. The ``-enable-libxma2api`` flag enables the U30 plugins. The command below will configure the Makefile to install the custom FFmpeg in the :file:`/tmp/ffmpeg` directory. To install in another location, modify the ``--prefix`` and ``--datadir`` options::
+#. Configure FFmpeg with ``--enable`` flags to enable the desired plugins. The ``-enable-libxma2api`` flag enables the |SDK| plugins. The command below will configure the Makefile to install the custom FFmpeg in the :file:`/tmp/ffmpeg` directory. To install in another location, modify the ``--prefix`` and ``--datadir`` options::
 
     ./configure --prefix=/tmp/ffmpeg --datadir=/tmp/ffmpeg/etc  --enable-x86asm --enable-libxma2api --disable-doc --enable-libxvbm --enable-libxrm --extra-cflags=-I/opt/xilinx/xrt/include/xma2 --extra-ldflags=-L/opt/xilinx/xrt/lib --extra-libs=-lxma2api --extra-libs=-lxrt_core --extra-libs=-lxrt_coreutil --extra-libs=-lpthread --extra-libs=-ldl --disable-static --enable-shared
 
@@ -47,11 +47,11 @@ You can rebuild the FFmpeg executable with optional plugins by following the ins
 Using the Git Patch File
 ===============================
 
-The :url_to_repo:`Xilinx patch applied <sources/app-ffmpeg4-xma-patch>` folder contains a git patch file which can be applied to a FFmpeg fork to enable the Xilinx Video SDK plugins.
+The :url_to_repo:`Xilinx patch applied <sources/app-ffmpeg4-xma-patch>` folder contains a git patch file which can be applied to a FFmpeg fork to enable the |SDK| plugins.
 
 This patch is designed to apply to FFmpeg n4.1. As such, applying this patch to earlier or later versions of FFmpeg may require edits to successfully merge these changes and represent untested configurations.
 
-The patch adds new plugins to FFmpeg to enable access to Xilinx U30 Video accelerators.  In addition, the patch makes edits to FFmpeg to support new command line options to support U30-based FPGA use cases as well as ensure proper initialization of Xilinx accelerators.
+The patch makes edits to FFmpeg and adds new plugins to FFmpeg to initialize, configure and use Xilinx video accelerators.
 
 Here is an example of how the patch can be applied to a FFmpeg fork:
 
@@ -65,11 +65,11 @@ Here is an example of how the patch can be applied to a FFmpeg fork:
 
 #. Copy the patch file into the FFmpeg directory::
 
-    cp /path/to/sources/app-ffmpeg4-xma-patch/0001-Add-plugins-to-support-U30-based-Video-SDK-v1.0.0.patch .
+    cp /path/to/sources/app-ffmpeg4-xma-patch/0001-Add-plugins-to-support-U30-based-Video-SDK-v1.5.0.patch .
 
 #. Apply the patch::
 
-    git am 0001-Add-plugins-to-support-U30-based-Video-SDK-v1.0.0.patch --ignore-whitespace --ignore-space-change
+    git am 0001-Add-plugins-to-support-U30-based-Video-SDK-v1.5.0.patch --ignore-whitespace --ignore-space-change
 
 #. You can then install additional FFmpeg plugins and proceed with the FFmpeg build and installation process.
 

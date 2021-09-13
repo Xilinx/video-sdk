@@ -1,14 +1,17 @@
-﻿######################
+﻿#######################
 Video Quality Examples
-######################
+#######################
 
-This page is dedicated to explaining some of the details behind Video Quality (VQ), how it is measured, and how you can optimize your FFmpeg commands with the Alveo U30 card to maximize its performance. 
+.. highlight:: none
 
-Further documentation on this topic can be found in the :ref:`Tuning Encoder Options <tuning-encoder-options>` section of the Xilinx Video SDK user guide.
+This page is dedicated to explaining some of the details behind Video Quality (VQ), how it is measured, and how you can optimize your FFmpeg commands with the |SDK| to maximize its performance. 
+
+Further documentation on this topic can be found in the :ref:`Tuning Encoder Options <tuning-encoder-options>` section of the |SDK| user guide.
 
 .. contents:: Table of Contents
     :local:
     :depth: 2
+.. .. section-numbering::
 
 *****************************
 Introduction to Video Quality
@@ -27,27 +30,25 @@ Many people will argue which metric is best (although PSNR is commonly considere
 
 Furthermore, due to the industry standard of tracking encoder "performance" to quantitative metrics like the ones listed above, many encoders have "taught to the test"; that is, they provide different command-line arguments that will give higher scores but may look worse to the human eye. For example, common CPU encoders `x264 <https://code.videolan.org/videolan/x264>`__ and `x265 <http://hg.videolan.org/x265>`__ have a ``tune`` parameter which optimizes to objective metrics.
 
-This page discusses the Xilinx Video SDK command line flags used to optimize for objective quality (scores) and subjective quality (visual appeal) and provides additional details as to what is happening behind the scenes and why.
+This page discusses the |SDK| command line flags used to optimize for objective quality (scores) and subjective quality (visual appeal) and provides additional details as to what is happening behind the scenes and why.
 
 *****************************************************
-Optimized Settings for the Xilinx Video SDK
+Optimized Settings for the |SDK|
 *****************************************************
 It is highly recommended to perform encoding on raw video clips; that is, clips that have not undergone a transform/compression/encoding in the past. This ensures that the clips are in a universally known state in order to fairly compare encoders. 
 
 Alternatively, you can add the flags to decode before encoding, and the results will remain accurate as long as the same pre-encoded file is used as the source across all encoders under test. Information on this process can be found on the :doc:`FFmpeg tutorial page </examples/ffmpeg/tutorials>`.
 
-Flags not illustrated in this page are covered in the :doc:`Using FFmpeg </using_ffmpeg>` chapter of the Xilinx Video SDK user guide.
+Flags not illustrated in this page are covered in the :doc:`Using FFmpeg </using_ffmpeg>` chapter of the |SDK| user guide.
 
 
 Subjective Quality
 ==================
-**Filenames**
 
-*h264_subjective.sh*
+:download:`h264_subjective.sh </../examples/ffmpeg/quality_analysis/h264_subjective.sh>`
+:download:`hevc_subjective.sh </../examples/ffmpeg/quality_analysis/hevc_subjective.sh>`
 
-*hevc_subjective.sh*
-
-These are the command you should use to get maximum visual quality to the human eye in most situations. It accepts a clip that is already decoded or a RAW YUV.
+These are the command you should use to get maximum video quality to the human eye in most situations. It accepts a clip that is already decoded or a RAW YUV.
 
 **Usage**::
 
@@ -71,7 +72,7 @@ These are the command you should use to get maximum visual quality to the human 
     -temporal-aq 1 \
     -y ./${INPUT}_${BITRATE}_${TEST}.${EXTENSION}
     
-To break down the flags:
+Explanation of the flags:
 
 - ``ffmpeg -pix_fmt yuv420p -s:v 1920x1080 -r 60 -i $INPUT``
   
@@ -145,11 +146,8 @@ To break down the flags:
 Objective Quality
 =================
 
-**Filenames**
-
-*h264_objective.sh*
-
-*hevc_objective.sh*
+:download:`h264_objective.sh </../examples/ffmpeg/quality_analysis/h264_objective.sh>`
+:download:`hevc_objective.sh </../examples/ffmpeg/quality_analysis/hevc_objective.sh>`
 
 **Usage**::
 
@@ -166,14 +164,14 @@ This is the command you should run to get maximum objective scoring (PSNR, SSIM,
     -b:v ${BITRATE}K \ 
     -c:v ${CODEC} \
     -f ${FORMAT} \ 
-    -bf 2 \
+    -bf 1 \
     -g 120 \
     -periodicity-idr 120 \
     -tune-metrics 1 \
     -lookahead_depth 20 \
     -y ./${INPUT}_${BITRATE}_${TEST}.${EXTENSION}
     
-To break down the flags:
+Explanation of the flags:
 
 - ``ffmpeg -pix_fmt yuv420p -s:v 1920x1080 -r 60 -i $INPUT``
   
@@ -199,7 +197,7 @@ To break down the flags:
 
   + This flag defines what the output format shall be, for example an ``h264`` or ``hevc`` elementary container (as opposed, to say, mp4)
   
-- ``-bf 2``
+- ``-bf 1``
 
   + This flag outlines the number of B-frames shall be inserted 
 
@@ -241,21 +239,13 @@ To break down the flags:
 Setting Differences Between Objective and Subjective Quality
 ============================================================
 
-- ``-bf``
-
-  + The number of b-frames has been identified as optimal with 2 for most objective tests, but can scale depending on your content
-  
-  + Generally, more B-frames helps compression, but hurts very high motion scenes.
-  
-  + Based on customer clips and experimentation, **Objective** scores are usually improved with **2**, and **visual quality** is usually best with **1**; however, this is content dependent.
-
 - ``-qp-mode``
 
   + How an encoder quantizes its CU's (Macroblocks/Coding Tree Units/etc.) is what fundamentally defines a large amount of its quality.
    
   + ``uniform`` load **(objective)** equally quantizes all CU's within a slice.
   
-  + ``relative-load`` **(subjective)** adds another layer of analysis before the encoder and provides "hints" to the encoder; improves visual quality but again, mathematically 'breaks' the image, resulting in lower scores. 
+  + ``relative-load`` **(subjective)** adds another layer of analysis before the encoder and provides "hints" to the encoder; improves video quality but again, mathematically 'breaks' the image, resulting in lower scores. 
 
 - ``-scaling_list``
 
@@ -283,11 +273,9 @@ Due to licensing reasons, the FFmpeg binary delivered in this package does not i
 
 #. `Recompile another version FFmpeg <https://trac.ffmpeg.org/wiki/CompilationGuide>`__ and include the `VMAF library <https://github.com/Netflix/vmaf/>`__
 
-#. Recompile the FFmpeg starting from the source code included in this repository and include the `VMAF library <https://github.com/Netflix/vmaf/>`__. For instructions on how to customize and rebuild the FFmpeg provided with the Xilinx Video SDK, see the :ref:`Rebuilding FFmpeg <rebuild-ffmpeg>` section.
+#. Recompile the FFmpeg starting from the source code included in this repository and include the `VMAF library <https://github.com/Netflix/vmaf/>`__. For instructions on how to customize and rebuild the FFmpeg provided with the |SDK|, see the :ref:`Rebuilding FFmpeg <rebuild-ffmpeg>` section.
 
-**Filename**
-
-*measure_vq.sh*
+:download:`measure_vq.sh </../examples/ffmpeg/quality_analysis/measure_vq.sh>`
 
 **Usage**::
     
@@ -295,12 +283,12 @@ Due to licensing reasons, the FFmpeg binary delivered in this package does not i
 
 **Command Line**::
 
-    ${FFMPEG_PATH}ffmpeg -i $DISTORTED -framerate $FRAMERATE -s $RESOLUTION -pix_fmt yuv420p -i $MASTER \
+    ${FFMPEG_PATH}/ffmpeg -i $DISTORTED -framerate $FRAMERATE -s $RESOLUTION -pix_fmt yuv420p -i $MASTER \
     -lavfi libvmaf="log_fmt=json:ms_ssim=1:ssim=1:psnr=1:log_path=/tmp/${filename}.vmaf.json:model_path=${FFMPEG_PATH}/model/${MODEL}" -f null -
 
 
 
-To break down the command line:
+Explanation of the command:
 
 - ``${FFMPEG_PATH}ffmpeg``
 
@@ -381,14 +369,14 @@ Xilinx-Specific Latency Flags
 =============================
 
 Decoder Options
-```````````````
+---------------
 
 - ``-low_latency``
 
   + This flag when set to 0 disables the decoder's ability to process B-frames. Skipping this logic and providing an input with B-Frames will have jittery, undesired outputs.
   
 Encoder Options
-```````````````
+---------------
 - ``-control-rate low-latency``
   
   + While this flag is documented, it **should not be used**, please ignore it
@@ -421,11 +409,11 @@ Optimized Settings for Low Latency Streams
 With the above information in hand, below are the optimized commands for general types of video. Your content may require modifications to optimize fully.
 
 Low Latency Subjective Quality
-``````````````````````````````
-**Filenames**
+------------------------------
 
-*h264_ll_subjective.sh*
-*hevc_ll_subjective.sh*
+:download:`h264_ll_subjective.sh </../examples/ffmpeg/quality_analysis/h264_ll_subjective.sh>`
+:download:`hevc_ll_subjective.sh </../examples/ffmpeg/quality_analysis/hevc_ll_subjective.sh>`
+
 
 **Usage**::
 
@@ -447,11 +435,10 @@ Low Latency Subjective Quality
     -y ${INPUT}_${BITRATE}_${TEST}.${EXTENSION}
 
 Low Latency Objective Quality
-`````````````````````````````
-**Filenames**
+-----------------------------
 
-*h264_ll_objective.sh*
-*hevc_ll_objective.sh*
+:download:`h264_ll_objective.sh </../examples/ffmpeg/quality_analysis/h264_ll_objective.sh>`
+:download:`hevc_ll_objective.sh </../examples/ffmpeg/quality_analysis/hevc_ll_objective.sh>`
 
 **Usage** ::
 
@@ -479,12 +466,11 @@ Measuring Latency
 Each of the plugins from Xilinx (Decoder, Scaler, and Encoder) has the flag ``-latency_logging``. When this is enabled, tags are added to the syslog ``(/var/log/syslog)``. The script ``latency_test.sh`` will parse the syslog and report on each stage's latency, as measured in milliseconds.
 
 Latency Measurement Script
-``````````````````````````````
+--------------------------
 You will need to identify the PID for the ``ffmpeg`` context and have ``sudo`` to access the syslog to use this script. ``ps -aux | grep ffmpeg`` should return the PIDs of all instances of ``ffmpeg`` running on your system.
 
-**Filenames**
+:download:`latency_test.sh </../examples/ffmpeg/quality_analysis/latency_test.sh>`
 
-*latency_test.sh*
 
 **Usage** ::
 

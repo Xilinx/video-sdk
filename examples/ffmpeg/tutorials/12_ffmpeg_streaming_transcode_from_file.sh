@@ -43,14 +43,18 @@
 # "-hls_flags delete_segments"
 #	Deletes segments after reaching the specificed list size (in this case 5)
 
+# The command below doesn't handle the audio channel of the input video. For an example of how to include
+# audio in the output streams, refer to the example commented out at the bottom of this script.
+
 if [ $# -ne 1 ]
   then
     echo "Incorrect arguments supplied"
     echo "Usage: $(basename $0) <1080p60 h264 clip>"
     exit 1
 fi
+
 ffmpeg -c:v mpsoc_vcu_h264 -i  $1 \
--filter_complex "multiscale_xma=outputs=4: \  
+-filter_complex "multiscale_xma=outputs=4: \
 out_1_width=1280: out_1_height=720:  out_1_rate=full: \
 out_2_width=848:  out_2_height=480:  out_2_rate=half: \
 out_3_width=640:  out_3_height=360:  out_3_rate=half: \
@@ -61,3 +65,21 @@ out_4_width=288:  out_4_height=160:  out_4_rate=half  \
 -map "[b]"   -b:v 2500K -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_480p30.m3u8 \
 -map "[c]"   -b:v 1250K -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_360p30.m3u8 \
 -map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_288p30.m3u8
+
+
+# FFmpeg command to process audio as well as video. 
+# Should only be used if the input video has an audio channel.
+
+# ffmpeg -c:v mpsoc_vcu_h264 -i  $1 \
+# -filter_complex "multiscale_xma=outputs=4: \
+# out_1_width=1280: out_1_height=720:  out_1_rate=full: \
+# out_2_width=848:  out_2_height=480:  out_2_rate=half: \
+# out_3_width=640:  out_3_height=360:  out_3_rate=half: \
+# out_4_width=288:  out_4_height=160:  out_4_rate=half  \
+# [a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]; \
+# [0:1]asplit=outputs=5[aud1][aud2][aud3][aud4][aud5]" \
+# -map "[aa]"  -b:v 4M    -c:v mpsoc_vcu_h264 -map "[aud1]" -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_720p60.m3u8 \
+# -map "[abb]" -b:v 3M    -c:v mpsoc_vcu_h264 -map "[aud2]" -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_720p30.m3u8 \
+# -map "[b]"   -b:v 2500K -c:v mpsoc_vcu_h264 -map "[aud3]" -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_480p30.m3u8 \
+# -map "[c]"   -b:v 1250K -c:v mpsoc_vcu_h264 -map "[aud4]" -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_360p30.m3u8 \
+# -map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -map "[aud5]" -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_288p30.m3u8

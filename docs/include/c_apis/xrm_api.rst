@@ -9,11 +9,11 @@ The Xilinx® FPGA Resource Manager (XRM) library is used to manage the hardware 
 
 The XRM library includes a daemon, a command line tool and a C application programming interface (API). Using the library API, external applications can communicate with the XRM daemon and perform actions such as reserving, allocating and releasing resources; calculating resource load and max capacity. 
 
-More details on the XRM command line tool (xrmadm) and the XRM daemon (xrmd) can be found in the :ref:`xrmadm and xrmd Commands <xrmadm-and-xrmd-commands>` section of the documentation.
+More details on the XRM command line tool (xrmadm) and the XRM daemon (xrmd) can be found in the :ref:`XRM Reference Guide <xrm-reference>` section of the documentation.
 
 The XRM C APIs are defined in :file:`xrm.h`. The detailed description of these APIs can be found in the `XRM documentation <https://xilinx.github.io/XRM/lib.html>`_.
 
-Applications integrating the Xilinx Video SDK plugins (such as the 4 example XMA Apps included in this repository) must use the XRM APIs for two kinds of tasks: 
+Applications integrating the |SDK| plugins (such as the 4 example XMA Apps included in this repository) must use the XRM APIs for two kinds of tasks: 
 
 - Device ID selection (required for XMA initialization)
 - Resource allocation (required for XMA session creation)
@@ -42,7 +42,7 @@ For more details, refer to the example below which provides a reference implemen
 Resource Allocation with XRM
 ============================
 
-In order to create an XMA plugin session (encoder/decoder/scaler/lookahead), the necessary the compute unit (CU) resources must first be successfully reserved and allocated.
+In order to create an XMA plugin session (encoder/decoder/scaler/lookahead), the necessary compute unit (CU) resources must first be successfully reserved and allocated.
 
 - If the user provides device ID, the application should perform CU allocation on that particular device. If there are not enough resources available to support the specific channel load, the application should error out and exit.
 
@@ -59,7 +59,7 @@ For more details, refer to the examples below which provides a reference impleme
 Reserving Multiple Job Slots
 ============================
 
-Another example of XMR API usage can be found in the `source code of the job slot reservation application <https://github.com/Xilinx/app-jobslot-reservation-xrm/tree/master/jobSlot_reservation.cpp>`_. This example shows how to reserve as many job slots as possible given an input job description. This example works as follows:
+Another example of XMR API usage can be found in the `source code of the job slot reservation application <https://github.com/Xilinx/app-jobslot-reservation-xrm/tree/master/jobSlot_reservation.cpp>`_. This example shows how to reserve as many job slots as possible given an input job description as described in :ref:`Using Job Descriptions <using-job-descriptions>`. This example works as follows:
 
 #. Calculate the channel load based on a JSON job description
 #. Using the :c:func:`xrmCheckCuPoolAvailableNum` function, query XRM for the number of resources available based on the channel load. XRM checks all the devices available on the server and returns how many such channels can be accommodated.

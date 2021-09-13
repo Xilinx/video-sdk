@@ -5,7 +5,7 @@ Moving Data through the Video Pipeline
 Automatic Data Movement
 =======================
 
-The Xilinx Video SDK takes care of moving data efficiently through the FFmpeg pipeline in these situations:
+The |SDK| takes care of moving data efficiently through the FFmpeg pipeline in these situations:
 
 Individual operations:
 

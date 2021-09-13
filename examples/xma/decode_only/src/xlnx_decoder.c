@@ -493,8 +493,7 @@ Parameters:
 ------------------------------------------------------------------------------*/
 void xlnx_dec_print_segment_performance(XlnxDecoderCtx* ctx)
 {
-    double time_since_last_segment = xlnx_utils_get_segment_time(
-                                                                  &ctx->timer);
+    double time_since_last_segment = xlnx_utils_get_segment_time(&ctx->timer);
     if(time_since_last_segment < 0.5) {
         return;
     }

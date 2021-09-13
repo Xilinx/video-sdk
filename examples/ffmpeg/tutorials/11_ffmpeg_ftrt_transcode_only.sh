@@ -26,8 +26,8 @@
 #     the first  instance of (-c:v mpsoc_vcu_h264) to (-c:v mpsoc_vcu_hevc) for decoding from HEVC
 #     the second instance of (-c:v mpsoc_vcu_h264) to (-c:v mpsoc_vcu_hevc) for encoding into HEVC
 
-# The -slices flag has implications on visual quality, while the -cores flag does not. 
-# Refer to the online documentation and to the visual quality examples for more details.
+# The -slices flag has implications on video quality, while the -cores flag does not. 
+# Refer to the online documentation and to the video quality examples for more details.
 
 if [ $# -ne 1 ]
   then

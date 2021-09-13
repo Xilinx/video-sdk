@@ -55,6 +55,7 @@ static int xlnx_scal_set_signal_handler()
     sigaction(SIGHUP,  &action, NULL);
     sigaction(SIGINT,  &action, NULL);
     sigaction(SIGQUIT, &action, NULL);
+    sigaction(SIGABRT, &action, NULL);
     sigaction(SIGTERM, &action, NULL);
     return SCALER_APP_SUCCESS;
 }

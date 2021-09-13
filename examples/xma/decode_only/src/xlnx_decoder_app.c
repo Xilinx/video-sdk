@@ -30,6 +30,7 @@ static void dec_signal_handler(int32_t signum)
         case SIGHUP:
         case SIGINT:
         case SIGQUIT:
+        case SIGABRT:
         case SIGTERM:
             signal_caught = 1;
             break;
@@ -51,6 +52,7 @@ static int dec_set_signal_handler()
     sigaction(SIGHUP,  &action, NULL);
     sigaction(SIGINT,  &action, NULL);
     sigaction(SIGQUIT, &action, NULL);
+    sigaction(SIGABRT, &action, NULL);
     sigaction(SIGTERM, &action, NULL);
     return DEC_APP_SUCCESS;
 }

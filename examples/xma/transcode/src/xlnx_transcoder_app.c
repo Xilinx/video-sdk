@@ -68,6 +68,7 @@ static int32_t xlnx_tran_set_signal_handler()
     sigaction (SIGINT, &action, NULL);
     sigaction (SIGHUP, &action, NULL);
     sigaction (SIGTERM, &action, NULL);
+    sigaction (SIGABRT, &action, NULL);
     sigaction (SIGQUIT, &action, NULL);
     return TRANSCODE_APP_SUCCESS;
 }

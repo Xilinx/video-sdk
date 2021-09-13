@@ -1,20 +1,34 @@
 ﻿#####################################################
-Card Management and Recovery
+Card Management
 #####################################################
+
+.. highlight:: none
 
 .. contents:: Table of Contents
     :local:
     :depth: 1
+.. .. section-numbering::
 
-.. _bdf-identifiers:
 
-******************************
-Device BDF Identifiers
-******************************
+*****************************************
+Overview
+*****************************************
 
-There are two devices per Alveo U30 card. Each device is described by PCIe BDF (Bus:Device.Function) identifiers. BDF identifiers are used to target a specific device using the card management tools. 
+The |SDK| builds on the Xilinx Runtime (XRT) and the Xilinx Resource Manager (XRM) to interface with Xilinx video acceleration cards. The |SDK| includes the ``xbutil``, ``xbmgmt`` and ``xrmadm`` command line tools for card installation, upgrade, and management.
 
-The BDF notation works as follows:
+
+xbutil and xbmgmt
+=========================================
+
+The Xilinx® Board Utility (``xbutil``) and the Xilinx® Board Management Utility (``xbmgmt``) are standalone command line tools used to query and administer Xilinx acceleration cards such as the Alveo U30. 
+
+- ``xbutil`` is used to examine, identify, program, and validate the installed accelerator card(s). 
+- ``xbmgmt`` is used to flash the card firmware, examine devices, and administer the installed accelerator card(s). Running this command requires sudo privileges.
+
+.. note::
+   The ``xbmgmt`` tool is not supported on |VT1| instances.
+
+The ``xbutil`` and ``xbmgmt`` commands typically target one device at a time using a PCIe BDF (Bus:Device.Function) identifier. Each device has two BDFs: a User BDF and a Management BDF. The BDF notation works as follows:
 
 - PCI Domain number, often padded using leading zeros to four digits
 - A colon (:)
@@ -22,16 +36,37 @@ The BDF notation works as follows:
 - A colon (:)
 - PCI Device number in hexadecimal, often padded using a leading zero to two digits . Sometimes this is also referred to as the slot number.
 - A decimal point (.)
-- PCI Function number in hexadecimal
+- PCI Function number in hexadecimal. Only this last digit will differ between the User BDF and the Management BDF.
 
-Each device has two BDFs: a Management BDF and a User BDF. Only the last digit (PCI Function) will differ between the User BDF and the Management BDF.
+The ``xbutil`` command expects the User BDF of the targeted device while the ``xbmgmt`` command expects the Management BDF of the targeted device.
 
-- When using the ``xbutil`` command, the User BDF of the targeted device should be used. The User BDFs can be listed using the ``xbutil examine`` command. 
+.. The ``xbutil`` and ``xbmgmt`` commands are delivered as part of the Xilinx Runtime (XRT) package. The complete documentation for these commands can be found in the main XRT documentation:
 
-- When using the ``xbmgmt`` command, the Management BDF of the targeted device should be used. The Management BDFs can be listed using the ``xbmgmt examine`` command. Running the ``xbmgmt`` command requires sudo privileges.
+.. - https://xilinx.github.io/XRT/master/html/xbutil.html
+.. - https://xilinx.github.io/XRT/master/html/xbmgmt.html
 
 
-For example, the command below detected 4 devices and lists the User BDF for each of them. The last device listed has a User BDF of 0000:21:00.1, which describes Domain 0, Bus 21, Device 00, Function 1. ::
+xrmadm and xrmd
+=========================================
+
+The Xilinx® FPGA resource manager (XRM) is the software which manages the hardware accelerators available in the system. The XRM daemon (``xrmd``) is a background process supporting reservation, allocation, and release of hardware acceleration resources. The XRM ``xrmadm`` command line tool is used to interact with the XRM daemon (``xrmd``) in order to check status and generate resource utilization reports. 
+
+For more details about the XRM commands specific to the |SDK| refer to the :ref:`XRM Command Reference Guide <xrm-reference>`.
+
+|
+
+***********************************
+Card and Device Identifiers
+***********************************
+
+.. _device-bdf:
+
+Device User BDF
+===================================
+
+The list of all installed Xilinx devices, including their User BDF is obtained with the ``xbutil examine`` command.
+
+For example, the command below detected 4 devices and lists the Management BDF for each of them::
 
     $ xbutil examine
 
@@ -43,13 +78,104 @@ For example, the command below detected 4 devices and lists the User BDF for eac
       [0000:22:00.1] : xilinx_u30_gen3x4_base_1 
       [0000:21:00.1] : xilinx_u30_gen3x4_base_1 
 
+The last device listed has a User BDF of 0000:21:00.1, which describes Domain 0, Bus 21, Device 00, Function 1. 
+
+
+.. _device-management-bdf:
+
+Device Management BDF
+===================================
+
+The list of all installed Xilinx devices, including their Management BDF is obtained with the ``xbmgmt examine`` command.
+
+For example, the command below detected 4 devices and lists the Management BDF for each of them::
+
+    $ xbmgmt examine
+
+    ...
+
+    Devices present
+      [0000:e3:00.0] : xilinx_u30_gen3x4_base_1 
+      [0000:e2:00.0] : xilinx_u30_gen3x4_base_1 
+      [0000:22:00.0] : xilinx_u30_gen3x4_base_1 
+      [0000:21:00.0] : xilinx_u30_gen3x4_base_1 
+
+The last device listed has a Management BDF of 0000:21:00.0, which describes Domain 0, Bus 21, Device 00, Function 0. 
+
+Note that only the last digit (PCI Function) will differ between the User BDF and the Management BDF.
+
+
+.. _device-render-id:
+
+Device renderID
+===================================
+
+You can look-up the renderID of a device by using its User BDF and running the following command::
+
+    ls /sys/bus/pci/devices/<Domain>\:<Bus>\:<Device>.<Function>/drm
+
+NOTE: The colons of the BDF identifier must be separated by a backslash.
+
+.. rubric:: Example
+
+- Assuming a device with User BDF 0000:e3:00.1::
+
+    $ ls /sys/bus/pci/devices/0000\:e3\:00.1/drm 
+    card4  renderD131
+
+- The renderID of this device is 131
+
+
+.. _device-xclmgmt-id:
+
+
+Device xclmgmtID
+===================================
+
+You can look-up the xclmgmtID of a device by using its Management BDF and running the following command::
+
+    cat /sys/bus/pci/devices/<Domain>\:<Bus>\:<Device>.<Function>/instance
+
+NOTE: The colons of the BDF identifier must be separated by a backslash.
+
+.. rubric:: Example
+
+- Assuming a device with Management BDF 0000:e3:00.0::
+
+    $ cat /sys/bus/pci/devices/0000\:e3\:00.0/instance
+    58112
+
+- The xclmgmtID of this device is 58112
+
+|
+
+.. _card-serial_number:
+
+Card Serial Number
+===================================
+
+You can look-up the serial number of a card by using the User BDF of a device located on the card and running the following command::
+
+    cat /sys/bus/pci/devices/<Domain>\:<Bus>\:<Device>.<Function>/xmc.u.<xxx>/serial_num
+
+NOTE: The colons of the BDF identifier must be separated by a backslash and <xxx> is an integer number unique to each device. 
+
+
+.. rubric:: Example
+
+- Assuming a device with BDF 0000:e3:00.1::
+
+    $ cat /sys/bus/pci/devices/0000\:e3\:00.1/xmc.u.19922947/serial_num 
+    XFL1RT5PHT31
+
+- The serial number of the card on which this device is located XFL1RT5PHT31
 
 |
 
 .. _examining-cards:
 
 **************************************
-Ensuring Cards are Detected 
+Checking System Status 
 **************************************
 
 The ``xbutil examine`` commands provides useful details about your environment and can be used to ensure that your cards and devices are properly detected. In the example below, four devices are found and usable::
@@ -83,13 +209,45 @@ The ``xbutil examine`` commands provides useful details about your environment a
 
 |
 
+.. _device-details:
+
+**************************************
+Inspecting Device Details
+**************************************
+
+The ``xbmgmt examine -d <Management BDF>`` commands provides additional details about the status and configuration of each Xilinx device installed. 
+
+For example, for the device with Management BDF 0000:e3:00.0::
+
+    $ sudo /opt/xilinx/xrt/bin/xbmgmt examine -d e3:00.0
+
+    ----------------------------------------------
+    1/1 [0000:e3:00.0] : xilinx_u30_gen3x4_base_1
+    ----------------------------------------------
+    Flash properties
+      Type                 : qspi_ps_x2_single
+      Serial Number        : XFL1RT5PHT31
+
+    Flashable partitions running on FPGA
+      Platform             : xilinx_u30_gen3x4_base_1
+      SC Version           : 6.3.8(FIXED)
+      Platform UUID        : 1B5FEB2A-91B6-818D-A3E8-D9867DE17DA0
+      Interface UUID       : 937ED708-67CF-3350-BC06-304053F4293C
+
+    Flashable partitions installed in system
+      Platform             : xilinx_u30_gen3x4_base_1
+      SC Version           : 6.3.8
+      Platform UUID        : 1B5FEB2A-91B6-818D-A3E8-D9867DE17DA0
+
+|
+
 .. _xbutil-validate:
 
 *******************************
 Checking and Validating Devices
 *******************************
 
-The ``xbutil validate`` command can be used to check and validate the status of the devices on your Alveo U30 cards by executing a special built-in test. In order to run this command, the XRM daemon must first be stopped, otherwise the test will error with ``xclbin on card is in use`` and ``failed to load xclbin`` messages.
+The ``xbutil validate`` command can be used to check and validate the health of the devices on your Alveo U30 cards by executing a special built-in test. In order to run this command, the XRM daemon must first be stopped, otherwise the test will error with ``xclbin on card is in use`` and ``failed to load xclbin`` messages.
 
 #. List the User BDFs of each of the devices on all the Alveo U30 cards installed in your system::
 
@@ -101,11 +259,12 @@ The ``xbutil validate`` command can be used to check and validate the status of 
 
 #. For each of the devices, run the self-checking test::
     
-    xbutil validate --device <BDF>
+    xbutil validate --device <User BDF>
 
-#. After all tests have been run, reload the Xilinx Video SDK environment::
+#. After all tests have been run, restart the XRM daemon and reload the environment::
 
-    sudo /opt/xilinx/xcdr/setup.sh
+    sudo /opt/xilinx/xrm/tools/start_xrmd.sh
+    source /opt/xilinx/xcdr/setup.sh
 
 |
 
@@ -115,37 +274,84 @@ The ``xbutil validate`` command can be used to check and validate the status of 
 Mapping Devices to Cards
 ******************************
 
-Knowing which devices are on which card is useful to selectively reset or recover a card. Follow these instructions to determine the mapping of devices to cards:
+Knowing which devices are on which card is useful to selectively reset or recover a card. This is done by mapping the BDFs of the devices to the serial number of the cards as explained in the instructions below:
 
-#. List the Management BDFs of each of the devices on all the Alveo U30 cards installed in your system::
+#. List the User BDFs of each of the devices on all the Alveo U30 cards installed in your system::
 
-    sudo /opt/xilinx/xrt/bin/xbmgmt examine
+    xbutil examine
 
-#. For each device in your system, gather status information::  
+#. For each User BDF, look-up the corresponding serial number::
 
-    sudo /opt/xilinx/xrt/bin/xbmgmt examine --device <BDF>
+    cat /sys/bus/pci/devices/<Domain>\:<Bus>\:<Device>.<Function>/xmc.u.<xxx>/serial_num
 
-   The command will generate a report similar to the one below::
+   The colons of the BDF identifier must be separated by a backslash and <xxx> is an integer number unique to each device. For example, for the device with BDF 0000:e3:00.1::
 
-    ----------------------------------------------
-    1/1 [0000:e3:00.0] : xilinx_u30_gen3x4_base_1
-    ----------------------------------------------
-    Flash properties
-      Type                 : qspi_ps_x2_single
-      Serial Number        : XFL1RT5PHT31
+    $ cat /sys/bus/pci/devices/0000\:e3\:00.1/xmc.u.19922947/serial_num 
+    XFL1RT5PHT31
 
-    Flashable partitions running on FPGA
-      Platform             : xilinx_u30_gen3x4_base_1
-      SC Version           : 6.3.7(FIXED)
-      Platform UUID        : 323002F5-4D79-9C04-786D-B52BE50C3DAE
-      Interface UUID       : 937ED708-67CF-3350-BC06-304053F4293C
+#. Note the serial number associated with each BDF. Two devices with the same serial number are on the same card. 
 
-    Flashable partitions installed in system
-      Platform             : xilinx_u30_gen3x4_base_1
-      SC Version           : 6.3.7
-      Platform UUID        : 323002F5-4D79-9C04-786D-B52BE50C3DAE
 
-#. For each device, note the BDF and the Serial Number. Two devices with the same serial number are on the same card. 
+|
+
+.. _managing-resources:
+
+**********************************
+Managing Resource Utilization
+**********************************
+
+Given that each device has a 2160p60 (4K) input and output bandwidth limit, the user is responsible for only submitting jobs which will not exceed the capacity of the specified device. This section provides information on how to estimate CU requirements and check current device load.
+
+.. rubric:: Checking System Load
+
+To check the current loading of all the devices in your system, use the following command::
+
+    xrmadm /opt/xilinx/xrm/test/list_cmd.json
+
+This will generate a report in JSON format containing the load information for all the compute unit (CU) resources. The report contains a section for each device in the system. The device sections contain sub-sections for each of the CUs (decoder, scaler, lookahead, encoder) in that device. For example, the load information for the encoder on device 0 may look as follows:: 
+
+    "device_0": {
+        ...
+        "cu_4": {
+            "cuId         ": "4",
+            "cuType       ": "IP Kernel",
+            "kernelName   ": "encoder",
+            "kernelAlias  ": "ENCODER_MPSOC",
+            "instanceName ": "encoder_1",
+            "cuName       ": "encoder:encoder_1",
+            "kernelPlugin ": "/opt/xilinx/xma_plugins/libvcu-xma-enc-plg.so",
+            "maxCapacity  ": "497664000",
+            "numChanInuse ": "20",
+            "usedLoad     ": "831472 of 1000000",
+            "reservedLoad ": "0 of 1000000",
+            "resrvUsedLoad": "0 of 1000000"
+        },
+
+
+The ``usedLoad`` value indicates how much of that resource is currently being used. The value will range from 0 (nothing running) to 1000000 (fully loaded). The ``reservedLoad`` value indicates how much of that resource is being reserved using XRM. The ``resrvUsedLoad`` value indicates how much of the reserved load is actually being used.
+
+In the above example, the encoder is 83.14% utilized. An additional job may only be run on this device if it requires less than 17% of the encoder resources.
+
+.. rubric:: Insufficient Resources
+
+If there are not enough compute unit resources available on the device to support a FFmpeg job, the job will error out with a message about resource allocation failure::
+
+    xrm_allocation: failed to allocate decoder resources from device 0
+    [MPSOC HEVC decoder @ 0x562c7695b200] xrm_allocation: resource allocation failed
+
+In this case, you can check the system load (as described in the section below) and look for a device with enough free resources, or wait until another job finishes and releases enough resources to run the desired job.
+
+
+.. rubric:: Job Resource Requirements
+
+The load of a given job can be estimated by taking the resolution of the job as a percentage of the 2160p60 (4K) maximum. For instance, a 1080p60 stream will require 25% of the resources available on a device.
+
+In addition, it is possible to run FFmpeg with the :option:`-loglevel` option set to ``debug`` to get information about the resource requirements for a given job. The messages generated in the transcript will look as follow::
+
+  ---decoder xrm out: dec_load=250000, plugin=/opt/xilinx/xma_plugins/libvcu-xma-dec-plg.so, device=0, cu=6, ch=0
+  ---encoder xrm out: enc_load=250000, plugin=/opt/xilinx/xma_plugins/libvcu-xma-enc-plg.so, device=0, cu=38, ch=0
+
+Resource loads are reported with a precision of 1/1000000. In the above example, the job requires 25% of the decoder resources and 25% of the encoder resources on the device.
 
 |
 
@@ -155,9 +361,21 @@ Knowing which devices are on which card is useful to selectively reset or recove
 Resetting a Card
 ******************************
 
-Resetting an Alveo U30 card is done with the ``xbutil reset --device <BDF>`` command, where BDF identifies one of the two devices on the card to be reset. **IMPORTANT:** Even if the command takes the BDF of a single device, the command will always reset both devices on the Alveo U30 card. It is not possible to reset only one device. 
+.. note::
+   This action is only available on-premises and is not supported on |VT1| instances.
 
-If you need to identify which two devices are on a given card in order reset only these two devices, refer to the :ref:`device-to-card mapping <mapping-devices-to-cards>` instructions.
+Resetting an Alveo U30 card is done with the ``xbutil reset --device <BDF>`` command, where BDF identifies one of the two devices on the card to be reset. If you need to identify which two devices are on a given card in order reset only these two devices, refer to the :ref:`device-to-card mapping <mapping-devices-to-cards>` instructions.
+
+
+.. rubric:: IMPORTANT 
+
+- The command will reset the device specified with the User BDF **as well as all other devices present on the same Xilinx card**. It is not possible to reset only one device. 
+
+- Since ``xbutil reset`` resets all devices of a given card, Xilinx recommends against assigning a single device to a containerized application.
+
+- ``xbutil reset`` will not work within containers or virtual machines when the management functions are not opened to the user.
+
+
 
 #. Verify that all jobs running on both devices of the card can be safely interrupted.
 
@@ -181,8 +399,10 @@ If you need to identify which two devices are on a given card in order reset onl
 Recovering a Card
 *******************************
 
-In the event that your card has become corrupted and that a reset is not sufficient, you will need to recover it. This is normally be done in-band via a set of simple commands. Should the card's flash devices become corrupted to the point where it is no longer detected by PCIe, out-of-band recovery with a JTAG cable may be required.
+.. note::
+   This action is only available on-premises and is not supported on |VT1| instances.
 
+In the event that your card has become corrupted and that a reset is not sufficient, you will need to recover it. This is normally be done in-band via a set of simple commands. Should the card's flash devices become corrupted to the point where it is no longer detected by PCIe, out-of-band recovery with a JTAG cable may be required.
 
 .. _standard-recovery-flow:
 
@@ -218,148 +438,6 @@ Advanced Recovery Flow
 
 Should there be an issue with the standard in-band recovery process, it is still possible to recover the card using out-of-band methods. Please `contact Xilinx <https://github.com/Xilinx/video-sdk/issues>`_ for more details.
 
-|
-
-*****************************************
-Card Management Tools Reference Guide
-*****************************************
-
-The Xilinx Video SDK builds on the Xilinx Runtime (XRT) and the Xilinx Resource Manager (XRM) to interface with the Alveo U30 cards. The Xilinx Video SDK includes the ``xbutil``, ``xbmgmt`` and ``xrmadm`` command line tools for card installation, upgrade, and management.
-
-
-xbutil and xbmgmt Commands
-======================================
-
-The Xilinx® Board Utility (``xbutil``) and the Xilinx® Board Management Utility (``xbmgmt``) are standalone command line tools used to query and administer Xilinx accelerator cards such as the Alveo U30. 
-
-- ``xbutil`` is used to examine, identify, program, and validate the installed accelerator card(s). 
-- ``xbmgmt`` is used to flash the card firmware, examine devices, and administer the installed accelerator card(s). It requires sudo privileges when running it. 
-
-The ``xbutil`` and ``xbmgmt`` commands typically target one device at a time. The targeted device is specified using a PCIe BDF (Bus:Device.Function) identifier. For more details about BDF identifiers, refer to the :ref:`Device BDF Identifiers <bdf-identifiers>` section above.
-
-The ``xbutil`` and ``xbmgmt`` commands are delivered as part of the Xilinx Runtime (XRT) package. The complete documentation for these commands can be found in the main XRT documentation:
-
-- `xbutil <https://xilinx.github.io/XRT/master/html/xbutil2.html>`_
-- `xbmgmt <https://xilinx.github.io/XRT/master/html/xbmgmt2.html>`_
-
-**Note:** Do not set the XRT_TOOLS_NEXTGEN environment variable mentioned on those pages.
-
-
-.. rubric:: Migrating from legacy versions of the XRT tools
-
-This release of the Xilinx Video SDK includes both the legacy version and the new generation version of the ``xbutil`` and ``xbmgmt`` card management tools. The legacy version is included for backwards compatibility purposes only. Xilinx recommends using the new XRT commands when creating scripts or executing card management operations.
-
-To help migrating from the legacy commands to the new commands `the following page <https://xilinx.github.io/XRT/master/html/xbtools_map.html>`_ provides tables mapping the legacy options to the new options of the ``xbutil`` and ``xbmgmt`` tools.
-
-
-.. _xrmadm-and-xrmd-commands:
-
-xrmadm and xrmd Commands
-==================================
-
-The Xilinx® FPGA resource manager (XRM) is the software which manages the hardware accelerators available in the system. The XRM daemon (``xrmd``) is a background process supporting reservation, allocation, and release of hardware acceleration resources. The XRM ``xrmadm`` command line tool is used to interact with the XRM daemon (``xrmd``). 
-
-The ``xrmadm`` command provides the following capabilities and uses a JSON file as input for each action:
-
-- Generate status reports for each device
-- Load and unload the hardware accelerators
-- Load and unload the software plugins
-
-
-The XRM related files are installed under ``/opt/xilinx/xrm/`` and U30-specific XRM commands are available at ``/opt/xilinx/xcdr/scripts/xrm_commands/``.
-
-
-Default Setup
----------------------------------------
-
-Sourcing the ``/opt/xilinx/xcdr/setup.sh`` script to set up the environment takes care of setting up XRM:
-
-- The XRM daemon (``xrmd``) is started 
-- The hardware accelerators (xclbin) and software plugins are loaded on the Alveo U30 cards
-
-
-Generating Status Reports
----------------------------------------
-
-``xrmadm`` can generate reports with the status of each device in the system. This capability is particularly useful to check the loading of each hardware accelerator.
-
-To generate a report for all the devices in the system::
-
-  xrmadm /opt/xilinx/xrm/test/list_cmd.json
-
-
-To generate a report for a single device specified in the json file::
-
-  xrmadm /opt/xilinx/xrm/test/list_onedevice.json
-
-
-A sample JSON file for generating a report for device 0 is shown below::
-
-    {
-        "request": {
-            "name": "list",
-            "requestId": 1,
-            "device": 0
-        }
-    }
-
-
-Loading/Unloading Hardware Accelerators
----------------------------------------
-
-``xrmadm`` can be used to load or unload the hardware accelerators on the programmable devices of the Alveo U30 card. The hardware accelerators must be reloaded after rebooting a card.
-
-To load the hardware accelerators on a given device::
-
-  xrmadm /opt/xilinx/xcdr/scripts/xrm_commands/load_multiple_devices/load_device0_cmd.json
-
-To unload the hardware accelerators from a given device::
-
-  xrmadm /opt/xilinx/xcdr/scripts/xrm_commands/unload_multiple_devices/unload_device_0_cmd.json
-
-A sample JSON file for loading two devices (0 and 1) is shown below::
-
-    {
-        "request": {
-            "name": "load",
-            "requestId": 1,
-            "parameters": [
-                {
-                "device": 0,
-                "xclbin": "/opt/xilinx/xcdr/xclbins/transcode.xclbin"
-                },
-                {
-                "device": 1,
-                "xclbin": "/opt/xilinx/xcdr/xclbins/transcode.xclbin"
-                }
-            ]
-        }
-    }
-
-
-Loading/Unloading Software Plugins
----------------------------------------
-
-``xrmadm`` can be used to load or unload the software plugins required to manage the compute resources. The software plugins perform resource management functions such as calculating CU load and CU max capacity. Once a plugin is loaded, it becomes usable by a host application through the XRM APIs. The XRM plugins need to be loaded before executing an application (such as FFmpeg) which relies on the plugins.
-
-To load the plugins::
-
-  xrmadm /opt/xilinx/xcdr/scripts/xrm_commands/load_multi_u30_xrm_plugins_cmd.json
-
-
-To unload the plugins::
-
-  xrmadm /opt/xilinx/xcdr/scripts/xrm_commands/unload_multi_u30_xrm_plugins_cmd.json
-
-
-Controlling the xrmd Daemon
----------------------------------------
-The following commands can be used to start, stop, restart, or get the status of the daemon::
-
-    sudo /opt/xilinx/xrm/tools/start_xrmd.sh
-    sudo /opt/xilinx/xrm/tools/stop_xrmd.sh
-    sudo /opt/xilinx/xrm/tools/restart_xrmd.sh
-    sudo systemctl status xrmd
 
 
 ..

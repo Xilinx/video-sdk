@@ -1,12 +1,12 @@
-.. _setting-up-an-abr-ladder:
+.. _using-ffmpeg-for-video-scaling:
 
 *****************************************************
-Using FFmpeg for Video Scaling on Alveo U30
+Using FFmpeg for Video Scaling
 *****************************************************
 
-The Alveo U30 card provides hardware-accelerated video decoding, scaling, and encoding. Each device on an Alveo U30 card supports multiple input channels (raw or encoded) up to a total equivalent bandwidth of 4kp60. Using the Multiscale XMA FFmpeg plug-in included in the Xilinx Video SDK, each input channel can be scaled in hardware to multiple lower resolution and/or lower frame rate outputs.
+Xilinx devices provide hardware-accelerated video decoding, scaling, and encoding. Each device supports multiple input channels (raw or encoded) up to a total equivalent bandwidth of 4kp60. Using the Multiscale XMA FFmpeg plug-in included in the |SDK|, each input channel can be scaled in hardware to multiple lower resolution and/or lower frame rate outputs.
 
-The Xilinx Video SDK supports the following scaling features and capabilities:
+The |SDK| supports the following scaling features and capabilities:
 
 - Up to 32 input streams of raw or encoded video can be scaled down per device
 - Each input stream can be scaled down to a maximum of 8 outputs streams of lower resolution and/or lower frame rate
@@ -25,10 +25,12 @@ The figure below illustrates a scaling ladder with a 1920x1080 input and 4 outpu
     :align: center
 
 
-**IMPORTANT:** The frame rate and resolution of a given output should be smaller or equal than the rate of the previous output. Since the output of one scaling stage is passed as an input to the next, visual quality will be negatively affected if frame rate is increased after it has been lowered.
+**IMPORTANT:** The frame rate and resolution of a given output should be smaller or equal than the rate of the previous output. Since the output of one scaling stage is passed as an input to the next, video quality will be negatively affected if frame rate is increased after it has been lowered.
 
 
-Using the Alveo U30 Multiscale Filter
+.. _using-the-multiscale-filter:
+
+Using the Xilinx Multiscale Filter
 ==========================================
 
 This section describes the FFmpeg syntax to configure the scaler, create ABR ladders and use the corresponding output streams.
@@ -72,7 +74,7 @@ The following example shows a complete command to decode, scale and send two res
         -map "[bb]" -f rawvideo -pix_fmt yuv420p 360p60.yuv 
 
 
-Alveo U30 Multiscale Filter Options
+Multiscale Filter Options
 ==========================================
 
 .. option:: multiscale_xma
