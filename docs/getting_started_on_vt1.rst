@@ -49,7 +49,7 @@ Quick Start Guide for |VT1|
 
    - When choosing the instance type in the EC2 console, make sure to select the |VT1| instance family. 
 
-   - When choosing an Amazon Machine Image (AMI), make sure to select the |SDK| AMI.
+   - When choosing an Amazon Machine Image (AMI), make sure to select the `Xilinx Video SDK AMI for VT1 Instances <https://aws.amazon.com/marketplace/pp/prodview-uovkpvr5ebzci>`_
 
    - To get more information about |VT1| instances sizes and pricing see the `VT1 web page <https://aws.amazon.com/ec2/instance-types/vt1/>`_
 
@@ -86,6 +86,8 @@ Installing the |SDK| on an existing AMI
 
 In order to use a custom AMI on a |VT1| instance, it is necessary to install the |SDK| in the AMI. This section explains how to do this. These steps are not necessary when using the public |SDK| AMI since it already includes a complete installation of the |SDK| and can readily be used on a |VT1| instance.
 
+Additionally, AWS provides packer scripts to make it easy for customers to build their own AMI’s for use with VT1 instances. Those scripts can be found at the following repo: https://github.com/aws-samples/aws-vt-baseami-pipeline
+
 Prerequisites
 ====================================================
 Install the following packages if they are not already present in your AMI.
@@ -97,12 +99,9 @@ Install the following packages if they are not already present in your AMI.
 
 - For AL2::
 
-    sudo yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
-    sudo yum install kernel-devel-$(uname -r)
-    sudo yum install kernel-headers-$(uname -r)
-    sudo yum install python
-    sudo yum install boost-devel
-    sudo yum install gcc-c++
+    sudo amazon-linux-extras install epel -y
+    sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r) boost-devel gcc-c++ -y
+
 
 
 Installation Procedure

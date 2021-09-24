@@ -13,9 +13,6 @@ The |SDK| is a complete software stack allowing users to seamlessly leverage the
      frameborder="0">
    </iframe>
 
-.. .. image:: https://www.xilinx.com/content/dam/xilinx/imgs/kits/alveo-u30-hero.jpg
-..   :width: 250
-..   :alt: The Alveo U30 card is targeted at video workloads using FFmpeg, a leading multimedia framework. Xilinx has integrated key video transcoding plug-ins into FFmpeg, enabling simple hardware offloading of compute-intensive workloads.
 
 *************************
 Quick Links
