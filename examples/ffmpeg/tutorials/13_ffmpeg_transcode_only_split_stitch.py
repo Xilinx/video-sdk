@@ -15,6 +15,13 @@
 #
 
 # This script accepts an 8-bit, YUV420, pre-encoded file and will send the encoded output to a user-defined output path.
+# The aspect ratio must 16:9 and the resolution 720p or more.
+
+# The script starts by automatically detecting the number of devices available in the system and then determines how many 
+# jobs can be run on each device based on the resolution of the input. The input file is then split in as many segments 
+# of equal length. Parallel FFmpeg jobs are submited to transcode all the segments simultaneously. The '-xlnx_hwdev' option 
+# is used to dispatch each job on a specific device. Once all the segments have been processed, FFmpeg is used to concatenate 
+# the results and form the final output stream.
 
 # Usage: python 13_ffmpeg_transcode_only_split_stitch.py [options]
 
@@ -23,8 +30,6 @@
 #                     input file to convert
 #   -d OUTPUT_FILE,   --destinationfile=OUTPUT_FILE 
 #                     output file path
-#   -u SPLIT_COUNT,   --u30-chips=SPLIT_COUNT
-#                     number of U30 devices to transcode on (each U30 board has 2x devices)
 #   -i INPUT_FORMAT,  --icodec=INPUT_FORMAT 
 #                     input file algorithm standard <h264, hevc, h265>
 #                     default: h264
@@ -65,8 +70,8 @@ def main():
         print ("Can't determine number of U30s in the system, exiting ...")
         raise SystemExit
 
-    nCards = int(re.search(r'\d+', outputS).group())
-    print ("There are " + str(int(nCards/2)) + " cards, " + str(nCards) + " chips in the system")
+    num_devices = int(re.search(r'\d+', outputS).group())
+    print ("There are " + str(int(num_devices/2)) + " cards, " + str(num_devices) + " devices in the system")
 
     xres = int(re.search(r'\d+', outputS).group()) 
     if input_encoder == "h265":
@@ -162,19 +167,19 @@ def main():
         print ("Example script only supports 16:9 aspect ratios (e.g. 4k, 1080p, 720p)")
         raise SystemExit
     elif xres == 3840:
-        chip_split_count = 1 * (int(60/framerate))
-        maxFPS=nCards * 60
+        device_split_count = 1 * (int(60/framerate))
+        maxFPS=num_devices * 60
     elif xres == 1920:
-        chip_split_count = 4 * (int(60/framerate))
-        maxFPS=nCards * 240
+        device_split_count = 4 * (int(60/framerate))
+        maxFPS=num_devices * 240
     elif xres == 1280:
-        chip_split_count = 9 * (int(60/framerate))
-        maxFPS=nCards * 540
+        device_split_count = 9 * (int(60/framerate))
+        maxFPS=num_devices * 540
     else:
-        print ("I didn't code lower than 720p, sorry!")
+        print ("Resolutions lower than 720p not implemented, exiting!")
         raise SystemExit
    
-    split_count = chip_split_count * nCards
+    split_count = device_split_count * num_devices
 
     framesinClip = framerate * video_length / split_count
     split_length = int(video_length / split_count) + 1
@@ -204,8 +209,8 @@ def main():
 
     clipNum = 0
 
-    for n in range(0, nCards):        
-        for m in range(0, chip_split_count):
+    for n in range(0, num_devices):        
+        for m in range(0, device_split_count):
             transcode_cmd = "ffmpeg -loglevel info -xlnx_hwdev "+ str(n)+" -vsync 0 -c:v mpsoc_vcu_" + input_encoder + " -i tmpfile" + \
                             format(clipNum, '02d') + filename[-4:] + \
                             " -periodicity-idr 120 -b:v " + br + "M -max-bitrate " + \
@@ -266,7 +271,7 @@ def main():
     cmd = "rm mylist.txt"
     output = subprocess.Popen(cmd, shell = True, stdout = subprocess.PIPE).stdout.read()
     cmd = "rm stdout*.log"
-    output = subprocess.Popen(cmd, shell = True, stdout = subprocess.PIPE).stdout.read()
+    # output = subprocess.Popen(cmd, shell = True, stdout = subprocess.PIPE).stdout.read()
     endSec = time.time()
     totSec = int(endSec-startSec)
 

@@ -695,9 +695,9 @@ FTRT across multiple Xilinx devices for maximum FPS
 
 When processing file-based solutions, where you have the entire clip to operate on in a single command, you have the option to split the video into segments, and distribute the segments to individual encoder instances across different devices. While there is some overhead in "splitting" the clip to begin with, and "stitching" the output files into a single output file, these costs are almost always outweighed by the improvement in FPS.
 
-The function below will split the clip on a boundary that ensures no video quality is lost (a closed GOP boundary), and will distribute the clip across all available Xilinx devices in the system. If you inspect the script, you may edit it to apply the :option:`-cores` and :option:`-slices` flags as listed above for an even larger increase in FPS. Remember that :option:`-slices` will adversely affect VQ.
+The ``13_ffmpeg_transcode_only_split_stitch.py`` script starts by automatically detecting the number of devices available in the system and then determines how many jobs can be run on each device based on the resolution of the input file. The input file is then split in as many segments of equal length. Parallel FFmpeg jobs are submited to transcode all the segments simultaneously. The :option:`-xlnx_hwdev` option is used to dispatch each job on a specific device. Once all the segments have been processed, FFmpeg is used to concatenate the results and form the final output stream.
 
-The load-balancing of this example uses the :option:`-xlnx_hwdev` flag, which manually utilizes available slots as they are available, systematically filling the cards from "index 0" to "index N" 
+Currently, the script only supports videos with a 16:9 aspect ratio and a resolution of 1280x720 or more.
 
 :download:`13_ffmpeg_transcode_only_split_stitch.py </../examples/ffmpeg/tutorials/13_ffmpeg_transcode_only_split_stitch.py>`
 
@@ -719,10 +719,6 @@ Explanation of the flags:
 - ``-d /tmp/xil_split_stitch.mp4``
 
   + This is the output path; most scripts will route here. Change to any output path at your discretion
-
-- ``-u <SPLIT_COUNT>``
-
-  + ``<SPLIT_COUNT>`` is an integer number from ``{1..MAXCARDS*2}``. This is the number of Xilinx devices you wish to deploy your workload on to. Since there are two devices on an Alveo U30 card, the maximum number will be the number of cards in your system times two.
 
 - ``-i <INPUT_CODEC>``
 
