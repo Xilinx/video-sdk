@@ -15,6 +15,13 @@
 #
 
 # This script accepts an 8-bit, YUV420, pre-encoded file and will send the encoded output to a user-defined output path.
+# The aspect ratio must 16:9 and the resolution 720p or more.
+
+# The script starts by automatically detecting the number of devices available in the system and then determines how many 
+# jobs can be run on each device based on the resolution of the input. The input file is then split in as many segments 
+# of equal length. Parallel FFmpeg jobs are submited to transcode all the segments simultaneously. The '-xlnx_hwdev' option 
+# is used to dispatch each job on a specific device. Once all the segments have been processed, FFmpeg is used to concatenate 
+# the results and form the final output stream.
 
 # Usage: python 13_ffmpeg_transcode_only_split_stitch.py [options]
 
@@ -23,8 +30,6 @@
 #                     input file to convert
 #   -d OUTPUT_FILE,   --destinationfile=OUTPUT_FILE 
 #                     output file path
-#   -u SPLIT_COUNT,   --u30-chips=SPLIT_COUNT
-#                     number of U30 devices to transcode on (each U30 board has 2x devices)
 #   -i INPUT_FORMAT,  --icodec=INPUT_FORMAT 
 #                     input file algorithm standard <h264, hevc, h265>
 #                     default: h264
@@ -35,6 +40,7 @@
 #                     output bitrate in Mbit/s. Must be a float or integer value between 1.0 and 25.0
 #                     default: 5.0
 #                     (example: use -b 3 to specify an output bitrate of 3Mbits/sec)
+ASPECT_RATIO = (16/9)
 
 import subprocess
 from optparse import OptionParser
@@ -53,11 +59,21 @@ def count_substrings(string, substring):
     return count
 
 def main():
-    (filename, ofilename, split_count, input_encoder, output_encoder, bitrate) = parse_options()
-    if split_count < 1:
-        print ("number of segments should be at least 1")
-        raise SystemExit
+    (filename, ofilename, input_encoder, output_encoder, bitrate) = parse_options()
     
+    output = subprocess.Popen("xbutil scan",
+                          shell = True,
+                          stdout = subprocess.PIPE).stdout.read()
+    outputS = str(output)
+    result = outputS.find('Found total ')
+    if (result == -1):
+        print ("Can't determine number of U30s in the system, exiting ...")
+        raise SystemExit
+
+    num_devices = int(re.search(r'\d+', outputS).group())
+    print ("There are " + str(int(num_devices/2)) + " cards, " + str(num_devices) + " devices in the system")
+
+    xres = int(re.search(r'\d+', outputS).group()) 
     if input_encoder == "h265":
         input_encoder = "hevc"
     if input_encoder != "hevc" and input_encoder != "h264":
@@ -141,10 +157,32 @@ def main():
     except ValueError:
         print ("Can't determine video length, exiting ...")
         raise SystemExit
-    framesinClip = framerate * video_length / split_count
-    split_length = int(video_length / split_count) + 1
+    
     print("      resolution: "+ str(xres)+"x"+str(yres))
     print("      framerate: "+ str(framerate))
+
+    totFrames = video_length * framerate
+   
+    if float((xres/yres)/(ASPECT_RATIO)) != 1.0 :
+        print ("Example script only supports 16:9 aspect ratios (e.g. 4k, 1080p, 720p)")
+        raise SystemExit
+    elif xres == 3840:
+        device_split_count = 1 * (int(60/framerate))
+        maxFPS=num_devices * 60
+    elif xres == 1920:
+        device_split_count = 4 * (int(60/framerate))
+        maxFPS=num_devices * 240
+    elif xres == 1280:
+        device_split_count = 9 * (int(60/framerate))
+        maxFPS=num_devices * 540
+    else:
+        print ("Resolutions lower than 720p not implemented, exiting!")
+        raise SystemExit
+   
+    split_count = device_split_count * num_devices
+
+    framesinClip = framerate * video_length / split_count
+    split_length = int(video_length / split_count) + 1
 
     print ("")
     print ("Start splitting clip in " + str(split_count)+ " segments")
@@ -169,19 +207,21 @@ def main():
         raise SystemExit       
     print ("")
 
-    for n in range(0, split_count):        
-        transcode_cmd = "ffmpeg -loglevel info -xlnx_hwdev "+ str(n)+" -vsync 0 -c:v mpsoc_vcu_" + input_encoder + " -i tmpfile" + \
-                        format(n, '02d') + filename[-4:] + \
-                        " -periodicity-idr 120 -b:v " + br + "M -max-bitrate " + \
-                        br + "M -cores 4 -slices 4 -c:v mpsoc_vcu_" \
-                        + output_encoder + " -y tmpfileout" + \
-                        format(n, '02d') + ofilename[-4:] + " > stdout" +str(n)+".log 2>&1 & \n"
+    clipNum = 0
 
-        print ("Start transcoding segment: " + str(n))
-
-        output = subprocess.Popen(transcode_cmd, shell = True)
-        time.sleep(0.01)
+    for n in range(0, num_devices):        
+        for m in range(0, device_split_count):
+            transcode_cmd = "ffmpeg -loglevel info -xlnx_hwdev "+ str(n)+" -vsync 0 -c:v mpsoc_vcu_" + input_encoder + " -i tmpfile" + \
+                            format(clipNum, '02d') + filename[-4:] + \
+                            " -periodicity-idr 120 -b:v " + br + "M -max-bitrate " + \
+                            br + "M -c:v mpsoc_vcu_" \
+                            + output_encoder + " -y tmpfileout" + \
+                            format(clipNum, '02d') + ofilename[-4:] + " > stdout" +str(n)+".log 2>&1 & \n"
+            output = subprocess.Popen(transcode_cmd, shell = True)
+            time.sleep(0.1)
+            clipNum += 1
     
+    print ("Start transcoding segments")
     # wait until all ffmpeg processes are done
     pidsExist = True
     
@@ -231,7 +271,7 @@ def main():
     cmd = "rm mylist.txt"
     output = subprocess.Popen(cmd, shell = True, stdout = subprocess.PIPE).stdout.read()
     cmd = "rm stdout*.log"
-    output = subprocess.Popen(cmd, shell = True, stdout = subprocess.PIPE).stdout.read()
+    # output = subprocess.Popen(cmd, shell = True, stdout = subprocess.PIPE).stdout.read()
     endSec = time.time()
     totSec = int(endSec-startSec)
 
@@ -251,7 +291,9 @@ def main():
     print(" ")
     print("This clip was processed "+str(round(1.0*video_length/totSec,1))+" times faster than realtime")
     print(" ")
-
+    print("This clip was effectively processed at " + str(round(totFrames/totSec,2)) + " FPS")
+    print(" ")
+    print("Efficiency=" + str(round((totFrames/totSec)/maxFPS,2)*100) + "%")
 def destroy():
 	# Release resource
     print("Exiting ...")
@@ -268,13 +310,6 @@ def parse_options():
                       dest = "ofilename",
                       help = "output file",
                       type = "string",
-                      action = "store"
-    )
-    parser.add_option("-u", "--u30-chips",
-                      dest = "split_count",
-                      help = "number of u30 devices to transcode on \
-                              (one U30 board has 2 devices)",
-                      type = "int",
                       action = "store"
     )
     parser.add_option("-i", "--icodec",
@@ -300,8 +335,8 @@ def parse_options():
     )
 
     (options, args) = parser.parse_args()
-    if options.ifilename and options.ofilename and options.split_count:
-        return (options.ifilename, options.ofilename, options.split_count, \
+    if options.ifilename and options.ofilename:
+        return (options.ifilename, options.ofilename, \
                 options.input_encoder, options.output_encoder,options.bitrate)
     else:
         parser.print_help()

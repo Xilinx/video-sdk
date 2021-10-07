@@ -1207,8 +1207,8 @@ xrmadm /opt/xilinx/xrm/test/list_cmd.json &amp;
 <div class="section" id="ftrt-across-multiple-xilinx-devices-for-maximum-fps">
 <h3><a class="toc-backref" href="#id17">FTRT across multiple Xilinx devices for maximum FPS</a><a class="headerlink" href="#ftrt-across-multiple-xilinx-devices-for-maximum-fps" title="Permalink to this headline">¶</a></h3>
 <p>When processing file-based solutions, where you have the entire clip to operate on in a single command, you have the option to split the video into segments, and distribute the segments to individual encoder instances across different devices. While there is some overhead in “splitting” the clip to begin with, and “stitching” the output files into a single output file, these costs are almost always outweighed by the improvement in FPS.</p>
-<p>The function below will split the clip on a boundary that ensures no video quality is lost (a closed GOP boundary), and will distribute the clip across all available Xilinx devices in the system. If you inspect the script, you may edit it to apply the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-cores"><code class="xref std std-option docutils literal notranslate"><span class="pre">-cores</span></code></a> and <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-slices"><code class="xref std std-option docutils literal notranslate"><span class="pre">-slices</span></code></a> flags as listed above for an even larger increase in FPS. Remember that <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-slices"><code class="xref std std-option docutils literal notranslate"><span class="pre">-slices</span></code></a> will adversely affect VQ.</p>
-<p>The load-balancing of this example uses the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> flag, which manually utilizes available slots as they are available, systematically filling the cards from “index 0” to “index N”</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">13_ffmpeg_transcode_only_split_stitch.py</span></code> script starts by automatically detecting the number of devices available in the system and then determines how many jobs can be run on each device based on the resolution of the input file. The input file is then split in as many segments of equal length. Parallel FFmpeg jobs are submited to transcode all the segments simultaneously. The <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option is used to dispatch each job on a specific device. Once all the segments have been processed, FFmpeg is used to concatenate the results and form the final output stream.</p>
+<p>Currently, the script only supports videos with a 16:9 aspect ratio and a resolution of 1280x720 or more.</p>
 <p><a class="reference download internal" download="" href="../../_downloads/b0cc2b14cc6b8d91f4bfab9d71b70133/13_ffmpeg_transcode_only_split_stitch.py"><code class="xref download docutils literal notranslate"><span class="pre">13_ffmpeg_transcode_only_split_stitch.py</span></code></a></p>
 <p><strong>Command Line</strong>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python 13_ffmpeg_transcode_only_split_stitch.py \
@@ -1230,11 +1230,6 @@ xrmadm /opt/xilinx/xrm/test/list_cmd.json &amp;
 <li><p><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">/tmp/xil_split_stitch.mp4</span></code></p>
 <ul>
 <li><p>This is the output path; most scripts will route here. Change to any output path at your discretion</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-u</span> <span class="pre">&lt;SPLIT_COUNT&gt;</span></code></p>
-<ul>
-<li><p><code class="docutils literal notranslate"><span class="pre">&lt;SPLIT_COUNT&gt;</span></code> is an integer number from <code class="docutils literal notranslate"><span class="pre">{1..MAXCARDS*2}</span></code>. This is the number of Xilinx devices you wish to deploy your workload on to. Since there are two devices on an Alveo U30 card, the maximum number will be the number of cards in your system times two.</p></li>
 </ul>
 </li>
 <li><p><code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;INPUT_CODEC&gt;</span></code></p>
@@ -1373,7 +1368,7 @@ out_4_width=288:  out_4_height=160:  out_4_rate=half  \
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 24, 2021.
+        Last updated on October 07, 2021.
       </span>
 
     </p>
