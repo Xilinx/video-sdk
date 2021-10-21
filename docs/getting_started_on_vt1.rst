@@ -49,7 +49,7 @@ Quick Start Guide for |VT1|
 
    - When choosing the instance type in the EC2 console, make sure to select the |VT1| instance family. 
 
-   - When choosing an Amazon Machine Image (AMI), make sure to select the `Xilinx Video SDK AMI for VT1 Instances <https://aws.amazon.com/marketplace/pp/prodview-uovkpvr5ebzci>`_
+   - When choosing an Amazon Machine Image (AMI), make sure to select the Xilinx Video SDK AMI for VT1 Instances for `Ubuntu 18.04 <https://aws.amazon.com/marketplace/pp/prodview-uovkpvr5ebzci>`_ or for `Amazon Linux 2 <https://aws.amazon.com/marketplace/pp/prodview-cwdoams4wrymi>`_
 
    - To get more information about |VT1| instances sizes and pricing see the `VT1 web page <https://aws.amazon.com/ec2/instance-types/vt1/>`_
 
