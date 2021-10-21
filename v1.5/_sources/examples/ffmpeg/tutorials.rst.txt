@@ -627,75 +627,14 @@ This script transcodes three H264 streams to HEVC, sending the outputs to /tmp/x
 .. _faster-than-realtime-example:
 
 ************************
-Faster than Realtime
+Faster than Real-Time
 ************************
 
-Xilinx devices are optimized for low latency "real-time" applications. That is to say, it provides deterministic low latency transcoding, while operating at the FPS the human eye would normally process/watch it. This is ideal for ingesting a live video stream where there is minimal buffering.
+Xilinx devices and the |SDK| are optimized for low latency "real-time" applications. That is to say, they provide deterministic low latency transcoding, while operating at the FPS the human eye would normally process/watch it. This is ideal for ingesting a live video stream where there is minimal buffering.
 
-Faster Than Real Time (FTRT) is almost the contrary: you have the entire file/clip saved and can therefore "divide and conquer". There are two main flags to consider when processing in this flow: :option:`-cores` and :option:`-slices`.
+When processing file-based video clips, it is possible to run faster than real time (FTRT) by using a map-reduce approach. With this method, the file-based video clip is split into multiple smaller segments, and each of these segments is individually transcoded. The more devices are available, the more segments can be processed in parallel and the faster the process is. While there is some overhead in "splitting" the clip into segments, and "stitching" the results of each segment into a single output file, these costs are almost always outweighed by the improvement in FPS.
 
-FTRT on a single Xilinx device
-=================================
-:download:`11_ffmpeg_ftrt_transcode_only.sh </../examples/ffmpeg/tutorials/11_ffmpeg_ftrt_transcode_only.sh>`
-
-**Command Line**::
-
-    ffmpeg -c:v mpsoc_vcu_h264 -i <INPUT> \
-    -f mp4 -b:v 8M -c:v mpsoc_vcu_h264 -cores 4 -slices 4 -y /tmp/xil_ftrt_xcode.mp4 
-
-Explanation of the flags:
-
-- ``ffmpeg``
-  
-  + The ffmpeg application, which is provided by Xilinx, and moved to the top of the PATH when you sourced the setup.sh script
-
-- ``-c:v mpsoc_vcu_h264``
-  
-  + Declares the decoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated decoder in the Xilinx device
-
-- ``-i <INPUT>``
-
-  + The input file to be transcoded
-
-- ``-b:v``
-
-  + The target bitrate for video will follow
-
-- ``8M``
-
-  + This signifies 8-Megabits per second target bitrate. You can also use 10000K or 10000000.
-
-- ``-c:v mpsoc_vcu_h264``
-
-  + Declares the encoder's codec for video (as opposed to audio ``-c:a ...``) is the hardware-accelerated encoder in the Xilinx device
- 
-- ``-cores 4``
-
-  + Each device internally uses 4x engines/subcores of 1080p60; when targeting 4k resolutions, it will automatically detect and utilize more subcores to maintain real-time performance. 
-  + Forcing the device to use more cores than necessary will enable more FPS
-  + Using more cores on a clip/stream that cannot provide more FPS will waste resources and have no effect
-
-- ``-slices 4``
-
-  + A video bitstream is broken down into segments called "slices". 
-  + Enabling the system to operate on multiple slices at a time has the benefit of improving FPS, but will adversely affect Visual Quality, as motion estimation within a segment of the frame is being operated on separately, will not be able to communicate with each other, so they may have visual artifacts. 
-  + Please see our Visual Quality page to run an analysis to determine if the FPS gain is worth a reduction in VQ.
-
-- ``-y``
-
-  + Enable overwrite without prompting the user if they're sure
-
-- ``/tmp/xil_ftrt_xcode.mp4``
-
-  + This is the output path; most scripts will route here. Change to any output path at your discretion.
-
-
-FTRT across multiple Xilinx devices for maximum FPS
-======================================================
-
-When processing file-based solutions, where you have the entire clip to operate on in a single command, you have the option to split the video into segments, and distribute the segments to individual encoder instances across different devices. While there is some overhead in "splitting" the clip to begin with, and "stitching" the output files into a single output file, these costs are almost always outweighed by the improvement in FPS.
-
-The ``13_ffmpeg_transcode_only_split_stitch.py`` script starts by automatically detecting the number of devices available in the system and then determines how many jobs can be run on each device based on the resolution of the input file. The input file is then split in as many segments of equal length. Parallel FFmpeg jobs are submited to transcode all the segments simultaneously. The :option:`-xlnx_hwdev` option is used to dispatch each job on a specific device. Once all the segments have been processed, FFmpeg is used to concatenate the results and form the final output stream.
+The ``13_ffmpeg_transcode_only_split_stitch.py`` script starts by automatically detecting the number of devices available in the system and then determines how many jobs can be run on each device based on the resolution of the input file. The input file is then split in as many segments aligning on GOP boundaries. Parallel FFmpeg jobs are submited to transcode all the segments simultaneously. The :option:`-xlnx_hwdev` option is used to dispatch each job on a specific device. Once all the segments have been processed, FFmpeg is used to concatenate the results and form the final output stream.
 
 Currently, the script only supports videos with a 16:9 aspect ratio and a resolution of 1280x720 or more.
 
@@ -704,7 +643,7 @@ Currently, the script only supports videos with a 16:9 aspect ratio and a resolu
 **Command Line**::
 
     python 13_ffmpeg_transcode_only_split_stitch.py \
-    -s <INPUT> -d /tmp/xil_split_stitch.mp4 -u <SPLIT_COUNT> -i <INPUT_CODEC> -o <OUTPUT_CODEC> -b <BITRATE>
+    -s <INPUT_FILE> -d <OUTPUT_FILE> -i <INPUT_CODEC> -o <OUTPUT_CODEC> -b <BITRATE>
 
 Explanation of the flags:
 
@@ -712,15 +651,15 @@ Explanation of the flags:
 
   + This calls the local system python to execute. This has been tested on Python3 only.
 
-- ``-s <INPUT>``
+- ``-s <INPUT_FILE>``
 
-  + This is the pre-encoded input file (not RAW) in either H.264 or h.265 (HEVC) format
+  + This is the name of the pre-encoded input file (not RAW) in either H.264 or h.265 (HEVC) format.
 
-- ``-d /tmp/xil_split_stitch.mp4``
+- ``-d <OUTPUT_FILE>``
 
-  + This is the output path; most scripts will route here. Change to any output path at your discretion
+  + This is the name of the output file.
 
-- ``-i <INPUT_CODEC>``
+- ``-i <INPUT_FORMAT>``
 
   + This defines the input file's pre-encoded format: supported formats are ``h264``, ``hevc``, and ``h265``. Note that ``h265`` and ``hevc`` are identical; they are provided for ease of customer use.
 
@@ -732,6 +671,12 @@ Explanation of the flags:
 
   + This is a float or integer value which defines the output file's target bitrate in Mbits/s. Valid values are comprised between 1.0 and 25.0. The default value is 5.0. Example: use -b 3 to specify an output bitrate of 3Mbits/s.
       
+
+.. - ``-l <LIMIT>``
+
+..   + This limits the number of devices to deploy the split video onto. Default value is 0 and uses all available devices.
+
+
 |
 
 ******************

@@ -355,11 +355,7 @@
 </ul>
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#running-multiple-ffmpeg-jobs">Running Multiple FFmpeg Jobs</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#faster-than-realtime">Faster than Realtime</a><ul>
-<li class="toctree-l4"><a class="reference internal" href="#ftrt-on-a-single-xilinx-device">FTRT on a single Xilinx device</a></li>
-<li class="toctree-l4"><a class="reference internal" href="#ftrt-across-multiple-xilinx-devices-for-maximum-fps">FTRT across multiple Xilinx devices for maximum FPS</a></li>
-</ul>
-</li>
+<li class="toctree-l3"><a class="reference internal" href="#faster-than-real-time">Faster than Real-Time</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#streaming-examples">Streaming Examples</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#replay-saved-files-with-downscaling">Replay Saved Files with Downscaling</a></li>
 </ul>
@@ -477,15 +473,10 @@
 </ul>
 </li>
 <li><p><a class="reference internal" href="#running-multiple-ffmpeg-jobs" id="id14">Running Multiple FFmpeg Jobs</a></p></li>
-<li><p><a class="reference internal" href="#faster-than-realtime" id="id15">Faster than Realtime</a></p>
+<li><p><a class="reference internal" href="#faster-than-real-time" id="id15">Faster than Real-Time</a></p></li>
+<li><p><a class="reference internal" href="#streaming-examples" id="id16">Streaming Examples</a></p>
 <ul>
-<li><p><a class="reference internal" href="#ftrt-on-a-single-xilinx-device" id="id16">FTRT on a single Xilinx device</a></p></li>
-<li><p><a class="reference internal" href="#ftrt-across-multiple-xilinx-devices-for-maximum-fps" id="id17">FTRT across multiple Xilinx devices for maximum FPS</a></p></li>
-</ul>
-</li>
-<li><p><a class="reference internal" href="#streaming-examples" id="id18">Streaming Examples</a></p>
-<ul>
-<li><p><a class="reference internal" href="#replay-saved-files-with-downscaling" id="id19">Replay Saved Files with Downscaling</a></p></li>
+<li><p><a class="reference internal" href="#replay-saved-files-with-downscaling" id="id17">Replay Saved Files with Downscaling</a></p></li>
 </ul>
 </li>
 </ul>
@@ -1134,85 +1125,16 @@ xrmadm /opt/xilinx/xrm/test/list_cmd.json &amp;
 <div class="line"><br /></div>
 </div>
 </div>
-<div class="section" id="faster-than-realtime">
-<span id="faster-than-realtime-example"></span><h2><a class="toc-backref" href="#id15">Faster than Realtime</a><a class="headerlink" href="#faster-than-realtime" title="Permalink to this headline">¶</a></h2>
-<p>Xilinx devices are optimized for low latency “real-time” applications. That is to say, it provides deterministic low latency transcoding, while operating at the FPS the human eye would normally process/watch it. This is ideal for ingesting a live video stream where there is minimal buffering.</p>
-<p>Faster Than Real Time (FTRT) is almost the contrary: you have the entire file/clip saved and can therefore “divide and conquer”. There are two main flags to consider when processing in this flow: <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-cores"><code class="xref std std-option docutils literal notranslate"><span class="pre">-cores</span></code></a> and <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-slices"><code class="xref std std-option docutils literal notranslate"><span class="pre">-slices</span></code></a>.</p>
-<div class="section" id="ftrt-on-a-single-xilinx-device">
-<h3><a class="toc-backref" href="#id16">FTRT on a single Xilinx device</a><a class="headerlink" href="#ftrt-on-a-single-xilinx-device" title="Permalink to this headline">¶</a></h3>
-<p><a class="reference download internal" download="" href="../../_downloads/a4ed066097d65ed362b3d57b67cceb43/11_ffmpeg_ftrt_transcode_only.sh"><code class="xref download docutils literal notranslate"><span class="pre">11_ffmpeg_ftrt_transcode_only.sh</span></code></a></p>
-<p><strong>Command Line</strong>:</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264 -i &lt;INPUT&gt; \
--f mp4 -b:v 8M -c:v mpsoc_vcu_h264 -cores 4 -slices 4 -y /tmp/xil_ftrt_xcode.mp4
-</pre></div>
-</div>
-<p>Explanation of the flags:</p>
-<ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code></p>
-<ul>
-<li><p>The ffmpeg application, which is provided by Xilinx, and moved to the top of the PATH when you sourced the setup.sh script</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span></code></p>
-<ul>
-<li><p>Declares the decoder’s codec for video (as opposed to audio <code class="docutils literal notranslate"><span class="pre">-c:a</span> <span class="pre">...</span></code>) is the hardware-accelerated decoder in the Xilinx device</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;INPUT&gt;</span></code></p>
-<ul>
-<li><p>The input file to be transcoded</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-b:v</span></code></p>
-<ul>
-<li><p>The target bitrate for video will follow</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">8M</span></code></p>
-<ul>
-<li><p>This signifies 8-Megabits per second target bitrate. You can also use 10000K or 10000000.</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span></code></p>
-<ul>
-<li><p>Declares the encoder’s codec for video (as opposed to audio <code class="docutils literal notranslate"><span class="pre">-c:a</span> <span class="pre">...</span></code>) is the hardware-accelerated encoder in the Xilinx device</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-cores</span> <span class="pre">4</span></code></p>
-<ul>
-<li><p>Each device internally uses 4x engines/subcores of 1080p60; when targeting 4k resolutions, it will automatically detect and utilize more subcores to maintain real-time performance.</p></li>
-<li><p>Forcing the device to use more cores than necessary will enable more FPS</p></li>
-<li><p>Using more cores on a clip/stream that cannot provide more FPS will waste resources and have no effect</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-slices</span> <span class="pre">4</span></code></p>
-<ul>
-<li><p>A video bitstream is broken down into segments called “slices”.</p></li>
-<li><p>Enabling the system to operate on multiple slices at a time has the benefit of improving FPS, but will adversely affect Visual Quality, as motion estimation within a segment of the frame is being operated on separately, will not be able to communicate with each other, so they may have visual artifacts.</p></li>
-<li><p>Please see our Visual Quality page to run an analysis to determine if the FPS gain is worth a reduction in VQ.</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-y</span></code></p>
-<ul>
-<li><p>Enable overwrite without prompting the user if they’re sure</p></li>
-</ul>
-</li>
-<li><p><code class="docutils literal notranslate"><span class="pre">/tmp/xil_ftrt_xcode.mp4</span></code></p>
-<ul>
-<li><p>This is the output path; most scripts will route here. Change to any output path at your discretion.</p></li>
-</ul>
-</li>
-</ul>
-</div>
-<div class="section" id="ftrt-across-multiple-xilinx-devices-for-maximum-fps">
-<h3><a class="toc-backref" href="#id17">FTRT across multiple Xilinx devices for maximum FPS</a><a class="headerlink" href="#ftrt-across-multiple-xilinx-devices-for-maximum-fps" title="Permalink to this headline">¶</a></h3>
-<p>When processing file-based solutions, where you have the entire clip to operate on in a single command, you have the option to split the video into segments, and distribute the segments to individual encoder instances across different devices. While there is some overhead in “splitting” the clip to begin with, and “stitching” the output files into a single output file, these costs are almost always outweighed by the improvement in FPS.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">13_ffmpeg_transcode_only_split_stitch.py</span></code> script starts by automatically detecting the number of devices available in the system and then determines how many jobs can be run on each device based on the resolution of the input file. The input file is then split in as many segments of equal length. Parallel FFmpeg jobs are submited to transcode all the segments simultaneously. The <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option is used to dispatch each job on a specific device. Once all the segments have been processed, FFmpeg is used to concatenate the results and form the final output stream.</p>
+<div class="section" id="faster-than-real-time">
+<span id="faster-than-realtime-example"></span><h2><a class="toc-backref" href="#id15">Faster than Real-Time</a><a class="headerlink" href="#faster-than-real-time" title="Permalink to this headline">¶</a></h2>
+<p>Xilinx devices and the Xilinx Video SDK are optimized for low latency “real-time” applications. That is to say, they provide deterministic low latency transcoding, while operating at the FPS the human eye would normally process/watch it. This is ideal for ingesting a live video stream where there is minimal buffering.</p>
+<p>When processing file-based video clips, it is possible to run faster than real time (FTRT) by using a map-reduce approach. With this method, the file-based video clip is split into multiple smaller segments, and each of these segments is individually transcoded. The more devices are available, the more segments can be processed in parallel and the faster the process is. While there is some overhead in “splitting” the clip into segments, and “stitching” the results of each segment into a single output file, these costs are almost always outweighed by the improvement in FPS.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">13_ffmpeg_transcode_only_split_stitch.py</span></code> script starts by automatically detecting the number of devices available in the system and then determines how many jobs can be run on each device based on the resolution of the input file. The input file is then split in as many segments aligning on GOP boundaries. Parallel FFmpeg jobs are submited to transcode all the segments simultaneously. The <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option is used to dispatch each job on a specific device. Once all the segments have been processed, FFmpeg is used to concatenate the results and form the final output stream.</p>
 <p>Currently, the script only supports videos with a 16:9 aspect ratio and a resolution of 1280x720 or more.</p>
 <p><a class="reference download internal" download="" href="../../_downloads/b0cc2b14cc6b8d91f4bfab9d71b70133/13_ffmpeg_transcode_only_split_stitch.py"><code class="xref download docutils literal notranslate"><span class="pre">13_ffmpeg_transcode_only_split_stitch.py</span></code></a></p>
 <p><strong>Command Line</strong>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python 13_ffmpeg_transcode_only_split_stitch.py \
--s &lt;INPUT&gt; -d /tmp/xil_split_stitch.mp4 -u &lt;SPLIT_COUNT&gt; -i &lt;INPUT_CODEC&gt; -o &lt;OUTPUT_CODEC&gt; -b &lt;BITRATE&gt;
+-s &lt;INPUT_FILE&gt; -d &lt;OUTPUT_FILE&gt; -i &lt;INPUT_CODEC&gt; -o &lt;OUTPUT_CODEC&gt; -b &lt;BITRATE&gt;
 </pre></div>
 </div>
 <p>Explanation of the flags:</p>
@@ -1222,17 +1144,17 @@ xrmadm /opt/xilinx/xrm/test/list_cmd.json &amp;
 <li><p>This calls the local system python to execute. This has been tested on Python3 only.</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">&lt;INPUT&gt;</span></code></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">&lt;INPUT_FILE&gt;</span></code></p>
 <ul>
-<li><p>This is the pre-encoded input file (not RAW) in either H.264 or h.265 (HEVC) format</p></li>
+<li><p>This is the name of the pre-encoded input file (not RAW) in either H.264 or h.265 (HEVC) format.</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">/tmp/xil_split_stitch.mp4</span></code></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">&lt;OUTPUT_FILE&gt;</span></code></p>
 <ul>
-<li><p>This is the output path; most scripts will route here. Change to any output path at your discretion</p></li>
+<li><p>This is the name of the output file.</p></li>
 </ul>
 </li>
-<li><p><code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;INPUT_CODEC&gt;</span></code></p>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;INPUT_FORMAT&gt;</span></code></p>
 <ul>
 <li><p>This defines the input file’s pre-encoded format: supported formats are <code class="docutils literal notranslate"><span class="pre">h264</span></code>, <code class="docutils literal notranslate"><span class="pre">hevc</span></code>, and <code class="docutils literal notranslate"><span class="pre">h265</span></code>. Note that <code class="docutils literal notranslate"><span class="pre">h265</span></code> and <code class="docutils literal notranslate"><span class="pre">hevc</span></code> are identical; they are provided for ease of customer use.</p></li>
 </ul>
@@ -1252,14 +1174,13 @@ xrmadm /opt/xilinx/xrm/test/list_cmd.json &amp;
 <div class="line"><br /></div>
 </div>
 </div>
-</div>
 <div class="section" id="streaming-examples">
-<h2><a class="toc-backref" href="#id18">Streaming Examples</a><a class="headerlink" href="#streaming-examples" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">Streaming Examples</a><a class="headerlink" href="#streaming-examples" title="Permalink to this headline">¶</a></h2>
 <p>Streaming Examples operate largely on the same principles (and command line strings) as file-based operations. However, the main difference is how streams are received and transmitted.</p>
 <p>These examples is will leverage example #6, which is a full transcode pipeline (decode, scale, encode), however, instead of saving the scaled outputs into monolithic MP4 files, will create a “manifest” file <code class="docutils literal notranslate"><span class="pre">.m3u8</span></code> for streaming along with several <code class="docutils literal notranslate"><span class="pre">.ts</span></code> files with the actual playback data. These manifest files, when inspected, will contain a “playlist” of clips with <code class="docutils literal notranslate"><span class="pre">.ts</span></code> extensions, which are of duration <code class="docutils literal notranslate"><span class="pre">hls_time</span></code>. Creating separate clips enables the remote playback players to “drop quality” instantaneously without any buffering to the viewer, or trying to figure out and seek to “where we are in the clip”. This is how most live streaming is done, however there are other, similar protocols (e.g. DASH) which operate on similar principles.</p>
 <p>These flags, and others, are defined further on the <a class="reference external" href="https://ffmpeg.org/ffmpeg-formats.html">FFmpeg main help page</a></p>
 <div class="section" id="replay-saved-files-with-downscaling">
-<h3><a class="toc-backref" href="#id19">Replay Saved Files with Downscaling</a><a class="headerlink" href="#replay-saved-files-with-downscaling" title="Permalink to this headline">¶</a></h3>
+<h3><a class="toc-backref" href="#id17">Replay Saved Files with Downscaling</a><a class="headerlink" href="#replay-saved-files-with-downscaling" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference download internal" download="" href="../../_downloads/6c862aa57d4033a7109333412b0ee236/12_ffmpeg_streaming_transcode_from_file.sh"><code class="xref download docutils literal notranslate"><span class="pre">12_ffmpeg_streaming_transcode_from_file.sh</span></code></a></p>
 <p><strong>Usage</strong>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./12_ffmpeg_streaming_transcode_from_file.sh &lt;1080p60 h264 clip&gt;
@@ -1368,7 +1289,7 @@ out_4_width=288:  out_4_height=160:  out_4_rate=half  \
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on October 07, 2021.
+        Last updated on October 21, 2021.
       </span>
 
     </p>
