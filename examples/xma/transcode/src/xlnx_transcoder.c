@@ -64,6 +64,32 @@ static void xlnx_tran_xvbm_buf_inc(XlnxTranscoderCtx *transcode_ctx)
     }
 }
 
+#ifdef U30V2
+/*-----------------------------------------------------------------------------
+xlnx_tran_incr_side_data_refcnt: Checks for side band data present in decoder
+                                 output frame and increments the side data
+                                 reference count if it will be sent to the encoder
+                                 and scaler.
+Parameters:
+transcode_ctx: Transcoder context
+-----------------------------------------------------------------------------*/
+static void xlnx_tran_incr_side_data_refcnt(XlnxTranscoderCtx *transcode_ctx)
+{
+    XmaFrame *dec_out = transcode_ctx->dec_ctx.out_frame;
+    if (dec_out->data[0].buffer &&
+        transcode_ctx->non_scal_channels && transcode_ctx->num_scal_out) {
+
+        /* Increment the HDR side data reference count if it will be sent
+           to the encoder and scaler */
+        XmaSideDataHandle side_data = xma_frame_get_side_data(dec_out,
+                                                              XMA_FRAME_HDR);
+        if(side_data) {
+            xma_side_data_inc_ref(side_data);
+        }
+    }
+}
+#endif
+
 /*-----------------------------------------------------------------------------
 xlnx_tran_get_la_input: Gets lookahead input frame pointer
 
@@ -380,6 +406,19 @@ int32_t xlnx_tran_session_create(XlnxTranscoderCtx *transcode_ctx,
                     "Error in encoder session create \n");
             return TRANSCODE_APP_FAILURE;
         }
+
+        #ifdef U30V2
+        XmaDataBuffer* xma_buffer = &transcode_ctx->xma_out_buffer[i];
+        /* Allocate enough data to safely recv */
+        xma_buffer->alloc_size  = (3 * transcode_props->xma_enc_props[i].width *
+                                    transcode_props->xma_enc_props[i].height) >> 1;
+        xma_buffer->data.buffer = malloc(xma_buffer->alloc_size);
+        if(!xma_buffer->data.buffer) {
+            xma_logmsg(XMA_ERROR_LOG, XLNX_TRANSCODER_APP_MODULE, "Encoder "
+                        "failed to allocate data buffer for recv!\n");
+        }
+        #endif
+
     }
     xma_logmsg(XMA_INFO_LOG, XLNX_TRANSCODER_APP_MODULE, 
             "Encoder session creation successful \n");
@@ -472,6 +511,11 @@ int32_t xlnx_tran_frame_process(XlnxTranscoderCtx *transcode_ctx,
                    encoder, so incrementing the buffer reference count.*/
                 if(ret == TRANSCODE_APP_SUCCESS) {
                     xlnx_tran_xvbm_buf_inc(transcode_ctx);
+
+                    #ifdef U30V2
+                    xlnx_tran_incr_side_data_refcnt(transcode_ctx);
+                    #endif
+
                 }
             }
             transcode_ctx->enc_chan_idx = 0;

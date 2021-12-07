@@ -30,6 +30,10 @@ OBJ_DIR    := obj
 SRCS := $(wildcard $(SRC_DIR)/*.c)
 OBJS :=  $(SRCS:$(SRC_DIR)/%.c=$(BUILD_DIR)/$(OBJ_DIR)/%.o)
 
+ifeq ($(VERSION), V2)
+CFLAGS += -DU30V2
+endif
+
 .PHONY: all
 all: $(BUILD_DIR)/${TARGET}
 

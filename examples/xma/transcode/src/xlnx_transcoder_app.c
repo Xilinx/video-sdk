@@ -145,6 +145,13 @@ static void xlnx_tran_app_close(XlnxTranscoderCtx *transcode_ctx,
         xlnx_enc_deinit(transcode_ctx->app_xrm_ctx.xrm_ctx, 
             &transcode_ctx->enc_ctx[i], &transcode_props->xma_enc_props[i],
             &transcode_props->xma_la_props[i]);
+
+        #ifdef U30V2
+        if(transcode_ctx->xma_out_buffer[i].data.buffer) {
+            free(transcode_ctx->xma_out_buffer[i].data.buffer);
+        }
+        #endif
+
     }
 
     xlnx_tran_xrm_deinit(&transcode_ctx->app_xrm_ctx);

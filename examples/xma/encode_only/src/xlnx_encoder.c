@@ -1147,6 +1147,18 @@ int32_t xlnx_enc_create_session(XlnxEncoderCtx *enc_ctx,
         return ENC_APP_FAILURE;
     }
 
+    #ifdef U30V2
+    XmaDataBuffer* output_xma_buffer = &enc_ctx->xma_buffer;
+    /* Allocate enough data to safely recv */
+    output_xma_buffer->alloc_size  = (3 * enc_ctx->enc_props.width *
+                            enc_ctx->enc_props.height) >> 1;
+    output_xma_buffer->data.buffer = malloc(output_xma_buffer->alloc_size);
+    if(!output_xma_buffer->data.buffer) {
+         xma_logmsg(XMA_ERROR_LOG, XLNX_ENC_APP_MODULE,
+                    "Encoder failed to allocate data buffer for recv! \n");
+    }
+    #endif
+
     return ENC_APP_SUCCESS;
 }
 
@@ -1467,5 +1479,12 @@ void xlnx_enc_deinit(XlnxEncoderCtx *enc_ctx,
 
     free(enc_ctx->enc_props.enc_options);
     xlnx_enc_free_xma_props(xma_enc_props);
+
+    #ifdef U30V2
+    if(enc_ctx->xma_buffer.data.buffer) {
+        free(enc_ctx->xma_buffer.data.buffer);
+    }
+    #endif
+
     return;
 }
