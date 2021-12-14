@@ -1206,7 +1206,7 @@
 </ul>
 <div class="section" id="using-the-source-code">
 <h3>Using the Source Code<a class="headerlink" href="#using-the-source-code" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://github.com/Xilinx/app-ffmpeg4-xma/tree/49ceb9d7defdef4c8fb62fe6d373a2a1c07d7497">sources/app-ffmpeg4-xma</a> submodule contains the entire source code for the FFmpeg executable included with the Video SDK. This is a fork of the main FFmpeg GitHub (release 4.1, commid ID bb01cd3cc01c9982e4b57f8ce5cfd6ec4724f848) with a <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/master/sources/app-ffmpeg4-xma-patch">Xilinx patch applied</a> to enable the Xilinx Video SDK plugins. Due to licensing restrictions, the FFmpeg executable included in the Video SDK is enabled with the Xilinx Video SDK plugins only.</p>
+<p>The <a class="reference external" href="https://github.com/Xilinx/app-ffmpeg4-xma/tree/49ceb9d7defdef4c8fb62fe6d373a2a1c07d7497">sources/app-ffmpeg4-xma</a> submodule contains the entire source code for the FFmpeg executable included with the Video SDK. This is a fork of the main FFmpeg GitHub (release 4.1, commid ID bb01cd3cc01c9982e4b57f8ce5cfd6ec4724f848) with a <a class="reference external" href="https://github.com/Xilinx/video-sdk/tree/v1.0/sources/app-ffmpeg4-xma-patch">Xilinx patch applied</a> to enable the Xilinx Video SDK plugins. Due to licensing restrictions, the FFmpeg executable included in the Video SDK is enabled with the Xilinx Video SDK plugins only.</p>
 <p>You can rebuild the FFmpeg executable with optional plugins by following the instructions below. Additionally, comprehensive instructions for compiling FFmpeg can be found <a class="reference external" href="https://trac.ffmpeg.org/wiki/CompilationGuide">on the FFmpeg wiki page</a>.</p>
 <ol class="arabic">
 <li><p>Make sure <code class="docutils literal notranslate"><span class="pre">nasm</span></code> and <code class="docutils literal notranslate"><span class="pre">yasm</span></code> are installed on your machine.</p></li>
@@ -1244,7 +1244,7 @@
 </div>
 <div class="section" id="using-the-git-patch-file">
 <h3>Using the Git Patch File<a class="headerlink" href="#using-the-git-patch-file" title="Permalink to this headline">¶</a></h3>
-<p>The <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/master/sources/app-ffmpeg4-xma-patch">Xilinx patch applied</a> folder contains a git patch file which can be applied to a FFmpeg fork to enable the Xilinx Video SDK plugins.</p>
+<p>The <a class="reference external" href="https://github.com/Xilinx/video-sdk/tree/v1.0/sources/app-ffmpeg4-xma-patch">Xilinx patch applied</a> folder contains a git patch file which can be applied to a FFmpeg fork to enable the Xilinx Video SDK plugins.</p>
 <p>This patch is designed to apply to FFmpeg n4.1. As such, applying this patch to earlier or later versions of FFmpeg may require edits to successfully merge these changes and represent untested configurations.</p>
 <p>The patch adds new plugins to FFmpeg to enable access to Xilinx U30 Video accelerators.  In addition, the patch makes edits to FFmpeg to support new command line options to support U30-based FPGA use cases as well as ensure proper initialization of Xilinx accelerators.</p>
 <p>Here is an example of how the patch can be applied to a FFmpeg fork:</p>
@@ -1552,7 +1552,7 @@
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on September 03, 2021.
+        Last updated on December 14, 2021.
       </span>
 
     </p>
