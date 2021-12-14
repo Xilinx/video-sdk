@@ -28,9 +28,11 @@ This function creates a decoder session and must be called prior to decoding dat
 
 This function sends input frame data to the hardware decoder by way of the plugin. The application needs to parse the input encoded stream and send one frame of data at a time in a :c:struct:`XmaDataBuffer` data structure.
 
-If the function returns :c:macro:`XMA_SUCCESS`, then the application can proceed to fetch decoded data using the :c:func:`xma_dec_session_recv_frame` API. 
+The :c:var:`data_used` value indicates the amount of input data consumed by the decoder. 
 
-If the function returns :c:macro:`XMA_TRY_AGAIN`, it means that the decoder is not able to consume the input data. In this case, the application can proceed with fetching the previously decoded data with the :c:func:`xma_dec_session_recv_frame` function but must send the same input again until the function returns :c:macro:`XMA_SUCCESS`.
+If the function returns :c:macro:`XMA_SUCCESS`, then the decoder was able to consume the entirety of the available data and :c:var:`data_used` will be set accordingly. In this case, the application can proceed with fetching decoded data using the :c:func:`xma_dec_session_recv_frame` API. 
+
+If the function returns :c:macro:`XMA_TRY_AGAIN`, then the decoder was did not consume any of the input data and :c:var:`data_used` will be reported as 0. In this case, the application can proceed with fetching previously decoded data with the :c:func:`xma_dec_session_recv_frame` function but must send the same input again using using :c:func:`xma_dec_session_send_data` until the function returns :c:macro:`XMA_SUCCESS`.
 
 Once the application has sent all the input frames to the decoder, it must notify the decoder by sending a null frame buffer with :c:var:`is_eos` set to 1 in :c:struct:`XmaDataBuffer` structure. The application should then continue sending null frame buffers with :c:var:`is_eos` set to 0 in order to flush out all the output YUV frames.
 

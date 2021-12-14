@@ -1,7 +1,7 @@
 .. _using-ffmpeg-for-video-scaling:
 
 *****************************************************
-Using FFmpeg for Video Scaling
+Video Scaling
 *****************************************************
 
 Xilinx devices provide hardware-accelerated video decoding, scaling, and encoding. Each device supports multiple input channels (raw or encoded) up to a total equivalent bandwidth of 4kp60. Using the Multiscale XMA FFmpeg plug-in included in the |SDK|, each input channel can be scaled in hardware to multiple lower resolution and/or lower frame rate outputs.
@@ -27,55 +27,12 @@ The figure below illustrates a scaling ladder with a 1920x1080 input and 4 outpu
 
 **IMPORTANT:** The frame rate and resolution of a given output should be smaller or equal than the rate of the previous output. Since the output of one scaling stage is passed as an input to the next, video quality will be negatively affected if frame rate is increased after it has been lowered.
 
-
-.. _using-the-multiscale-filter:
-
-Using the Xilinx Multiscale Filter
-==========================================
-
-This section describes the FFmpeg syntax to configure the scaler, create ABR ladders and use the corresponding output streams.
-
-An ABR ladder is created using the FFmpeg :option:`-filter_complex` ``"<filter graph>"`` syntax. The filter graph specification should be constructed in the following way:
-
-- Add the :option:`multiscale_xma` filter to the graph   
-- Set the number of scaler outputs
-- Set the width, height, and rate settings for each scaler output 
-- Define the name each scaler output
-- If the outputs are not to encoded on the device, add :option:`xvbm_convert` filters to the filter graph to reformat the pixels
-
-The filter graph syntax must follow these rules:
-
-- The entire filter graph sequence must be enclosed in quotes (``"``)
-- Each option of the :option:`multiscale_xma` filter (outputs, width, height, rate) must be separated by a colon (``:``)
-- A white space must separate the last :option:`multiscale_xma` option from the list of output names
-- If :option:`xvbm_convert` filters must be added to the filter graph, they must be preceded by a semi-colon (``;``)
-- The filter graph sequence should not end with  ``;"``
-
-The FFmpeg ``-map`` command is used to map and use each scaled output stream. All options of the ``-map`` commands must be separated by white spaces. 
- 
-The following example shows a complete command to decode, scale and encode to two resolutions on device::
-
-    ffmpeg -y -c:v mpsoc_vcu_h264 -i 1080p60_input.mp4 \
-        -filter_complex "multiscale_xma=outputs=2: \
-        out_1_width=1280: out_1_height=720: out_1_rate=full: \
-        out_2_width=640:  out_2_height=360: out_2_rate=half \
-        [a][b]" \
-        -map "[a]"       -b:v 3M    -c:v mpsoc_vcu_h264 -f mp4 -y 720p60.mp4 \
-        -map "[b]" -r 30 -b:v 1250K -c:v mpsoc_vcu_h264 -f mp4 -y 360p30.mp4 
-
-The following example shows a complete command to decode, scale and send two resolutions to the host for postprocessing::
-
-    ffmpeg -y -c:v mpsoc_vcu_h264 -i 1080p60_input \
-        -filter_complex "multiscale_xma=outputs=2: \
-        out_1_width=1280: out_1_height=720:  \
-        out_2_width=640:  out_2_height=360 \
-        [a][b]; [a]xvbm_convert[aa]; [b]xvbm_convert[bb]" \
-        -map "[aa]" -f rawvideo -pix_fmt nv12 720p60.yuv \
-        -map "[bb]" -f rawvideo -pix_fmt yuv420p 360p60.yuv 
-
+|
 
 Multiscale Filter Options
 ==========================================
+
+An ABR ladder is created using the :option:`multiscale_xma` complex filter and the `FFmpeg filter graph syntax <https://ffmpeg.org/ffmpeg-filters.html#Filtergraph-syntax-1>`_. This section describes the options of the :option:`multiscale_xma` complex filter.
 
 .. option:: multiscale_xma
 
@@ -109,32 +66,71 @@ Multiscale Filter Options
        | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs specified with :option:`outputs`     
        | Valid values are ``full`` (default) and ``half``                 
        | The first output has to be full rate output (``out_1_rate=full``)
-       | The frame rate of a given output should be smaller or equal than the resolution of the previous output.|
+       | The frame rate of a given output should be smaller or equal than the resolution of the previous output
+
+|
+
+.. _using-the-multiscale-filter:
+
+Using the Multiscale Filter
+==========================================
+
+The filter graph specification for the :option:`multiscale_xma` filter should be constructed in the following way:
+
+- Add the :option:`multiscale_xma` filter to the graph   
+- Set the number of scaler outputs
+- Set the width, height, and rate settings for each scaler output 
+- Define the name each scaler output
+- If the outputs are not to encoded on the device, add :option:`xvbm_convert` filters to the filter graph to copy the frames back to the host and convert them to AV frames.
+
+The following example shows a complete command to decode, scale and encode to five different resolutions::
+
+    ffmpeg -c:v mpsoc_vcu_h264 -i input.mp4 \
+      -filter_complex " \
+        multiscale_xma=outputs=4: \
+        out_1_width=1280: out_1_height=720: out_1_rate=full: \
+        out_2_width=848:  out_2_height=480: out_2_rate=half: \
+        out_3_width=640:  out_3_height=360: out_3_rate=half: \
+        out_4_width=288:  out_4_height=160: out_4_rate=half  \
+        [a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]" \
+      -map "[aa]"  -b:v 4M    -c:v mpsoc_vcu_h264 -f mp4 -y ./scaled_720p60.mp4 \
+      -map "[abb]" -b:v 3M    -c:v mpsoc_vcu_h264 -f mp4 -y ./scaled_720p30.mp4 \
+      -map "[b]"   -b:v 2500K -c:v mpsoc_vcu_h264 -f mp4 -y ./scaled_480p30.mp4 \
+      -map "[c]"   -b:v 1250K -c:v mpsoc_vcu_h264 -f mp4 -y ./scaled_360p30.mp4 \
+      -map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -f mp4 -y ./scaled_288p30.mp4
+
+This example can also be found in the FFMpeg introductory tutorials: :ref:`Transcode With Multiple-Resolution Outputs <transcode-with-abr-ladder>`.
 
 
 Encoding Scaler Outputs
-=======================
+-----------------------
 
-The outputs of an ABR ladder can be encoded on the device using either the ``mpsoc_vcu_h264`` or the ``mpsoc_vcu_hevc`` codec. All outputs must be encoded using the same codec.
-
-The following snippet shows how the desired codec is specified for each of the scaler outputs::
-
-    ...
-    -map "[a]" -b:v 4M    -c:v mpsoc_vcu_h264 -f mp4 720p60_output.mp4 \
-    -map "[b]" -b:v 1500k -c:v mpsoc_vcu_h264 -f mp4 480p60_output.mp4 
-
-A full example of a raw to encoded ABR ladder can be found here: :ref:`Encode Only Into Multiple Resolution Outputs <encode-only-multiple-res-outputs>`.
+The outputs of an ABR ladder can be encoded on the device using either the ``mpsoc_vcu_h264`` or the ``mpsoc_vcu_hevc`` codec. **IMPORTANT:** All outputs must be encoded using the same codec.
 
 
 Using Raw Scaler Outputs
-========================
+------------------------
 
-To return raw video outputs from the ABR ladder, use the :option:`xvbm_convert` filter to copy the frames from the device to the host and set the desired pixel formal, as shown in this command snippet::
+To return raw video outputs from the ABR ladder, use the :option:`xvbm_convert` filter to copy the frames from the device to the host and convert them to AV frames. The converted AV frames can then be used in FFmpeg software filters or directly saved to file as shown in this command::
 
-    ...
-    [a]xvbm_convert[aa]; [b]xvbm_convert[bb]; \
-    -map "[aa]" -f rawvideo -pix_fmt nv12    -y ./outdir/720p60_nv12.yuv \
-    -map "[bb]" -f rawvideo -pix_fmt yuv420p -y ./outdir/480p60_yuv420.yuv
+  ffmpeg -c:v mpsoc_vcu_h264 -i input.mp4 \
+  -filter_complex " \
+    multiscale_xma=outputs=4: \
+    out_1_width=1280: out_1_height=720:  out_1_rate=full: \
+    out_2_width=848:  out_2_height=480:  out_2_rate=half: \
+    out_3_width=640:  out_3_height=360:  out_3_rate=half: \
+    out_4_width=288:  out_4_height=160:  out_4_rate=half  \
+    [a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]; \
+    [aa]xvbm_convert[aa1];[abb]xvbm_convert[abb1];[b]xvbm_convert[b1];[c]xvbm_convert[c1]; \
+    [d]xvbm_convert[d1]" \
+  -map "[aa1]"  -pix_fmt yuv420p -f rawvideo ./scaled_720p60.yuv \
+  -map "[abb1]" -pix_fmt yuv420p -f rawvideo ./scaled_720p30.yuv \
+  -map "[b1]"   -pix_fmt yuv420p -f rawvideo ./scaled_480p30.yuv \
+  -map "[c1]"   -pix_fmt yuv420p -f rawvideo ./scaled_360p30.yuv \
+  -map "[d1]"   -pix_fmt yuv420p -f rawvideo ./scaled_288p30.yuv
+
+This example can also be found in the FFMpeg introductory tutorials: :ref:`Decode Only Into Multiple-Resolution Outputs <decode-and-scale-only>`.
+
 
 Performance Considerations
 ==========================

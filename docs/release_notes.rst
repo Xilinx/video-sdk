@@ -154,7 +154,7 @@ Reverting to the golden image may not work by default on some on-prem systems
 
   #. For each device, run the following command to flash the golden image to the expected memory location::
 
-      sudo /opt/xilinx/xrt/bin/xbflash.qspi ==qspips-flash ==input /opt/xilinx/firmware/u30/gen3x4/base/data/BOOT_golden.BIN  ==offset 0x6000000 ==bar-offset 0x10000 ==card <BDF>
+      sudo /opt/xilinx/xrt/bin/xbflash.qspi --qspips-flash --input /opt/xilinx/firmware/u30/gen3x4/base/data/BOOT_golden.BIN --offset 0x6000000 --bar-offset 0x10000 --card <BDF>
 
   #. Once the golden image has been properly relocated, you can revert the card to the golden image by following the :ref:`card recovery instructions <card-recovery>`.
 

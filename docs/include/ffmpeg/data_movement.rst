@@ -1,3 +1,5 @@
+.. _ffmpeg-data-movement:
+
 **************************************
 Moving Data through the Video Pipeline
 **************************************
@@ -26,7 +28,7 @@ Explicit Data Movement
 It is necessary to explicitly copy video frames from the device to the host in these situations:
 
 - Writing the output of the decoder or the scaler to file.
-- Using the output of the decoder or the scaler with a software filter which does not perform frame cloning. Examples of such filters include the ``transpose`` filter used for frame rotation.
+- Using the output of the decoder or the scaler with a software filter which does not perform frame cloning. 
 
 
 This is done using the :option:`xvbm_convert` filter.
