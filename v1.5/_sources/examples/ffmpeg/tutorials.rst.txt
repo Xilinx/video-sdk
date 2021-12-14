@@ -1,5 +1,5 @@
 #####################################################
-FFmpeg Tutorials for the |SDK|
+FFmpeg Introductory Tutorials
 #####################################################
 
 .. highlight:: none
@@ -196,7 +196,6 @@ Explanation of the flags:
 
 .. _decode-and-scale-only:
 
-
 Decode Only Into Multiple-Resolution Outputs
 ============================================
 :download:`04_ffmpeg_decode_plus_scale.sh </../examples/ffmpeg/tutorials/04_ffmpeg_decode_plus_scale.sh>`
@@ -342,6 +341,8 @@ Explanation of the flags:
 - ``/tmp/xil_scale_enc_<resolution><fps>.mp4``
 
   + Saves the output clips to the location listed
+
+.. _transcode-with-abr-ladder:
 
 Transcode With Multiple-Resolution Outputs
 ==========================================
