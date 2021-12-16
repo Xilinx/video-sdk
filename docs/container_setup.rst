@@ -14,7 +14,7 @@ Container Setup
 
 |
 
-The Github repository for the |SDK| includes `predefined Dockerfiles <https://github.com/Xilinx/video-sdk/tree/master/dockerfiles>`_ which can be used to easily create Docker images with the |SDK| for different OS configurations. There are different Dockerfiles for on-prem and |VT1| usage. The Dockerfiles included in the repository can be used as-is or customized based on end-user needs.  
+The Github repository for the |SDK| includes predefined :url_to_repo:`dockerfiles` which can be used to easily create Docker images with the |SDK| for different OS configurations. There are different Dockerfiles for on-prem and |VT1| usage. The Dockerfiles included in the repository can be used as-is or customized based on end-user needs.  
 
 The instructions below explain how to create and then launch a Docker image from one of the Dockerfiles included in the |SDK| repository. 
 
