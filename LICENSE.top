@@ -28,6 +28,8 @@ xcdr-0.2.14-Linux (software)            | Apache v2 (software)
                                         |
                                         | Xilinx non-open source permissive
                                         | (hardware binaries)
+                                        |
+                                        | See LICENSE.xclbin for additional details
 -----------------------------------------------------------------------------
 launcher-1.0.0-Linux                    | Apache v2
 -----------------------------------------------------------------------------
@@ -59,15 +61,21 @@ xilinx-sc-fw-u30_6.3.8-1.cd35f69        | Xilinx binary non-open source
                                         | permissive
                                         |
                                         | Permissive 3-Clause BSD license
+                                        |
+                                        | See LICENSE.sc for additional details
 -----------------------------------------------------------------------------
 xilinx-u30-gen3x4-base_1-3205830        | Xilinx non-open source permissive
                                         | (hardware binaries)
                                         |
                                         | Various open-source
                                         | (embedded  software)
+                                        |
+                                        | See LICENSE.base for additional details
 -----------------------------------------------------------------------------
 xilinx-u30-gen3x4-validate_1-3210381    |Xilinx non-open source permissive 
                                         | (hardware binaries)
+                                        |
+                                        | See LICENSE.validate for additional details
 -----------------------------------------------------------------------------
 
 
