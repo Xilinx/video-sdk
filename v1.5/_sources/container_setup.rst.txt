@@ -67,6 +67,7 @@ Launching a Docker Container on |VT1|
 
 - The ``xbutil reset`` command should not be used from within containers running on |VT1| instances. The command will kill any job running on the devices, but it will not reset the devices.
 
+- AWS has created a script to automatically generate the ``--device`` option with the renderID of all available devices. The script can be found `here <https://raw.githubusercontent.com/Xilinx/Xilinx_Base_Runtime/master/utilities/xilinx_aws_docker_setup.sh>`_ Details about how to use this script can be found on the AWS Compute Blog: https://aws.amazon.com/blogs/compute/deep-dive-on-amazon-ec2-vt1-instances/
 
 |
 

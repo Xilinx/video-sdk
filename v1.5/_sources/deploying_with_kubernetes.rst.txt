@@ -26,6 +26,8 @@ The plugin is available on the ECR repository: https://gallery.ecr.aws/xilinx_dc
 
 The following instructions explain how to install the Xilinx device plugin for Kubernetes and how to deploy user pods with access to Xilinx devices.
 
+In addition, a comprehense step-by-step guide on how to run containerized workloads on Amazon ECS and Amazon EKS can be found on the AWS Compute Blog: https://aws.amazon.com/blogs/compute/deep-dive-on-amazon-ec2-vt1-instances/  
+
 |
 
 *****************************************************

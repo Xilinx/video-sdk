@@ -149,7 +149,7 @@ In addition, the user guide for Amazon ECS can be found here: https://docs.aws.a
 Working with Kubernetes
 ****************************************************
 
-For instructions on how to deploy Docker containers with Kubernetes and EKS, refer to the :doc:`Deploying with Kubernetes </deploying_with_kubernetes>` page of this documentation.
+For instructions on how to deploy Docker containers with Kubernetes and EKS, refer to the :doc:`Deploying with Kubernetes </deploying_with_kubernetes>` page of this documentation. A comprehense step-by-step guide on the AWS Compute Blog can be found here: https://aws.amazon.com/blogs/compute/deep-dive-on-amazon-ec2-vt1-instances/  
 
 In addition, the user guide for Amazon EKS can be found here: https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
 
