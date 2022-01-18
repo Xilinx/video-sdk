@@ -592,7 +592,7 @@ This option will be deprecated and removed in a future release. The job-count op
 <p>The job slot reservation application takes as input a video transcode job reservation in the form of a JSON file as described in the previous section. The video transcode job description provides information to the resource manager about what kind of transcode is intended to run on the card. With this information the resource manager calculates the CU load for the specified job as well as the maximum possible number of jobs that can be run real-time in parallel.</p>
 <p>Once the maximum possible number of jobs is known, CUs and job slots are reserved, and corresponding reservation IDs are stored in a bash file at <code class="docutils literal notranslate"><span class="pre">/var/tmp/xilinx/xrm_jobReservation.sh</span></code>. A reservation ID is a unique identifier which is valid while the job slot reservation application is running. These reservation IDs are passed to individual FFmpeg process via an environment variable XRM_RESERVE_ID. The FFmpeg processes then use this reservation ID to retrieve the corresponding CUs reserved earlier.</p>
 <p>The reserved resourced are released by ending the job reservation process. Reserved slots can be reused after an FFmpeg job finishes as long as the job reservation process is still running.</p>
-<p>The <a class="reference external" href="https://github.com/Xilinx/app-jobslot-reservation-xrm/tree/master/jobSlot_reservation.cpp">source code of the job slot reservation application</a> is included in the Github repository of Xilinx Video SDK and can be used as a starting point for developing custom orchestration layers.</p>
+<p>The <a class="reference external" href="https://github.com/Xilinx/app-jobslot-reservation-xrm/blob/v1.0.0/jobSlot_reservation.cpp">source code of the job slot reservation application</a> is included in the Github repository of Xilinx Video SDK and can be used as a starting point for developing custom orchestration layers.</p>
 <p>The following steps show how to use the job slot reservation to dispatch multiple parallel instances of an ABR ladder job:</p>
 <ol class="arabic">
 <li><p>Setup the environment:</p>
@@ -828,7 +828,7 @@ sudo systemctl status xrmd
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on January 06, 2022.
+        Last updated on January 18, 2022.
       </span>
 
     </p>

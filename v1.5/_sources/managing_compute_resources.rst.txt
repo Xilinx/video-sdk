@@ -177,7 +177,7 @@ Once the maximum possible number of jobs is known, CUs and job slots are reserve
 
 The reserved resourced are released by ending the job reservation process. Reserved slots can be reused after an FFmpeg job finishes as long as the job reservation process is still running.
 
-The `source code of the job slot reservation application <https://github.com/Xilinx/app-jobslot-reservation-xrm/tree/master/jobSlot_reservation.cpp>`_ is included in the Github repository of |SDK| and can be used as a starting point for developing custom orchestration layers. 
+The `source code of the job slot reservation application <https://github.com/Xilinx/app-jobslot-reservation-xrm/blob/v1.0.0/jobSlot_reservation.cpp>`_ is included in the Github repository of |SDK| and can be used as a starting point for developing custom orchestration layers. 
 
 The following steps show how to use the job slot reservation to dispatch multiple parallel instances of an ABR ladder job:
 

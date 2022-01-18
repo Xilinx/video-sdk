@@ -1528,7 +1528,7 @@ Value range from 0 to Integer max.</p>
 </div>
 <div class="section" id="reserving-multiple-job-slots">
 <h3>Reserving Multiple Job Slots<a class="headerlink" href="#reserving-multiple-job-slots" title="Permalink to this headline">¶</a></h3>
-<p>Another example of XMR API usage can be found in the <a class="reference external" href="https://github.com/Xilinx/app-jobslot-reservation-xrm/tree/master/jobSlot_reservation.cpp">source code of the job slot reservation application</a>. This example shows how to reserve as many job slots as possible given an input job description as described in <a class="reference internal" href="managing_compute_resources.html#using-job-descriptions"><span class="std std-ref">Using Job Descriptions</span></a>. This example works as follows:</p>
+<p>Another example of XMR API usage can be found in the <a class="reference external" href="https://github.com/Xilinx/app-jobslot-reservation-xrm/blob/v1.0.0/jobSlot_reservation.cpp">source code of the job slot reservation application</a>. This example shows how to reserve as many job slots as possible given an input job description as described in <a class="reference internal" href="managing_compute_resources.html#using-job-descriptions"><span class="std std-ref">Using Job Descriptions</span></a>. This example works as follows:</p>
 <ol class="arabic simple">
 <li><p>Calculate the channel load based on a JSON job description</p></li>
 <li><p>Using the <code class="xref c c-func docutils literal notranslate"><span class="pre">xrmCheckCuPoolAvailableNum()</span></code> function, query XRM for the number of resources available based on the channel load. XRM checks all the devices available on the server and returns how many such channels can be accommodated.</p></li>
@@ -1572,7 +1572,7 @@ Value range from 0 to Integer max.</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on January 06, 2022.
+        Last updated on January 18, 2022.
       </span>
 
     </p>
