@@ -91,24 +91,29 @@ Alveo U30 Multiscale Filter Options
        | Valid values are integers between 1 and 8     
    * - .. option:: out_{N}_width
      - | **Specify the width of each of the scaler outputs**
-       | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs specified with :option:`outputs`     
+       | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs
+       | specified with :option:`outputs`     
        | Valid values are integers between 3840 and 128, in multiples of 4  
        | The frame resolution of a given output should be smaller or equal than the resolution of the previous output
    * - .. option:: out_{N}_height
      - | **Specify the height of each of the scaler outputs**    
-       | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs specified with :option:`outputs`     
+       | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs 
+       | specified with :option:`outputs`     
        | Valid values are integers between 2160 and 128, in multiples of 4  
        | The frame resolution of a given output should be smaller or equal than the resolution of the previous output
    * - .. option:: out_{N}_rate
      - | **Specify the frame rate of each of the scaler outputs**
-       | By default, the scaler uses the input stream frame rate for all outputs. While the encoder supports frame dropping with the -r option,
-       | there is also hardware support in the scaler for dropping frames. Dropping frames in the scaler is preferred since it saves scaler
-       | bandwidth, allowing the scaler and encoder to operate more efficiently.
-       | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs specified with :option:`outputs`     
+       | By default, the scaler uses the input stream frame rate for all outputs. While the encoder supports frame 
+       | dropping with the -r option, there is also hardware support in the scaler for dropping frames. Dropping 
+       | frames in the scaler is preferred since it saves scaler bandwidth, allowing the scaler and encoder to operate 
+       | more efficiently.
+       | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs 
+       | specified with :option:`outputs`     
        | Valid values are ``full`` (default) and ``half``                 
        | The first output has to be full rate output (``out_1_rate=full``)
-       | The frame rate of a given output should be smaller or equal than the resolution of the previous output.|
+       | The frame rate of a given output should be smaller or equal than the resolution of the previous output.
 
+|
 
 Encoding Scaler Outputs
 =======================

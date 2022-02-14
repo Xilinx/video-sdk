@@ -33,25 +33,26 @@ Options                        Descriptions
 =============================  ===========================
 .. option:: -cores             | **Number of encoder cores in the Alveo U30 to utilize**
                                | Valid values: 0 to 4
-                               | The Alveo U30 devices are built of encoder and decoder cores that each run at 1080p60, and 1080p120 speed, respectively. 
-                               | This means to operate on a 4kp60 (maximum throughput of the chip), all cores are fully utilized automatically.
-                               | If you operate on a smaller file (e.g. a single 1080p60 clip), you can leverage all of the cores to increase the FPS at which 
-                               | it processes. This is particularly useful in "faster than realtime" (FTRT) use cases, where you want to finish encoding of a clip 
-                               | as fast as possible. The :option:`-cores` option will provide diminishing returns when multiple streams are processed on the same device.
-                               | Likewise, this option has limited value on livestreaming use-cases as you cannot operate on a video stream faster than you receive it. 
-                               | You can find :ref:`faster than realtime examples <faster-than-realtime-example>` in the tutorials section.
+                               | The Alveo U30 devices are built of encoder and decoder cores that each run at 1080p60, and 1080p120 
+                               | speed, respectively. This means to operate on a 4kp60 (maximum throughput of the chip), all cores 
+                               | are fully utilized automatically. If you operate on a smaller file (e.g. a single 1080p60 clip), 
+                               | you can leverage all of the cores to increase the FPS at which it processes. This is particularly 
+                               | useful in "faster than realtime" (FTRT) use cases, where you want to finish encoding of a clip as fast
+                               | as possible. The :option:`-cores` option will provide diminishing returns when multiple streams are
+                               | processed on the same device. Likewise, this option has limited value on livestreaming use-cases as 
+                               | you cannot operate on a video stream faster than you receive it. 
 .. option:: -slices            | **Number of slices to operate on at once within a core**
                                | Valid values: 0 to 68
-                               | Slices are a fundamental part of the stream format. You can operate on these in parallel to increase speed 
-                               | at which a stream is processed. 
+                               | Slices are a fundamental part of the stream format. You can operate on these in parallel to increase 
+                               | speed at which a stream is processed.
                                | However, operating on multiple "slices" of video at once will have negative video quality.
                                | When used in conjunction with :option:`-cores`, you can maximize the processing FPS on video streams.  
                                | This option must be used when encoding 4k streams to H.264 in order to sustain real-time performance.
 .. option:: -g                 | **GOP size** 
                                | Set this to 2x frame rate for a 2 second GOP
 .. option:: -level             | **Encoding level restriction** 
-                               | 1 (default). If the user does not set this value, the encoder will automatically assign appropriate level
-                               | based on resolution, frame rate and bitrate
+                               | 1 (default). If the user does not set this value, the encoder will automatically assign appropriate 
+                               | level based on resolution, frame rate and bitrate
                                | Valid values for H.264: 1, 1.1, 1.2, 1.3, 2, 2.1, 2.2, 3, 3.1, 3.2, 4, 4.1, 4.2, 5, 5.1, 5.2 
                                | Valid values for HEVC: 1, 2, 2.1, 3, 3.1, 4, 4.1, 5, 5.1 
 .. option:: -profile           | **Set the encoding profile** 
@@ -159,16 +160,16 @@ This tool improves the visual quality by changing the quantization parameter (QP
 
 The Alveo U30 card supports two types of AQ: Spatial Adaptive Quantization and Temporal Adaptive Quantization. Both of these AQ modes are enabled by default, and :option:`-qp-mode` is set to ``relative-load`` when :option:`-lookahead_depth` >= 1.
 
-Spatial Adaptive Quantization
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. rubric:: Spatial Adaptive Quantization
+
 Spatial AQ adjusts the QP within a frame based on the spatial characteristics. The human eye is more sensitive to regions which are flat and have low texture than regions which have lots of detail and texture. Spatial AQ exploits this and provides more bits to the low texture and flat regions at the expense of high texture regions. This redistribution of bits to visually perceptible regions of the frame brings about visual improvement. Although spatial AQ improves visual quality, it hurts objective metrics and causes a drop in PSNR and VMAF. It is recommended to turn this feature off when performing PSNR/VMAF based evaluation.
 
 The spatial AQ algorithm can be controlled using the :option:`-spatial-aq-gain` option. The range of this option is from 0 to 100 and indicates the strength of this algorithm as a percentage.
 
 To enable spatial AQ, set the :option:`-spatial-aq-gain` to 1 and the :option:`-spatial-aq-gain` to 50 on the FFmpeg command line. If no value is specified for the :option:`-spatial-aq-gain` option, the default value is 50.
 
-Temporal Adaptive Quantization
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+.. rubric:: Temporal Adaptive Quantization
+
 Temporal AQ adjusts the QP based on the temporal characteristics of the sequence. It utilizes the lookahead frames to capture the temporal characteristics where static/low motion or background is differentiated with high motion regions. The high motion regions are not very sensitive to the human eye as compared with low motion regions. Temporal AQ exploits this fact and redistributes more bits to static or low motion regions.
 
 To enable temporal AQ, set the :option:`-temporal-aq` option to 1 on the FFmpeg command line.
