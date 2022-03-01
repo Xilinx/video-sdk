@@ -58,6 +58,7 @@ function OptanonWrapper() { }
   
     
       <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
         <script src="_static/doctools.js"></script>
@@ -72,6 +73,8 @@ function OptanonWrapper() { }
   <link rel="stylesheet" href="_static/css/common-ui-all.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/header-footer.min.css" type="text/css" />
   <link rel="stylesheet" href="_static/css/pro.min.css" media="all" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
     <link rel="next" title="Card Management and Recovery" href="card_management.html" />
@@ -251,20 +254,20 @@ function OptanonWrapper() { }
               
             
             
-              <p class="caption"><span class="caption-text">Installation and Setup</span></p>
+              <p class="caption" role="heading"><span class="caption-text">Installation and Setup</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
 <li class="toctree-l1"><a class="reference internal" href="installation.html">Installation Instructions</a></li>
 <li class="toctree-l1"><a class="reference internal" href="setup.html">Environment Setup</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Tutorials and Examples</span></p>
+<p class="caption" role="heading"><span class="caption-text">Tutorials and Examples</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="examples/ffmpeg/tutorials.html">FFmpeg</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/ffmpeg/filters.html">Software Filters</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/ffmpeg/quality_analysis.html">Visual Quality</a></li>
 <li class="toctree-l1"><a class="reference internal" href="examples/xma/xma_apps.html">XMA-based Apps</a></li>
 </ul>
-<p class="caption"><span class="caption-text">User Guide</span></p>
+<p class="caption" role="heading"><span class="caption-text">User Guide</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="introduction.html">Specs and Features</a></li>
 <li class="toctree-l1"><a class="reference internal" href="using_ffmpeg.html">Using FFmpeg</a></li>
@@ -320,7 +323,7 @@ function OptanonWrapper() { }
 </li>
 <li class="toctree-l1"><a class="reference internal" href="card_management.html">Card Management and Recovery</a></li>
 </ul>
-<p class="caption"><span class="caption-text">Support</span></p>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
@@ -499,20 +502,20 @@ LDFLAGS += $(shell pkg-config --libs   libxma2api libxma2plugin xvbm libxrm)
 <div class="section" id="common-xma-data-structures">
 <h2><a class="toc-backref" href="#id14">Common XMA Data Structures</a><a class="headerlink" href="#common-xma-data-structures" title="Permalink to this headline">¶</a></h2>
 <dl class="c struct">
-<dt id="c.XmaParameter">
-<em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">XmaParameter</span></code><a class="headerlink" href="#c.XmaParameter" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.XmaParameter">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XmaParameter</span></span></span><a class="headerlink" href="#c.XmaParameter" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Type-Length-Value data structure used for passing custom arguments to a plugin. The declaration of <a class="reference internal" href="#c.XmaParameter" title="XmaParameter"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaParameter</span></code></a> can be found in the <a class="reference external" href="https://github.com/Xilinx/XRT/blob/master/src/xma/include/app/xmaparam.h">xmaparam.h</a> file.</p>
 <dl class="c struct">
-<dt id="c.XmaFrameProperties">
-<em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">XmaFrameProperties</span></code><a class="headerlink" href="#c.XmaFrameProperties" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.XmaFrameProperties">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XmaFrameProperties</span></span></span><a class="headerlink" href="#c.XmaFrameProperties" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Data structure describing the frame dimensions for XmaFrame. The declaration of <a class="reference internal" href="#c.XmaFrameProperties" title="XmaFrameProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFrameProperties</span></code></a> can be found in the <a class="reference external" href="https://github.com/Xilinx/XRT/blob/master/src/xma/include/app/xmabuffers.h">xmabuffers.h</a> file.</p>
 <dl class="c struct">
-<dt id="c.XmaFrame">
-<em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">XmaFrame</span></code><a class="headerlink" href="#c.XmaFrame" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.XmaFrame">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XmaFrame</span></span></span><a class="headerlink" href="#c.XmaFrame" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Data structure describing a raw video frame and its buffers. <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFrame</span></code></a> structures can be received from the decoder or sent to the encoder. They are also used as input and outputs for the scaler and the look-ahead. The declaration of <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFrame</span></code></a> can be found in the <a class="reference external" href="https://github.com/Xilinx/XRT/blob/master/src/xma/include/app/xmabuffers.h">xmabuffers.h</a> file.</p>
@@ -523,8 +526,8 @@ LDFLAGS += $(shell pkg-config --libs   libxma2api libxma2plugin xvbm libxrm)
 </ul>
 <p>The decoder plugin only supports <code class="xref c c-macro docutils literal notranslate"><span class="pre">XMA_DEVICE_BUFFER_TYPE</span></code> frames and the scaler, encoder and lookahead plugins support both types of frames.</p>
 <dl class="c struct">
-<dt id="c.XmaDataBuffer">
-<em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">XmaDataBuffer</span></code><a class="headerlink" href="#c.XmaDataBuffer" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.XmaDataBuffer">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XmaDataBuffer</span></span></span><a class="headerlink" href="#c.XmaDataBuffer" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Data structure describing a buffer containing encoded video data. <a class="reference internal" href="#c.XmaDataBuffer" title="XmaDataBuffer"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaDataBuffer</span></code></a> structures can be sent to the decoder or received from the encoder. The declaration of <a class="reference internal" href="#c.XmaDataBuffer" title="XmaDataBuffer"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaDataBuffer</span></code></a> can be found in the <a class="reference external" href="https://github.com/Xilinx/XRT/blob/master/src/xma/include/app/xmabuffers.h">xmabuffers.h</a> file.</p>
@@ -549,8 +552,8 @@ LDFLAGS += $(shell pkg-config --libs   libxma2api libxma2plugin xvbm libxrm)
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_dec_session_create">
-<span class="pre">XmaDecoderSession</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">xma_dec_session_create</span></code><span class="sig-paren">(</span><a class="reference internal" href="#c.XmaDecoderProperties" title="XmaDecoderProperties"><span class="pre">XmaDecoderProperties</span></a> <span class="pre">*</span><em><span class="pre">dec_props</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_dec_session_create" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_dec_session_create">
+<span class="n"><span class="pre">XmaDecoderSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">xma_dec_session_create</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.XmaDecoderProperties" title="XmaDecoderProperties"><span class="n"><span class="pre">XmaDecoderProperties</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">dec_props</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_dec_session_create" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function creates a decoder session and must be called prior to decoding data. The hardware resources required to run the session must be previously reserved using the <a class="reference internal" href="#xrm-api-reference"><span class="std std-ref">XRM APIs</span></a> and should not be released until after the session is destroyed. The number of sessions allowed depends on several factors that include: resolution, frame rate, bit depth, and the capabilities of the hardware accelerator.</p>
@@ -558,8 +561,8 @@ LDFLAGS += $(shell pkg-config --libs   libxma2api libxma2plugin xvbm libxrm)
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_dec_session_send_data">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_dec_session_send_data</span></code><span class="sig-paren">(</span><span class="pre">XmaDecoderSession</span> <span class="pre">*</span><em><span class="pre">session</span></em>, <a class="reference internal" href="#c.XmaDataBuffer" title="XmaDataBuffer"><span class="pre">XmaDataBuffer</span></a> <span class="pre">*</span><em><span class="pre">data</span></em>, <span class="pre">int32_t</span> <span class="pre">*</span><em><span class="pre">data_used</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_dec_session_send_data" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_dec_session_send_data">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_dec_session_send_data</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaDecoderSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">session</span></span>, <a class="reference internal" href="#c.XmaDataBuffer" title="XmaDataBuffer"><span class="n"><span class="pre">XmaDataBuffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">data_used</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_dec_session_send_data" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function sends input frame data to the hardware decoder by way of the plugin. The application needs to parse the input encoded stream and send one frame of data at a time in a <a class="reference internal" href="#c.XmaDataBuffer" title="XmaDataBuffer"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaDataBuffer</span></code></a> data structure.</p>
@@ -570,8 +573,8 @@ LDFLAGS += $(shell pkg-config --libs   libxma2api libxma2plugin xvbm libxrm)
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_dec_session_get_properties">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_dec_session_get_properties</span></code><span class="sig-paren">(</span><span class="pre">XmaDecoderSession</span> <span class="pre">*</span><em><span class="pre">dec_session</span></em>, <a class="reference internal" href="#c.XmaFrameProperties" title="XmaFrameProperties"><span class="pre">XmaFrameProperties</span></a> <span class="pre">*</span><em><span class="pre">fprops</span></em><span class="sig-paren">)</span><span class="pre">;</span><a class="headerlink" href="#c.xma_dec_session_get_properties" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_dec_session_get_properties">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_dec_session_get_properties</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaDecoderSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">dec_session</span></span>, <a class="reference internal" href="#c.XmaFrameProperties" title="XmaFrameProperties"><span class="n"><span class="pre">XmaFrameProperties</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">fprops</span></span><span class="sig-paren">)</span><span class="p"><span class="pre">;</span></span><a class="headerlink" href="#c.xma_dec_session_get_properties" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function returns the decoder properties such as width, height, output format, and bits per pixel.</p>
@@ -579,8 +582,8 @@ LDFLAGS += $(shell pkg-config --libs   libxma2api libxma2plugin xvbm libxrm)
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_dec_session_recv_frame">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_dec_session_recv_frame</span></code><span class="sig-paren">(</span><span class="pre">XmaDecoderSession</span> <span class="pre">*</span><em><span class="pre">session</span></em>, <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><span class="pre">XmaFrame</span></a> <span class="pre">*</span><em><span class="pre">frame</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_dec_session_recv_frame" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_dec_session_recv_frame">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_dec_session_recv_frame</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaDecoderSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">session</span></span>, <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><span class="n"><span class="pre">XmaFrame</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_dec_session_recv_frame" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function tries to fetch a decoded YUV frame from the hardware accelerator.</p>
@@ -593,8 +596,8 @@ LDFLAGS += $(shell pkg-config --libs   libxma2api libxma2plugin xvbm libxrm)
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_dec_session_destroy">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_dec_session_destroy</span></code><span class="sig-paren">(</span><span class="pre">XmaDecoderSession</span> <span class="pre">*</span><em><span class="pre">session</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_dec_session_destroy" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_dec_session_destroy">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_dec_session_destroy</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaDecoderSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">session</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_dec_session_destroy" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function destroys a decoder session that was previously created with the <a class="reference internal" href="#c.xma_dec_session_create" title="xma_dec_session_create"><code class="xref c c-func docutils literal notranslate"><span class="pre">xma_dec_session_create()</span></code></a> function.</p>
@@ -610,8 +613,8 @@ LDFLAGS += $(shell pkg-config --libs   libxma2api libxma2plugin xvbm libxrm)
 <div class="line"><br /></div>
 </div>
 <dl class="c struct">
-<dt id="c.XmaDecoderProperties">
-<em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">XmaDecoderProperties</span></code><a class="headerlink" href="#c.XmaDecoderProperties" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.XmaDecoderProperties">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XmaDecoderProperties</span></span></span><a class="headerlink" href="#c.XmaDecoderProperties" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This data structure is used to configure the Alveo U30 video decoder. The declaration of <a class="reference internal" href="#c.XmaDecoderProperties" title="XmaDecoderProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaDecoderProperties</span></code></a> can be found in the <a class="reference external" href="https://github.com/Xilinx/XRT/blob/master/src/xma/include/app/xmadecoder.h">xmadecoder.h</a> file.</p>
@@ -722,8 +725,8 @@ Set this only if we ensure that we always feed all NAL units that make up a fram
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_scaler_session_create">
-<span class="pre">XmaScalerSession</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">xma_scaler_session_create</span></code><span class="sig-paren">(</span><span class="pre">XmaScalerProperties</span> <span class="pre">*</span><em><span class="pre">props</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_scaler_session_create" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_scaler_session_create">
+<span class="n"><span class="pre">XmaScalerSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">xma_scaler_session_create</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaScalerProperties</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">props</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_scaler_session_create" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function creates scaler session and must be called prior to sending input frames. The hardware resources required to run the session must be previously reserved using the <a class="reference internal" href="#xrm-api-reference"><span class="std std-ref">XRM APIs</span></a> and should not be released until after the session is destroyed. The number of sessions allowed depends on several factors that include: resolution, frame rate, bit depth, and the capabilities of the hardware accelerator.</p>
@@ -731,8 +734,8 @@ Set this only if we ensure that we always feed all NAL units that make up a fram
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_scaler_session_send_frame">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_scaler_session_send_frame</span></code><span class="sig-paren">(</span><span class="pre">XmaScalerSession</span> <span class="pre">*</span><em><span class="pre">session</span></em>, <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><span class="pre">XmaFrame</span></a> <span class="pre">*</span><em><span class="pre">frame</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_scaler_session_send_frame" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_scaler_session_send_frame">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_scaler_session_send_frame</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaScalerSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">session</span></span>, <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><span class="n"><span class="pre">XmaFrame</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_scaler_session_send_frame" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function sends a YUV frame to the underlying XMA plugin( and eventually to hardware to scale the input frame to one or multiple resolutions. The application has to read one YUV frame data in semi-planar format at a time and update the buffer details in XmaFrame argument.</p>
@@ -746,8 +749,8 @@ Set this only if we ensure that we always feed all NAL units that make up a fram
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_scaler_session_recv_frame_list">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_scaler_session_recv_frame_list</span></code><span class="sig-paren">(</span><span class="pre">XmaScalerSession</span> <span class="pre">*</span><em><span class="pre">session</span></em>, <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><span class="pre">XmaFrame</span></a> <span class="pre">*</span><span class="pre">*</span><em><span class="pre">frame_list</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_scaler_session_recv_frame_list" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_scaler_session_recv_frame_list">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_scaler_session_recv_frame_list</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaScalerSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">session</span></span>, <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><span class="n"><span class="pre">XmaFrame</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame_list</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_scaler_session_recv_frame_list" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function is called after calling the <a class="reference internal" href="#c.xma_scaler_session_send_frame" title="xma_scaler_session_send_frame"><code class="xref c c-func docutils literal notranslate"><span class="pre">xma_scaler_session_send_frame()</span></code></a>. This function returns a list of output frames with every call until it reaches end of scaling. Return codes can only be <code class="xref c c-macro docutils literal notranslate"><span class="pre">XMA_SUCCESS</span></code> and <code class="xref c c-macro docutils literal notranslate"><span class="pre">XMA_ERROR</span></code>.</p>
@@ -758,8 +761,8 @@ Set this only if we ensure that we always feed all NAL units that make up a fram
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_scaler_session_destroy">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_scaler_session_destroy</span></code><span class="sig-paren">(</span><span class="pre">XmaScalerSession</span> <span class="pre">*</span><em><span class="pre">session</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_scaler_session_destroy" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_scaler_session_destroy">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_scaler_session_destroy</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaScalerSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">session</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_scaler_session_destroy" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function destroys scaler session that was previously created with the <a class="reference internal" href="#c.xma_scaler_session_create" title="xma_scaler_session_create"><code class="xref c c-func docutils literal notranslate"><span class="pre">xma_scaler_session_create()</span></code></a> function.</p>
@@ -775,14 +778,14 @@ Set this only if we ensure that we always feed all NAL units that make up a fram
 <div class="line"><br /></div>
 </div>
 <dl class="c struct">
-<dt id="c.XmaScalerFilterProperties">
-<em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">XmaScalerFilterProperties</span></code><a class="headerlink" href="#c.XmaScalerFilterProperties" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.XmaScalerFilterProperties">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XmaScalerFilterProperties</span></span></span><a class="headerlink" href="#c.XmaScalerFilterProperties" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This data structure is used to configure the Alveo U30 scaler. The declaration of <a class="reference internal" href="#c.XmaScalerFilterProperties" title="XmaScalerFilterProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaScalerFilterProperties</span></code></a> can be found in the <a class="reference external" href="https://github.com/Xilinx/XRT/blob/master/src/xma/include/app/xmascaler.h">xmascaler.h</a> file.</p>
 <dl class="c struct">
-<dt id="c.XmaScalerInOutProperties">
-<em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">XmaScalerInOutProperties</span></code><a class="headerlink" href="#c.XmaScalerInOutProperties" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.XmaScalerInOutProperties">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XmaScalerInOutProperties</span></span></span><a class="headerlink" href="#c.XmaScalerInOutProperties" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This data structure is used to configure the input and outputs of the video scaler. The <a class="reference internal" href="#c.XmaScalerFilterProperties" title="XmaScalerFilterProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaScalerFilterProperties</span></code></a> data structure contains one <a class="reference internal" href="#c.XmaScalerInOutProperties" title="XmaScalerInOutProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaScalerInOutProperties</span></code></a> for the scaler input and an array of 8 <a class="reference internal" href="#c.XmaScalerInOutProperties" title="XmaScalerInOutProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaScalerInOutProperties</span></code></a> for the scaler outputs. The declaration of <a class="reference internal" href="#c.XmaScalerInOutProperties" title="XmaScalerInOutProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaScalerInOutProperties</span></code></a> can be found in the <a class="reference external" href="https://github.com/Xilinx/XRT/blob/master/src/xma/include/app/xmascaler.h">xmascaler.h</a> file.</p>
@@ -893,8 +896,8 @@ For mix-rate scaling, the application will need to create two different scaler s
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_enc_session_create">
-<span class="pre">XmaEncoderSession</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">xma_enc_session_create</span></code><span class="sig-paren">(</span><a class="reference internal" href="#c.XmaEncoderProperties" title="XmaEncoderProperties"><span class="pre">XmaEncoderProperties</span></a> <span class="pre">*</span><em><span class="pre">enc_props</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_enc_session_create" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_enc_session_create">
+<span class="n"><span class="pre">XmaEncoderSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">xma_enc_session_create</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.XmaEncoderProperties" title="XmaEncoderProperties"><span class="n"><span class="pre">XmaEncoderProperties</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">enc_props</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_enc_session_create" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function creates an encoder session and must be called prior to encoding input YUV. The hardware resources required to run the session must be previously reserved using the <a class="reference internal" href="#xrm-api-reference"><span class="std std-ref">XRM APIs</span></a> and should not be released until after the session is destroyed. The number of sessions allowed depends on several factors that include: resolution, frame rate, bit depth, and the capabilities of the hardware accelerator.</p>
@@ -902,8 +905,8 @@ For mix-rate scaling, the application will need to create two different scaler s
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_enc_session_send_frame">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_enc_session_send_frame</span></code><span class="sig-paren">(</span><span class="pre">XmaEncoderSession</span> <span class="pre">*</span><em><span class="pre">session</span></em>, <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><span class="pre">XmaFrame</span></a> <span class="pre">*</span><em><span class="pre">frame</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_enc_session_send_frame" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_enc_session_send_frame">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_enc_session_send_frame</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaEncoderSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">session</span></span>, <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><span class="n"><span class="pre">XmaFrame</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_enc_session_send_frame" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function sends a YUV frame to the hardware encoder by way of the plugin.</p>
@@ -916,8 +919,8 @@ For mix-rate scaling, the application will need to create two different scaler s
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_enc_session_recv_data">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_enc_session_recv_data</span></code><span class="sig-paren">(</span><span class="pre">XmaEncoderSession</span> <span class="pre">*</span><em><span class="pre">session</span></em>, <a class="reference internal" href="#c.XmaDataBuffer" title="XmaDataBuffer"><span class="pre">XmaDataBuffer</span></a> <span class="pre">*</span><em><span class="pre">data</span></em>, <span class="pre">int32_t</span> <span class="pre">*</span><em><span class="pre">data_size</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_enc_session_recv_data" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_enc_session_recv_data">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_enc_session_recv_data</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaEncoderSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">session</span></span>, <a class="reference internal" href="#c.XmaDataBuffer" title="XmaDataBuffer"><span class="n"><span class="pre">XmaDataBuffer</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">data</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">data_size</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_enc_session_recv_data" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function is called after calling the function <a class="reference internal" href="#c.xma_enc_session_send_frame" title="xma_enc_session_send_frame"><code class="xref c c-func docutils literal notranslate"><span class="pre">xma_enc_session_send_frame()</span></code></a>. The application must provide valid pointer to <a class="reference internal" href="#c.XmaDataBuffer" title="XmaDataBuffer"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaDataBuffer</span></code></a> and is the owner of it. The application is responsible for releasing this memory when done.</p>
@@ -929,8 +932,8 @@ For mix-rate scaling, the application will need to create two different scaler s
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_enc_session_destroy">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_enc_session_destroy</span></code><span class="sig-paren">(</span><span class="pre">XmaEncoderSession</span> <span class="pre">*</span><em><span class="pre">session</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_enc_session_destroy" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_enc_session_destroy">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_enc_session_destroy</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaEncoderSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">session</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_enc_session_destroy" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function destroys an encoder session that was previously created with the <a class="reference internal" href="#c.xma_enc_session_create" title="xma_enc_session_create"><code class="xref c c-func docutils literal notranslate"><span class="pre">xma_enc_session_create()</span></code></a> function.</p>
@@ -946,8 +949,8 @@ For mix-rate scaling, the application will need to create two different scaler s
 <div class="line"><br /></div>
 </div>
 <dl class="c struct">
-<dt id="c.XmaEncoderProperties">
-<em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">XmaEncoderProperties</span></code><a class="headerlink" href="#c.XmaEncoderProperties" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.XmaEncoderProperties">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XmaEncoderProperties</span></span></span><a class="headerlink" href="#c.XmaEncoderProperties" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This data structure is used to configure the Alveo U30 video encoder. The declaration of <a class="reference internal" href="#c.XmaEncoderProperties" title="XmaEncoderProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaEncoderProperties</span></code></a> can be found in the <a class="reference external" href="https://github.com/Xilinx/XRT/blob/master/src/xma/include/app/xmaencoder.h">xmaencoder.h</a> file.</p>
@@ -1037,8 +1040,8 @@ If the yuv frame is already on device memory, set it to 1.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_filter_session_create">
-<span class="pre">XmaFilterSession</span> <span class="pre">*</span><code class="sig-name descname"><span class="pre">xma_filter_session_create</span></code><span class="sig-paren">(</span><a class="reference internal" href="#c.XmaFilterProperties" title="XmaFilterProperties"><span class="pre">XmaFilterProperties</span></a> <span class="pre">*</span><em><span class="pre">props</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_filter_session_create" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_filter_session_create">
+<span class="n"><span class="pre">XmaFilterSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="sig-name descname"><span class="n"><span class="pre">xma_filter_session_create</span></span></span><span class="sig-paren">(</span><a class="reference internal" href="#c.XmaFilterProperties" title="XmaFilterProperties"><span class="n"><span class="pre">XmaFilterProperties</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">props</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_filter_session_create" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function creates filter session and must be called prior to sending yuv frame to lookahead filter. The hardware resources required to run the session must be previously reserved using the <a class="reference internal" href="#xrm-api-reference"><span class="std std-ref">XRM APIs</span></a> and should not be released until after the session is destroyed. The number of sessions allowed depends on several factors that include: resolution, frame rate, bit depth, and the capabilities of the hardware accelerator.</p>
@@ -1046,8 +1049,8 @@ If the yuv frame is already on device memory, set it to 1.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_filter_session_send_frame">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_filter_session_send_frame</span></code><span class="sig-paren">(</span><span class="pre">XmaFilterSession</span> <span class="pre">*</span><em><span class="pre">session</span></em>, <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><span class="pre">XmaFrame</span></a> <span class="pre">*</span><em><span class="pre">frame</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_filter_session_send_frame" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_filter_session_send_frame">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_filter_session_send_frame</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaFilterSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">session</span></span>, <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><span class="n"><span class="pre">XmaFrame</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_filter_session_send_frame" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function sends YUV frame to the underlying XMA plugin(lower-edge interface) and eventually to lookahead module in hardware. The application has to read one YUV frame data in semi-planar format at a time and update the details of the buffer in the <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFrame</span></code></a> argument.
@@ -1060,8 +1063,8 @@ The application can take further action depending upon the return value from thi
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_filter_session_recv_frame">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_filter_session_recv_frame</span></code><span class="sig-paren">(</span><span class="pre">XmaFilterSession</span> <span class="pre">*</span><em><span class="pre">session</span></em>, <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><span class="pre">XmaFrame</span></a> <span class="pre">*</span><em><span class="pre">frame</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_filter_session_recv_frame" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_filter_session_recv_frame">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_filter_session_recv_frame</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaFilterSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">session</span></span>, <a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><span class="n"><span class="pre">XmaFrame</span></span></a><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">frame</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_filter_session_recv_frame" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function is called after calling the function <a class="reference internal" href="#c.xma_filter_session_send_frame" title="xma_filter_session_send_frame"><code class="xref c c-func docutils literal notranslate"><span class="pre">xma_filter_session_send_frame()</span></code></a>. If an output frame is not ready to be returned, this function returns <code class="xref c c-macro docutils literal notranslate"><span class="pre">XMA_TRY_AGAIN</span></code>. This function returns <code class="xref c c-macro docutils literal notranslate"><span class="pre">XMA_SUCCESS</span></code> if the output frame is available.</p>
@@ -1071,8 +1074,8 @@ The application can take further action depending upon the return value from thi
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xma_filter_session_destroy">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xma_filter_session_destroy</span></code><span class="sig-paren">(</span><span class="pre">XmaFilterSession</span> <span class="pre">*</span><em><span class="pre">session</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_filter_session_destroy" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xma_filter_session_destroy">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xma_filter_session_destroy</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XmaFilterSession</span></span><span class="w"> </span><span class="p"><span class="pre">*</span></span><span class="n"><span class="pre">session</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xma_filter_session_destroy" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This function destroys the filter session that was previously created with the <a class="reference internal" href="#c.xma_filter_session_create" title="xma_filter_session_create"><code class="xref c c-func docutils literal notranslate"><span class="pre">xma_filter_session_create()</span></code></a> function.</p>
@@ -1093,14 +1096,14 @@ The application can take further action depending upon the return value from thi
 <div class="line"><br /></div>
 </div>
 <dl class="c struct">
-<dt id="c.XmaFilterProperties">
-<em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">XmaFilterProperties</span></code><a class="headerlink" href="#c.XmaFilterProperties" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.XmaFilterProperties">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XmaFilterProperties</span></span></span><a class="headerlink" href="#c.XmaFilterProperties" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This data structure is used to configure the Alveo U30 lookahead function. The declaration of <a class="reference internal" href="#c.XmaFilterProperties" title="XmaFilterProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFilterProperties</span></code></a> can be found in the <a class="reference external" href="https://github.com/Xilinx/XRT/blob/master/src/xma/include/app/xmafilter.h">xmafilter.h</a> file.</p>
 <dl class="c struct">
-<dt id="c.XmaFilterPortProperties">
-<em class="property"><span class="pre">struct</span> </em><code class="sig-name descname"><span class="pre">XmaFilterPortProperties</span></code><a class="headerlink" href="#c.XmaFilterPortProperties" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.XmaFilterPortProperties">
+<span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XmaFilterPortProperties</span></span></span><a class="headerlink" href="#c.XmaFilterPortProperties" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>This data structure is used to configure the input and output of the lookahead. The <a class="reference internal" href="#c.XmaFilterProperties" title="XmaFilterProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFilterProperties</span></code></a> data structure contains one <a class="reference internal" href="#c.XmaFilterPortProperties" title="XmaFilterPortProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFilterPortProperties</span></code></a> for the lookahead input and one <a class="reference internal" href="#c.XmaFilterPortProperties" title="XmaFilterPortProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFilterPortProperties</span></code></a> for the lookahead output. The declaration of <a class="reference internal" href="#c.XmaFilterPortProperties" title="XmaFilterPortProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFilterPortProperties</span></code></a> can be found in the <a class="reference external" href="https://github.com/Xilinx/XRT/blob/master/src/xma/include/app/xmafilter.h">xmafilter.h</a> file.</p>
@@ -1225,8 +1228,8 @@ Value range from 0 to Integer max.</p>
 <div class="section" id="buffer-pool-related-functions">
 <h3>Buffer Pool Related Functions<a class="headerlink" href="#buffer-pool-related-functions" title="Permalink to this headline">¶</a></h3>
 <dl class="c function">
-<dt id="c.xvbm_buffer_pool_create">
-<span class="pre">XvbmPoolHandle</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_pool_create</span></code><span class="sig-paren">(</span><span class="pre">xclDeviceHandle</span> <em><span class="pre">d_handle</span></em>, <span class="pre">int32_t</span> <em><span class="pre">num_buffers</span></em>, <span class="pre">size_t</span> <em><span class="pre">size</span></em>, <span class="pre">uint32_t</span> <em><span class="pre">flags</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_create" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_pool_create">
+<span class="n"><span class="pre">XvbmPoolHandle</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_pool_create</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">xclDeviceHandle</span></span><span class="w"> </span><span class="n"><span class="pre">d_handle</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n"><span class="pre">num_buffers</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_create" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Create a memory pool and allocate device buffers. Returns XvbmPoolHandle used for all subsequent memory pool requests.</p>
@@ -1234,8 +1237,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_pool_create_by_device_id">
-<span class="pre">XvbmPoolHandle</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_pool_create_by_device_id</span></code><span class="sig-paren">(</span><span class="pre">int32_t</span> <em><span class="pre">device_id</span></em>, <span class="pre">int32_t</span> <em><span class="pre">num_buffers</span></em>, <span class="pre">size_t</span> <em><span class="pre">size</span></em>, <span class="pre">uint32_t</span> <em><span class="pre">flags</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_create_by_device_id" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_pool_create_by_device_id">
+<span class="n"><span class="pre">XvbmPoolHandle</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_pool_create_by_device_id</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n"><span class="pre">device_id</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n"><span class="pre">num_buffers</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_create_by_device_id" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Create a memory pool and allocate device buffers using a device ID. Returns XvbmPoolHandle used for all subsequent memory pool requests.</p>
@@ -1243,8 +1246,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_pool_offsets_set">
-<span class="pre">void</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_pool_offsets_set</span></code><span class="sig-paren">(</span><span class="pre">XvbmPoolHandle</span> <em><span class="pre">p_handle</span></em>, <span class="pre">uint32_t</span> <em><span class="pre">offsets</span></em>, <span class="pre">uint32_t</span> <em><span class="pre">num_offsets</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_offsets_set" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_pool_offsets_set">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_pool_offsets_set</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmPoolHandle</span></span><span class="w"> </span><span class="n"><span class="pre">p_handle</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">offsets</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">num_offsets</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_offsets_set" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Set offsets for all buffers in the pool (useful for planes of a frame).</p>
@@ -1252,8 +1255,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_pool_offset_get">
-<span class="pre">uint32_t</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_pool_offset_get</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em>, <span class="pre">uint32_t</span> <em><span class="pre">offset_idx</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_offset_get" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_pool_offset_get">
+<span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_pool_offset_get</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">offset_idx</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_offset_get" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Get offset for a buffer in a pool.</p>
@@ -1261,8 +1264,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_pool_extend">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_pool_extend</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em>, <span class="pre">int32_t</span> <em><span class="pre">num_buffers</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_extend" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_pool_extend">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_pool_extend</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n"><span class="pre">num_buffers</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_extend" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Extend an existing memory pool allocating additional device buffers. Returns Number of buffers allocated to the pool. If the current number of buffers allocated is greater than the number of buffers requested, the number of buffers allocated will remain unchanged.</p>
@@ -1270,8 +1273,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_pool_num_buffers_get">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_pool_num_buffers_get</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_num_buffers_get" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_pool_num_buffers_get">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_pool_num_buffers_get</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_num_buffers_get" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Get the number of buffers allocated to the pool associated with a buffer. Returns number of buffers allocated to the associated pool.</p>
@@ -1279,8 +1282,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_pool_entry_alloc">
-<span class="pre">XvbmBufferHandle</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_pool_entry_alloc</span></code><span class="sig-paren">(</span><span class="pre">XvbmPoolHandle</span> <em><span class="pre">p_handle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_entry_alloc" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_pool_entry_alloc">
+<span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_pool_entry_alloc</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmPoolHandle</span></span><span class="w"> </span><span class="n"><span class="pre">p_handle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_entry_alloc" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Allocate a free buffer from a memory pool. Returns XvbmBufferHandle A non-NULL handle used for buffer operations.</p>
@@ -1288,8 +1291,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_pool_entry_free">
-<span class="pre">bool</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_pool_entry_free</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_entry_free" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_pool_entry_free">
+<span class="kt"><span class="pre">bool</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_pool_entry_free</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_entry_free" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Free a buffer and return it back to the memory pool free list.</p>
@@ -1297,8 +1300,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_pool_destroy">
-<span class="pre">void</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_pool_destroy</span></code><span class="sig-paren">(</span><span class="pre">XvbmPoolHandle</span> <em><span class="pre">p_handle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_destroy" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_pool_destroy">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_pool_destroy</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmPoolHandle</span></span><span class="w"> </span><span class="n"><span class="pre">p_handle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_destroy" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Destroy all resources associated with a buffer pool. Returns true if entry is freed, otherwise false.</p>
@@ -1309,8 +1312,8 @@ Value range from 0 to Integer max.</p>
 <div class="section" id="buffer-related-accessor-functions">
 <h3>Buffer related accessor functions<a class="headerlink" href="#buffer-related-accessor-functions" title="Permalink to this headline">¶</a></h3>
 <dl class="c function">
-<dt id="c.xvbm_buffer_get_bo_handle">
-<span class="pre">uint32_t</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_get_bo_handle</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_bo_handle" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_get_bo_handle">
+<span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_get_bo_handle</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_bo_handle" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Get the BO handle from a xvbmBufferHandle. Returns a valid BO handle or -1 if not valid.</p>
@@ -1318,8 +1321,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_get_id">
-<span class="pre">uint32_t</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_get_id</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_id" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_get_id">
+<span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_get_id</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_id" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Get the buffer ID used by Host and MPSoC device. Returns an index of the buffer.</p>
@@ -1327,8 +1330,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_get_size">
-<span class="pre">size_t</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_get_size</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_size" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_get_size">
+<span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_get_size</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_size" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Get the buffer size. Returns size of the buffer.</p>
@@ -1336,8 +1339,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_get_paddr">
-<span class="pre">uint64_t</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_get_paddr</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_paddr" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_get_paddr">
+<span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_get_paddr</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_paddr" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Get the buffer physical address. Returns the physical address of the buffer.</p>
@@ -1345,8 +1348,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_get_handle">
-<span class="pre">XvbmBufferHandle</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_get_handle</span></code><span class="sig-paren">(</span><span class="pre">XvbmPoolHandle</span> <em><span class="pre">p_handle</span></em>, <span class="pre">uint64_t</span> <em><span class="pre">paddr</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_handle" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_get_handle">
+<span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_get_handle</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmPoolHandle</span></span><span class="w"> </span><span class="n"><span class="pre">p_handle</span></span>, <span class="n"><span class="pre">uint64_t</span></span><span class="w"> </span><span class="n"><span class="pre">paddr</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_handle" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Get the buffer handle given a physical address. Returns the buffer handle.</p>
@@ -1354,8 +1357,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_refcnt_inc">
-<span class="pre">void</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_refcnt_inc</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_refcnt_inc" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_refcnt_inc">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_refcnt_inc</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_refcnt_inc" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Increment the reference count of the buffer. Must be used when a buffer is used by more than one other accelerator, for instance when the output of the decoder is used by both the scaler and the encoder.</p>
@@ -1363,8 +1366,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_get_refcnt">
-<span class="pre">uint32_t</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_get_refcnt</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_refcnt" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_get_refcnt">
+<span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_get_refcnt</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_refcnt" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Get the reference count of the buffer.</p>
@@ -1372,8 +1375,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_get_host_ptr">
-<span class="pre">void</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_get_host_ptr</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_host_ptr" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_get_host_ptr">
+<span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_get_host_ptr</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_host_ptr" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Get the host buffer handle. Returns the virtual pointer of the allocated host buffer.</p>
@@ -1384,8 +1387,8 @@ Value range from 0 to Integer max.</p>
 <div class="section" id="functions-for-reading-and-writing-buffers">
 <h3>Functions for reading and writing buffers<a class="headerlink" href="#functions-for-reading-and-writing-buffers" title="Permalink to this headline">¶</a></h3>
 <dl class="c function">
-<dt id="c.xvbm_buffer_write">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_write</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em>, <em class="property"><span class="pre">const</span></em> <span class="pre">void</span> <em><span class="pre">src</span></em>, <span class="pre">size_t</span> <em><span class="pre">size</span></em>, <span class="pre">size_t</span> <em><span class="pre">offset</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_write" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_write">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_write</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="n"><span class="pre">src</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">offset</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_write" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Write a buffer to device memory. Returns 0 on success.</p>
@@ -1393,8 +1396,8 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <dl class="c function">
-<dt id="c.xvbm_buffer_read">
-<span class="pre">int32_t</span> <code class="sig-name descname"><span class="pre">xvbm_buffer_read</span></code><span class="sig-paren">(</span><span class="pre">XvbmBufferHandle</span> <em><span class="pre">b_handle</span></em>, <span class="pre">void</span> <em><span class="pre">dst</span></em>, <span class="pre">size_t</span> <em><span class="pre">size</span></em>, <span class="pre">size_t</span> <em><span class="pre">offset</span></em><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_read" title="Permalink to this definition">¶</a><br /></dt>
+<dt class="sig sig-object c" id="c.xvbm_buffer_read">
+<span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_read</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span>, <span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="n"><span class="pre">dst</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">offset</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_read" title="Permalink to this definition">¶</a><br /></dt>
 <dd></dd></dl>
 
 <p>Read a buffer from device memory. Returns 0 on success.</p>
@@ -1495,7 +1498,7 @@ Value range from 0 to Integer max.</p>
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on February 14, 2022.
+        Last updated on March 01, 2022.
       </span>
 
     </p>
