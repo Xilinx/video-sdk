@@ -4,6 +4,8 @@
 Getting Started with Alveo U30 on Premises
 ####################################################
 
+.. highlight:: none
+
 .. contents:: Table of Contents
     :local:
     :depth: 2
@@ -32,7 +34,7 @@ Install the |SDK|
 
 #. Download the packages included in this repository::
 
-    git clone https://github.com/Xilinx/video-sdk
+    git clone https://github.com/Xilinx/video-sdk -b v1.5 --depth 1
 
 #. Navigate to the directory containing the packages corresponding to your Operating System::
 

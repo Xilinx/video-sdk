@@ -31,7 +31,7 @@ Creating a Docker Image for |VT1| Usage
 
 #. If not already available, clone the video-sdk repository on your machine::
 
-    git clone https://github.com/Xilinx/video-sdk
+    git clone https://github.com/Xilinx/video-sdk -b v1.5 --depth 1
 
 #. Navigate to the root of the video-sdk repository::
 
@@ -80,7 +80,7 @@ Creating a Docker Image for On-Prem Usage
 
 #. If not already available, clone the video-sdk repository on your machine::
 
-    git clone https://github.com/Xilinx/video-sdk
+    git clone https://github.com/Xilinx/video-sdk -b v1.5 --depth 1
 
 #. Navigate to the root of the video-sdk repository::
 
