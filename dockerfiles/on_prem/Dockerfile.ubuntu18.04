@@ -1,0 +1,52 @@
+# Dockerfile used to build video software stack
+# Copyright 2021 Xilinx, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+# http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+FROM ubuntu:18.04
+WORKDIR /usr/src/build
+
+# Needed for TZ
+ARG DEBIAN_FRONTEND="noninteractive"
+ENV TZ=America/Los_Angeles
+
+# This is necessary to avoid using /bin/sh by default
+SHELL ["/bin/bash", "-c"]
+
+# Install git and other dependencies not covered by xrtdeps.sh
+RUN apt-get update 
+RUN apt-get -y install apt-utils sudo
+RUN apt-get -y install git libboost-thread-dev libboost-serialization-dev cmake pkg-config
+RUN apt-get -y install libxml2-dev
+RUN apt-get -y install libyaml-dev
+RUN apt-get -y install libfontconfig1-dev
+RUN apt-get -y install libfreetype6-dev
+
+RUN git clone https://github.com/gdraheim/docker-systemctl-replacement.git /usr/local/share/docker-systemctl-replacement
+RUN echo "alias systemctl='python3 /usr/local/share/docker-systemctl-replacement/files/docker/systemctl3.py'" >> /root/.bashrc
+RUN ln -s /usr/local/share/docker-systemctl-replacement/files/docker/systemctl3.py /usr/local/bin/systemctl
+RUN export PATH=/usr/local/bin/:$PATH
+
+# Dockerfile assumes that the video-sdk repo has been cloned locally
+COPY release ./release
+RUN cd /usr/src/build/release/U30_Ubuntu_18.04_v1.5_20210827; ./install.sh
+
+# Build and/or install FFmpeg dependencies
+WORKDIR /usr/src/build
+RUN apt-get -y install libva-dev libsdl2-dev wget autoconf automake build-essential
+RUN wget --no-check-certificate https://www.nasm.us/pub/nasm/releasebuilds/2.14.02/nasm-2.14.02.tar.bz2 && \
+    tar xjvf nasm-2.14.02.tar.bz2 && \
+    cd nasm-2.14.02 && \
+    ./autogen.sh && \
+    ./configure --prefix="/usr" --bindir="/usr/bin" && \
+    make && \
+    make install

@@ -1,0 +1,106 @@
+LICENSE SUMMARY FOR THE XILINX U30 VIDEO TRANSCODE SOLUTION PACKAGE REPOSITORY
+
+The following repository consists of a number of individual packages available
+for download to enable the Xilinx U30 Video Transcode Solution.
+Each package is independently licensed and the user is responsible for
+consulting and complying with the terms and conditions of the license(s)
+presented in each package.
+
+Below is a summary of the packages in this repository listed
+by license type. In the event a package may be dual licensed or consist
+of components subject to different licenses, it may appear multiple times
+in the list below. This list is not a substitute for consulting and complying
+with the license terms as presented in the source code and/or repository for
+any given package.  The user is referred to such source files and/or license
+files for the license terms.
+
+
+=============================================================================
+PACKAGE NAME                            |  LICENSE(s) TYPE(S)
+(less rpm|deb extension)                |
+=============================================================================
+xffmpeg-4.1.10-Linux                    | LGPLv2 or LGPLv3
+                                        |
+                                        | See FFMPEG LICENSING NOTE for add'l
+                                        | licensing details
+-----------------------------------------------------------------------------
+xcdr-0.2.15-Linux (software)            | Apache v2 (software)
+                                        |
+                                        | Xilinx non-open source permissive
+                                        | (hardware binaries)
+                                        |
+                                        | See LICENSE.xclbin for additional details
+-----------------------------------------------------------------------------
+launcher-1.0.0-Linux                    | Apache v2
+-----------------------------------------------------------------------------
+jobSlotReservation-1.0.0-Linux          | Apache v2
+-----------------------------------------------------------------------------
+xmaPropsTOjson-1.0.0-Linux              | Apache v2
+-----------------------------------------------------------------------------
+xmpsoccodecs-1.0.1-Linux                | Apache v2
+-----------------------------------------------------------------------------
+xmultiscaler-1.0.1-Linux                | Apache v2
+-----------------------------------------------------------------------------
+xrmU30Decoder-1.0.0-Linux               | Apache v2
+-----------------------------------------------------------------------------
+xvbm-1.0.1-Linux                        | Apache v2 or LGPLv3
+-----------------------------------------------------------------------------
+xlookahead-1.0.1-Linux                  | Apache v2
+-----------------------------------------------------------------------------
+xrmU30Encoder-1.0.0-Linux               | Apache v2
+-----------------------------------------------------------------------------
+xrmU30Scaler-1.0.0-Linux                | Apache v2
+-----------------------------------------------------------------------------
+xrm_202110.1.2.1168                     | Apache v2
+-----------------------------------------------------------------------------
+xrt_202020.2.10.50                      | Apache v2 (user-space libraries)
+                                        |
+                                        | GPLv2 (kernel drivers)
+-----------------------------------------------------------------------------
+xilinx-sc-fw-u30_6.3.8-1.cd35f69        | Xilinx binary non-open source
+                                        | permissive
+                                        |
+                                        | Permissive 3-Clause BSD license
+                                        |
+                                        | See LICENSE.sc for additional details
+-----------------------------------------------------------------------------
+xilinx-u30-gen3x4-base_1-3205830        | Xilinx non-open source permissive
+                                        | (hardware binaries)
+                                        |
+                                        | Various open-source
+                                        | (embedded  software)
+                                        |
+                                        | See LICENSE.base for additional details
+-----------------------------------------------------------------------------
+xilinx-u30-gen3x4-validate_1-3210381    | Xilinx non-open source permissive
+                                        | (hardware binaries)
+                                        |
+                                        | See LICENSE.validate for additional details
+-----------------------------------------------------------------------------
+
+
+FFMPEG LICENSING NOTE
+The binary version of ffmpeg included in xffmpeg-4.1.10-Linux package includes
+the drawtext (vf_drawtext.c) filter plugin.  This plugin creates a dependency
+on two dynamically linked libraries: libfontconfig and libfreetype.  The user
+is advised to review the license terms for these two libraries as they must be
+installed and present on the user's host system in order to successfully execute
+the included ffmpeg application. User is advised to elect non-GPL licensed
+versions of the required dynamic libraries if the intended use of the ffmpeg
+binary build is for commercial applications.
+
+All documentation and examples authored by Xilinx is released under the following license:
+
+Copyright 2020-2021 Xilinx, Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+  http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
