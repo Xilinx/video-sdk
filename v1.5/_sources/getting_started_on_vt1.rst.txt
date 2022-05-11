@@ -135,21 +135,6 @@ Installation Procedure
 
 |
 
-.. _patch-for-vt1:
-
-****************************************************
-Patching AMIs using v1.5 of the Video SDK 
-****************************************************
-
-When using version 1.5 of the |SDK| on an AWS VT1 instance running the latest version of the Xilinx firmware, sourcing the setup.sh script will give a "No U30 devices found" error.
-
-In order to fix this, AMIs using version 1.5 of the |SDK| need to be patched as follows::
-
-    wget https://raw.githubusercontent.com/Xilinx/video-sdk/v1.5/patches/u30_1.5_patch.sh
-    ./u30_1.5_patch.sh
-
-|
-
 ****************************************************
 Working with Containers
 ****************************************************
