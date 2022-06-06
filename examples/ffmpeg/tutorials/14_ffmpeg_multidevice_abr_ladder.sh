@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020-2021 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 
 # The U30 Video SDK solution supports multi device usecases. For 4k streams with bitrates
 # significantly higher than the ones typically used for live streaming, it may not be possible

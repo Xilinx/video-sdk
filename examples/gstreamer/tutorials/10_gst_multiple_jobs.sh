@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 # pre-requisite to run this script: source /opt/xilinx/vvas/setup.sh
 # This script expects 3 H.264 files and will transcode them to HEVC, sending the outputs to /tmp/xil_xcode_{n}.mp4.
 # The three transcodes are run in parallel in individual xterms.

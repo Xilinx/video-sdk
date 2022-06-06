@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020-2021 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 
 # This script assumes an 8-bit, YUV420, pre-encoded 60FPS h.264 file. It will scale this input into multiple renditions of various sizes,
 # and send them to the encoder targeting various bitrates (as defined by the -b:v flag)

@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 # This script accepts an 8-bit, YUV420, pre-encoded h264 file and will send the encoded h.264 output to /tmp/xil_ftrt_xcode.mp4 at a rate of 8Mbps.
 # This use case is optimized for "faster than realtime"; that is, processing a whole clip faster than the human eye would watch it.
 

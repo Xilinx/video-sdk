@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020-2021 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 
 # This script accepts an 8-bit, YUV420, 1080p60 RAW file and will send it to the scaler, which outputs various renditions of various sizes,
 # and sends them to the encoder targeting various bitrates (as defined by the -b:v flag). All outputs will be stored at /tmp/

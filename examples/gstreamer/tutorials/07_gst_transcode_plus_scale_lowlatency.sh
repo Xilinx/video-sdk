@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 # pre-requisite to run this script: source /opt/xilinx/vvas/setup.sh
 # This script assumes an 8-bit, YUV420, pre-encoded 60FPS mp4 with h.264 container file.
 # It will scale this input into multiple renditions of various sizes,

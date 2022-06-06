@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 # pre-requisite to run this script: source /opt/xilinx/vvas/setup.sh
 # This script accepts an 8-bit (N12) or 10-bit (NV12_10LE32), 1080p60 RAW file and will send it to the scaler, which outputs various renditions of various sizes,
 # and sends them to the encoder targeting various bitrates (as defined by the target-bitrate property of encoder).

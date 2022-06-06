@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020-2021 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 
 #This script accepts an 8-bit, YUV420, 1080p60 RAW file and will send the encoded h.264 output to /tmp/xil_enc_out.mp4 at a rate of 8Mbps.
 

@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 # pre-requisite to run this script: source /opt/xilinx/vvas/setup.sh
 # This script accepts an 8-bit or 10-bit, YUV420, pre-encoded h264 file and will send a decoded output
 # to /tmp/xil_dec_out*.nv12 or /tmp/xil_dec_out*.nv12_10le32 at a rate of 8Mbps using filesink option (i.e. fakesink=0)

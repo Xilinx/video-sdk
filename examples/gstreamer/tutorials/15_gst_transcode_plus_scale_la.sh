@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 # pre-requisite to run this script: source /opt/xilinx/vvas/setup.sh
 # This script assumes an 8-bit, YUV420, pre-encoded 60FPS contrainer with h.264 content as input. It will scale this input into multiple renditions of various sizes, and sends them to the encoder targeting various bitrates (as defined by the target-bitrate property of encoder). All outputs will be stored at /tmp/
 # This script uses lookahead kernel used to improve the accuracy of rate control by enabling the encoder to buffer a specified number of frames 
