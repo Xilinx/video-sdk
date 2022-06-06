@@ -1,0 +1,24 @@
+﻿---
+BasedOnStyle: LLVM
+AlignAfterOpenBracket: Align
+AlignConsecutiveMacros: 'true'
+AlignConsecutiveAssignments: 'true'
+AlignConsecutiveDeclarations: 'true'
+AlignOperands: 'true'
+AlignTrailingComments: 'true'
+BreakBeforeBraces: Linux
+IndentCaseLabels: 'true'
+BreakBeforeTernaryOperators: 'false'
+ColumnLimit: '80'
+IndentWidth: '4'
+IndentWrappedFunctionNames: 'true'
+PointerAlignment: Left
+SpaceBeforeParens: Never
+SpacesInCStyleCastParentheses: 'false'
+SpacesInContainerLiterals: 'false'
+SpacesInParentheses: 'false'
+SpacesInSquareBrackets: 'false'
+TabWidth: '4'
+UseTab: Never
+
+...

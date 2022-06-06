@@ -5,6 +5,9 @@
 .. note::
    Version: |release|
 
+.. note::
+   A patch is required to use version 1.5 of the |SDK| on AWS VT1 instances running the latest version of the U30 firmware. See instructions :ref:`here <patch-for-vt1>`.
+
 .. highlight:: none
 
 .. contents:: Table of Contents
@@ -18,13 +21,24 @@
 What's New
 ******************************
 
-This version provides various performance and stability improvements, including:
+This version provides various performance and stability improvements and new features including:
 
-- Support for |VT1| instances as well as Amazon EKS and ECS
-- Support for Amazon Linux 2
-- Improved density, especially when processing many low-resolution streams
-- Improved runtime for both single and multi-process execution models
-- Improved resiliency of XMA and XVBM libraries
+- Support for GStreamer
+- Support for 10-bit color
+- Support for HDR10 and HDR10+
+- Lookahead support for all resolutions, including 4k
+- Support for dynamic update of encoder parameters
+- Support for splitting transcoding jobs across two devices
+- CPU optimization improvements for encode-based use cases
+- The encoder plugin for C-based applications is now thread-safe
+
+|
+
+******************************
+Changed Behavior
+******************************
+
+- The encoder plugin has been updated to be thread-safe and is not backwards compatible. The :c:func:`xma_enc_session_recv_data` function no longer allocates the :c:struct:`XmaDataBuffer` output. It is now the responsability of the application to allocate the :c:struct:`XmaDataBuffer` data structure. C-based applications developped with earlier versions of the |SDK| must be updated accordingly or they will error out with version 2.0.
 
 |
 
@@ -39,14 +53,15 @@ The |SDK| currently supports the following platforms:
 
 The |SDK| currently supports the following software tools:
 
-- FFmpeg 4.1
+- FFmpeg 4.4
+- GStreamer 1.16.2
 
 The |SDK| has been tested and validated by Xilinx on the following operating environments:
 
-- Ubuntu 20.04 (Kernel 5.4)
+- Ubuntu 20.04 (Kernel 5.11)
 - Ubuntu 18.04 (Kernel 5.4)
 - RHEL 7.8 (Kernel 4.9.184)
-- Amazon Linux 2
+- Amazon Linux 2 (Kernel 4.14)
 
 The above list of validated operating environments is not intended to be exclusionary. If you choose to run the |SDK| using a different operating environment and encounter issues, please `file a GitHub issue <https://github.com/Xilinx/video-sdk/issues>`_.
 
@@ -57,23 +72,51 @@ The above list of validated operating environments is not intended to be exclusi
 Limitations
 ******************************
 
-- The scaler is tuned for downscaling and expects non-increasing resolutions in an ABR ladder. Increasing resolutions between outputs will reduce video quality. For more details see :ref:`Using FFmpeg for Video Scaling <using-ffmpeg-for-video-scaling>`.
+- The |SDK| supports both 8 and 10-bit streams, but they cannot be mixed together. The entire pipeline must be either 8 or 10-bits.
 
-- The |SDK| is optimized for live video real-time transcoding. For example, even though a single Alveo U30 card has the capability of running two Ultra HD (4K) transcodes in real-time at 60 frames per second (2x4kp60), running a single 4k stream at 120 fps is not supported. Similarly, a single Alveo U30 card supports up to 8x1080p60 transcodes in real-time, but it does not support fewer streams running at 120fps or beyond.
+- The |SDK| is optimized for live video real-time transcoding. Even though a single Alveo U30 card has the capability of running two Ultra HD (4K) transcodes in real-time at 60 frames per second (2x4kp60), running a single 4k stream at 120 fps is not supported. Similarly, a single Alveo U30 card supports up to 8x1080p60 transcodes in real-time, but it does not support fewer streams running at 120fps or beyond.
 
-- When processing 4x 1080p60 streams, the scaler can only sustain a rate of 60fps for up to 5 outputs. Therefore, given 4 1080p60 input streams, real-time performance is only possible for up to 20 scaled outputs.
+- The maximum aggregate bandwidth bitrate tested per device is 35 Mb/s for 4kp60 for 8-bit and 10-bit streams. Performance of video encoding is not qualified for higher bitrates.
 
-- The maximum bit-rate tested is 35 Mb/s; if the bit-rate is higher, the encoder might not work properly.
+- When using 10-bit streams, real-time performance for an aggregate bandwidth of 4kp60 per device is not be guaranteed. 
 
-- ABR video transcode use cases have been tested with up to 5 output renditions per input for a maximum supported number of channels of 8 running real-time per card. 
+  + Techniques to improve performance include: enabling pipelining when using the scaler, using low latency input streams, adjusting the output bitrate, increasing the number of entropy buffers in the decoder and reducing the number of B-frames in the encoder and the input stream.
 
-- The lookahead feature is not supported when encoding streams to a 4k resolution.
+- When decoding streams with a high bitrate or with a large number of B-frames, jobs may not meet real-time performance when 2 entropy buffers are used (default setting). In this case, it is recommended to use more entropy buffers. The maximum number of entropy buffers in the decoder is 10.
+
+- Transcode pipelines split across two devices involving a H264 codec will not meet realtime performance for 10-bit streams.
+
+- When processing a 1080p60 stream, the scaler can only sustain a rate of 60fps for up to 5 outputs. Therefore, given 4 1080p60 input streams, real-time performance is only possible for up to 20 scaled outputs.
+
+- The scaler is tuned for downscaling and expects non-increasing resolutions in an ABR ladder. Increasing resolutions between outputs is supported but will reduce video quality.
+
+- The lookahead depth must be less than the periodicity of Intra and IDR frames.
+
+- If the decoded input stream has fps information in both the container and the VUI header, the decoder takes the fps information from the container instead of the VUI header.
+
+- HDR10/10+ is supported only for transcode uses cases (involving both the hardware decoder and encoder) and with the following restrictions:
+
+  + Ambient Viewing Environment SEI not supported
+  + Tone mapping Info SEI not supported
+  + Color Remapping Info SEI not supported
+  + HDR10+ Data caching for frame rate conversion is not supported
+  + Metadata adaptation for resolution scaling is not supported
+  + Transfer characteristics other than AL_TRANSFER_CHARAC_BT_2100_PQ (16) and AL_TRANSFER_CHARAC_BT_2100_HLG (18) are not supported. If any other value is specified, the encoder defaults to AL_TRANSFER_CHARAC_UNSPECIFIED (2). 
+  + Color matrix coefficients other than AL_COLOUR_MAT_COEFF_BT_2100_YCBCR (9) are not supported. If any other value is specified, the encoder defaults to AL_COLOUR_MAT_COEFF_UNSPECIFIED (2).
 
 |
 
 ******************************
 Known Issues
 ******************************
+
+Potential "No U30 devices found" error when sourcing the setup.sh script on AWS VT1 instances
+==============================================================================================
+
+- Description: Sourcing the setup.sh script on AWS VT1 gives a "No U30 devices found" error.
+
+- Solution: A patch is required to use version 1.5 of the |SDK| on AWS VT1 instances running the latest version of the U30 firmware. See instructions :ref:`here <patch-for-vt1>`.
+
 
 Potential "failed" error code when sourcing the setup.sh script
 =================================================================
@@ -95,6 +138,52 @@ Potential "failed" error code when sourcing the setup.sh script
     }
     
     ---------------------------------------
+
+
+Running 'xbutil validate' from a VM with version 1.5 installed gives an error 
+=============================================================================
+
+- Description: After the devices have been flashed with the version 2.0, running 'xbutil validate' from a virtual machine with version 1.5 installed results in an error. The validation program included in version 1.5 of the |SDK| is not forward compatible with version 2.0.
+
+- Solution: None 
+
+
+Custom rate control needs a minimum of 8 lookahead frames for reasonable picture quality
+========================================================================================
+.. https://jira.xilinx.com/browse/CR-1127435
+
+- Description: Custom rate control is automatically enabled when the lookahead depth is set to 1 or more. However, to obtain reasonable picture quality, custom rate control needs a minimum of 8 lookahead frames.
+
+- Solution: Increase the lookahead depth to 8 frames or more when using custom rate control, or set the control rate to constant when using less a lookahead depth smaller than 8.
+
+
+The encoder adds duplicate frames for streams with 'fps' and 'timescale' parameters which do not match
+======================================================================================================
+.. https://jira.xilinx.com/browse/CR-1113049
+
+- Description: When the ‘fps’ and ‘timescale’ parameters of the input stream do not match, FFmpeg calculates a framerate value which leads to duplicate streams.
+
+- Solution: Ensure  'fps' and 'timescale' parameters match
+
+
+FFmpeg jobs split across two devices need the xvbm_convert filter to move data between devices
+==============================================================================================
+.. https://jira.xilinx.com/browse/CR-1107581
+
+- Description: FFmpeg will generate garbage results if a job is split across two devices without using the :option:`xvbm_convert` filter to copy the frame buffers between devices. 
+
+- Solution: Use :option:`xvbm_convert` filters to ensure the second device operates on valid data, as explained in the :ref:`data movement <ffmpeg-data-movement>` section of the documentation.
+
+
+Initialization error with a 4K 10bit Scaler + HEVC encoder FFmpeg pipeline
+==========================================================================
+.. https://jira.xilinx.com/browse/CR-1116058
+
+- Description: When running a 4K 10bit Scaler + HEVC encoder pipeline, the following error is seen when the encoder is initialized::
+
+  [XMA] ERROR:  **  ffmpeg xma-vcu-encoder VCU_INIT failed : device error: Channel creation failed, processing power of the available cores insufficient.
+
+- Solution: Run FFmpeg with the ``-slices 4 -cores 4`` encoder options
 
 
 Potential "Too many packets buffered for output stream 0:1" error when running FFmpeg
@@ -120,43 +209,26 @@ Streams with rotation metadata may cause a segfault while transcoding
 .. https://jira.xilinx.com/browse/CR-1093015
 .. https://jira.xilinx.com/browse/CR-1092997
 
-- Description: The hardware transcode pipeline can be unstable on a stream with rotation metadata
+- Description: The hardware transcode pipeline can be unstable on a stream with rotation metadata.
 
 - Solution: Use the FFmpeg ``-noautorotate`` option in cases where rotation metadata is present. 
   
 
-Generating a device status report with the xrmadm tool does not work on |VT1| instances
-=======================================================================================
-.. https://jira.xilinx.com/browse/CR-1107503
+Abrupt termination of FFmpeg processes may cause video resources to not be released correctly
+=============================================================================================
+.. https://jira.xilinx.com/browse/CR-1092946
 
-- Description: The ``xrmadm /opt/xilinx/xrm/test/list_cmd.json`` command fails with a Traceback error message.
+- Description: Rerunning FFmpeg after abrutly terminating previous runs gives an "xrm_allocation: resource allocation failed" error message indicating that there are not enough video resources available to run this job on the Xilinx device.
 
-- Solution: None.
+- Solution: Users should terminate all running FFmepg processes before exiting their shell. Otherwise, a SIGHUP will be sent to the running FFmpeg processes and this may result in an unhandled signal leading to non-graceful termination and video resources will not be released correctly.
 
 
-Reverting to the golden image may not work by default on some on-prem systems
+GStreamer package installation failure on RHEL due to dependencies
 =============================================================================
-- Description: The ``xbmgmt program --revert-to-golden`` and ``xbmgmt flash --factory_reset`` command expects the golden image of the card to be flashed at a particular memory location. If this is not the case, the command will not work. 
+- Description: Package installation may fail as it is required to have an active RHEL subscription to download packages from RHEL's repositories.
 
-- Solution: Relocate the golden image by following the instructions below.  
+- Solution: Get a subscription to RHEL and re-run the install script. Refer to https://access.redhat.com/solutions/253273
 
-  .. _flashing-the-golden-image:
-
-  #. To reflash the golden image, your system must be already configured with release 0.96.0 or newer. If this is not the case, `contact Xilinx <https://github.com/Xilinx/video-sdk/issues>`_.
-
-  #. Set up your environment:: 
-
-      source /opt/xilinx/xrt/setup.sh
-
-  #. List the Management BDF of your devices::
-
-      sudo /opt/xilinx/xrt/bin/xbmgmt examine
-
-  #. For each device, run the following command to flash the golden image to the expected memory location::
-
-      sudo /opt/xilinx/xrt/bin/xbflash.qspi --qspips-flash --input /opt/xilinx/firmware/u30/gen3x4/base/data/BOOT_golden.BIN --offset 0x6000000 --bar-offset 0x10000 --card <BDF>
-
-  #. Once the golden image has been properly relocated, you can revert the card to the golden image by following the :ref:`card recovery instructions <card-recovery>`.
 
 ..
   ------------

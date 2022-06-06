@@ -20,7 +20,7 @@ The Xilinx device plugin for Kubernetes is a daemonset deployed on a Kubernetes 
 - Discovers the Xilinx cards inserted in each node of the cluster and expose information about the devices and their properties
 - Enables containers to access Xilinx cards installed in the worker nodes of the Kubernetes cluster
 
-When the plugin mounts a Xilinx card, all the devices located on that card become available to the container. Since there are two Xilinx devices per Alveo U30 card, the Xilinx device plugin will always mount the two devices of each Alveo U30 card. In the pod-description file, the "limits" field can used to control how many cards are mounted, but both devices of the card will always be mave available to the container. For instance, on a vt1.6xl instance, the “xbutil command” will show 4 devices but a description of the Kubernetes worker node will show 2 Xilinx cards. The limit can be set to 1 in the pod-description file, in which case the container will have access to 2 devices.
+When the plugin mounts a Xilinx card, all the devices located on that card become available to the container. Since there are two Xilinx devices per Alveo U30 card, the Xilinx device plugin will always mount the two devices of each Alveo U30 card. In the pod-description file, the "limits" field can used to control how many cards are mounted, but both devices of the card will always be made available to the container. For instance, on a vt1.6xl instance, the “xbutil command” will show 4 devices but a description of the Kubernetes worker node will show 2 Xilinx cards. The limit can be set to 1 in the pod-description file, in which case the container will have access to 2 devices.
 
 The plugin is available on the ECR repository: https://gallery.ecr.aws/xilinx_dcg/k8s-fpga-device-plugin
 
@@ -168,7 +168,7 @@ Deploying User Pods
 
 	kubectl get pod -o wide
 
-   You will a similar report when the pod is successfully deployed on the cluster::
+   You will see a similar report when the pod is successfully deployed on the cluster::
 
 	NAME         READY   STATUS    RESTARTS   AGE
 	<pod-name>   1/1     Running   0          1m

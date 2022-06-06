@@ -1,4 +1,4 @@
-The Xilinx xilinx-u30-gen3x4-base_1 package contains software available in
+The Xilinx xilinx-u30-gen3x4-base_2 package contains software available in
 binary form as part of this video SDK.  The included file, partition.bin,
 consists of embedded Petalinux as well as boot software subject to additional
 license terms.  User is directed to reference the license terms below for

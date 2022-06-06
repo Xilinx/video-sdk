@@ -1,9 +1,6 @@
 [submodule "sources/app-XRM-launcher-ffmpeg"]
 	path = sources/app-XRM-launcher-ffmpeg
 	url = https://github.com/Xilinx/app-XRM-launcher-ffmpeg
-[submodule "sources/app-ffmpeg4-xma"]
-	path = sources/app-ffmpeg4-xma
-	url = https://github.com/Xilinx/app-ffmpeg4-xma
 [submodule "sources/app-jobslot-reservation-xrm"]
 	path = sources/app-jobslot-reservation-xrm
 	url = https://github.com/Xilinx/app-jobslot-reservation-xrm
@@ -34,6 +31,12 @@
 [submodule "sources/lib-xvbm-xrt"]
 	path = sources/lib-xvbm-xrt
 	url = https://github.com/Xilinx/lib-xvbm-xrt
+[submodule "sources/app-ffmpeg4-xma"]
+	path = sources/app-ffmpeg4-xma
+	url = https://github.com/Xilinx/app-ffmpeg4-xma
+[submodule "sources/video-sdk-gstreamer"]
+	path = sources/video-sdk-gstreamer
+	url = https://github.com/Xilinx/video-sdk-gstreamer
 [submodule "sources/xrm"]
 	path = sources/xrm
 	url = https://github.com/Xilinx/xrm

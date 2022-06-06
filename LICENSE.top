@@ -15,72 +15,82 @@ any given package.  The user is referred to such source files and/or license
 files for the license terms.
 
 
-=============================================================================
-PACKAGE NAME                            |  LICENSE(s) TYPE(S)
-(less rpm|deb extension)                |
-=============================================================================
-xffmpeg-4.1.10-Linux                    | LGPLv2 or LGPLv3
-                                        |
-                                        | See FFMPEG LICENSING NOTE for add'l
-                                        | licensing details
------------------------------------------------------------------------------
-xcdr-0.2.15-Linux (software)            | Apache v2 (software)
-                                        |
-                                        | Xilinx non-open source permissive
-                                        | (hardware binaries)
-                                        |
-                                        | See LICENSE.xclbin for additional details
------------------------------------------------------------------------------
-launcher-1.0.0-Linux                    | Apache v2
------------------------------------------------------------------------------
-jobSlotReservation-1.0.0-Linux          | Apache v2
------------------------------------------------------------------------------
-xmaPropsTOjson-1.0.0-Linux              | Apache v2
------------------------------------------------------------------------------
-xmpsoccodecs-1.0.1-Linux                | Apache v2
------------------------------------------------------------------------------
-xmultiscaler-1.0.1-Linux                | Apache v2
------------------------------------------------------------------------------
-xrmU30Decoder-1.0.0-Linux               | Apache v2
------------------------------------------------------------------------------
-xvbm-1.0.1-Linux                        | Apache v2 or LGPLv3
------------------------------------------------------------------------------
-xlookahead-1.0.1-Linux                  | Apache v2
------------------------------------------------------------------------------
-xrmU30Encoder-1.0.0-Linux               | Apache v2
------------------------------------------------------------------------------
-xrmU30Scaler-1.0.0-Linux                | Apache v2
------------------------------------------------------------------------------
-xrm_202110.1.2.1168                     | Apache v2
------------------------------------------------------------------------------
-xrt_202020.2.10.50                      | Apache v2 (user-space libraries)
-                                        |
-                                        | GPLv2 (kernel drivers)
------------------------------------------------------------------------------
-xilinx-sc-fw-u30_6.3.8-1.cd35f69        | Xilinx binary non-open source
-                                        | permissive
-                                        |
-                                        | Permissive 3-Clause BSD license
-                                        |
-                                        | See LICENSE.sc for additional details
------------------------------------------------------------------------------
-xilinx-u30-gen3x4-base_1-3205830        | Xilinx non-open source permissive
-                                        | (hardware binaries)
-                                        |
-                                        | Various open-source
-                                        | (embedded  software)
-                                        |
-                                        | See LICENSE.base for additional details
------------------------------------------------------------------------------
-xilinx-u30-gen3x4-validate_1-3210381    | Xilinx non-open source permissive
-                                        | (hardware binaries)
-                                        |
-                                        | See LICENSE.validate for additional details
------------------------------------------------------------------------------
+============================================================================================
+PACKAGE NAME                                       |  LICENSE(s) TYPE(S)
+(less rpm|deb extension)                           |
+============================================================================================
+xilinx-u30-xffmpeg_4.4.xlnx.1                      | LGPLv2 or LGPLv3
+                                                   |
+                                                   | See FFMPEG LICENSING NOTE for add'l
+                                                   | licensing details
+--------------------------------------------------------------------------------------------
+xilinx-u30-xcdr_2.0.0 (software)                   | Apache v2 (software)
+                                                   |
+                                                   | Xilinx non-open source permissive
+                                                   | (hardware binaries)
+                                                   |
+                                                   | See LICENSE.xclbin for additional details
+--------------------------------------------------------------------------------------------
+xilinx-u30-launcher_1.1.0                          | Apache v2
+--------------------------------------------------------------------------------------------
+xilinx-u30-jobslotreservation_1.1.0                | Apache v2
+--------------------------------------------------------------------------------------------
+xilinx-u30-xmapropstojson_1.0.1                    | Apache v2
+--------------------------------------------------------------------------------------------
+xilinx-u30-xmpsoccodecs_1.1.0                      | Apache v2
+--------------------------------------------------------------------------------------------
+xilinx-u30-xma-multiscaler_1.1.0                   | Apache v2
+--------------------------------------------------------------------------------------------
+xilinx-xvbm_1.0.2                                  | Apache v2 or LGPLv3
+--------------------------------------------------------------------------------------------
+xilinx-u30-xlookahead_1.1.0                        | Apache v2
+--------------------------------------------------------------------------------------------
+xilinx-u30-vvas_1.0                                | Apache v2 (VVAS source code)
+                                                   | LGPL v2 (VVAS GStreamer libraries)
+                                                   | MIT (VVAS GStreamer plugins)
+                                                   | BSD (VVAS test applications)
+--------------------------------------------------------------------------------------------
+xilinx-u30-gstreamer-1.16.2_1.0                    | LGPL V2, GPL V2 and later, MIT, Apache
+                                                   | MPL and additional open source Licenses                                       
+--------------------------------------------------------------------------------------------
+xilinx-u30-xma-apps-2.0.0                          | Apache v2
+--------------------------------------------------------------------------------------------
+xilinx-u30-xrm-decoder_1.1.0                       | Apache v2
+--------------------------------------------------------------------------------------------
+xilinx-u30-xrm-encoder_1.1.0                       | Apache v2
+--------------------------------------------------------------------------------------------
+xilinx-u30-xrm-multiscaler_1.1.0                   | Apache v2
+--------------------------------------------------------------------------------------------
+xrm_202120.1.3.29                                  | Apache v2
+--------------------------------------------------------------------------------------------
+xrt_202110.2.11.691                                | Apache v2 (user-space libraries)
+                                                   |
+                                                   | GPLv2 (kernel drivers)
+--------------------------------------------------------------------------------------------
+xilinx-sc-fw-u30_6.3.8-1.cd35f69                   | Xilinx binary non-open source
+                                                   | permissive.
+                                                   |
+                                                   | Permissive 3-Clause BSD license
+                                                   |
+                                                   | See LICENSE.sc for additional details
+--------------------------------------------------------------------------------------------
+xilinx-u30-gen3x4-base_2-3391496                   | Xilinx non-open source permissive
+                                                   | (hardware binaries)
+                                                   |
+                                                   | Various open-source
+                                                   | (embedded software)
+                                                   |
+                                                   | See LICENSE.base for additional details
+--------------------------------------------------------------------------------------------
+xilinx-u30-gen3x4-validate_2-3380610               | Xilinx non-open source permissive
+                                                   | (hardware binaries)
+                                                   |
+                                                   | See LICENSE.validate for additional details
+--------------------------------------------------------------------------------------------
 
 
 FFMPEG LICENSING NOTE
-The binary version of ffmpeg included in xffmpeg-4.1.10-Linux package includes
+The binary version of ffmpeg included in xffmpeg-4.4.1-Linux package includes
 the drawtext (vf_drawtext.c) filter plugin.  This plugin creates a dependency
 on two dynamically linked libraries: libfontconfig and libfreetype.  The user
 is advised to review the license terms for these two libraries as they must be

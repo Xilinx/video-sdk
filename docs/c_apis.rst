@@ -67,7 +67,7 @@ Initialization
 ==============
 Applications using the plugins must first create a XRM context using the :c:func:`xrmCreateContext()` function in order to establish a connection with the XRM daemon. The application must then initialize the XMA library using the :c:func:`xma_initialize()` function. 
 
-Detailled examples of how to perform these two steps in order to initialize an application can be found in all of the sample XMA applications, for instance :url_to_repo:`examples/xma/decode_only/src/xlnx_dec_xrm_interface.c`.
+Examples of how to perform these two steps in order to initialize an application can be found in the :url_to_repo:`examples/xma/common/src/xlnx_xrm_utils.c` file which is shared by all XMA sample applications.
 
 Further information about these APIs can be found in the online `XRT <https://xilinx.github.io/XRT/master/html/xmakernels.main.html>`_ and `XRM <https://xilinx.github.io/XRM/lib.html#global-functions>`_ documentation.
 

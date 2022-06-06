@@ -20,17 +20,16 @@
 # and send them to the encoder targeting various bitrates (as defined by the -b:v flag).
 
 # This is a LOW-LATENCY version: b-frames are removed, as well as a reduced lookahead. This means 2 things:
-# 1) The decoder does not accept B-Frames (out of order decoding). If you provide a clip with B-Frames, you will receive an invalid output. 
-#    If your input has B-Frames, simply remove ``-low_latency 1``
+# 1) The decoder does not accept B-Frames (out of order decoding). If you provide a clip with B-Frames, the script will give an error.
 # 2) The encoder will not produce B-Frames in its output
 
 
 # The 1080p60 input is scaled down to the following resolutions, framerates, and bitrates (respectively):
 # 720p60 4.0   Mbps
 # 720p30 3.0   Mbps
-# 848p30 2.5   Mbps
+# 480p30 2.5   Mbps
 # 360p30 1.25  Mbps
-# 288p30 0.625 Mbps
+# 160p30 0.625 Mbps
 
 # You may edit this to enable other output bitrates (-b:v).
 # You may change the output framerate via the (-r) flags
@@ -49,10 +48,21 @@ if [ $# -ne 1 ]
     exit 1
 fi
 
+# Get the number of B frames from the input
+numBframes=$( ffprobe -loglevel quiet -show_frames $1 | grep -c pict_type=B )
+
+if [ $numBframes -gt 0 ]
+  then
+    echo "Error: input stream contains B-frames."
+    echo "B-frames are not supported when low latency decoding is enabled."
+    exit 1
+fi
+
+
 ffmpeg -c:v mpsoc_vcu_h264 -low_latency 1 -i $1 \
 -filter_complex "multiscale_xma=outputs=4: \
 out_1_width=1280: out_1_height=720: out_1_rate=full:   \
-out_2_width=848:  out_2_height=480: out_2_rate=half:   \ 
+out_2_width=848:  out_2_height=480: out_2_rate=half:   \
 out_3_width=640:  out_3_height=360: out_3_rate=half:   \
 out_4_width=288:  out_4_height=160: out_4_rate=half    \
 [a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]" \
@@ -60,7 +70,7 @@ out_4_width=288:  out_4_height=160: out_4_rate=half    \
 -map "[abb]" -b:v 3M    -bf 0 -scaling-list 0 -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_ll_xcode_scale_720p30.mp4 \
 -map "[b]"   -b:v 2500K -bf 0 -scaling-list 0 -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_ll_xcode_scale_480p30.mp4 \
 -map "[c]"   -b:v 1250K -bf 0 -scaling-list 0 -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_ll_xcode_scale_360p30.mp4 \
--map "[d]"   -b:v 625K  -bf 0 -scaling-list 0 -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_ll_xcode_scale_288p30.mp4
+-map "[d]"   -b:v 625K  -bf 0 -scaling-list 0 -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_ll_xcode_scale_160p30.mp4
 
 
 # FFmpeg command to process audio as well as video. 
@@ -78,4 +88,4 @@ out_4_width=288:  out_4_height=160: out_4_rate=half    \
 # -map "[abb]" -b:v 3M    -bf 0 -scaling-list 0 -c:v mpsoc_vcu_h264 -map "[aud2]" -f mp4 -y /tmp/xil_ll_xcode_scale_720p30.mp4 \
 # -map "[b]"   -b:v 2500K -bf 0 -scaling-list 0 -c:v mpsoc_vcu_h264 -map "[aud3]" -f mp4 -y /tmp/xil_ll_xcode_scale_480p30.mp4 \
 # -map "[c]"   -b:v 1250K -bf 0 -scaling-list 0 -c:v mpsoc_vcu_h264 -map "[aud4]" -f mp4 -y /tmp/xil_ll_xcode_scale_360p30.mp4 \
-# -map "[d]"   -b:v 625K  -bf 0 -scaling-list 0 -c:v mpsoc_vcu_h264 -map "[aud5]" -f mp4 -y /tmp/xil_ll_xcode_scale_288p30.mp4
+# -map "[d]"   -b:v 625K  -bf 0 -scaling-list 0 -c:v mpsoc_vcu_h264 -map "[aud5]" -f mp4 -y /tmp/xil_ll_xcode_scale_160p30.mp4

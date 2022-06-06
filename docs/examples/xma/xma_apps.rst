@@ -1,4 +1,4 @@
-﻿#####################################################
+#####################################################
 XMA Examples for the |SDK|
 #####################################################
 
@@ -13,40 +13,65 @@ The examples in the ``examples/xma`` folder illustrate how C-based applications 
 
 Detailed documentation on the |SDK| plugin interface and the XMA APIs can be found in the :doc:`C API Programming Guide </c_apis>` section of the documentation.
 
+.. rubric:: Requirements
+
+- The XMA applications has been built for and verified on Ubuntu 18.04, Ubuntu 20.04, RHEL 7.8 and AWS Linux V2.
+- The XMA applications only work with elementary streams. Container formats such as mp4 are not supported. 
+
 ****************************************************
-Build and Test Instructions
+Build Instructions
 ****************************************************
 
-To build and test the sample XMA applications, the |SDK| packages must be installed on the server, and the Xilinx devices must to be flashed with the shell provided in the release package.
+.. rubric:: Pre-requisites
 
-To build and test all the XMA applications at once, run the following command from within the ``./examples/xma`` directory::
+To build and test the XMA applications, the |SDK| packages must be installed on the server, and the Xilinx devices must to be flashed with the shell provided in the release package.
 
-	source ./setup.sh
+.. rubric:: Build
 
-This script sets up the environment, builds all the applications and then runs a simple test to validate that each of the applications works correctly.
-The executables are placed in the ``build`` directory of the corresponding application subfolder.
+#. Export the XRT and XRM to build the xma apps::
 
-To build and test each application individually, refer to the sections below.
+    source /opt/xilinx/xcdr/setup.sh
+
+#. Do make clean and make dev in the application directory::
+
+    cd examples/xma
+    make clean
+    make dev
+
+   The executables are placed in the ``Debug/xma_apps/examples`` directory.
+
+#. Optional: to generate DEB and RPM packages for the XMA apps, run one of the two commands below::
+
+    make DEB
+    make RPM
+
+.. rubric:: Test
+
+The ``build_and_test.bash`` script included in the ``./examples/xma`` directory can be used to build and test all the XMA applications at once. This script sets up the environment, builds all the applications and then runs a simple test to validate that each of the applications works correctly. Run the script as follows::
+
+    ./build_and_test.bash
+
+To test each application individually, refer to the sections below.
 
 |
 
 .. _xma-decoder-example:
-.. include:: ./include/decode_only.rst
+.. include:: ./include/decoder.rst
 
 |
 
 .. _xma-encoder-example:
-.. include:: ./include/encode_only.rst
+.. include:: ./include/encoder.rst
 
 |
 
 .. _xma-scaler-example:
-.. include:: ./include/scale_only.rst
+.. include:: ./include/scaler.rst
 
 |
 
 .. _xma-transcoder-example:
-.. include:: ./include/transcode.rst
+.. include:: ./include/transcoder.rst
 
 ..
   ------------

@@ -358,7 +358,7 @@ def testEncodeHEVC(frames, nrfiles, dir, logdir):
         
             logPrint("HEVC encoding "+str(x).zfill(4)+"x"+str(y).zfill(4))
 
-            encode_cmd = "u30_xma_enc -w "+str(x).zfill(4)+" -h "+str(y).zfill(4)+ \
+            encode_cmd = "u30_xma_encode -w "+str(x).zfill(4)+" -h "+str(y).zfill(4)+ \
                          " -i "+dir+"/scale"+str(x).zfill(4)+"x"+str(y).zfill(4)+ \
                          ".yuv -c:v mpsoc_vcu_hevc -control-rate 0 -qp-mode 0 -slice-qp 20 -o "+dir+"/encodehevc" \
                          +str(x).zfill(4)+"x"+str(y).zfill(4)+".265" \
@@ -574,7 +574,8 @@ def main():
     (nrfiles, tmpdir, logdir, removefiles, iterations, minutes, frames, quit) = parse_options()
 
     startTest = time.time()
-    
+    current_dir = os.getcwd()
+
     # defaults to keep 
     width = 960
     height = 540
@@ -588,12 +589,14 @@ def main():
 
     #let's check for the presence of U30 boards
     print("")
-    output = subprocess.Popen("lspci | grep Xilinx", shell = True, stderr=subprocess.STDOUT, stdout = subprocess.PIPE).stdout.read()
+    my_env = os.environ.copy()
+    my_env["PATH"] = "/usr/sbin:/sbin:/usr/bin:/bin" + my_env["PATH"]
+    output = str(subprocess.Popen("lspci |grep Xilinx", shell = True, env=my_env, stderr=subprocess.STDOUT, stdout = subprocess.PIPE).stdout.read().strip().decode("utf-8"))
     substring = "Xilinx"
-    count = str(output).count(substring)
+    count = str(output).count(substring)  
     if count == 0:
         print("No U30 boards detected. Exiting...")
-        raise SystemExit(1)
+        raise SystemExit
     else:
         print("Number of U30 boards detected: "+str(count/4.0))
 
@@ -791,6 +794,19 @@ def main():
         output = subprocess.Popen("rmdir "+ logdir, shell = True, stderr=subprocess.STDOUT, stdout = subprocess.PIPE).stdout.read()
         output = subprocess.Popen("rmdir "+ tmpdir, shell = True, stderr=subprocess.STDOUT, stdout = subprocess.PIPE).stdout.read()
     
+    
+    pf = str(subprocess.Popen("lsb_release -i | cut -d: -f2 |sed s/'^\t'//", shell = True, stdout = subprocess.PIPE).stdout.read().strip().decode("utf-8"))
+    ver = str(subprocess.Popen("lsb_release -r | cut -d: -f2 |sed s/'^\t'//", shell = True, stdout = subprocess.PIPE).stdout.read().strip().decode("utf-8"))
+    testname = "xmaApp_smoke_test"
+    f = open(current_dir + "/" + pf + ver + "_" + testname + ".log", "w")
+    f.write("Number of Smoketests completed            : "+str(runNumber-1) +"\n")
+    f.write("Number of failures in Scale tests         : "+str(failS) +"\n")
+    f.write("Number of failures in Encode tests        : "+str(failE) +"\n")
+    f.write("Number of failures in Scale + Encode tests: "+str(failSE) +"\n")
+    f.write("Number of failures in Decode tests        : "+str(failD) +"\n")
+    f.write("Number of failures in Transcode tests     : "+str(failT) +"\n")
+    f.close()
+
     print("")
     print("Number of Smoketests completed            : "+str(runNumber-1))
     print("")

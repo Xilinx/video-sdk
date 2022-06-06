@@ -13,11 +13,11 @@ This requires a Python 3 installation.
 
 ::
 
-  pip install -U sphinx
-  pip install recommonmark
-  pip install sphinx-copybutton
-  pip install sphinx-markdown-tables
-  pip install rst2pdf
+  pip3 install -U sphinx
+  pip3 install recommonmark
+  pip3 install sphinx-copybutton
+  pip3 install sphinx-markdown-tables
+  pip3 install rst2pdf
 
 
 ****************************************

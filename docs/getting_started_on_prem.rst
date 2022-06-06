@@ -24,7 +24,7 @@ Important Information and Prerequisites
 
 - The installation instructions provided should only be used with the OEM version of the Alveo U30 card. If you do not have an OEM card, or if you are unsure of which card version you have, please `contact Xilinx <https://github.com/Xilinx/video-sdk/issues>`_.
 
-- If you need to upgrade a system with version 0.95.0 (Alpha) or older installed, please `contact Xilinx <https://github.com/Xilinx/video-sdk/issues>`_.
+- It is recommended to disable automatic kernel updates before installing the |SDK|.
 
 |
 
@@ -34,7 +34,7 @@ Install the |SDK|
 
 #. Download the packages included in this repository::
 
-    git clone https://github.com/Xilinx/video-sdk -b v1.5 --depth 1
+    git clone https://github.com/Xilinx/video-sdk -b v2.0 --depth 1
 
 #. Navigate to the directory containing the packages corresponding to your Operating System::
 
@@ -42,11 +42,11 @@ Install the |SDK|
 
 #. Install the software packages::
 
-    ./install.sh
+    ./install
 
 #. Program the binary images in the nonvolatile flash memories of the devices on your Alveo U30 cards::
 
-    sudo ./u30flashall.sh
+    sudo /opt/xilinx/xrt/bin/xball --device-filter u30 xbmgmt program --base
 
 #. Cold boot the machine to have the cards use the new binaries::
 
@@ -54,17 +54,21 @@ Install the |SDK|
 
 #. After the cold boot is complete, check if all the cards are up to date::
 
-    cd ./video-sdk/release/<os>
-    sudo ./u30flashall.sh
+    sudo /opt/xilinx/xrt/bin/xball --device-filter u30 xbmgmt program --base
 
    + If all cards are up to date, the script will report so and terminate. You can proceed to the next step. 
-   + Otherwise, you will see one or more messages indicating "Actions to perform: Program Satellite Controller (SC) image" and the script will perform the required Satellite Controller updates. After all updates are completed, perform a warm reboot of the machine.
+   + Otherwise, you will see one or more messages indicating "Updating Satellite Controller (SC) firmware flash image" and the script will perform the required updates. After all updates are completed, perform a warm reboot of the machine.
 
-#. Test that the installation was successful with the command below. This script will run a validation test on each of the devices in your system. For each of the tests, you should see a message indicating "Validated successfully [1 device(s)]"::
+#. Test that the installation was successful with the command below. This script will run a validation test on each of the devices in your system. For each of the devices, you should see a message indicating that the test was successful::
 
-    ./u30validateall.sh
+    source /opt/xilinx/xrt/setup.sh
+    sudo /opt/xilinx/xrm/tools/stop_xrmd.sh
+    xball --device-filter u30 xbutil validate
+    sudo /opt/xilinx/xrm/tools/restart_xrmd.sh
 
 |
+
+.. _runtime-setup:
 
 ******************************************
 Set Up the Runtime Environment
@@ -75,9 +79,6 @@ Note: These steps below should be performed each time you open a new terminal on
 #. Set up the runtime environment::
 
     source /opt/xilinx/xcdr/setup.sh
-
-   + At the prompt, enter the root password to start the :ref:`Xilinx Resource Manager (XRM) daemon <xrmadm-and-xrmd-commands>`. 
-   + The script finishes with messages indicating that the devices and XRM plugins have been successfully loaded.
 
 #. Optionally verify that the cards are correctly detected::
 

@@ -1,4 +1,4 @@
-The xcdr-0.2.15-Linux package contains one or more versions of the transcode.xclbin file.
+The xilinx-u30-xcdr package contains one or more versions of the transcode.xclbin file.
 Within the xclbin file(s) are software, available soley in binary form, that is
 Copyright (C) 2008-2020 Allegro DVT2 and that is covered under ALLEGRO DVT2 LICENSE.
 Additionally, the transcode.xclbin file(s) contains Xilinx proprietary hardware available

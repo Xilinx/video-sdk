@@ -4,10 +4,17 @@
 Tutorials and Examples
 ##############################
 
-
 - :doc:`FFmpeg Introductory Tutorials </examples/ffmpeg/tutorials>`
 - :doc:`FFmpeg Software Filters </examples/ffmpeg/filters>`
-- :doc:`FFmpeg Visual Quality </examples/ffmpeg/quality_analysis>`
+- :doc:`FFmpeg Video Quality </examples/ffmpeg/quality_analysis>`
+
+.. this comment adds a line break...
+
+- :doc:`GStreamer Introductory Tutorials </examples/gstreamer/tutorials>`
+- :doc:`GStreamer Software Filters </examples/gstreamer/filters>`
+- :doc:`GStreamer Video Quality </examples/gstreamer/quality_analysis>`
+- :doc:`GStreamer Compositor </examples/gstreamer/xcompositor>`
+- :doc:`GStreamer ABR Ladder </examples/gstreamer/xabrladder>`
 
 .. this comment adds a line break...
 
@@ -20,9 +27,13 @@ Tutorials and Examples
 
    FFmpeg Introductory Tutorials </examples/ffmpeg/tutorials>
    FFmpeg Software Filters </examples/ffmpeg/filters>
-   FFmpeg Visual Quality </examples/ffmpeg/quality_analysis>
+   FFmpeg Video Quality </examples/ffmpeg/quality_analysis>
+   GStreamer Introductory Tutorials </examples/gstreamer/tutorials>
+   GStreamer Software Filters </examples/gstreamer/filters>
+   GStreamer Video Quality </examples/gstreamer/quality_analysis>
+   GStreamer Compositor </examples/gstreamer/xcompositor>
+   GStreamer ABR Ladder </examples/gstreamer/xabrladder>
    C-Based Applications </examples/xma/xma_apps>
-
 
 ..
   ------------

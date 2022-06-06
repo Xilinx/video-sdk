@@ -16,21 +16,8 @@ Further documentation on this topic can be found in the :ref:`Tuning Encoder Opt
 *****************************
 Introduction to Video Quality
 *****************************
-There has been a longstanding goal for video engineers to quantitatively determine the output quality of an encoder without having to watch and inspect every individual frame. This has led to an evolution of algorithmic solutions, the most common of which are:
 
-- `Peak Signal to Noise Ratio (PSNR) <https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio>`__
-
-- `Structural Similarity Index Metric (SSIM) <https://en.wikipedia.org/wiki/Structural_similarity>`__
-
-- `Video Multimethod Assessment Fusion (VMAF) <https://en.wikipedia.org/wiki/Video_Multimethod_Assessment_Fusion>`__
-
-- `Mean Opinion Score (MOS) - Humans visually watching the screen and providing feedback <https://en.wikipedia.org/wiki/Mean_opinion_score>`__
-
-Many people will argue which metric is best (although PSNR is commonly considered the least accurate). Jan Ozer from the Streaming Media Center posted his experimental correlation of MOS vs the above metrics. You can review the findings `here. <https://streaminglearningcenter.com/wp-content/uploads/2017/08/PSRN-vs.-VMAF-vs.-SSIMPlus.pdf>`__
-
-Furthermore, due to the industry standard of tracking encoder "performance" to quantitative metrics like the ones listed above, many encoders have "taught to the test"; that is, they provide different command-line arguments that will give higher scores but may look worse to the human eye. For example, common CPU encoders `x264 <https://code.videolan.org/videolan/x264>`__ and `x265 <http://hg.videolan.org/x265>`__ have a ``tune`` parameter which optimizes to objective metrics.
-
-This page discusses the |SDK| command line flags used to optimize for objective quality (scores) and subjective quality (visual appeal) and provides additional details as to what is happening behind the scenes and why.
+.. include:: /include/examples/intro_to_vq.rst
 
 *****************************************************
 Optimized Settings for the |SDK|
@@ -100,7 +87,7 @@ Explanation of the flags:
   
 - ``-bf 1``
 
-  + This flag outlines the number of B-frames shall be inserted 
+  + This flag define the number of B-frames which shall be inserted 
 
 - ``-g 120``
 
@@ -118,7 +105,7 @@ Explanation of the flags:
 
 - ``-qp-mode relative-mode``
   
-  + This is a setting wherein data from the lookahead buffer (custom written in the FPGA) is used to assign the best quantization for each macroblock. Use this mode only when lookahead is enabled.
+  + This is a setting wherein data from the lookahead buffer is used to assign the best quantization for each macroblock. Use this mode only when lookahead is enabled.
   
 - ``-lookahead_depth 20``
 
@@ -199,7 +186,7 @@ Explanation of the flags:
   
 - ``-bf 1``
 
-  + This flag outlines the number of B-frames shall be inserted 
+  + This flag defines the number of B-frames which shall be inserted 
 
 - ``-g 120``
 
@@ -279,7 +266,7 @@ Due to licensing reasons, the FFmpeg binary delivered in this package does not i
 
 **Usage**::
     
-    ./measure_vq.sh <Distorted Encoded Clip> <Resolution ('W'x'H')> <Framerate> <Master YUV> [Custom FFmpeg path]
+    ./measure_vq.sh <Distorted Encoded Clip> <Resolution ('W'x'H')> <Framerate> <Master YUV> <Custom FFmpeg path> <VMAF Model> 
 
 **Command Line**::
 
@@ -290,13 +277,13 @@ Due to licensing reasons, the FFmpeg binary delivered in this package does not i
 
 Explanation of the command:
 
-- ``${FFMPEG_PATH}ffmpeg``
+- ``${FFMPEG_PATH}/ffmpeg``
 
   + This launches an FFmpeg, which can be overloaded/changed with a variable ``FFMPEG_PATH``, otherwise it will use the default FFmpeg in the $PATH
 
 - ``-i $DISTORTED``
   
-  + This is the encoded file which is under test/scoring
+  + This is the encoded file which is being scored
 
 - ``-framerate $FRAMERATE``
     
@@ -353,17 +340,17 @@ Explanation of the command:
 
   + The filter (``libvmaf``) has the infrastructure to write the output log. We do not need FFmpeg to output any files, so we set the output to ``null``.
 
+
 *****************************
 Quality vs. Latency
 *****************************
 
-A given encoder's "quality" is often a function of many different algorithms/functions/features. It is quite possible (and often seen) that an encoder can produce an h.264/HEVC compliant stream but have drastically different quality from one to another. 
+A given encoder's "quality" is often a function of many different algorithms, functions and features. It is quite possible (and often seen) that an encoder can produce an H.264/HEVC compliant stream but have drastically different quality from one to another. 
 
-Some of these features add latency, either by adding "pitstops" on the way to an outputted stream, or by increasing the complexity of the core-encoding functions. Most things in the video realm are content-dependent, or use-case-dependent, so the designer needs to determine what is best for them... a gradient of:
+Some of these features add latency, either by adding "pitstops" on the way to an outputted stream, or by increasing the complexity of the encoding functions. Most things in the video realm are content-dependent, or use-case-dependent, so the designer needs to determine what is best for them... a gradient of:
 
-- absolute best quality with high latency
-
-- lower quality with lowest latency. 
+- Absolute best quality with high latency
+- Lower quality with lowest latency. 
 
 Xilinx-Specific Latency Flags
 =============================
@@ -377,9 +364,9 @@ Decoder Options
   
 Encoder Options
 ---------------
-- ``-control-rate low-latency``
+.. - ``-control-rate low-latency``
   
-  + While this flag is documented, it **should not be used**, please ignore it
+..   + While this flag is documented, it **should not be used**, please ignore it
   
 - ``-bf <INT>``
 
@@ -402,6 +389,7 @@ Encoder Options
 - ``-temporal-aq`` and ``-spatial-aq``
 
   + These features are described above on this page; performing their functions increases both latency and quality.
+
 
 Optimized Settings for Low Latency Streams
 ==========================================

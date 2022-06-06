@@ -27,9 +27,8 @@ The following sections describe the options used with FFmpeg to configure the va
 
 |
 
-*****************************************************
 Example Commands
-*****************************************************
+=====================================================
 
 A simple FFmpeg command for accelerated encoding with the |SDK| will look similar to this one::
 
@@ -39,7 +38,15 @@ There are many other ways in which FFmpeg can be used to leverage the video tran
 
 |
 
-.. include:: ./include/ffmpeg/video_xcode.rst
+.. include:: ./include/ffmpeg/general_options.rst
+
+|
+
+.. include:: ./include/ffmpeg/video_decoding.rst
+
+|
+
+.. include:: ./include/ffmpeg/video_encoding.rst
 
 |
   
@@ -47,7 +54,15 @@ There are many other ways in which FFmpeg can be used to leverage the video tran
 
 |
 
+.. include:: ./include/ffmpeg/4k_considerations.rst
+
+|
+
 .. include:: ./include/ffmpeg/data_movement.rst
+
+|
+
+.. include:: ./include/ffmpeg/multiple_devices.rst
 
 |
 
@@ -59,74 +74,8 @@ There are many other ways in which FFmpeg can be used to leverage the video tran
 
 |
 
-*********************************************
-Xilinx FFmpeg Reference Guide
-*********************************************
+.. .. include:: ./include/ffmpeg/ffmpeg_reference.rst
 
-H.264 Codec Reference
-====================================
-
-H.264 Decoder Options
-------------------------------------
-The entire list options for the Xilinx H.264 decoder (mpsoc_vcu_h264) can be displayed using the following command::
-
-  ffmpeg -h decoder=mpsoc_vcu_h264
-
-The mpsoc_vcu_h264 decoder has the following options:
-
-.. literalinclude:: ./include/ffmpeg/ffmpeg_help_h264_decode.rst
-   :language: none
-
-
-H.264 Encoder Options
-------------------------------------
-The entire list options for the Xilinx H.264 encoder (mpsoc_vcu_h264) can be displayed using the following command::
-
-  ffmpeg -h encoder=mpsoc_vcu_h264
-
-The mpsoc_vcu_h264 encoder has the following options:
-
-.. literalinclude:: ./include/ffmpeg/ffmpeg_help_h264_encode.rst
-   :language: none
-
-
-HEVC Codec Reference
-====================================
-
-HEVC Decoder Options
-------------------------------------
-The entire list options for the Xilinx HEVC decoder (mpsoc_vcu_hevc) can be displayed using the following command::
-
-  ffmpeg -h decoder=mpsoc_vcu_hevc
-
-The mpsoc_vcu_hevc decoder has the following options:
-
-.. literalinclude:: ./include/ffmpeg/ffmpeg_help_hevc_decode.rst
-   :language: none
-
-
-HEVC Encoder Options
-------------------------------------
-The entire list options for the Xilinx HEVC encoder (mpsoc_vcu_hevc) can be displayed using the following command::
-
-  ffmpeg -h encoder=mpsoc_vcu_hevc
-
-The mpoc_vcu_hevc encoder has the following options:
-
-.. literalinclude:: ./include/ffmpeg/ffmpeg_help_hevc_encode.rst
-   :language: none
-
-
-Multiscaler Filter Reference
-====================================
-The entire list options for the Xilinx Multiscaler (multiscale_xma) can be displayed using the following command::
-
-  ffmpeg -h filter=multiscale_xma
-
-The multiple output hardware scaling filter has the following options:
-
-.. literalinclude:: ./include/ffmpeg/ffmpeg_help_multiscaler.rst
-   :language: none
 ..
   ------------
   

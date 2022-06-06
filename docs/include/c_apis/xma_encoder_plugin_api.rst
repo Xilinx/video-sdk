@@ -34,13 +34,11 @@ If the function returns :c:macro:`XMA_SEND_MORE_DATA`, then the application must
 
 Once the application has sent all the input frames to the encoder, it should notify the hardware by sending a null frame buffer and set :c:var:`is_last_frame` to 1 in the :c:struct:`XmaFrame` structure. If the API returns :c:macro:`XMA_FLUSH_AGAIN` after a null frame is sent, then the application can call :c:func:`xma_enc_session_recv_data` but must send a null frame again. Once the null frame is sent successfully, does not need to send frames anymore and can simply call :c:func:`xma_enc_session_recv_data` to flush out all the remaining output frames.
 
-This function is not thread-safe. The :c:func:`xma_enc_session_send_frame` and :c:func:`xma_enc_session_recv_data` functions must be called in a serial manner by the application layer.
-
 |
 
 .. c:function:: int32_t xma_enc_session_recv_data(XmaEncoderSession *session, XmaDataBuffer *data, int32_t *data_size)
 
-This function is called after calling the function :c:func:`xma_enc_session_send_frame`. The application must provide valid pointer to :c:struct:`XmaDataBuffer` and is the owner of it. The application is responsible for releasing this memory when done. 
+This function is called after calling the function :c:func:`xma_enc_session_send_frame`. The application is the owner of the :c:struct:`XmaDataBuffer`. It is responsible for allocating it and for releasing it when done. 
 
 If the function returns :c:macro:`XMA_SUCCESS` and if :c:var:`data_size` is greater than 0, then a valid output frame is available. The returned data (:c:var:`XmaDataBuffer.data`) is valid until the next call to the :c:func:`xma_enc_session_send_frame`, so the application must use or copy it before calling :c:func:`xma_enc_session_send_frame` again. The XMA encoder plugin is responsible for setting the fields of the :c:struct:`XmaDataBuffer` struct. That is, :c:var:`XmaDataBuffer.data` is set by the XMA plugin and does not transfer the ownership of this buffer to the application. The application must not attempt to free :c:var:`XmaDataBuffer.data`. The encoder plugin will recycle the data buffers in the next call to the :c:func:`xma_enc_session_send_frame` function.
 
@@ -48,7 +46,7 @@ If the function returns :c:macro:`XMA_TRY_AGAIN`, a data buffer is not ready to 
 
 If the function returns :c:macro:`XMA_EOS`, the encoder has flushed all the output frames.
 
-This function is not thread-safe. The :c:func:`xma_enc_session_send_frame` and :c:func:`xma_enc_session_recv_data` functions must be called in a serial manner by the application layer.
+**NOTE**: In version 2.0 of the |SDK|, this function has been updated and made thread-safe. In earlier versions, the :c:struct:`XmaDataBuffer` was allocated by the plugin and the :c:func:`xma_enc_session_send_frame` and :c:func:`xma_enc_session_recv_data` functions had to be called in a serial manner by the application layer. Starting with version 2.0 of the |SDK|, the application is responsible for allocating the :c:struct:`XmaDataBuffer` and the :c:func:`xma_enc_session_send_frame` and :c:func:`xma_enc_session_recv_data` functions can be called from different threads.
 
 |
 
@@ -63,7 +61,7 @@ Encoder Properties
 
 The Xilinx video encoder is configured using a combination of standard XMA encoder properties and custom encoder parameters, both of which are specified using a :c:struct:`XmaEncoderProperties` data structure. 
 
-To facilitate application development, Xilinx recommends working with a simplified data structure from which the required :c:struct:`XmaEncoderProperties` can be populated using a specialized function. A reusable example of this can found in the :url_to_repo:`examples/xma/transcode/include/xlnx_transcoder_xma_props.h` and :url_to_repo:`examples/xma/transcode/src/xlnx_transcoder_xma_props.c` files of the sample XMA transcoder application.
+To facilitate application development, Xilinx recommends working with a simplified data structure from which the required :c:struct:`XmaEncoderProperties` can be populated using a specialized function. A reusable example of this can found in the :url_to_repo:`examples/xma/transcoder/lib/include/xlnx_transcoder_xma_props.h` and :url_to_repo:`examples/xma/transcoder/lib/src/xlnx_transcoder_xma_props.c` files of the XMA transcoder example application.
 
 |
 
@@ -148,7 +146,7 @@ Other members of :c:struct:`XmaEncoderProperties` are not applicable to the enco
 In addition to the standard properties, the following :c:struct:`XmaParameter` custom parameters are supported by the encoder plugin:
 
 "enc_options"
-    For the encoder, most of the parameters are specified using a stringified INI file which is then passed to the "enc_options" :c:struct:`XmaParameter`. Refer to the :c:func:`enc_update_props` function in the :url_to_repo:`examples/xma/transcode/src/xlnx_encoder.c` file for the parameters which are sent as a string.
+    For the encoder, most of the parameters are specified using a stringified INI file which is then passed to the "enc_options" :c:struct:`XmaParameter`. Refer to the :c:func:`xlnx_enc_get_xma_props` function in the :url_to_repo:`examples/xma/transcoder/lib/src/xlnx_transcoder_xma_props.c#L791` file for the parameters which are sent as a string.
 
 "latency_logging"
     When enabled, it logs latency information to syslog.

@@ -54,9 +54,9 @@ If the function returns :c:macro:`XMA_TRY_AGAIN`, then the decoder still needs s
 
 If the function returns :c:macro:`XMA_EOS`, then the decoder has flushed out all the frames.
 
-For an example of how to read and release a YUV output frame using the XVBM :c:func:`xvbm_buffer_get_host_ptr()`, :c:func:`xvbm_buffer_read()` and  :c:func:`xvbm_buffer_pool_entry_free()` APIs, refer to the :url_to_repo:`examples/xma/decode_only/src/xlnx_decoder.c` file of the sample XMA decoder app.
+For an example of how to read and release a YUV output frame using the XVBM :c:func:`xvbm_buffer_get_host_ptr()`, :c:func:`xvbm_buffer_read()` and  :c:func:`xvbm_buffer_pool_entry_free()` APIs, refer to the :url_to_repo:`examples/xma/decoder/app/src/xlnx_decoder_app.c` file of the sample XMA decoder app.
 
-For an example of how to receive a YUV output frame and forward it to the scaler and to the encoder plugins using the XVBM the :c:func:`xvbm_buffer_refcnt_inc()` API, refer to the :url_to_repo:`examples/xma/transcode/src/xlnx_transcoder.c` file of the sample XMA transcoder application.
+For an example of how to receive a YUV output frame and forward it to the scaler and to the encoder plugins using the XVBM the :c:func:`xvbm_buffer_refcnt_inc()` API, refer to the :url_to_repo:`examples/xma/transcoder/lib/src/xlnx_transcoder.c` file of the sample XMA transcoder application.
 
 |
 
@@ -71,7 +71,7 @@ Decoder Properties
 
 The Xilinx video decoder is configured using a combination of standard XMA decoder properties and custom decoder parameters, both of which are specified using a :c:struct:`XmaDecoderProperties` data structure. 
 
-To facilitate application development, Xilinx recommends working with a simplified data structure from which the required :c:struct:`XmaDecoderProperties` can be populated using a specialized function. A reusable example of this can found in the :url_to_repo:`examples/xma/transcode/include/xlnx_transcoder_xma_props.h` and :url_to_repo:`examples/xma/transcode/src/xlnx_transcoder_xma_props.c` files of the XMA transcoder example application.
+To facilitate application development, Xilinx recommends working with a simplified data structure from which the required :c:struct:`XmaDecoderProperties` can be populated using a specialized function. A reusable example of this can found in the :url_to_repo:`examples/xma/transcoder/lib/include/xlnx_transcoder_xma_props.h` and :url_to_repo:`examples/xma/transcoder/lib/src/xlnx_transcoder_xma_props.c` files of the XMA transcoder example application.
 
 |
 

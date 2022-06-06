@@ -2,7 +2,17 @@
 |SDK|
 #######################################
 
-The |SDK| is a complete software stack allowing users to seamlessly leverage the hardware accelerated features of Xilinx video codec units and enable high-density real-time transcoding for live streaming video service providers, OEMs, and Content Delivery Network (CDNs). Included in the |SDK| is pre-compiled version of FFmpeg which integrates key video transcoding plug-ins, enabling simple hardware offloading of compute-intensive workloads using the popular FFmpeg command line interface. The |SDK| also provides a C-based application programming interface (API) which facilitates the integration of Xilinx video codec units transcoding capabilities in proprietary frameworks. The |SDK| can be leveraged on-premises with Alveo U30 cards and in the cloud with |VT1| instances.
+The |SDK| is a complete software stack allowing users to seamlessly leverage the hardware accelerated features of Xilinx video codec units and enable high-density real-time transcoding for live streaming video service providers, OEMs, and Content Delivery Network (CDNs). Included in the |SDK| are pre-compiled versions of FFmpeg and GStreamer which integrate video transcoding plug-ins for Xilinx devices, enabling simple hardware acceleration of video decoding, scaling and encoding using these popular tools. The |SDK| also provides a C-based application programming interface (API) which facilitates the integration of Xilinx video codec units transcoding capabilities in proprietary frameworks. The |SDK| can be leveraged on-premises with Alveo U30 cards and in the cloud with |VT1| instances.
+
+.. raw:: html
+
+   <iframe 
+     width="640" height="340"
+     src="https://www.youtube.com/embed/kv-OS_cFOvg" 
+     title="YouTube video player" 
+     frameborder="0">
+   </iframe>
+
 
 *************************
 Quick Links
@@ -13,16 +23,6 @@ Quick Links
 - :doc:`Get Started on Premises with Alveo U30 </getting_started_on_prem>`
 - :doc:`Get Started in the Cloud with Amazon EC2 VT1 </getting_started_on_vt1>`
 - :doc:`Tutorials and Examples </examples>`
-
-
-.. raw:: html
-
-   <iframe 
-     width="640" height="340"
-     src="https://www.youtube.com/embed/kv-OS_cFOvg" 
-     title="YouTube video player" 
-     frameborder="0">
-   </iframe>
 
 
 .. toctree::
@@ -44,6 +44,8 @@ Quick Links
 
    Specs and Features </specs_and_features>
    Using FFmpeg </using_ffmpeg>   
+   Using GStreamer </using_gstreamer>
+   Tuning Quality of Encoded Video </tuning_encoding_quality>   
    Managing Compute Resources </managing_compute_resources>   
    Deploying with Kubernetes </deploying_with_kubernetes>
    C API Programming Guide </c_apis>   

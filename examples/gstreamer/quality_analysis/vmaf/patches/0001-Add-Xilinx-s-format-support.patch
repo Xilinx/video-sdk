@@ -1,0 +1,431 @@
+From 1d8c57b609b505f0821284e03d9adf8a58a91e7f Mon Sep 17 00:00:00 2001
+From: Suresh Gupta <suresh.gupta@xilinx.com>
+Date: Tue, 14 Jul 2020 05:59:10 +0530
+Subject: [PATCH] Add Xilinx's format support
+
+Signed-off-by: Suresh Gupta <suresh.gupta@xilinx.com>
+---
+ gst-libs/gst/video/gstvideometa.c | 127 ++++++++++++++++++++++++++++++
+ gst-libs/gst/video/gstvideometa.h |  15 ++++
+ gst-libs/gst/video/video-format.c |  30 +++++++
+ gst-libs/gst/video/video-format.h |   3 +
+ gst-libs/gst/video/video-info.c   |  70 ++++++++++++----
+ gst-libs/gst/video/video-info.h   |  10 +++
+ 6 files changed, 241 insertions(+), 14 deletions(-)
+
+diff --git a/gst-libs/gst/video/gstvideometa.c b/gst-libs/gst/video/gstvideometa.c
+index 40611929a..c5c1bbe46 100644
+--- a/gst-libs/gst/video/gstvideometa.c
++++ b/gst-libs/gst/video/gstvideometa.c
+@@ -64,6 +64,7 @@ gst_video_meta_init (GstMeta * meta, gpointer params, GstBuffer * buffer)
+   emeta->width = emeta->height = emeta->n_planes = 0;
+   memset (emeta->offset, 0, sizeof (emeta->offset));
+   memset (emeta->stride, 0, sizeof (emeta->stride));
++  gst_video_alignment_reset (&emeta->alignment);
+   emeta->map = NULL;
+   emeta->unmap = NULL;
+ 
+@@ -104,6 +105,7 @@ gst_video_meta_transform (GstBuffer * dest, GstMeta * meta,
+       for (i = 0; i < dmeta->n_planes; i++) {
+         dmeta->offset[i] = smeta->offset[i];
+         dmeta->stride[i] = smeta->stride[i];
++        dmeta->alignment = smeta->alignment;
+       }
+       dmeta->map = smeta->map;
+       dmeta->unmap = smeta->unmap;
+@@ -392,6 +394,131 @@ gst_video_meta_unmap (GstVideoMeta * meta, guint plane, GstMapInfo * info)
+   return meta->unmap (meta, plane, info);
+ }
+ 
++static gboolean
++gst_video_meta_validate_alignment (GstVideoMeta * meta,
++    gsize plane_size[GST_VIDEO_MAX_PLANES])
++{
++  GstVideoInfo info;
++  guint i;
++
++  gst_video_info_init (&info);
++  gst_video_info_set_format (&info, meta->format, meta->width, meta->height);
++
++  if (!gst_video_info_align_full (&info, &meta->alignment, plane_size)) {
++    GST_WARNING ("Failed to align meta with its alignment");
++    return FALSE;
++  }
++
++  for (i = 0; i < GST_VIDEO_INFO_N_PLANES (&info); i++) {
++    if (GST_VIDEO_INFO_PLANE_STRIDE (&info, i) != meta->stride[i]) {
++      GST_WARNING
++          ("Stride of plane %d defined in meta (%d) is different from the one computed from the alignment (%d)",
++          i, meta->stride[i], GST_VIDEO_INFO_PLANE_STRIDE (&info, i));
++      return FALSE;
++    }
++  }
++
++  return TRUE;
++}
++
++/**
++ * gst_video_meta_set_alignment:
++ * @meta: a #GstVideoMeta
++ * @alignment: a #GstVideoAlignment
++ *
++ * Set the alignment of @meta to @alignment. This function checks that
++ * the paddings defined in @alignment are compatible with the strides
++ * defined in @meta and will fail to update if they are not.
++ *
++ * Returns: %TRUE if @alignment's meta has been updated, %FALSE if not
++ *
++ * Since: 1.18
++ */
++gboolean
++gst_video_meta_set_alignment (GstVideoMeta * meta, GstVideoAlignment alignment)
++{
++  GstVideoAlignment old;
++
++  g_return_val_if_fail (meta, FALSE);
++
++  old = meta->alignment;
++  meta->alignment = alignment;
++
++  if (!gst_video_meta_validate_alignment (meta, NULL)) {
++    /* Invalid alignment, restore the previous one */
++    meta->alignment = old;
++    return FALSE;
++  }
++
++  GST_LOG ("Set alignment on meta: padding %u-%ux%u-%u", alignment.padding_top,
++      alignment.padding_left, alignment.padding_right,
++      alignment.padding_bottom);
++
++  return TRUE;
++}
++
++/**
++ * gst_video_meta_get_plane_size:
++ * @meta: a #GstVideoMeta
++ * @plane_size: (out): array used to store the plane sizes
++ *
++ * Compute the size, in bytes, of each video plane described in @meta including
++ * any padding and alignment constraint defined in @meta->alignment.
++ *
++ * Returns: %TRUE if @meta's alignment is valid and @plane_size has been
++ * updated, %FALSE otherwise
++ *
++ * Since: 1.18
++ */
++gboolean
++gst_video_meta_get_plane_size (GstVideoMeta * meta,
++    gsize plane_size[GST_VIDEO_MAX_PLANES])
++{
++  g_return_val_if_fail (meta, FALSE);
++  g_return_val_if_fail (plane_size, FALSE);
++
++  return gst_video_meta_validate_alignment (meta, plane_size);
++}
++
++/**
++ * gst_video_meta_get_plane_height:
++ * @meta: a #GstVideoMeta
++ * @plane_height: (out): array used to store the plane height
++ *
++ * Compute the padded height of each plane from @meta (padded size
++ * divided by stride).
++ *
++ * Returns: %TRUE if @meta's alignment is valid and @plane_height has been
++ * updated, %FALSE otherwise
++ *
++ * Since: 1.18
++ */
++gboolean
++gst_video_meta_get_plane_height (GstVideoMeta * meta,
++    guint plane_height[GST_VIDEO_MAX_PLANES])
++{
++  gsize plane_size[GST_VIDEO_MAX_PLANES];
++  guint i;
++
++  g_return_val_if_fail (meta, FALSE);
++  g_return_val_if_fail (plane_height, FALSE);
++
++  if (!gst_video_meta_get_plane_size (meta, plane_size))
++    return FALSE;
++
++  for (i = 0; i < meta->n_planes; i++) {
++    if (!meta->stride[i])
++      plane_height[i] = 0;
++    else
++      plane_height[i] = plane_size[i] / meta->stride[i];
++  }
++
++  for (; i < GST_VIDEO_MAX_PLANES; i++)
++    plane_height[i] = 0;
++
++  return TRUE;
++}
++
+ static gboolean
+ gst_video_crop_meta_transform (GstBuffer * dest, GstMeta * meta,
+     GstBuffer * buffer, GQuark type, gpointer data)
+diff --git a/gst-libs/gst/video/gstvideometa.h b/gst-libs/gst/video/gstvideometa.h
+index 1a7643ff4..03ea09bf0 100644
+--- a/gst-libs/gst/video/gstvideometa.h
++++ b/gst-libs/gst/video/gstvideometa.h
+@@ -53,6 +53,10 @@ typedef struct _GstVideoCropMeta GstVideoCropMeta;
+  *          valid, it is used by the default implementation of @map.
+  * @map: map the memory of a plane
+  * @unmap: unmap the memory of a plane
++ * @alignment: the paddings and alignment constraints of the video buffer.
++ * It's up to the caller of `gst_buffer_add_video_meta_full()` to set it
++ * using gst_video_meta_set_alignment(), if they did not it defaults
++ * to no padding and no alignment. Since: 1.18
+  *
+  * Extra buffer metadata describing image properties
+  */
+@@ -74,6 +78,8 @@ struct _GstVideoMeta {
+   gboolean (*map)    (GstVideoMeta *meta, guint plane, GstMapInfo *info,
+                       gpointer *data, gint * stride, GstMapFlags flags);
+   gboolean (*unmap)  (GstVideoMeta *meta, guint plane, GstMapInfo *info);
++
++  GstVideoAlignment  alignment;
+ };
+ 
+ GST_VIDEO_API
+@@ -105,6 +111,15 @@ gboolean       gst_video_meta_map        (GstVideoMeta *meta, guint plane, GstMa
+ GST_VIDEO_API
+ gboolean       gst_video_meta_unmap      (GstVideoMeta *meta, guint plane, GstMapInfo *info);
+ 
++GST_VIDEO_API
++gboolean       gst_video_meta_set_alignment (GstVideoMeta * meta, GstVideoAlignment alignment);
++
++GST_VIDEO_API
++gboolean       gst_video_meta_get_plane_size (GstVideoMeta * meta, gsize plane_size[GST_VIDEO_MAX_PLANES]);
++
++GST_VIDEO_API
++gboolean       gst_video_meta_get_plane_height (GstVideoMeta * meta, guint plane_height[GST_VIDEO_MAX_PLANES]);
++
+ /**
+  * GstVideoCropMeta:
+  * @meta: parent #GstMeta
+diff --git a/gst-libs/gst/video/video-format.c b/gst-libs/gst/video/video-format.c
+index d1b8bd4b8..b1c65311d 100644
+--- a/gst-libs/gst/video/video-format.c
++++ b/gst-libs/gst/video/video-format.c
+@@ -6036,3 +6036,33 @@ gst_video_format_get_palette (GstVideoFormat format, gsize * size)
+       return NULL;
+   }
+ }
++
++/**
++ * gst_video_format_info_component:
++ * @info: #GstVideoFormatInfo
++ * @plane: a plane number
++ * @components: (out): array used to store component numbers
++ *
++ * Fill @components with the number of all the components packed in plane @p
++ * for the format @info. A value of -1 in @components indicates that no more
++ * components are packed in the plane.
++ *
++ * Since: 1.18
++ */
++void
++gst_video_format_info_component (const GstVideoFormatInfo * info, guint plane,
++    gint components[GST_VIDEO_MAX_COMPONENTS])
++{
++  guint c, i = 0;
++
++  /* Reverse mapping of info->plane */
++  for (c = 0; c < GST_VIDEO_FORMAT_INFO_N_COMPONENTS (info); c++) {
++    if (GST_VIDEO_FORMAT_INFO_PLANE (info, c) == plane) {
++      components[i] = c;
++      i++;
++    }
++  }
++
++  for (c = i; c < GST_VIDEO_MAX_COMPONENTS; c++)
++    components[c] = -1;
++}
+diff --git a/gst-libs/gst/video/video-format.h b/gst-libs/gst/video/video-format.h
+index 30189b277..1593e9842 100644
+--- a/gst-libs/gst/video/video-format.h
++++ b/gst-libs/gst/video/video-format.h
+@@ -516,6 +516,9 @@ struct _GstVideoFormatInfo {
+ #define GST_VIDEO_FORMAT_INFO_TILE_WS(info) ((info)->tile_ws)
+ #define GST_VIDEO_FORMAT_INFO_TILE_HS(info) ((info)->tile_hs)
+ 
++GST_VIDEO_API
++void gst_video_format_info_component                  (const GstVideoFormatInfo *info, guint plane, gint components[GST_VIDEO_MAX_COMPONENTS]);
++
+ /* format properties */
+ 
+ GST_VIDEO_API
+diff --git a/gst-libs/gst/video/video-info.c b/gst-libs/gst/video/video-info.c
+index 7aed05528..998bb56eb 100644
+--- a/gst-libs/gst/video/video-info.c
++++ b/gst-libs/gst/video/video-info.c
+@@ -106,7 +106,8 @@ gst_video_info_new (void)
+   return info;
+ }
+ 
+-static gboolean fill_planes (GstVideoInfo * info);
++static gboolean fill_planes (GstVideoInfo * info,
++    gsize plane_size[GST_VIDEO_MAX_PLANES]);
+ 
+ /**
+  * gst_video_info_init:
+@@ -247,7 +248,7 @@ gst_video_info_set_format (GstVideoInfo * info, GstVideoFormat format,
+   if (!gst_video_info_set_format_common (info, format, width, height))
+     return FALSE;
+ 
+-  return fill_planes (info);
++  return fill_planes (info, NULL);
+ }
+ 
+ /**
+@@ -275,7 +276,7 @@ gst_video_info_set_interlaced_format (GstVideoInfo * info,
+     return FALSE;
+ 
+   GST_VIDEO_INFO_INTERLACE_MODE (info) = mode;
+-  return fill_planes (info);
++  return fill_planes (info, NULL);
+ }
+ 
+ static const gchar *interlace_mode[] = {
+@@ -526,7 +527,7 @@ gst_video_info_from_caps (GstVideoInfo * info, const GstCaps * caps)
+     set_default_colorimetry (info);
+   }
+ 
+-  if (!fill_planes (info))
++  if (!fill_planes (info, NULL))
+     return FALSE;
+ 
+   return TRUE;
+@@ -750,7 +751,7 @@ gst_video_info_to_caps (GstVideoInfo * info)
+ }
+ 
+ static gboolean
+-fill_planes (GstVideoInfo * info)
++fill_planes (GstVideoInfo * info, gsize plane_size[GST_VIDEO_MAX_PLANES])
+ {
+   gsize width, height, cr_h;
+   gint bpp = 0, i;
+@@ -1124,6 +1125,25 @@ fill_planes (GstVideoInfo * info)
+       return FALSE;
+       break;
+   }
++
++  if (plane_size) {
++    for (i = 0; i < GST_VIDEO_MAX_PLANES; i++) {
++      if (i < GST_VIDEO_INFO_N_PLANES (info)) {
++        gint comps[GST_VIDEO_MAX_COMPONENTS];
++        guint plane_height;
++
++        /* Convert plane index to component index */
++        gst_video_format_info_component (info->finfo, i, comps);
++        plane_height =
++            GST_VIDEO_FORMAT_INFO_SCALE_HEIGHT (info->finfo, comps[0],
++            info->height);
++        plane_size[i] = plane_height * GST_VIDEO_INFO_PLANE_STRIDE (info, i);
++      } else {
++        plane_size[i] = 0;
++      }
++    }
++  }
++
+   return TRUE;
+ }
+ 
+@@ -1254,21 +1274,23 @@ done:
+ }
+ 
+ /**
+- * gst_video_info_align:
++ * gst_video_info_align_full:
+  * @info: a #GstVideoInfo
+  * @align: alignment parameters
++ * @plane_size: (out) (allow-none): array used to store the plane sizes
+  *
+- * Adjust the offset and stride fields in @info so that the padding and
+- * stride alignment in @align is respected.
+- *
+- * Extra padding will be added to the right side when stride alignment padding
+- * is required and @align will be updated with the new padding values.
++ * This variant of gst_video_info_align() provides the updated size, in bytes,
++ * of each video plane after the alignment, including all horizontal and vertical
++ * paddings.
+  *
+  * Returns: %FALSE if alignment could not be applied, e.g. because the
+- *   size of a frame can't be represented as a 32 bit integer (Since: 1.12)
++ *   size of a frame can't be represented as a 32 bit integer
++ *
++ * Since: 1.18
+  */
+ gboolean
+-gst_video_info_align (GstVideoInfo * info, GstVideoAlignment * align)
++gst_video_info_align_full (GstVideoInfo * info, GstVideoAlignment * align,
++    gsize plane_size[GST_VIDEO_MAX_PLANES])
+ {
+   const GstVideoFormatInfo *vinfo = info->finfo;
+   gint width, height;
+@@ -1320,7 +1342,7 @@ gst_video_info_align (GstVideoInfo * info, GstVideoAlignment * align)
+     info->width = padded_width;
+     info->height = padded_height;
+ 
+-    if (!fill_planes (info))
++    if (!fill_planes (info, plane_size))
+       return FALSE;
+ 
+     /* check alignment */
+@@ -1367,3 +1389,23 @@ gst_video_info_align (GstVideoInfo * info, GstVideoAlignment * align)
+ 
+   return TRUE;
+ }
++
++/**
++ * gst_video_info_align:
++ * @info: a #GstVideoInfo
++ * @align: alignment parameters
++ *
++ * Adjust the offset and stride fields in @info so that the padding and
++ * stride alignment in @align is respected.
++ *
++ * Extra padding will be added to the right side when stride alignment padding
++ * is required and @align will be updated with the new padding values.
++ *
++ * Returns: %FALSE if alignment could not be applied, e.g. because the
++ *   size of a frame can't be represented as a 32 bit integer (Since: 1.12)
++ */
++gboolean
++gst_video_info_align (GstVideoInfo * info, GstVideoAlignment * align)
++{
++  return gst_video_info_align_full (info, align, NULL);
++}
+diff --git a/gst-libs/gst/video/video-info.h b/gst-libs/gst/video/video-info.h
+index 6df82028f..3e0daf536 100644
+--- a/gst-libs/gst/video/video-info.h
++++ b/gst-libs/gst/video/video-info.h
+@@ -385,6 +385,14 @@ GType gst_video_info_get_type            (void);
+ #define GST_VIDEO_INFO_N_PLANES(i)       (GST_VIDEO_FORMAT_INFO_N_PLANES((i)->finfo))
+ #define GST_VIDEO_INFO_PLANE_OFFSET(i,p) ((i)->offset[p])
+ #define GST_VIDEO_INFO_PLANE_STRIDE(i,p) ((i)->stride[p])
++/**
++ * GST_VIDEO_INFO_PLANE_HEIGHT:
++ *
++ * The padded height of a plane (padded size divided by the plane stride).
++ *
++ * Since: 1.18
++ */
++#define GST_VIDEO_INFO_PLANE_HEIGHT(i,p,sizes) ((i)->stride[p] == 0 ? 0 : sizes[p] / (i)->stride[p])
+ 
+ /* dealing with components */
+ #define GST_VIDEO_INFO_N_COMPONENTS(i)   GST_VIDEO_FORMAT_INFO_N_COMPONENTS((i)->finfo)
+@@ -444,6 +452,8 @@ gboolean       gst_video_info_is_equal    (const GstVideoInfo *info,
+ GST_VIDEO_API
+ gboolean       gst_video_info_align       (GstVideoInfo * info, GstVideoAlignment * align);
+ 
++GST_VIDEO_API
++gboolean       gst_video_info_align_full  (GstVideoInfo * info, GstVideoAlignment * align, gsize plane_size[GST_VIDEO_MAX_PLANES]);
+ 
+ #ifdef G_DEFINE_AUTOPTR_CLEANUP_FUNC
+ G_DEFINE_AUTOPTR_CLEANUP_FUNC(GstVideoInfo, gst_video_info_free)
+-- 
+2.17.1
+

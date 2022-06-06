@@ -12,7 +12,7 @@ There are two methods for rebuilding FFmpeg with the |SDK| plugins enabled:
 Using the Source Code
 ============================
 
-The `sources/app-ffmpeg4-xma <https://github.com/Xilinx/app-ffmpeg4-xma/tree/v4.1.10>`_ submodule contains the entire source code for the FFmpeg executable included with the Video SDK. This is a fork of the main FFmpeg GitHub (release 4.1, commid ID bb01cd3cc01c9982e4b57f8ce5cfd6ec4724f848) with a :url_to_repo:`Xilinx patch applied <sources/app-ffmpeg4-xma-patch>` to enable the |SDK| plugins. Due to licensing restrictions, the FFmpeg executable included in the Video SDK is enabled with the |SDK| plugins only. 
+The :file:`sources/app-ffmpeg4-xma` submodule contains the entire source code for the FFmpeg executable included with the Video SDK. This is a fork of the main FFmpeg GitHub (release 4.4, tag n4.4, commid ID dc91b913b6260e85e1304c74ff7bb3c22a8c9fb1) with a Xilinx patch applied to enable the |SDK| plugins. Due to licensing restrictions, the FFmpeg executable included in the Video SDK is enabled with the |SDK| plugins only. 
 
 You can rebuild the FFmpeg executable with optional plugins by following the instructions below. Additionally, comprehensive instructions for compiling FFmpeg can be found `on the FFmpeg wiki page <https://trac.ffmpeg.org/wiki/CompilationGuide>`_. 
 
@@ -47,17 +47,17 @@ You can rebuild the FFmpeg executable with optional plugins by following the ins
 Using the Git Patch File
 ===============================
 
-The :url_to_repo:`Xilinx patch applied <sources/app-ffmpeg4-xma-patch>` folder contains a git patch file which can be applied to a FFmpeg fork to enable the |SDK| plugins.
+The :url_to_repo:`sources/app-ffmpeg4-xma-patch <sources/app-ffmpeg4-xma-patch>` folder contains a git patch file which can be applied to a FFmpeg fork to enable the |SDK| plugins.
 
-This patch is designed to apply to FFmpeg n4.1. As such, applying this patch to earlier or later versions of FFmpeg may require edits to successfully merge these changes and represent untested configurations.
+This patch is intended to be applied to FFmpeg n4.4. As such, applying this patch to earlier or later versions of FFmpeg may require edits to successfully merge these changes and represent untested configurations.
 
 The patch makes edits to FFmpeg and adds new plugins to FFmpeg to initialize, configure and use Xilinx video accelerators.
 
-Here is an example of how the patch can be applied to a FFmpeg fork:
+The patch can be applied to a FFmpeg fork as follows:
 
-#. Clone the n4.1 version of FFmpeg::
+#. Clone the n4.4 version of FFmpeg::
 
-    git clone https://github.com/FFmpeg/FFmpeg.git -b n4.1
+    git clone https://github.com/FFmpeg/FFmpeg.git -b n4.4
 
 #. After the git clone, you will have a directory named FFmpeg. Enter this directory::
 
@@ -65,13 +65,23 @@ Here is an example of how the patch can be applied to a FFmpeg fork:
 
 #. Copy the patch file into the FFmpeg directory::
 
-    cp /path/to/sources/app-ffmpeg4-xma-patch/0001-Add-plugins-to-support-U30-based-Video-SDK-v1.5.0.patch .
+    cp /path/to/sources/app-ffmpeg4-xma-patch/0001-Support-for-Xilinx-U30-SDK-v2-for-FFmpeg-n4.4.patch .
 
 #. Apply the patch::
 
-    git am 0001-Add-plugins-to-support-U30-based-Video-SDK-v1.5.0.patch --ignore-whitespace --ignore-space-change
+    git am 0001-Support-for-Xilinx-U30-SDK-v2-for-FFmpeg-n4.4.patch --ignore-whitespace --ignore-space-change
 
-#. You can then install additional FFmpeg plugins and proceed with the FFmpeg build and installation process.
+#. Optionally install FFmpeg plugins you wish to enable (either from source or from your package manager like ``yum`` or ``apt``). For example: libx264, or libx265.
+
+#. Configure FFmpeg with ``--enable`` flags to enable the desired plugins. The ``-enable-libxma2api`` flag enables the |SDK| plugins. The command below will configure the Makefile to install the custom FFmpeg in the :file:`/tmp/ffmpeg` directory. To install in another location, modify the ``--prefix`` and ``--datadir`` options::
+
+    ./configure --prefix=/tmp/ffmpeg --datadir=/tmp/ffmpeg/etc  --enable-x86asm --enable-libxma2api --disable-doc --enable-libxvbm --enable-libxrm --extra-cflags=-I/opt/xilinx/xrt/include/xma2 --extra-ldflags=-L/opt/xilinx/xrt/lib --extra-libs=-lxma2api --extra-libs=-lxrt_core --extra-libs=-lxrt_coreutil --extra-libs=-lpthread --extra-libs=-ldl --disable-static --enable-shared
+
+#. Build and install the FFmpeg executable::
+
+    make -j && sudo make install
+
+#. The :file:`/opt/xilinx/xcdr/setup.sh` script puts the Xilinx-provided FFmpeg in the :envvar:`PATH` environment variable. To use the newly built FFmpeg, update your :envvar:`PATH` or provide the full path to the custom-built executable. 
 
 ..
   ------------

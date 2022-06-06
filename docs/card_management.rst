@@ -207,44 +207,95 @@ The ``xbutil examine`` commands provides useful details about your environment a
       [0000:22:00.1] : xilinx_u30_gen3x4_base_1 
       [0000:21:00.1] : xilinx_u30_gen3x4_base_1 
 
+.. |
+
+.. .. _device-details:
+
+.. **************************************
+.. Checking Device Configuration
+.. **************************************
+
+.. The ``xbmgmt examine -d <Management BDF>`` commands provides additional details about the configuration of each Xilinx device installed. 
+
+.. For example, for the device with Management BDF 0000:e3:00.0::
+
+..     $ sudo /opt/xilinx/xrt/bin/xbmgmt examine -d e3:00.0
+
+..     ----------------------------------------------
+..     1/1 [0000:e3:00.0] : xilinx_u30_gen3x4_base_1
+..     ----------------------------------------------
+..     Flash properties
+..       Type                 : qspi_ps_x2_single
+..       Serial Number        : XFL1RT5PHT31
+
+..     Flashable partitions running on FPGA
+..       Platform             : xilinx_u30_gen3x4_base_1
+..       SC Version           : 6.3.8(FIXED)
+..       Platform UUID        : 1B5FEB2A-91B6-818D-A3E8-D9867DE17DA0
+..       Interface UUID       : 937ED708-67CF-3350-BC06-304053F4293C
+
+..     Flashable partitions installed in system
+..       Platform             : xilinx_u30_gen3x4_base_1
+..       SC Version           : 6.3.8
+..       Platform UUID        : 1B5FEB2A-91B6-818D-A3E8-D9867DE17DA0
+
 |
 
-.. _device-details:
+.. _device-status:
 
 **************************************
-Inspecting Device Details
+Checking Device Status
 **************************************
 
-The ``xbmgmt examine -d <Management BDF>`` commands provides additional details about the status and configuration of each Xilinx device installed. 
+The ``xbutil examine -d <User BDF> --report <type>`` commands provides additional details about the status of each Xilinx device installed. 
 
-For example, for the device with Management BDF 0000:e3:00.0::
+The --report (or -r) switch is used to view specific report(s) of interest from the following options:
 
-    $ sudo /opt/xilinx/xrt/bin/xbmgmt examine -d e3:00.0
+- ``electrical``: Reports Electrical and power sensors present on the device
+- ``firewall``: Reports the current firewall status
+- ``host``: Reports the host configuration and drivers
+- ``mailbox``: Mailbox metrics of the device
+- ``memory``: Reports memory topology of the XCLBIN (if XCLBIN is already loaded)
+- ``pcie-info``: PCIe information of the device
+- ``platform``: Platforms flashed on the device
+- ``thermal``: Reports thermal sensors present on the device
+
+These reports can also be generated in a JSON file by adding ``--format JSON -o <filename>`` to the ``xbutil examine`` command.
+
+Example of thermal and electrical reports for the device with User BDF 0000:e3:00.1::
+
+    $ xbutil examine -d e3:00.1 --report thermal electrical
 
     ----------------------------------------------
-    1/1 [0000:e3:00.0] : xilinx_u30_gen3x4_base_1
+    1/1 [0000:e3:00.1] : xilinx_u30_gen3x4_base_2
     ----------------------------------------------
-    Flash properties
-      Type                 : qspi_ps_x2_single
-      Serial Number        : XFL1RT5PHT31
+    Thermals
+      PCB Top Front          : 32 C
+      PCB Top Rear           : 34 C
+      FPGA                   : 37 C
 
-    Flashable partitions running on FPGA
-      Platform             : xilinx_u30_gen3x4_base_1
-      SC Version           : 6.3.8(FIXED)
-      Platform UUID        : 1B5FEB2A-91B6-818D-A3E8-D9867DE17DA0
-      Interface UUID       : 937ED708-67CF-3350-BC06-304053F4293C
+    Electrical
+      Max Power              : 75 Watts
+      Power                  : 15.156126 Watts
+      Power Warning          : false
 
-    Flashable partitions installed in system
-      Platform             : xilinx_u30_gen3x4_base_1
-      SC Version           : 6.3.8
-      Platform UUID        : 1B5FEB2A-91B6-818D-A3E8-D9867DE17DA0
+      Power Rails            : Voltage   Current
+      12 Volts PCI Express   : 12.203 V,  1.242 A
+      Internal FPGA Vcc      :  0.852 V, 10.063 A
+      DDR Vpp Top            :  2.493 V
+      Vcc 1.2 Volts Top      :  1.211 V
+      1.8 Volts Top          :  1.803 V
+      0.9 Volts Vcc          :  0.898 V
+      Mgt Vtt                :  1.217 V
+      3.3 Volts Vcc          :  3.321 V
+      0.9 Volts Vcc Vcu      :  0.900 V
 
 |
 
 .. _xbutil-validate:
 
 *******************************
-Checking and Validating Devices
+Running Device Self-Test
 *******************************
 
 The ``xbutil validate`` command can be used to check and validate the health of the devices on your Alveo U30 cards by executing a special built-in test. In order to run this command, the XRM daemon must first be stopped, otherwise the test will error with ``xclbin on card is in use`` and ``failed to load xclbin`` messages.
@@ -265,6 +316,16 @@ The ``xbutil validate`` command can be used to check and validate the health of 
 
     sudo /opt/xilinx/xrm/tools/start_xrmd.sh
     source /opt/xilinx/xcdr/setup.sh
+
+|
+
+.. _managing-compute-resources:
+
+**********************************
+Checking Resource Utilization
+**********************************
+
+The XRM and card management tools provide methods to estimate CU requirements and check current device load. Refer to the :ref:`Managing Resource Management <manual-resource-management>` section of the Job and Resource Management guide pto more details about this topic.
 
 |
 
@@ -291,67 +352,6 @@ Knowing which devices are on which card is useful to selectively reset or recove
 
 #. Note the serial number associated with each BDF. Two devices with the same serial number are on the same card. 
 
-
-|
-
-.. _managing-resources:
-
-**********************************
-Managing Resource Utilization
-**********************************
-
-Given that each device has a 2160p60 (4K) input and output bandwidth limit, the user is responsible for only submitting jobs which will not exceed the capacity of the specified device. This section provides information on how to estimate CU requirements and check current device load.
-
-.. rubric:: Checking System Load
-
-To check the current loading of all the devices in your system, use the following command::
-
-    xrmadm /opt/xilinx/xrm/test/list_cmd.json
-
-This will generate a report in JSON format containing the load information for all the compute unit (CU) resources. The report contains a section for each device in the system. The device sections contain sub-sections for each of the CUs (decoder, scaler, lookahead, encoder) in that device. For example, the load information for the encoder on device 0 may look as follows:: 
-
-    "device_0": {
-        ...
-        "cu_4": {
-            "cuId         ": "4",
-            "cuType       ": "IP Kernel",
-            "kernelName   ": "encoder",
-            "kernelAlias  ": "ENCODER_MPSOC",
-            "instanceName ": "encoder_1",
-            "cuName       ": "encoder:encoder_1",
-            "kernelPlugin ": "/opt/xilinx/xma_plugins/libvcu-xma-enc-plg.so",
-            "maxCapacity  ": "497664000",
-            "numChanInuse ": "20",
-            "usedLoad     ": "831472 of 1000000",
-            "reservedLoad ": "0 of 1000000",
-            "resrvUsedLoad": "0 of 1000000"
-        },
-
-
-The ``usedLoad`` value indicates how much of that resource is currently being used. The value will range from 0 (nothing running) to 1000000 (fully loaded). The ``reservedLoad`` value indicates how much of that resource is being reserved using XRM. The ``resrvUsedLoad`` value indicates how much of the reserved load is actually being used.
-
-In the above example, the encoder is 83.14% utilized. An additional job may only be run on this device if it requires less than 17% of the encoder resources.
-
-.. rubric:: Insufficient Resources
-
-If there are not enough compute unit resources available on the device to support a FFmpeg job, the job will error out with a message about resource allocation failure::
-
-    xrm_allocation: failed to allocate decoder resources from device 0
-    [MPSOC HEVC decoder @ 0x562c7695b200] xrm_allocation: resource allocation failed
-
-In this case, you can check the system load (as described in the section below) and look for a device with enough free resources, or wait until another job finishes and releases enough resources to run the desired job.
-
-
-.. rubric:: Job Resource Requirements
-
-The load of a given job can be estimated by taking the resolution of the job as a percentage of the 2160p60 (4K) maximum. For instance, a 1080p60 stream will require 25% of the resources available on a device.
-
-In addition, it is possible to run FFmpeg with the :option:`-loglevel` option set to ``debug`` to get information about the resource requirements for a given job. The messages generated in the transcript will look as follow::
-
-  ---decoder xrm out: dec_load=250000, plugin=/opt/xilinx/xma_plugins/libvcu-xma-dec-plg.so, device=0, cu=6, ch=0
-  ---encoder xrm out: enc_load=250000, plugin=/opt/xilinx/xma_plugins/libvcu-xma-enc-plg.so, device=0, cu=38, ch=0
-
-Resource loads are reported with a precision of 1/1000000. In the above example, the job requires 25% of the decoder resources and 25% of the encoder resources on the device.
 
 |
 
@@ -426,7 +426,7 @@ Standard Recovery Flow
 
     sudo /opt/xilinx/xrt/bin/xbmgmt program --revert-to-golden --device <BDF>
 
-   NOTE: You may receive an error indicating ``Factory reset not supported. No Golden image found on flash.``. This is a known issue which is permanently resolved by following these instructions: :ref:`reflashing the golden image<flashing-the-golden-image>`.
+   NOTE: You may receive an error indicating ``Factory reset not supported. No Golden image found on flash.``. This indicates the golden image must first be reflashed by following these instructions: `reflashing the golden image <https://github.com/Xilinx/video-sdk/issues/16#issuecomment-996230146>`_.
    
 #. Cold boot the machine when all desired devices have been reverted to factory settings.
 

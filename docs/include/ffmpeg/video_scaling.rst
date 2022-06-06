@@ -4,35 +4,20 @@
 Video Scaling
 *****************************************************
 
-Xilinx devices provide hardware-accelerated video decoding, scaling, and encoding. Each device supports multiple input channels (raw or encoded) up to a total equivalent bandwidth of 4kp60. Using the Multiscale XMA FFmpeg plug-in included in the |SDK|, each input channel can be scaled in hardware to multiple lower resolution and/or lower frame rate outputs.
-
-The |SDK| supports the following scaling features and capabilities:
-
-- Up to 32 input streams of raw or encoded video can be scaled down per device
-- Each input stream can be scaled down to a maximum of 8 outputs streams of lower resolution and/or lower frame rate
-- Up to 32 scaled outputs streams are supported per device, up to a maximum total equivalent bandwidth of 4kp60
-- The scaler supports spatial resolutions from 3840x2160 to 128x128, in multiples of 4 
-- Scaled output streams can optionally be encoded to H.264 of HEVC, using the same codec for all streams
-- The scaler passes scaled frames and meta data to the next scaling level (if one is defined) and to the encoder (if one is being used)
-- Each level of scaling adds a little more latency to the pipeline
-
-For additional details about the specification of the hardware scaler, refer to the :ref:`Adaptive Bitrate Scaler features <adaptive-bitrate-scaler>` section in the introductory chapter of this user guide. 
-
 The figure below illustrates a scaling ladder with a 1920x1080 input and 4 outputs with resolutions of 1280x720, 852x480, 640x360, and 416x240, respectively. 
 
-.. image:: ./images/abr-ladder.png
+.. figure:: ./images/abr_ladder.png
     :alt: output from one rung is passed to the next for further scaling
     :align: center
 
+    Scaling ladder: the output from one rung is passed to the next for further scaling
 
-**IMPORTANT:** The frame rate and resolution of a given output should be smaller or equal than the rate of the previous output. Since the output of one scaling stage is passed as an input to the next, video quality will be negatively affected if frame rate is increased after it has been lowered.
+**IMPORTANT:** The scaler is tuned for downscaling and expects non-increasing resolutions in an ABR ladder. Increasing resolutions between outputs is supported but will reduce video quality. For best results, the outputs must be configured in descending order. The frame rate and resolution of a given output should be smaller or equal than the rate of the previous output. Since the output of one scaling stage is passed as an input to the next, video quality will be negatively affected if frame rate is increased after it has been lowered.
 
-|
+For the complete list of features and capabilities of the Xilinx hardware scaler, refer to the :ref:`Adaptive Bitrate Scaler features <adaptive-bitrate-scaler>` section of the :doc:`Specs and Features </specs_and_features>` chapter of the documentation.
 
-Multiscale Filter Options
-==========================================
+The Xilinx hardware scaler is leveraged in FFmpeg by using the :option:`multiscale_xma` complex filter and the `FFmpeg filter graph syntax <https://ffmpeg.org/ffmpeg-filters.html#Filtergraph-syntax-1>`_. This section describes the options of the :option:`multiscale_xma` complex filter.
 
-An ABR ladder is created using the :option:`multiscale_xma` complex filter and the `FFmpeg filter graph syntax <https://ffmpeg.org/ffmpeg-filters.html#Filtergraph-syntax-1>`_. This section describes the options of the :option:`multiscale_xma` complex filter.
 
 .. option:: multiscale_xma
 
@@ -50,27 +35,28 @@ An ABR ladder is created using the :option:`multiscale_xma` complex filter and t
        | Valid values are integers between 1 and 8     
    * - .. option:: out_{N}_width
      - | **Specify the width of each of the scaler outputs**
-       | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs 
-       | specified with :option:`outputs`     
+       | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs specified with :option:`outputs`
        | Valid values are integers between 3840 and 128, in multiples of 4  
-       | The frame resolution of a given output should be smaller or equal than the resolution of the previous output
    * - .. option:: out_{N}_height
      - | **Specify the height of each of the scaler outputs**    
-       | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs 
-       | specified with :option:`outputs`     
+       | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs specified with :option:`outputs`
        | Valid values are integers between 2160 and 128, in multiples of 4  
-       | The frame resolution of a given output should be smaller or equal than the resolution of the previous output
    * - .. option:: out_{N}_rate
      - | **Specify the frame rate of each of the scaler outputs**
-       | By default, the scaler uses the input stream frame rate for all outputs. While the encoder supports frame 
-       | dropping with the -r option, there is also hardware support in the scaler for dropping frames. Dropping 
-       | frames in the scaler is preferred since it saves scaler bandwidth, allowing the scaler and encoder to operate 
-       | more efficiently. 
-       | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs 
-       | specified with :option:`outputs`
-       | Valid values are ``full`` (default) and ``half``                 
-       | The first output has to be full rate output (``out_1_rate=full``)
-       | The frame rate of a given output should be smaller or equal than the resolution of the previous output
+       | By default, the scaler uses the input stream frame rate for all outputs. While the encoder supports frame dropping with the -r option, there is also hardware support in the scaler for dropping frames. Dropping frames in the scaler is preferred since it saves scaler bandwidth, allowing the scaler and encoder to operate more efficiently.
+       | The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs specified with :option:`outputs`
+       | Valid values: ``full`` and ``half`` (default ``full``). The first output has to be at full rate (``out_1_rate=full``).
+   * - .. option:: -lxlnx_hwdev   
+     - | **Specify the ID of the device on which the scaler should be executed**
+       | Valid values: integers from -1 to INT_MAX (default -1)
+       | This option is primarily used for multi-device use cases. When set, it overwrites the global :option:`-xlnx_hwdev` option. Consult the :ref:`Using Explicit Device IDs <using-explicit-device-ids>` section for more details on how to use this option.
+   * - .. option:: enable_pipeline
+     - | **Enable pipelining in multiscaler**
+       | Pipelining provides additional performance at the cost of additional latency (2 frames). By default, pipelining is automatically controlled based on where the scaler input is coming from. If the input is coming from the host, pipelining is enabled. If the input is coming from the decoder then pipelining is disabled. Explicitly enabling pipelining has benefits in two situations: in a 2-device use cases where the output of the scaler is transfered to the host; in zero copy 4K ABR ladder use cases with multiple renditions.
+       | Valid values: -1 to 1 (default -1)
+       | auto (-1)
+       | disabled (0)
+       | enabled (1)
 
 |
 
@@ -103,13 +89,14 @@ The following example shows a complete command to decode, scale and encode to fi
       -map "[c]"   -b:v 1250K -c:v mpsoc_vcu_h264 -f mp4 -y ./scaled_360p30.mp4 \
       -map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -f mp4 -y ./scaled_288p30.mp4
 
-This example can also be found in the FFMpeg introductory tutorials: :ref:`Transcode With Multiple-Resolution Outputs <transcode-with-abr-ladder>`.
+This example can also be found in the FFmpeg introductory tutorials: :ref:`Transcode With Multiple-Resolution Outputs <transcode-with-abr-ladder>`.
 
 
 Encoding Scaler Outputs
 -----------------------
 
-The outputs of an ABR ladder can be encoded on the device using either the ``mpsoc_vcu_h264`` or the ``mpsoc_vcu_hevc`` codec. **IMPORTANT:** All outputs must be encoded using the same codec.
+The outputs of an ABR ladder can be encoded on the device using either the ``mpsoc_vcu_h264`` or the ``mpsoc_vcu_hevc`` codec. 
+All outputs must be encoded using the same codec.
 
 
 Using Raw Scaler Outputs
@@ -133,8 +120,15 @@ To return raw video outputs from the ABR ladder, use the :option:`xvbm_convert` 
   -map "[c1]"   -pix_fmt yuv420p -f rawvideo ./scaled_360p30.yuv \
   -map "[d1]"   -pix_fmt yuv420p -f rawvideo ./scaled_288p30.yuv
 
-This example can also be found in the FFMpeg introductory tutorials: :ref:`Decode Only Into Multiple-Resolution Outputs <decode-and-scale-only>`.
+This example can also be found in the FFmpeg introductory tutorials: :ref:`Decode Only Into Multiple-Resolution Outputs <decode-and-scale-only>`.
 
+
+Scaling and Encoding on Two Different Devices
+---------------------------------------------
+
+The |SDK| supports up to 32 scaled outputs streams per device, up to a maximum total equivalent bandwidth of 4kp60. For some use cases, such as 4K ladders or 1080p ladders many outputs, it may not be possible to scale or encode all streams on a single device. In this situation, it is possible to split the job across two devices and run part of job on one device and the other part on another device. This accomplished by using the :option:`-lxlnx_hwdev` option which allows specifying the device on which a specific job component (decoder, scaler, encoder) should be run.  
+
+Consult the :ref:`Using Explicit Device IDs <using-explicit-device-ids>` section for more details on how to use the :option:`-lxlnx_hwdev` option and work with multiple devices.
 
 Performance Considerations
 ==========================

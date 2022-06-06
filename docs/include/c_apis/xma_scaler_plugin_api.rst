@@ -48,9 +48,9 @@ This function is called after calling the :c:func:`xma_scaler_session_send_frame
 
 The scaler plugin supports both :c:macro:`XMA_HOST_BUFFER_TYPE` and :c:macro:`XMA_DEVICE_BUFFER_TYPE` output buffers. The application indicates the buffer type through the :c:struct:`XmaFrameProperties` of the :c:struct:`XmaFrame` specified in the frame list.
 
-When using :c:macro:`XMA_HOST_BUFFER_TYPE` buffers, the application is responsible for allocating the host memory for each frame. An example of how to do this can be found in the :url_to_repo:`examples/xma/scale_only/src/xlnx_scal_utils.c` file of the sample XMA scaler app.
+When using :c:macro:`XMA_HOST_BUFFER_TYPE` buffers, the application is responsible for allocating the host memory for each frame. An example of how to do this can be found in the :url_to_repo:`examples/xma/scaler/lib/src/xlnx_scal_utils.c#L55` file of the sample XMA scaler app.
 
-When using :c:macro:`XMA_DEVICE_BUFFER_TYPE` buffers, the scaler plugin takes care of allocating XVBM buffers. The application can then access the buffer, release it the plugin or transfer it to another plugin using the XVBM APIs, as explained in the :ref:`XVBM library <xvbm_reference>` section. An example of a scaler session using :c:macro:`XMA_DEVICE_BUFFER_TYPE` buffers can be found in the :url_to_repo:`examples/xma/transcode/src/xlnx_scaler.c` file of the sample XMA transcoder app.
+When using :c:macro:`XMA_DEVICE_BUFFER_TYPE` buffers, the scaler plugin takes care of allocating XVBM buffers. The application can then access the buffer, release it the plugin or transfer it to another plugin using the XVBM APIs, as explained in the :ref:`XVBM library <xvbm_reference>` section. An example of a scaler session using :c:macro:`XMA_DEVICE_BUFFER_TYPE` buffers can be found in the :url_to_repo:`examples/xma/transcoder/lib/src/xlnx_scaler.c#L203` file of the sample XMA transcoder app.
 
 |
 
@@ -65,7 +65,7 @@ Scaler Properties
 
 The Xilinx scaler is configured using a combination of standard XMA scaler properties, standard XMA scaler input and ouput properties and custom scaler parameters, all of which are specified using :c:struct:`XmaScalerFilterProperties` and :c:struct:`XmaScalerInOutProperties` data structures. 
 
-To facilitate application development, Xilinx recommends working with a simplified data structure from which the required :c:struct:`XmaScalerFilterProperties` and :c:struct:`XmaScalerInOutProperties` can be populated using a specialized function. A reusable example of this can found in the :url_to_repo:`examples/xma/transcode/include/xlnx_transcoder_xma_props.h` and :url_to_repo:`examples/xma/transcode/src/xlnx_transcoder_xma_props.c` files of the XMA transcoder example application.
+To facilitate application development, Xilinx recommends working with a simplified data structure from which the required :c:struct:`XmaScalerFilterProperties` and :c:struct:`XmaScalerInOutProperties` can be populated using a specialized function. A reusable example of this can found in the :url_to_repo:`examples/xma/transcoder/lib/include/xlnx_transcoder_xma_props.h` and :url_to_repo:`examples/xma/transcoder/lib/src/xlnx_transcoder_xma_props.c` files of the XMA transcoder example application.
 
 |
 
@@ -189,7 +189,7 @@ Steps to implement full rate and half rate in application:
 #. When creating the second session, use the address of the first session as value of the "MixRate" custom parameter. Based on this, the scaler plugin allocates more output buffers.
 #. Call scaler send and receive with full rate and all rate sessions alternatively.
 
-For an example of how to implement mix-rate scaling, refer to the :url_to_repo:`examples/xma/transcode/src/xlnx_scaler.c` file in the sample XMA scaler application.
+For an example of how to implement mix-rate scaling, refer to the :url_to_repo:`examples/xma/transcoder/lib/src/xlnx_scaler.c#L244` file in the sample XMA scaler application.
 
 ..
   ------------

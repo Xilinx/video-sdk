@@ -31,7 +31,7 @@ Creating a Docker Image for |VT1| Usage
 
 #. If not already available, clone the video-sdk repository on your machine::
 
-    git clone https://github.com/Xilinx/video-sdk -b v1.5 --depth 1
+    git clone https://github.com/Xilinx/video-sdk -b v2.0 --depth 1
 
 #. Navigate to the root of the video-sdk repository::
 
@@ -39,7 +39,7 @@ Creating a Docker Image for |VT1| Usage
 
 #. Build the docker image using the supplied Dockerfile corresponding to the desired OS::
 
-    docker build -t video_sdk_image:v1 -f dockerfiles/vt1/Dockerfile.<Desired OS> . 
+    docker build -t video_sdk_image:v2 -f dockerfiles/vt1/Dockerfile.<Desired OS> . 
 
 .. _launch-docker-vt1:
 
@@ -56,7 +56,7 @@ Launching a Docker Container on |VT1|
 
     docker run -it --device=/dev/dri/renderD<ID1>:/dev/dri/renderD<ID1> 
                    --device=/dev/dri/renderD<ID2>:/dev/dri/renderD<ID2> 
-                   video_sdk_image:v1 /bin/bash
+                   video_sdk_image:v2 /bin/bash
 
 #. Once in the container, validate that the desired devices have been successfully mapped and can properly be used::
 
@@ -80,7 +80,7 @@ Creating a Docker Image for On-Prem Usage
 
 #. If not already available, clone the video-sdk repository on your machine::
 
-    git clone https://github.com/Xilinx/video-sdk -b v1.5 --depth 1
+    git clone https://github.com/Xilinx/video-sdk -b v2.0 --depth 1
 
 #. Navigate to the root of the video-sdk repository::
 
@@ -88,7 +88,7 @@ Creating a Docker Image for On-Prem Usage
 
 #. Build the docker image using the supplied Dockerfile corresponding to the desired OS::
 
-    docker build -t video_sdk_image:v1 -f dockerfiles/on_prem/Dockerfile.<Desired OS> . 
+    docker build -t video_sdk_image:v2 -f dockerfiles/on_prem/Dockerfile.<Desired OS> . 
 
 .. _launch-docker-on-prem:
 
@@ -111,7 +111,7 @@ Launching a Docker Container On-Premises
 
     docker run -it --device=/dev/dri/renderD<ID1>:/dev/dri/renderD<ID1> --device=/dev/xclmgmt<ID1>:/dev/xclmgmt<ID1>
                    --device=/dev/dri/renderD<ID2>:/dev/dri/renderD<ID2> --device=/dev/xclmgmt<ID2>:/dev/xclmgmt<ID2>
-                   video_sdk_image:v1 /bin/bash
+                   video_sdk_image:v2 /bin/bash
 
 #. Once in the container, validate that the desired devices have been successfully mapped and can properly be used::
 

@@ -22,9 +22,9 @@
 # The 1080p60 input is scaled down to the following resolutions, framerates, and bitrates (respectively):
 # 720p60 4.0   Mbps
 # 720p30 3.0   Mbps
-# 848p30 2.5   Mbps
+# 480p30 2.5   Mbps
 # 360p30 1.25  Mbps
-# 288p30 0.625 Mbps
+# 160p30 0.625 Mbps
 
 # You may edit this to enable other output bitrates (-b:v).
 # You may change the output framerate via the (-r) flags
@@ -55,7 +55,7 @@ out_4_width=288:  out_4_height=160: out_4_rate=half  \
 -map "[abb]" -b:v 3M    -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_720p30.mp4 \
 -map "[b]"   -b:v 2500K -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_480p30.mp4 \
 -map "[c]"   -b:v 1250K -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_360p30.mp4 \
--map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_288p30.mp4
+-map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_160p30.mp4
 
 
 # FFmpeg command to process audio as well as video. 
@@ -73,4 +73,4 @@ out_4_width=288:  out_4_height=160: out_4_rate=half  \
 # -map "[abb]" -b:v 3M    -c:v mpsoc_vcu_h264 -map "[aud2]" -f mp4 -y /tmp/xil_xcode_scale_720p30.mp4 \
 # -map "[b]"   -b:v 2500K -c:v mpsoc_vcu_h264 -map "[aud3]" -f mp4 -y /tmp/xil_xcode_scale_480p30.mp4 \
 # -map "[c]"   -b:v 1250K -c:v mpsoc_vcu_h264 -map "[aud4]" -f mp4 -y /tmp/xil_xcode_scale_360p30.mp4 \
-# -map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -map "[aud5]" -f mp4 -y /tmp/xil_xcode_scale_288p30.mp4
+# -map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -map "[aud5]" -f mp4 -y /tmp/xil_xcode_scale_160p30.mp4

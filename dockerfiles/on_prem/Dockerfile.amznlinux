@@ -30,12 +30,14 @@ RUN yum -y install git libxml2-devel scl-utils
 RUN git clone https://github.com/gdraheim/docker-systemctl-replacement.git /usr/local/share/docker-systemctl-replacement
 RUN echo "alias systemctl='python3 /usr/local/share/docker-systemctl-replacement/files/docker/systemctl3.py'" >> /root/.bashrc
 RUN ln -s /usr/local/share/docker-systemctl-replacement/files/docker/systemctl3.py /usr/local/bin/systemctl
+RUN mv /usr/bin/systemctl /usr/bin/systemctl.fac
+RUN ln -s /usr/local/bin/systemctl /usr/bin/systemctl
 RUN export PATH=/usr/local/bin/:$PATH
 
 # Dockerfile assumes that the video-sdk repo has been cloned locally
 COPY release ./release
 RUN ls -l /usr/src/build/release
-RUN cd /usr/src/build/release/U30_Amazon_2.0_v1.5_20210827; ./install.sh
+RUN cd /usr/src/build/release/U30_AmazonLinux_2.0_v2.0; ./install
 
 # Build and/or install FFmpeg dependencies
 RUN yum -y install libva-dev libsdl2-dev wget autoconf automake build-essential

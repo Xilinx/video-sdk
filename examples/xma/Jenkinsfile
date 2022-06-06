@@ -1,0 +1,133 @@
+pipeline {
+    agent {
+        label "Ubuntu1804_Agent"
+    }
+    stages {
+        stage ('git'){
+            steps {
+                checkout([
+                    $class: 'GitSCM',
+                    branches: scm.branches,
+                    doGenerateSubmoduleConfigurations: false,
+                    extensions: scm.extensions + [[$class: 'SubmoduleOption', disableSubmodules: false, recursiveSubmodules: true, reference: '', trackingSubmodules: false]],
+                    submoduleCfg: [],
+                    userRemoteConfigs: scm.userRemoteConfigs])
+            }
+        }
+        stage ('pre-analysis: scan-build') {
+            steps {
+                sh '''#!/bin/bash -x
+                    set +e
+                    source /opt/xilinx/xrt/setup.sh
+                    make clean
+                    rm -rf ${WORKSPACE}/scanbuild_results
+                    rm -rf ${WORKSPACE}/clangScanBuildReports
+                    scan-build -o ${WORKSPACE}/clangScanBuildReports make -j4
+                    ls -al ${WORKSPACE}/clangScanBuildReports/*
+                    if [ -d ${WORKSPACE}/clangScanBuildReports/* ]
+                        then
+                            mkdir -p ${WORKSPACE}/scanbuild_results/
+                            cp -r ${WORKSPACE}/clangScanBuildReports/*/* ${WORKSPACE}/scanbuild_results/.
+                            ls -al  ${WORKSPACE}/scanbuild_results/*
+                    fi
+                    set -e
+                '''
+                script {
+                    def files = findFiles glob: '**/scanbuild_results/*'
+                    if (files.length > 0){
+                        println("Bugs found in scan-build step")
+                        publishHTML([allowMissing: false, alwaysLinkToLastBuild: true, keepAll: true, reportDir: 'scanbuild_results', reportFiles: 'index.html', reportName: 'Scan-Build Report', reportTitles: 'Scan-Build Results'])
+                    }else{
+                        println("No bugs found in scan-build")
+                    }
+                }
+            }
+        }
+        stage ('pre-analysis: cppCheck') {
+            steps {
+                sh '''#!/bin/bash -x
+                    set +e
+                    cppcheck --enable=warning,performance,portability,information,unusedFunction --inconclusive --check-config -I include/ -I/opt/xilinx/xrt/include/xma2 -I/opt/xilinx/xrt/include -I/opt/xilinx/xrt/include/xma2 -I/opt/xilinx/xrt/include -I/opt/xilinx/xvbm/include -I/opt/xilinx/xrm/include -I/opt/xilinx/xrt/include  --suppress=missingIncludeSystem --xml --xml-version=2 . 2> cppcheck.xml
+                    set -e
+                '''
+                publishCppcheck pattern:'cppcheck.xml'
+            }
+        }
+        stage ('analysis: cpplint'){
+            steps {
+                withPythonEnv('/bin/python3') {
+                    sh '''#!/bin/bash -x
+                        set +e
+                        pip install cpplint
+                        pip install cpplint-junit
+                        cpplint --recursive --extensions=hpp,cpp,h,c --counting=detailed . 2>&1 | tee cpplint-result.txt
+                        cpplint_junit cpplint-result.txt cpplint_junit.xml
+                        set -e
+                    '''
+                }
+                //Generate report for CppLint
+                recordIssues(enabledForFailure: true, aggregatingResults: true, tools: [cppLint(name: 'C++Lint'), checkStyle(pattern: 'cpplint_junit.xml', reportEncoding: 'ISO-8859-1')])
+            }
+        }
+        stage ('build and gcc coverage'){
+            steps {
+                script {
+                    sh '''#!/bin/bash -x
+                        set +e
+                        rm -rf ${WORKSPACE}/gcoverage_results
+                        mkdir -p ${WORKSPACE}/gcoverage_results
+                        source /opt/xilinx/xrt/setup.sh
+                        make clean
+                        make
+                        ./u30_xma_decode
+                        ./u30_xma_encode
+                        ./u30_xma_transcode
+                        ./u30_xma_scale
+                        set -e
+                        gcovr -r . --xml-pretty > gcoverage-results.xml
+                    '''
+                }
+                cobertura autoUpdateHealth: false, autoUpdateStability: false, coberturaReportFile: 'gcoverage-results.xml', conditionalCoverageTargets: '20, 0, 0', enableNewApi: true, failNoReports: false, failUnhealthy: false, failUnstable: false, fileCoverageTargets: '20, 0, 0', lineCoverageTargets: '20, 0, 0', maxNumberOfBuilds: 0, methodCoverageTargets: '20, 0, 0', onlyStable: false, packageCoverageTargets: '20, 0, 0', zoomCoverageChart: false
+            }
+        }
+        stage('Valgrind') {
+            steps {
+                script{
+                    sh '''#!/bin/bash
+                        set +e
+                        source /opt/xilinx/xrt/setup.sh
+                        valgrind --tool=memcheck --leak-check=full --show-reachable=yes \
+                            --undef-value-errors=yes --track-origins=yes --child-silent-after-fork=yes \
+                            --trace-children=yes --gen-suppressions=all --xml=yes \
+                            --xml-file=${WORKSPACE}/u30_xma_enc.%p.memcheck \
+                            ${WORKSPACE}/build/u30_xma_enc
+                        set -e
+                    '''
+                }
+
+                publishValgrind (
+                  failBuildOnInvalidReports: false,
+                  failBuildOnMissingReports: false,
+                  failThresholdDefinitelyLost: '',
+                  failThresholdInvalidReadWrite: '',
+                  failThresholdTotal: '',
+                  pattern: '*.memcheck',
+                  publishResultsForAbortedBuilds: false,
+                  publishResultsForFailedBuilds: false,
+                  sourceSubstitutionPaths: '',
+                  unstableThresholdDefinitelyLost: '',
+                  unstableThresholdInvalidReadWrite: '',
+                  unstableThresholdTotal: ''
+                )
+            }
+        }
+    }
+    post {
+        success {
+            script {
+                echo "All checks completed successfully"
+            }
+            cleanWs()
+        }
+    }
+}

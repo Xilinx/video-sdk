@@ -38,12 +38,16 @@ if [ $# -ne 3 ]
 fi
 
 # Launch the three jobs in parallel
-xterm -fa mono:size=9 -hold -e "ffmpeg -xlnx_hwdev 0 -c:v mpsoc_vcu_h264 -i $1 -f mp4 -c:v mpsoc_vcu_hevc -y /tmp/xil_xcode_1.mp4" &
-xterm -fa mono:size=9 -hold -e "ffmpeg -xlnx_hwdev 1 -c:v mpsoc_vcu_h264 -i $2 -f mp4 -c:v mpsoc_vcu_hevc -y /tmp/xil_xcode_2.mp4" &
-xterm -fa mono:size=9 -hold -e "ffmpeg -xlnx_hwdev 1 -c:v mpsoc_vcu_h264 -i $3 -f mp4 -c:v mpsoc_vcu_hevc -y /tmp/xil_xcode_3.mp4" &
+xterm -fa mono:size=9 -e "ffmpeg -xlnx_hwdev 0 -c:v mpsoc_vcu_h264 -i $1 -f mp4 -c:v mpsoc_vcu_hevc -y /tmp/xil_xcode_1.mp4; sleep 5s" &
+xterm -fa mono:size=9 -e "ffmpeg -xlnx_hwdev 1 -c:v mpsoc_vcu_h264 -i $2 -f mp4 -c:v mpsoc_vcu_hevc -y /tmp/xil_xcode_2.mp4; sleep 5s" &
+xterm -fa mono:size=9 -e "ffmpeg -xlnx_hwdev 1 -c:v mpsoc_vcu_h264 -i $3 -f mp4 -c:v mpsoc_vcu_hevc -y /tmp/xil_xcode_3.mp4; sleep 5s" &
 
 # Wait until the jobs are started to generate a system load report
 sleep 2s
-xrmadm /opt/xilinx/xrm/test/list_cmd.json &
+xrmadm /opt/xilinx/xrm/test/list_cmd.json 
  
-
+# Wait until all jobs are done 
+echo ""
+echo "Waiting for all jobs to finish..."
+wait 
+echo "Done"

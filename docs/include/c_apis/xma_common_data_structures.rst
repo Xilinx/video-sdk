@@ -18,11 +18,12 @@ Data structure describing a raw video frame and its buffers. :c:struct:`XmaFrame
 
 The |SDK| plugins supports two types of frames:
 
-- :c:macro:`XMA_HOST_BUFFER_TYPE` frames are explicitly allocated and managed by the host application. They are always copied from the host to the device and back after an operation.
+- :c:macro:`XMA_HOST_BUFFER_TYPE` frames are explicitly allocated and managed by the host application. They are always copied from the host to the device and back after an operation. 
 - :c:macro:`XMA_DEVICE_BUFFER_TYPE` frames are automatically allocated by the plugins and are implemented using the :ref:`XVBM library <xvbm_reference>`. In multistage video pipeline, they allow for zero-copy operations where frames are passed from one hardware accelerator to the next without being copied back to the host. The frame data in the underlying XVBM buffers can be accessed by the host application using the XVBM APIs. 
 
 The decoder plugin only supports :c:macro:`XMA_DEVICE_BUFFER_TYPE` frames and the scaler, encoder and lookahead plugins support both types of frames.
 
+**NOTE**: For optimal performance, Xilinx recommends that host buffers used for raw video frames be allocated on 4K boundaries. This can be done using :c:func:`posix_memalign` instead of :c:func:`malloc` when allocating the buffers. An example of this can be found in the XMA encoder application where raw frame buffers are allocated before being populated and sent to the encoder: :url_to_repo:`examples/xma/encoder/lib/src/xlnx_enc_xma_props.c#L800`.
 
 .. c:struct:: XmaDataBuffer
 

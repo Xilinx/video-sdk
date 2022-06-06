@@ -58,7 +58,7 @@ Look-Ahead Properties
 
 The Xilinx lookahead is configured using a combination of standard XMA filter properties, standard XMA filter input and output properties and custom lookahead parameters, all of which are specified using :c:struct:`XmaFilterProperties` and :c:struct:`XmaFilterPortProperties` data structures. 
 
-To facilitate application development, Xilinx recommends working with a simplified data structure from which the required :c:struct:`XmaFilterProperties` and :c:struct:`XmaFilterPortProperties` can be populated using a specialized function. A reusable example of this can found in the :url_to_repo:`examples/xma/transcode/include/xlnx_transcoder_xma_props.h` and :url_to_repo:`examples/xma/transcode/src/xlnx_transcoder_xma_props.c` files of the XMA transcoder example application.
+To facilitate application development, Xilinx recommends working with a simplified data structure from which the required :c:struct:`XmaFilterProperties` and :c:struct:`XmaFilterPortProperties` can be populated using a specialized function. A reusable example of this can found in the :url_to_repo:`examples/xma/transcoder/lib/include/xlnx_transcoder_xma_props.h` and :url_to_repo:`examples/xma/transcoder/lib/src/xlnx_transcoder_xma_props.c` files of the XMA transcoder example application.
 
 **IMPORTANT**: Xilinx recommends enabling custom rate-control when using the lookahead. This is done as follows:
 

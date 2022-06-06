@@ -23,9 +23,9 @@
 # The 1080p60 input is scaled down to the following resolutions, framerates, and bitrates (respectively):
 # 720p60 4.0   Mbps
 # 720p30 3.0   Mbps
-# 848p30 2.5   Mbps
+# 480p30 2.5   Mbps
 # 360p30 1.25  Mbps
-# 288p30 0.625 Mbps
+# 160p30 0.625 Mbps
 
 # Most webservers host their "accessible locations" from /var/www/html/. This will not exist without a webserver (e.g. Apache2) installed. Please ensure one is installed and the directory is writable; otherwise this script will fail.
 
@@ -64,7 +64,7 @@ out_4_width=288:  out_4_height=160:  out_4_rate=half  \
 -map "[abb]" -b:v 3M    -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_720p30.m3u8 \
 -map "[b]"   -b:v 2500K -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_480p30.m3u8 \
 -map "[c]"   -b:v 1250K -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_360p30.m3u8 \
--map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_288p30.m3u8
+-map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_160p30.m3u8
 
 
 # FFmpeg command to process audio as well as video. 
@@ -82,4 +82,4 @@ out_4_width=288:  out_4_height=160:  out_4_rate=half  \
 # -map "[abb]" -b:v 3M    -c:v mpsoc_vcu_h264 -map "[aud2]" -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_720p30.m3u8 \
 # -map "[b]"   -b:v 2500K -c:v mpsoc_vcu_h264 -map "[aud3]" -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_480p30.m3u8 \
 # -map "[c]"   -b:v 1250K -c:v mpsoc_vcu_h264 -map "[aud4]" -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_360p30.m3u8 \
-# -map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -map "[aud5]" -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_288p30.m3u8
+# -map "[d]"   -b:v 625K  -c:v mpsoc_vcu_h264 -map "[aud5]" -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_160p30.m3u8

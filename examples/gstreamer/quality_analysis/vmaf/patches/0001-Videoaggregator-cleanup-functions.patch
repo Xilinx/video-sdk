@@ -1,0 +1,27 @@
+From b32dc6bc97aee269bc851452b69d1913608d6baf Mon Sep 17 00:00:00 2001
+From: Jeevan Sai Madira <jeevansa@xilinx.com>
+Date: Wed, 11 Aug 2021 05:46:01 +0530
+Subject: [PATCH] Videoaggregator patch
+
+Signed-off-by: Jeevan Sai Madira <jeevansa@xilinx.com>
+---
+ gst-libs/gst/video/gstvideoaggregator.h | 4 ++++
+ 1 file changed, 4 insertions(+)
+
+diff --git a/gst-libs/gst/video/gstvideoaggregator.h b/gst-libs/gst/video/gstvideoaggregator.h
+index aa070aac9..3c7345fe3 100644
+--- a/gst-libs/gst/video/gstvideoaggregator.h
++++ b/gst-libs/gst/video/gstvideoaggregator.h
+@@ -247,5 +247,9 @@ struct _GstVideoAggregatorClass
+ GST_VIDEO_API
+ GType gst_video_aggregator_get_type       (void);
+ 
++G_DEFINE_AUTOPTR_CLEANUP_FUNC(GstVideoAggregator, gst_object_unref)
++G_DEFINE_AUTOPTR_CLEANUP_FUNC(GstVideoAggregatorPad, gst_object_unref)
++G_DEFINE_AUTOPTR_CLEANUP_FUNC(GstVideoAggregatorConvertPad, gst_object_unref)
++
+ G_END_DECLS
+ #endif /* __GST_VIDEO_AGGREGATOR_H__ */
+-- 
+2.17.1
+

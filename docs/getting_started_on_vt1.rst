@@ -41,15 +41,13 @@ For more details about the transcoding performance of these different configurat
 Quick Start Guide for |VT1|
 ****************************************************
 
-.. DOCS_TODO: provide link to AMI once released
-
 #. Launch an |VT1| Instance
 
    - Follow the instructions at `Launch an Amazon EC2 Instance <https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance>`_
 
    - When choosing the instance type in the EC2 console, make sure to select the |VT1| instance family. 
 
-   - When choosing an Amazon Machine Image (AMI), make sure to select the Xilinx Video SDK AMI for VT1 Instances for `Ubuntu 18.04 <https://aws.amazon.com/marketplace/pp/prodview-uovkpvr5ebzci>`_ or for `Amazon Linux 2 <https://aws.amazon.com/marketplace/pp/prodview-cwdoams4wrymi>`_
+   - When choosing an Amazon Machine Image (AMI), make sure to select version 2.0 of one of the `Xilinx Video SDK AMI for VT1 Instances <https://aws.amazon.com/marketplace/search/results?searchTerms=VT1&CREATOR=c68d4b68-cde0-47b8-bc40-a1c2886ca280&filters=CREATOR>`_
 
    - To get more information about |VT1| instances sizes and pricing see the `VT1 web page <https://aws.amazon.com/ec2/instance-types/vt1/>`_
 
@@ -59,7 +57,7 @@ Quick Start Guide for |VT1|
 
 #. Clone the |SDK| repository::
 
-    git clone https://github.com/Xilinx/video-sdk -b v1.5 --depth 1
+    git clone https://github.com/Xilinx/video-sdk -b v2.0 --depth 1
 
    - Cloning the repo downloads the source for the examples and tutorials.
    - It is not needed to install the binary packages included in the repository as they already installed in the public |SDK| AMI. 
@@ -67,9 +65,6 @@ Quick Start Guide for |VT1|
 #. Set up the runtime environment::
 
     source /opt/xilinx/xcdr/setup.sh
-
-   .. note::
-      The script may issue a "Failed to start xrmd.service" message which can safely be ignored.
 
    - This step should be performed each time you open a new terminal on your instance. 
    - You are now ready to use the video acceleration features of your |VT1| instance. 
@@ -103,6 +98,8 @@ Install the following packages if they are not already present in your AMI.
     sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r) boost-devel gcc-c++ -y
 
 
+It is recommended to disable automatic kernel updates before installing the |SDK|.
+
 
 Installation Procedure
 ====================================================
@@ -111,7 +108,7 @@ Installation Procedure
 
 #. Download the packages included in this repository::
 
-    git clone https://github.com/Xilinx/video-sdk -b v1.5 --depth 1
+    git clone https://github.com/Xilinx/video-sdk -b v2.0 --depth 1
 
 #. Navigate to the directory containing the packages corresponding to your Operating System::
 
@@ -119,19 +116,31 @@ Installation Procedure
 
 #. Install the software components of the |SDK|::
 
-    ./install.sh -sw
+    ./install -sw
 
-   A successfull installation will end with the following messages::
+   A successfull installation will end with the following messages (note that the number of bytes written depends on the OS)::
 
-    Successfully wrote (76557 bytes) to the output file: /opt/xilinx/xcdr/xclbins/transcode.xclbin
+    Successfully wrote (18813 bytes) to the output file: /tmp/verify_val_transcode_lite.xclbin
     Leaving xclbinutil.
 
 #. Always set up the runtime environment for the |SDK| before running video transcoding jobs on your |VT1| instance::
 
     source /opt/xilinx/xcdr/setup.sh
 
-   .. note::
-      The script may issue a "Failed to start xrmd.service" message which can safely be ignored.
+|
+
+.. _patch-for-vt1:
+
+****************************************************
+Patching AMIs using v1.5 of the Video SDK 
+****************************************************
+
+When using version 1.5 of the |SDK| on an AWS VT1 instance running the latest version of the Xilinx firmware, sourcing the setup.sh script will give a "No U30 devices found" error.
+
+In order to fix this, AMIs using version 1.5 of the |SDK| need to be patched as follows::
+
+    wget https://raw.githubusercontent.com/Xilinx/video-sdk/v1.5/patches/u30_1.5_patch.sh
+    ./u30_1.5_patch.sh
 
 |
 

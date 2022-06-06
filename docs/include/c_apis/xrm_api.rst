@@ -5,68 +5,86 @@
 XRM API Reference
 *************************************
 
+.. note::
+   Version 2.0 of the |SDK| uses XRM 2021.2 which provides new resource management APIs. These new APIs are identified with the "V2" suffix. They provide more flexible resource allocation capabilities and Xilinx recommends using these "V2" APIs for any new development and integration work. The original XRM APIs are still supported. Applications developped using the original APIs do not require any modification.
+
 The Xilinx® FPGA Resource Manager (XRM) library is used to manage the hardware accelerators available in the system. XRM keeps track of total system capacity for each of the compute units such as the decoder, scaler, and encoder. 
 
 The XRM library includes a daemon, a command line tool and a C application programming interface (API). Using the library API, external applications can communicate with the XRM daemon and perform actions such as reserving, allocating and releasing resources; calculating resource load and max capacity. 
 
 More details on the XRM command line tool (xrmadm) and the XRM daemon (xrmd) can be found in the :ref:`XRM Reference Guide <xrm-reference>` section of the documentation.
 
-The XRM C APIs are defined in :file:`xrm.h`. The detailed description of these APIs can be found in the `XRM documentation <https://xilinx.github.io/XRM/lib.html>`_.
+The XRM C APIs are defined in :file:`xrm.h`. The detailed description of these APIs can be found in the `XRM documentation <https://xilinx.github.io/XRM/lib.html>`_. The XRM APIs listed below are the most commonly used to manage video acceleration resources:
 
-Applications integrating the |SDK| plugins (such as the 4 example XMA Apps included in this repository) must use the XRM APIs for two kinds of tasks: 
+- `xrmCheckCuPoolAvailableNumV2 <https://xilinx.github.io/XRM/lib.html#xrmcheckcupoolavailablenumv2>`_
+- `xrmCuPoolReserveV2 <https://https://xilinx.github.io/XRM/lib.html#xrmcupoolreservev2>`_
+- `xrmReservationQueryV2 <https://xilinx.github.io/XRM/lib.html#xrmreservationqueryv2>`_
+- `xrmCuPoolRelinquishV2 <https://xilinx.github.io/XRM/lib.html#xrmcupoolrelinquishv2>`_
+- `xrmCuAllocV2 <https://xilinx.github.io/XRM/lib.html#xrmcuallocv2>`_
+- `xrmCuReleaseV2 <https://xilinx.github.io/XRM/lib.html#xrmcureleasev2>`_
 
-- Device ID selection (required for XMA initialization)
-- Resource allocation (required for XMA session creation)
+
+Applications integrating the |SDK| plugins (such as the 4 example XMA Apps included in this repository) use the XRM APIs for two kinds of tasks: 
+
+- Resource reservation (optional)
+- Resource allocation (required)
  
 
-Device ID Selection with XRM
-============================
+Resource Reservation with XRM
+=============================
 
-In order to initialize the XMA library, the ID of the device on which the job will run must be known.
+The XRM library can be optionally be used to identify a device with enough available resources to run the desired job and reserve the corresponding resources. Doing involves three steps: 
 
-- If the user provides the device ID, the application can directly perform XMA initialization based on this information. 
+#. Calculate the channel load based on the job properties
+#. Using the :c:func:`xrmCheckCuPoolAvailableNumV2` function, query XRM for the number of resources available based on the channel load. XRM checks all the devices available on the server and returns how many such channels can be accommodated.
+#. Using the :c:func:`xrmCuPoolReserveV2` function, reserve the resources required for this channel load. XRM returns a reservation index.
 
-- If the user does not specify a device ID, the application needs to determine a valid one. It can do so by using the XRM API to calculate the load of the specific job which needs to be run, reserve resources based on the load, and retrieve the ID of the device on which the resources have been reserved. More specifically: 
+For an example of how to perform resource reservation using XRM APIs, refer the to the `source code of the job slot reservation application <https://github.com/Xilinx/app-jobslot-reservation-xrm/blob/U30_GA_2/jobSlot_reservation.cpp>`_ file. The job slot reservation tool reserves the maximum number of slots for a given job. This code can be adapted to reserve a single slot on one the device with enough resources for the job of interest.
 
-  #. Calculate the channel load based on the job properties (extracted from command line arguments and/or header of the video stream)
-  #. Using the :c:func:`xrmCheckCuPoolAvailableNum` function, query XRM for the number of resources available based on the channel load. XRM checks all the devices available on the server and returns how many such channels can be accommodated.
-  #. Using the :c:func:`xrmCuPoolReserve` function, reserve the resources required for this channel load. XRM returns a reservation index.
-  #. Using the :c:func:`xrmReservationQuery` function, obtain the ID of the device on which the resource has been allocated and the name of the xclbin.
-  #. Initialize XMA using the device ID and the xclbin information.
+Once resources have been reserved, it is also possible to use the :c:func:`xrmReservationQueryV2` API to obtain the ID of the device on which the resource has been allocated and the name of the xclbin. The device ID and xclbin information can then be used to initialize the XMA session.
 
-For more details, refer to the example below which provides a reference implementation of the steps described above.
-
-- :c:func:`transcode_device_init` function in :url_to_repo:`examples/xma/transcode/src/xlnx_transcoder_xrm_interface.c`
+Resources reserved with :c:func:`xrmCuPoolReserveV2` must be relinquished with the :c:func:`xrmCuPoolRelinquishV2` function once the application no longer needs them. 
 
 
 Resource Allocation with XRM
 ============================
 
-In order to create an XMA plugin session (encoder/decoder/scaler/lookahead), the necessary compute unit (CU) resources must first be successfully reserved and allocated.
+In order to create an XMA plugin session (encoder/decoder/scaler/lookahead), the necessary compute unit (CU) resources must first be successfully allocated with XRM using the :c:func:`xrmCuAllocV2` function (or :c:func:`xrmCuListAllocV2` to reserve multiple CUs at once).
 
-- If the user provides device ID, the application should perform CU allocation on that particular device. If there are not enough resources available to support the specific channel load, the application should error out and exit.
+Resources allocated with :c:func:`xrmCuAllocV2` (or :c:func:`xrmCuListAllocV2`) must be released with the :c:func:`xrmCuReleaseV2` function (or :c:func:`xrmCuListReleaseV2`) once the application no longer needs them. 
 
-- If the user does not specify a device ID, the application should perform CU allocation using the reservation index it received during XMA initialization. In this case, the CU allocation will not fail as it has already been reserved during XMA initialization.
-
-For more details, refer to the examples below which provides a reference implementation of the steps described above.
-
-- :c:func:`enc_cu_alloc` function in :url_to_repo:`examples/xma/transcode/src/xlnx_encoder.c`
-- :c:func:`dec_cu_alloc` function in :url_to_repo:`examples/xma/transcode/src/xlnx_decoder.c`
-- :c:func:`scaler_cu_alloc` function in :url_to_repo:`examples/xma/transcode/src/xlnx_scaler.c`
-- :c:func:`la_allocate_xrm_cu` function in :url_to_repo:`examples/xma/transcode/src/xlnx_lookahead.c`
+The resource allocation procedure is different depending on whether resources were previously reserved or not.
 
 
-Reserving Multiple Job Slots
-============================
+Allocation of Pre-Reserved Resources
+------------------------------------
 
-Another example of XMR API usage can be found in the `source code of the job slot reservation application <https://github.com/Xilinx/app-jobslot-reservation-xrm/blob/v1.0.0/jobSlot_reservation.cpp>`_. This example shows how to reserve as many job slots as possible given an input job description as described in :ref:`Using Job Descriptions <using-job-descriptions>`. This example works as follows:
+If resources were previously reserved using the :c:func:`xrmCuPoolReserveV2` function, the application should perform CU allocation using the device ID and the reservation ID obtained during the resource reservation process. In this case, CU allocation will not fail as it the necessary resources have already been reserved.
 
-#. Calculate the channel load based on a JSON job description
-#. Using the :c:func:`xrmCheckCuPoolAvailableNum` function, query XRM for the number of resources available based on the channel load. XRM checks all the devices available on the server and returns how many such channels can be accommodated.
-#. Call the :c:func:`xrmCuPoolReserve` function as many times as there are available resources to reserve all of them. 
-#. Wait for the user to press Enter to relinquish the reserved resources using :c:func:`xrmCuPoolRelinquish`.
+#. Create a :c:var:`xrmCuPoolReserveV2` data structure
+#. Assign the reservation ID to the :c:var:`poolID` field of the :c:var:`xrmCuPoolReserveV2` data structure
+#. If resources were reserved across multiple devices, assign the device ID of these specific resources to the :c:var:`deviceInfo` field of the :c:var:`xrmCuPoolReserveV2` data structure
+#. Allocate the resources using the :c:func:`xrmCuAllocV2` function
 
-This example can be used as a starting point for developing custom orchestration layers.
+
+Allocation of Non-Reserved Resources
+------------------------------------
+
+If resources were not previously reserved using the :c:func:`xrmCuPoolReserveV2` function, the application should first calculate the load of the current job and then attempt CU allocation for that particular load in a user-specified device. CU allocation will fail if there are not enough resources to support the specific channel load on that device.
+
+#. Calculate the channel load based on the job properties
+#. Create a :c:var:`xrmCuPoolReserveV2` data structure
+#. Assign the resource load to the :c:var:`requestLoad` field of the :c:var:`xrmCuPoolReserveV2` data structure
+#. Assign the user-specified device ID to the :c:var:`deviceInfo` field of the :c:var:`xrmCuPoolReserveV2` data structure
+#. Allocate the resources using the :c:func:`xrmCuAllocV2` function
+
+For a detailled example of how allocate non-reserved resources, refer to two following functions from the XMA sample applications:
+
+- :c:func:`xlnx_xrm_load_calc` function in :url_to_repo:`examples/xma/common/src/xlnx_xrm_utils.c#L108`
+- :c:func:`xlnx_xrm_cu_alloc` function in :url_to_repo:`examples/xma/common/src/xlnx_xrm_utils.c#L240`
+
+The :c:func:`xlnx_xrm_load_calc` function calculates the resource load for the given job, and the :c:func:`xlnx_xrm_cu_alloc` function allocates the necessary resources in a specific device to support the given load.
+
 
 ..
   ------------

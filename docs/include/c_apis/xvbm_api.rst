@@ -5,13 +5,13 @@
 XVBM API Reference
 *************************************
 
-The Xilinx Video Buffer Management (XVBM) library is used by the |SDK| plugins to manage pools of video buffers. The XVBM API must be used to interact with the XVBM buffers associated with c:struct:`XmaFrame` frames of the :c:macro:`XMA_DEVICE_BUFFER_TYPE` type.
+The Xilinx Video Buffer Management (XVBM) library is used by the |SDK| plugins to manage pools of video buffers. The XVBM API must be used to interact with the XVBM buffers associated with :c:struct:`XmaFrame` frames of the :c:macro:`XMA_DEVICE_BUFFER_TYPE` type.
 
 The :c:macro:`XMA_DEVICE_BUFFER_TYPE` frames and their XVBM buffers can either be directly passed to other hardware accelerators without being copied back to the host (zero-copy operation in a multistage pipeline) or copied back to the host for further processing in software.
 
 If the application needs to access the content of a XVBM buffer, it must do so using the XVBM :c:func:`xvbm_buffer_get_host_ptr` and :c:func:`xvbm_buffer_read` APIs.
 
-If a XVBM buffer is transferred to more than one other XMA plugin session, the :c:func:`xvbm_buffer_refcnt_inc` API should be used to split the buffer instead of explicitly creating copies of that buffer. For an example of this, refer to the :c:func:`xlnx_tran_xvbm_buf_inc` function in :url_to_repo:`examples/xma/transcode/src/xlnx_transcoder.c`.
+If a XVBM buffer is transferred to more than one other XMA plugin session, the :c:func:`xvbm_buffer_refcnt_inc` API should be used to split the buffer instead of explicitly creating copies of that buffer. For an example of this, refer to the :c:func:`xlnx_tran_xvbm_buf_inc` function in :url_to_repo:`examples/xma/transcoder/lib/src/xlnx_transcoder.c#L45`.
 
 If a XVBM buffer is not transferred to another plugin, then the application must release the buffer with the :c:func:`xvbm_buffer_pool_entry_free` API. This releases the buffer back to the plugin, allowing the plugin to reuse the buffer for a subsequent frame. Typically, if all the buffers managed by a plugin are used (not freed), then the plugin won’t be able to accept new data.
 

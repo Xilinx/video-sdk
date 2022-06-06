@@ -99,7 +99,7 @@ Here is an example Signed-off-by line which indicates that the contributor accep
 Code License
 ============
 
-All |SDK| code is licensed under the terms of the `LICENSE <https://github.com/Xilinx/video-sdk/blob/master/LICENSE.txt>`_. Your contribution will be accepted under the same license of the |SDK| component which you are contributing to.
+All |SDK| code is licensed under the terms of the `LICENSE <https://github.com/Xilinx/video-sdk/blob/master/LICENSE.top>`_. Your contribution will be accepted under the same license of the |SDK| component which you are contributing to.
 
 ..
   ------------

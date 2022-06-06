@@ -24,7 +24,7 @@
 # 720p30 
 # 480p30 
 # 360p30 
-# 288p30 
+# 160p30 
 
 # You may change the target codecs to HEVC by changing:
 #     the first      instance  of (-c:v mpsoc_vcu_h264) to (-c:v mpsoc_vcu_hevc) for decoding from HEVC
@@ -45,8 +45,8 @@ out_4_width=288:  out_4_height=160:  out_4_rate=half  \
 [a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]; \
 [aa]xvbm_convert[aa1];[abb]xvbm_convert[abb1];[b]xvbm_convert[b1];[c]xvbm_convert[c1]; \
 [d]xvbm_convert[d1]" \
--map "[aa1]"  -pix_fmt yuv420p -f rawvideo /tmp/xil_dec_scale_720p60.yuv \
--map "[abb1]" -pix_fmt yuv420p -f rawvideo /tmp/xil_dec_scale_720p30.yuv \
--map "[b1]"   -pix_fmt yuv420p -f rawvideo /tmp/xil_dec_scale_480p30.yuv \
--map "[c1]"   -pix_fmt yuv420p -f rawvideo /tmp/xil_dec_scale_360p30.yuv \
--map "[d1]"   -pix_fmt yuv420p -f rawvideo /tmp/xil_dec_scale_288p30.yuv
+-map "[aa1]"  -pix_fmt yuv420p -f rawvideo -y /tmp/xil_dec_scale_720p60.yuv \
+-map "[abb1]" -pix_fmt yuv420p -f rawvideo -y /tmp/xil_dec_scale_720p30.yuv \
+-map "[b1]"   -pix_fmt yuv420p -f rawvideo -y /tmp/xil_dec_scale_480p30.yuv \
+-map "[c1]"   -pix_fmt yuv420p -f rawvideo -y /tmp/xil_dec_scale_360p30.yuv \
+-map "[d1]"   -pix_fmt yuv420p -f rawvideo -y /tmp/xil_dec_scale_160p30.yuv
