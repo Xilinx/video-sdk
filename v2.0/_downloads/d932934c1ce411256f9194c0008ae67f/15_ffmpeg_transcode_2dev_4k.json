@@ -1,0 +1,42 @@
+{
+    "request": {
+        "name": "simplejob_4k_2dev",
+        "request_id": 1,
+        "parameters": {
+            "name": "4k_2dev_testjob",
+            "resources": 
+            [
+                {
+                    "function": "DECODER",
+                    "format":   "HEVC",
+                    "resolution": { "input": { "width": 3840, "height": 2160, "frame-rate": { "num":60, "den":1} } }
+                },
+                {
+                    "function": "SCALER",
+                    "format":   "yuv420p",
+                    "resolution":
+                    {
+                        "input": { "width": 3840, "height": 2160, "frame-rate": { "num":60, "den":1} },
+                        "output":
+                        [
+                            { "width": 1920, "height": 1080, "frame-rate": { "num":60, "den":1} }
+                        ]
+                    }
+                },
+                {
+                    "function": "ENCODER",
+                    "format":   "H264",
+                    "resolution": { "input": { "width":  3840, "height": 2160, "frame-rate": { "num":60, "den":1} } }
+                }
+            ],
+            "additionalresources_1":
+            [
+                {
+                    "function": "ENCODER",
+                    "format":   "HEVC",
+                    "resolution": { "input": { "width": 1920, "height": 1080, "frame-rate": { "num":60, "den":1} } } 
+                }
+            ]
+        }
+    }
+}
