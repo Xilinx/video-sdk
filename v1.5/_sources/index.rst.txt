@@ -4,6 +4,9 @@
 
 The |SDK| is a complete software stack allowing users to seamlessly leverage the hardware accelerated features of Xilinx video codec units and enable high-density real-time transcoding for live streaming video service providers, OEMs, and Content Delivery Network (CDNs). Included in the |SDK| is pre-compiled version of FFmpeg which integrates key video transcoding plug-ins, enabling simple hardware offloading of compute-intensive workloads using the popular FFmpeg command line interface. The |SDK| also provides a C-based application programming interface (API) which facilitates the integration of Xilinx video codec units transcoding capabilities in proprietary frameworks. The |SDK| can be leveraged on-premises with Alveo U30 cards and in the cloud with |VT1| instances.
 
+.. note::
+   A patch is required to use version 1.5 of the |SDK| on AWS VT1 instances running the latest version of the U30 firmware. See instructions :ref:`here <patch-for-vt1>`.
+
 *************************
 Quick Links
 *************************
