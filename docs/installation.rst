@@ -33,7 +33,7 @@ Installation Instructions
 
 #. Download the packages by cloning this repository::
 
-    git clone https://github.com/Xilinx/video-sdk
+    git clone https://github.com/Xilinx/video-sdk -b v1.0 --depth 1
 
 #. Navigate to the directory containing the packages corresponding to your Operating System::
 
