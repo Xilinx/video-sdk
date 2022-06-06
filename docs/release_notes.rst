@@ -5,6 +5,10 @@
 .. note::
    Version: |release|
 
+.. note::
+   A patch is required to use version 1.5 of the |SDK| on AWS VT1 instances running the latest version of the U30 firmware. See instructions :ref:`here <patch-for-vt1>`.
+   
+
 .. highlight:: none
 
 .. contents:: Table of Contents
@@ -74,6 +78,14 @@ Limitations
 ******************************
 Known Issues
 ******************************
+
+Potential "No U30 devices found" error when sourcing the setup.sh script on AWS VT1 instances
+==============================================================================================
+
+- Description: Sourcing the setup.sh script on AWS VT1 gives a "No U30 devices found" error.
+
+- Solution: A patch is required to use version 1.5 of the |SDK| on AWS VT1 instances running the latest version of the U30 firmware. See instructions :ref:`here <patch-for-vt1>`.
+
 
 Potential "failed" error code when sourcing the setup.sh script
 =================================================================
