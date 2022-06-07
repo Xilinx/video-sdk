@@ -57,7 +57,7 @@ Quick Links
    :caption: Support
    :hidden:
 
-   File an issue <https://github.com/Xilinx/video-sdk/issues>
+   File an issue <https://github.com/Xilinx/video-sdk-staging/issues>
    Contributing </contributing> 
    Other versions <https://xilinx.github.io/video-sdk/browse.html>
 

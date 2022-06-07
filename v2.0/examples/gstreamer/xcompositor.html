@@ -6,7 +6,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		
+		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -292,7 +293,7 @@ function OptanonWrapper() { }
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk-staging/issues">File an issue</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
 </ul>
@@ -361,7 +362,7 @@ function OptanonWrapper() { }
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="gstreamer-compositor-application">
+  <section id="gstreamer-compositor-application">
 <h1>GStreamer Compositor Application<a class="headerlink" href="#gstreamer-compositor-application" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -372,12 +373,12 @@ function OptanonWrapper() { }
 <li><p><a class="reference internal" href="#examples" id="id4">Examples</a></p></li>
 </ul>
 </div>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>The <strong class="program">vvas_xcompositor</strong> application is a command line utility which implements the GStreamer video transcoding pipeline described in the diagram below. This application expects four input video files 60(mp4 with H.264/H.265 or H.264/H.265 elementary stream). The resolution of each input cannot exceed 1080p. The application creates an output stream by first composing the four inputs in a 2x2 grid, then by adding an optional logo and lastly by inserting a time stamp.</p>
 <a class="reference internal image-reference" href="../../_images/gst_xcompositor.png"><img alt="GStreamer pipeline of the vvas_xcompositor application" class="align-center" src="../../_images/gst_xcompositor.png" style="width: 1024px;" /></a>
-</div>
-<div class="section" id="host-system-requirement">
+</section>
+<section id="host-system-requirement">
 <h2><a class="toc-backref" href="#id2">Host System Requirement</a><a class="headerlink" href="#host-system-requirement" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>Xilinx Video SDK</p></li>
@@ -397,8 +398,8 @@ function OptanonWrapper() { }
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="usage">
+</section>
+<section id="usage">
 <h2><a class="toc-backref" href="#id3">Usage</a><a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
@@ -493,8 +494,8 @@ function OptanonWrapper() { }
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="examples">
+</section>
+<section id="examples">
 <h2><a class="toc-backref" href="#id4">Examples</a><a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>Composition along with logo on top right of video:</p>
@@ -528,8 +529,8 @@ function OptanonWrapper() { }
 </div>
 </li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -560,7 +561,7 @@ function OptanonWrapper() { }
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on June 06, 2022.
+        Last updated on June 07, 2022.
       </span>
 
     </p>

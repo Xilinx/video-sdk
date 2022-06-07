@@ -6,7 +6,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		
+		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -306,7 +307,7 @@ function OptanonWrapper() { }
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk-staging/issues">File an issue</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
 </ul>
@@ -375,7 +376,7 @@ function OptanonWrapper() { }
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="video-quality-examples">
+  <section id="video-quality-examples">
 <h1>Video Quality Examples<a class="headerlink" href="#video-quality-examples" title="Permalink to this headline">¶</a></h1>
 <p>This page is dedicated to explaining some of the details behind Video Quality (VQ), how it is measured, and how you can optimize your GStreamer commands with the Alveo U30 card to maximize its performance.</p>
 <p>Further documentation on this topic can be found in the <a class="reference internal" href="../../tuning_encoding_quality.html#tuning-encoder-options"><span class="std std-ref">Tuning Encoder Options</span></a> section of the U30 Video SDK user guide.</p>
@@ -405,7 +406,7 @@ function OptanonWrapper() { }
 </li>
 </ul>
 </div>
-<div class="section" id="introduction-to-video-quality">
+<section id="introduction-to-video-quality">
 <h2><a class="toc-backref" href="#id1">Introduction to Video Quality</a><a class="headerlink" href="#introduction-to-video-quality" title="Permalink to this headline">¶</a></h2>
 <p>There has been a longstanding goal for video engineers to quantitatively determine the output quality of an encoder without having to watch and inspect every individual frame. This has led to an evolution of algorithmic solutions, the most common of which are:</p>
 <ul class="simple">
@@ -417,13 +418,13 @@ function OptanonWrapper() { }
 <p>Many people will argue which metric is best (although PSNR is commonly considered the least accurate). Jan Ozer from the Streaming Media Center posted his experimental correlation of MOS vs the above metrics. You can review the findings <a class="reference external" href="https://streaminglearningcenter.com/wp-content/uploads/2017/08/PSRN-vs.-VMAF-vs.-SSIMPlus.pdf">here.</a></p>
 <p>Furthermore, due to the industry standard of tracking encoder “performance” to quantitative metrics like the ones listed above, many encoders have “taught to the test”; that is, they provide different command-line arguments that will give higher scores but may look worse to the human eye. For example, common CPU encoders <a class="reference external" href="https://code.videolan.org/videolan/x264">x264</a> and <a class="reference external" href="http://hg.videolan.org/x265">x265</a> have a <code class="docutils literal notranslate"><span class="pre">tune</span></code> parameter which optimizes to objective metrics.</p>
 <p>This page discusses the Xilinx Video SDK command line flags used to optimize for objective quality (scores) and subjective quality (visual appeal) and provides additional details as to what is happening behind the scenes and why.</p>
-</div>
-<div class="section" id="optimized-settings-for-the-sdk">
+</section>
+<section id="optimized-settings-for-the-sdk">
 <h2><a class="toc-backref" href="#id2">Optimized Settings for the Xilinx Video SDK</a><a class="headerlink" href="#optimized-settings-for-the-sdk" title="Permalink to this headline">¶</a></h2>
 <p>It is highly recommended to perform encoding on raw video clips; that is, clips that have not undergone a transform/compression/encoding in the past. This ensures that the clips are in a universally known state in order to fairly compare encoders.</p>
 <p>Alternatively, you can add the flags to decode before encoding, and the results will remain accurate as long as the same pre-encoded file is used as the source across all encoders under test. Information on this process can be found on the <a class="reference internal" href="tutorials.html"><span class="doc">GStreamer tutorial page</span></a>.</p>
 <p>Flags not illustrated in this page are covered in the <a class="reference internal" href="../../using_gstreamer.html"><span class="doc">Using GStreamer</span></a> chapter of the Xilinx Video SDK user guide.</p>
-<div class="section" id="subjective-quality">
+<section id="subjective-quality">
 <h3><a class="toc-backref" href="#id3">Subjective Quality</a><a class="headerlink" href="#subjective-quality" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference download internal" download="" href="../../_downloads/8058b04f654fe2fdff4e526917bf249e/h264_subjective.sh"><code class="xref download docutils literal notranslate"><span class="pre">h264_subjective.sh</span></code></a>
 <a class="reference download internal" download="" href="../../_downloads/2e18bf2ebb81b63e8db7ca0307706758/hevc_subjective.sh"><code class="xref download docutils literal notranslate"><span class="pre">hevc_subjective.sh</span></code></a></p>
@@ -437,8 +438,8 @@ function OptanonWrapper() { }
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 filesrc location=~/videos/Test_1080p60.nv12 ! rawvideoparse format=nv12 width=1920 height=1080 framerate=60/1 ! vvas_xlookahead codec-type=0 lookahead-depth=20 spatial-aq=true temporal-aq=true dev-idx=0 b-frames=1 ! vvas_xvcuenc dev-idx=0 b-frames=1 gop-length=120 periodicity-idr=120 qp-mode=3 target-bitrate=5000 max-bitrate=5000 ! h264parse ! fpsdisplaysink video-sink=&quot;filesink location=/tmp/xil_enc_5000_subjective.h264 &quot; text-overlay=false sync=false -v
 </pre></div>
 </div>
-</div>
-<div class="section" id="objective-quality">
+</section>
+<section id="objective-quality">
 <h3><a class="toc-backref" href="#id4">Objective Quality</a><a class="headerlink" href="#objective-quality" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference download internal" download="" href="../../_downloads/048a3281cd622ef64672b946170ea359/h264_objective.sh"><code class="xref download docutils literal notranslate"><span class="pre">h264_objective.sh</span></code></a>
 <a class="reference download internal" download="" href="../../_downloads/043ef2ec01771437dc57dc42c3dc8f13/hevc_objective.sh"><code class="xref download docutils literal notranslate"><span class="pre">hevc_objective.sh</span></code></a></p>
@@ -452,8 +453,8 @@ function OptanonWrapper() { }
 </pre></div>
 </div>
 <p>This is the command you should run to get maximum objective scoring (PSNR, SSIM, VMAF). It accepts a clip that is already decoded or a RAW NV12 file.</p>
-</div>
-<div class="section" id="setting-differences-between-objective-and-subjective-quality">
+</section>
+<section id="setting-differences-between-objective-and-subjective-quality">
 <h3><a class="toc-backref" href="#id5">Setting Differences Between Objective and Subjective Quality</a><a class="headerlink" href="#setting-differences-between-objective-and-subjective-quality" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">qp-mode</span></code></p>
@@ -473,11 +474,11 @@ function OptanonWrapper() { }
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="running-psnr-ssim-vmaf-scores">
+</section>
+</section>
+<section id="running-psnr-ssim-vmaf-scores">
 <h2><a class="toc-backref" href="#id6">Running PSNR/SSIM/VMAF scores</a><a class="headerlink" href="#running-psnr-ssim-vmaf-scores" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="enabling-vq-scoring-in-gstreamer">
+<section id="enabling-vq-scoring-in-gstreamer">
 <h3><a class="toc-backref" href="#id7">Enabling VQ Scoring in GStreamer</a><a class="headerlink" href="#enabling-vq-scoring-in-gstreamer" title="Permalink to this headline">¶</a></h3>
 <p>In order to enable VQ scoring in GStreamer, but VMAG plugin must be added. The VMAF GStreamer plugin can be compiled by following the steps described in <a class="reference external" href="https://werti.github.io/GSoC2019/">https://werti.github.io/GSoC2019/</a>. It is required to integrate <a class="reference external" href="https://gitlab.freedesktop.org/szve/gst-plugins-bad/-/tree/master/ext/iqa">https://gitlab.freedesktop.org/szve/gst-plugins-bad/-/tree/master/ext/iqa</a> with gst-plugins-bad-1.16.2 to match the GStreamer version of ths release package.</p>
 <p>The <code class="file docutils literal notranslate"><span class="pre">examples/gstreamer/quality_analysis/vmaf</span></code> directory included in this repository contains the following files which can be used to integrate the VMAF plugin in gst-plugins-bad-1.16.2:</p>
@@ -518,8 +519,8 @@ source install_vmaf.sh
 </pre></div>
 </div>
 <p>The description and usage of the iqa-vmaf plugin can be found in <a class="reference external" href="https://gitlab.freedesktop.org/szve/gst-plugins-bad/-/blob/master/ext/iqa/iqa-vmaf.c">https://gitlab.freedesktop.org/szve/gst-plugins-bad/-/blob/master/ext/iqa/iqa-vmaf.c</a></p>
-</div>
-<div class="section" id="performing-vq-scoring-with-gstreamer-and-the-vmaf-plugin">
+</section>
+<section id="performing-vq-scoring-with-gstreamer-and-the-vmaf-plugin">
 <h3><a class="toc-backref" href="#id8">Performing VQ Scoring with GStreamer and the VMAF Plugin</a><a class="headerlink" href="#performing-vq-scoring-with-gstreamer-and-the-vmaf-plugin" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference download internal" download="" href="../../_downloads/e25443ab0bacac343696b0547ddc4adc/measure_vq.sh"><code class="xref download docutils literal notranslate"><span class="pre">measure_vq.sh</span></code></a></p>
 <p><strong>Usage</strong>:</p>
@@ -559,9 +560,9 @@ gst-launch-1.0 -v filesrc location=original_8bit_1080p60_clip.yuv \
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="quality-vs-latency">
+</section>
+</section>
+<section id="quality-vs-latency">
 <h2><a class="toc-backref" href="#id9">Quality vs. Latency</a><a class="headerlink" href="#quality-vs-latency" title="Permalink to this headline">¶</a></h2>
 <p>A given encoder’s “quality” is often a function of many different algorithms/functions/features. It is quite possible (and often seen) that an encoder can produce an h.264/HEVC compliant stream but have drastically different quality from one to another.</p>
 <p>Some of these features add latency, either by adding “pitstops” on the way to an outputted stream, or by increasing the complexity of the core-encoding functions. Most things in the video realm are content-dependent, or use-case-dependent, so the designer needs to determine what is best for them… a gradient of:</p>
@@ -569,9 +570,9 @@ gst-launch-1.0 -v filesrc location=original_8bit_1080p60_clip.yuv \
 <li><p>absolute best quality with high latency</p></li>
 <li><p>lower quality with lowest latency.</p></li>
 </ul>
-<div class="section" id="xilinx-specific-latency-flags">
+<section id="xilinx-specific-latency-flags">
 <h3><a class="toc-backref" href="#id10">Xilinx-Specific Latency Flags</a><a class="headerlink" href="#xilinx-specific-latency-flags" title="Permalink to this headline">¶</a></h3>
-<div class="section" id="decoder-options">
+<section id="decoder-options">
 <h4>Decoder Options<a class="headerlink" href="#decoder-options" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">low_latency</span></code></p>
@@ -580,8 +581,8 @@ gst-launch-1.0 -v filesrc location=original_8bit_1080p60_clip.yuv \
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="encoder-options">
+</section>
+<section id="encoder-options">
 <h4>Encoder Options<a class="headerlink" href="#encoder-options" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">b-frames=&lt;INT&gt;</span></code></p>
@@ -595,8 +596,8 @@ gst-launch-1.0 -v filesrc location=original_8bit_1080p60_clip.yuv \
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="lookahead-options">
+</section>
+<section id="lookahead-options">
 <h4>Lookahead Options<a class="headerlink" href="#lookahead-options" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">-lookahead_depth</span> <span class="pre">&lt;INT&gt;</span></code></p>
@@ -617,12 +618,12 @@ gst-launch-1.0 -v filesrc location=original_8bit_1080p60_clip.yuv \
 </ul>
 </li>
 </ul>
-</div>
-</div>
-<div class="section" id="optimized-settings-for-low-latency-streams">
+</section>
+</section>
+<section id="optimized-settings-for-low-latency-streams">
 <h3><a class="toc-backref" href="#id11">Optimized Settings for Low Latency Streams</a><a class="headerlink" href="#optimized-settings-for-low-latency-streams" title="Permalink to this headline">¶</a></h3>
 <p>With the above information in hand, below are the optimized commands for general types of video. Your content may require modifications to optimize fully.</p>
-<div class="section" id="low-latency-subjective-quality">
+<section id="low-latency-subjective-quality">
 <h4>Low Latency Subjective Quality<a class="headerlink" href="#low-latency-subjective-quality" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference download internal" download="" href="../../_downloads/33daa91fd3fab9be54ddbf7a993d1aa8/h264_ll_subjective.sh"><code class="xref download docutils literal notranslate"><span class="pre">h264_ll_subjective.sh</span></code></a>
 <a class="reference download internal" download="" href="../../_downloads/94399dde83163a32d804c626d91f94ac/hevc_ll_subjective.sh"><code class="xref download docutils literal notranslate"><span class="pre">hevc_ll_subjective.sh</span></code></a></p>
@@ -635,8 +636,8 @@ gst-launch-1.0 -v filesrc location=original_8bit_1080p60_clip.yuv \
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 filesrc location=Test_1080p60.NV12 ! rawvideoparse format=nv12 width=1920 height=1080 framerate=60/1 ! vvas_xvcuenc dev-idx=0 b-frames=0 gop-length=120 periodicity-idr=120 qp-mode=auto target-bitrate=5000 max-bitrate=5000 ! h264parse ! fpsdisplaysink video-sink=&quot;filesink location=/tmp/xil_enc__ll_subjective.h264 &quot; text-overlay=false sync=false -v
 </pre></div>
 </div>
-</div>
-<div class="section" id="low-latency-objective-quality">
+</section>
+<section id="low-latency-objective-quality">
 <h4>Low Latency Objective Quality<a class="headerlink" href="#low-latency-objective-quality" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference download internal" download="" href="../../_downloads/9ec04b69f5bb09fd10612064c51a23d3/h264_ll_objective.sh"><code class="xref download docutils literal notranslate"><span class="pre">h264_ll_objective.sh</span></code></a>
 <a class="reference download internal" download="" href="../../_downloads/53c6c3c4a59748ed1724c8550f9846d7/hevc_ll_objective.sh"><code class="xref download docutils literal notranslate"><span class="pre">hevc_ll_objective.sh</span></code></a></p>
@@ -649,16 +650,16 @@ gst-launch-1.0 -v filesrc location=original_8bit_1080p60_clip.yuv \
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 filesrc location=~/videos/Test_1080p60.NV12 ! rawvideoparse format=nv12 width=1920 height=1080 framerate=60/1 ! vvas_xvcuenc dev-idx=0 b-frames=0 gop-length=120 periodicity-idr=120 qp-mode=1 target-bitrate=5000 max-bitrate=5000 ! h264parse ! fpsdisplaysink video-sink=&quot;filesink location=/tmp/xil_enc__ll_objective.h264 &quot; text-overlay=false sync=false -v
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="measuring-latency">
+</section>
+</section>
+<section id="measuring-latency">
 <h3><a class="toc-backref" href="#id12">Measuring Latency</a><a class="headerlink" href="#measuring-latency" title="Permalink to this headline">¶</a></h3>
 <p>Latency numbers are measured using GStreamer framework’s latency tracer module. After enabling GST_DEBUG as follows, run the given example script which will dump the log to log.txt and retrieve the latency values using <code class="docutils literal notranslate"><span class="pre">gst-stats-1.0</span></code> command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>export GST_DEBUG=&quot;GST_TRACER:7&quot; GST_TRACERS=&quot;latency(flags=pipeline+element)&quot; GST_DEBUG_FILE=log.txt
 </pre></div>
 </div>
 <p>Ladder pipeline with 1080p60 MP4 file with H264 elementarty stream with I and P frames as input, and generates 720p60, 720p30, 480p30, 360p30 and 160p30 output ladders is used to measure the latency. This script has encoder and decoder parameters set to ensure minumum latency requirements of the acceleration components.</p>
-<div class="section" id="latency-measurement-script">
+<section id="latency-measurement-script">
 <h4>Latency Measurement Script<a class="headerlink" href="#latency-measurement-script" title="Permalink to this headline">¶</a></h4>
 <p><a class="reference download internal" download="" href="../../_downloads/a30c34647f233d0cbe11cc4b6ac07482/latency_test.sh"><code class="xref download docutils literal notranslate"><span class="pre">latency_test.sh</span></code></a></p>
 <p><strong>Usage</strong></p>
@@ -675,10 +676,10 @@ Average scaler latency (720p60 leg) in milli seconds :  5.7965
 </pre></div>
 </div>
 <p>Change the script accordingly to measure latencies of the other ABR ladders</p>
-</div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
+</section>
 
 
            </div>
@@ -709,7 +710,7 @@ Average scaler latency (720p60 leg) in milli seconds :  5.7965
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on June 06, 2022.
+        Last updated on June 07, 2022.
       </span>
 
     </p>

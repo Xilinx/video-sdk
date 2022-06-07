@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020-2021 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 
 # This script accepts an 8-bit, YUV420, pre-encoded h264 file and will send a decoded output to /tmp/xil_dec_out.yuv
 

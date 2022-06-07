@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright (C) 2021, Xilinx Inc - All rights reserved
 # Xilinx SDAccel Media Accelerator API

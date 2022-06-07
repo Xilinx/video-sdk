@@ -75,7 +75,7 @@ The following steps require kubectl to be connected to your EKS cluster. After t
 	      - key: CriticalAddonsOnly
 	        operator: Exists
 	      containers:
-	      - image: public.ecr.aws/xilinx_dcg/k8s-fpga-device-plugin:1.0.100
+	      - image: public.ecr.aws/xilinx_dcg/k8s-fpga-device-plugin:1.0.101
 	        name: xilinx-fpga-device-plugin
 	        securityContext:
 	          allowPrivilegeEscalation: false
@@ -121,7 +121,7 @@ The following steps require kubectl to be connected to your EKS cluster. After t
 	  hugepages-2Mi:                               0
 	  memory:                                      47284568Ki
 	  pods:                                        15
-	  xilinx.com/fpga-xilinx_u30_gen3x4_base_1-0:  2
+	  xilinx.com/fpga-xilinx_u30_gen3x4_base_2-0:  2
 	Allocatable:
 	  attachable-volumes-aws-ebs:                  39
 	  cpu:                                         23870m
@@ -130,7 +130,7 @@ The following steps require kubectl to be connected to your EKS cluster. After t
 	  hugepages-2Mi:                               0
 	  memory:                                      46752088Ki
 	  pods:                                        15
-	  xilinx.com/fpga-xilinx_u30_gen3x4_base_1-0:  2
+	  xilinx.com/fpga-xilinx_u30_gen3x4_base_2-0:  2
 
    In this example, 2 Alveo U30 cards are available in the node.
 
@@ -154,7 +154,7 @@ Deploying User Pods
 	    image: <path-to-docker-image>                      # Path to the Docker image on ECR
 	    resources:
 	      limits:
-	        xilinx.com/fpga-xilinx_u30_gen3x4_base_1-0: 1  # Number of Alveo U30 cards which should be mounted 
+	        xilinx.com/fpga-xilinx_u30_gen3x4_base_2-0: 1  # Number of Alveo U30 cards which should be mounted
 	    command: ["/bin/sh"]
 	    args: ["-c", "while true; do echo hello; sleep 10;done"]
 

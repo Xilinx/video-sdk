@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 # pre-requisite to run this script: source /opt/xilinx/vvas/setup.sh
 #This file is the most recommended set of flags to produce an encoded HEVC output that will look best visually
 #Please provide a RAW NV12 for the script; you can change the input resolution and framerate with the target-bitrate and framerate, respectively

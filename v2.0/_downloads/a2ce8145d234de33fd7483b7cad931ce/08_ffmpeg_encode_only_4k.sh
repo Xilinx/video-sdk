@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020-2021 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 
 # The U30 Video SDK solution supports real-time decoding and encoding of 4k streams with the following notes:
 # - The U30 video pipeline is optimized for live-streaming use cases. For 4k streams with bitrates significantly higher than the ones typically used for live streaming, it may not be possible to sustain real-time performance.

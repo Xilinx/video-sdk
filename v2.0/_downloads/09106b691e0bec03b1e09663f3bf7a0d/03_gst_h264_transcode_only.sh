@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 # pre-requisite to run this script: source /opt/xilinx/vvas/setup.sh
 # This script accepts an 8-bit and 10-bit, YUV420, pre-encoded h264 file and will send the encoded h.264 output to /tmp/xil_xcode.mp4 at a rate of 8Mbps.
 if [ $# -lt 3 ]; then

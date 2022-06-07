@@ -6,7 +6,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		
+		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -281,7 +282,7 @@ function OptanonWrapper() { }
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk-staging/issues">File an issue</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
 </ul>
@@ -348,7 +349,7 @@ function OptanonWrapper() { }
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="deploying-with-kubernetes">
+  <section id="deploying-with-kubernetes">
 <span id="id1"></span><h1>Deploying with Kubernetes<a class="headerlink" href="#deploying-with-kubernetes" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -359,7 +360,7 @@ function OptanonWrapper() { }
 <li><p><a class="reference internal" href="#deploying-user-pods" id="id5">Deploying User Pods</a></p></li>
 </ul>
 </div>
-<div class="section" id="overview">
+<section id="overview">
 <h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The Xilinx device plugin for Kubernetes is a daemonset deployed on a Kubernetes cluster which:</p>
 <ul class="simple">
@@ -373,8 +374,8 @@ function OptanonWrapper() { }
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="prerequisites">
+</section>
+<section id="prerequisites">
 <h2><a class="toc-backref" href="#id3">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <p>The following instructions assume that your system satisfies the following requirements:</p>
 <ul class="simple">
@@ -391,8 +392,8 @@ function OptanonWrapper() { }
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="installing-the-xilinx-device-plugin-for-kubernetes">
+</section>
+<section id="installing-the-xilinx-device-plugin-for-kubernetes">
 <h2><a class="toc-backref" href="#id4">Installing the Xilinx device plugin for Kubernetes</a><a class="headerlink" href="#installing-the-xilinx-device-plugin-for-kubernetes" title="Permalink to this headline">¶</a></h2>
 <p>The following steps require kubectl to be connected to your EKS cluster. After the Xilinx device plugin for Kubernetes is installed, no additional configuration is needed when adding nodes to the cluster.</p>
 <ol class="arabic">
@@ -417,7 +418,7 @@ spec:
       - key: CriticalAddonsOnly
         operator: Exists
       containers:
-      - image: public.ecr.aws/xilinx_dcg/k8s-fpga-device-plugin:1.0.100
+      - image: public.ecr.aws/xilinx_dcg/k8s-fpga-device-plugin:1.0.101
         name: xilinx-fpga-device-plugin
         securityContext:
           allowPrivilegeEscalation: false
@@ -465,7 +466,7 @@ Capacity:
   hugepages-2Mi:                               0
   memory:                                      47284568Ki
   pods:                                        15
-  xilinx.com/fpga-xilinx_u30_gen3x4_base_1-0:  2
+  xilinx.com/fpga-xilinx_u30_gen3x4_base_2-0:  2
 Allocatable:
   attachable-volumes-aws-ebs:                  39
   cpu:                                         23870m
@@ -474,7 +475,7 @@ Allocatable:
   hugepages-2Mi:                               0
   memory:                                      46752088Ki
   pods:                                        15
-  xilinx.com/fpga-xilinx_u30_gen3x4_base_1-0:  2
+  xilinx.com/fpga-xilinx_u30_gen3x4_base_2-0:  2
 </pre></div>
 </div>
 <p>In this example, 2 Alveo U30 cards are available in the node.</p>
@@ -483,8 +484,8 @@ Allocatable:
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="deploying-user-pods">
+</section>
+<section id="deploying-user-pods">
 <h2><a class="toc-backref" href="#id5">Deploying User Pods</a><a class="headerlink" href="#deploying-user-pods" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>Paste and customize the content below in a pod-description yaml file:</p>
@@ -498,7 +499,7 @@ spec:
     image: &lt;path-to-docker-image&gt;                      # Path to the Docker image on ECR
     resources:
       limits:
-        xilinx.com/fpga-xilinx_u30_gen3x4_base_1-0: 1  # Number of Alveo U30 cards which should be mounted
+        xilinx.com/fpga-xilinx_u30_gen3x4_base_2-0: 1  # Number of Alveo U30 cards which should be mounted
     command: [&quot;/bin/sh&quot;]
     args: [&quot;-c&quot;, &quot;while true; do echo hello; sleep 10;done&quot;]
 </pre></div>
@@ -536,8 +537,8 @@ xbutil examine
 </div>
 </li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -568,7 +569,7 @@ xbutil examine
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on June 06, 2022.
+        Last updated on June 07, 2022.
       </span>
 
     </p>

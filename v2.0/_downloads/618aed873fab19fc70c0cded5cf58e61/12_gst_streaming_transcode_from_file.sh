@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 # pre-requisite to run this script: source /opt/xilinx/vvas/setup.sh
 # This script accepts an 8-bit, YUV420, pre-encoded h264 file and will send the encoded h.264 output in a set of HLS streams located at /var/www/html/xil_xcode_stream_scale_*.m3u8
 

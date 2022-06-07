@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 # pre-requisite to run this script: source /opt/xilinx/vvas/setup.sh
 #This file is the most recommended set of flags to produce a low latency encoded h.264 output that will look best visually
 

@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 # pre-requisite to run this script: source /opt/xilinx/vvas/setup.sh
 
 # This script accepts an 8-bit and 10-bit, NV12, pre-encoded 60FPS MP4 file with H.264 content or H.264 elementary stream. It will scale this input into multiple renditions of various sizes, and send them back to disk in /tmp/

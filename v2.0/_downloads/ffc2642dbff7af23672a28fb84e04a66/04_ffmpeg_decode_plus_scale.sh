@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020-2021 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 
 # This script assumes an 8-bit, YUV420, pre-encoded 1080p60 h.264 file. It will scale this input into multiple renditions of various sizes,
 # and send them back to disk in /tmp/

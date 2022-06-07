@@ -6,7 +6,8 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		
+		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -309,7 +310,7 @@ function OptanonWrapper() { }
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Support</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk-staging/issues">File an issue</a></li>
 <li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
 </ul>
@@ -376,7 +377,7 @@ function OptanonWrapper() { }
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="using-gstreamer">
+  <section id="using-gstreamer">
 <span id="id1"></span><h1>Using GStreamer<a class="headerlink" href="#using-gstreamer" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -392,14 +393,14 @@ function OptanonWrapper() { }
 <li><p><a class="reference internal" href="#rebuilding-gstreamer" id="id10">Rebuilding GStreamer</a></p></li>
 </ul>
 </div>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2><a class="toc-backref" href="#id2">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>GStreamer is a pipeline-based multimedia framework that links together a wide variety of media processing systems to complete complex workflows. The pipeline design serves as a base to create many types of multimedia applications such as video editors, transcoders, streaming media broadcasters and media players. The Xilinx Video SDK includes an enhanced version of GStreamer which can communicate with the hardware accelerated transcode pipeline in Xilinx devices.</p>
 <p>It is not within the scope of this document to provide an exhaustive guide on the usage of GStreamer. Various resources can be found online, for example:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://gstreamer.freedesktop.org/">https://gstreamer.freedesktop.org/</a></p></li>
 </ul>
-<div class="section" id="overview-of-the-gstreamer-plugins">
+<section id="overview-of-the-gstreamer-plugins">
 <h3>Overview of the GStreamer Plugins<a class="headerlink" href="#overview-of-the-gstreamer-plugins" title="Permalink to this headline">¶</a></h3>
 <p>The Xilinx Video SDK provides the following GStreamer plugins for building hardware-accelerated video pipelines using Xilinx devices:</p>
 <ul class="simple">
@@ -413,20 +414,20 @@ function OptanonWrapper() { }
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="decoder-plugin">
+</section>
+</section>
+<section id="decoder-plugin">
 <span id="gst-decoder-plugin"></span><h2><a class="toc-backref" href="#id3">Decoder Plugin</a><a class="headerlink" href="#decoder-plugin" title="Permalink to this headline">¶</a></h2>
 <p>For the complete list of features and capabilities of the Xilinx hardware decoder, refer to the <a class="reference internal" href="specs_and_features.html#video-codec-unit"><span class="std std-ref">Video Codec Unit</span></a> section of the <a class="reference internal" href="specs_and_features.html"><span class="doc">Specs and Features</span></a> chapter of the documentation.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">vvas_xvcudec</span></code> plugin provides support for hardware-accelerated H.264/H.265 decoding using Xilinx devices.</p>
-<div class="section" id="decoder-inputs-and-outputs">
+<section id="decoder-inputs-and-outputs">
 <h3>Decoder Inputs and Outputs<a class="headerlink" href="#decoder-inputs-and-outputs" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Input: H.264/H.265 encoded stream in byte-stream formats</p></li>
 <li><p>Output: raw NV12 frames with the following requirements:</p></li>
 </ul>
-</div>
-<div class="section" id="decoder-parameters">
+</section>
+<section id="decoder-parameters">
 <h3>Decoder Parameters<a class="headerlink" href="#decoder-parameters" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
@@ -566,27 +567,27 @@ function OptanonWrapper() { }
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="decoder-example-pipelines">
+</section>
+<section id="decoder-example-pipelines">
 <h3>Decoder Example Pipelines<a class="headerlink" href="#decoder-example-pipelines" title="Permalink to this headline">¶</a></h3>
 <p>Refer to the <a class="reference internal" href="examples/gstreamer/tutorials.html#gstreamer-decode-only"><span class="std std-ref">Decoder Pipeline</span></a> example for an illustration of how to use this plugin.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="encoder-plugin">
+</section>
+</section>
+<section id="encoder-plugin">
 <span id="gst-encoder-plugin"></span><h2><a class="toc-backref" href="#id4">Encoder Plugin</a><a class="headerlink" href="#encoder-plugin" title="Permalink to this headline">¶</a></h2>
 <p>For the complete list of features and capabilities of the Xilinx hardware encoder, refer to the <a class="reference internal" href="specs_and_features.html#video-codec-unit"><span class="std std-ref">Video Codec Unit</span></a> section of the <a class="reference internal" href="specs_and_features.html"><span class="doc">Specs and Features</span></a> chapter of the documentation.</p>
 <p>The <code class="docutils literal notranslate"><span class="pre">vvas_xvcuenc</span></code> plugin provides support for hardware-accelerated H.264/H.265 encoding using Xilinx devices.</p>
-<div class="section" id="encoder-inputs-and-outputs">
+<section id="encoder-inputs-and-outputs">
 <h3>Encoder Inputs and Outputs<a class="headerlink" href="#encoder-inputs-and-outputs" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Input: raw 8-bit (NV12) or 10-bit (NV12_10LE32) video data</p></li>
 <li><p>Output: H264/H265 8-bit/10-bit encoded stream in byte-stream format</p></li>
 </ul>
-</div>
-<div class="section" id="encoder-parameters">
+</section>
+<section id="encoder-parameters">
 <h3>Encoder Parameters<a class="headerlink" href="#encoder-parameters" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
@@ -893,16 +894,16 @@ function OptanonWrapper() { }
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="encoder-example-pipelines">
+</section>
+<section id="encoder-example-pipelines">
 <h3>Encoder Example Pipelines<a class="headerlink" href="#encoder-example-pipelines" title="Permalink to this headline">¶</a></h3>
 <p>Refer to the <a class="reference internal" href="examples/gstreamer/tutorials.html#gstreamer-encode-only"><span class="std std-ref">Encoder Pipeline</span></a> example for an illustration of how to use this plugin.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="abr-scaler-plugin">
+</section>
+</section>
+<section id="abr-scaler-plugin">
 <span id="gst-scaler-plugin"></span><h2><a class="toc-backref" href="#id5">ABR Scaler Plugin</a><a class="headerlink" href="#abr-scaler-plugin" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">vvas_xabrscaler</span></code> plugin provides support for hardware-accelerated resizing and color space conversion using Xilinx devices. This plugin supports:</p>
 <ol class="arabic simple">
@@ -911,14 +912,14 @@ function OptanonWrapper() { }
 <li><p>Resizing</p></li>
 <li><p>Each output pad has independent configurations, like resolution and color space.</p></li>
 </ol>
-<div class="section" id="abr-scaler-inputs-and-outputs">
+<section id="abr-scaler-inputs-and-outputs">
 <h3>ABR Scaler Inputs and Outputs<a class="headerlink" href="#abr-scaler-inputs-and-outputs" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Input: raw data with 8-bit (NV12) or 10-bit format (NV12_10LE32)</p></li>
 <li><p>Output: raw data with 8-bit (NV12) or 10-bit format (NV12_10LE32)</p></li>
 </ul>
-</div>
-<div class="section" id="abr-scaler-parameters">
+</section>
+<section id="abr-scaler-parameters">
 <h3>ABR Scaler Parameters<a class="headerlink" href="#abr-scaler-parameters" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
@@ -1022,19 +1023,19 @@ function OptanonWrapper() { }
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="abr-scaler-example-pipelines">
+</section>
+<section id="abr-scaler-example-pipelines">
 <h3>ABR Scaler Example Pipelines<a class="headerlink" href="#abr-scaler-example-pipelines" title="Permalink to this headline">¶</a></h3>
 <p>Refer to the <a class="reference internal" href="examples/gstreamer/tutorials.html#gstreamer-transcode-and-scale"><span class="std std-ref">Transcode with Multiple-Resolution Outputs</span></a> example for an illustration of how to use this plugin.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="lookahead-plugin">
+</section>
+</section>
+<section id="lookahead-plugin">
 <span id="gst-lookahead-plugin"></span><h2><a class="toc-backref" href="#id6">Lookahead Plugin</a><a class="headerlink" href="#lookahead-plugin" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">vvas_xlookahead</span></code> plugin provides support for hardware-accelerated lookahead functionality using Xilinx devices. This plugin is typically used in conjunction with the encoder plugin to improve the subjective quality of the encoded stream at the cost of latency. The plugin can generate quantization parameters (QP buffer) as well as frame sum of absolute differences and frame activity information (FSFA buffer). The QP and FSFA buffers are attached to the input frame as metadata and sent to next element in the GStreamer media pipeline</p>
-<div class="section" id="lookahead-inputs-and-outputs">
+<section id="lookahead-inputs-and-outputs">
 <h3>Lookahead Inputs and Outputs<a class="headerlink" href="#lookahead-inputs-and-outputs" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Accepts raw NV12 frames up to resolution 3840x2160 as input</p></li>
@@ -1045,8 +1046,8 @@ function OptanonWrapper() { }
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="lookahead-parameters">
+</section>
+<section id="lookahead-parameters">
 <h3>Lookahead Parameters<a class="headerlink" href="#lookahead-parameters" title="Permalink to this headline">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
@@ -1227,8 +1228,8 @@ function OptanonWrapper() { }
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="lookahead-example-pipeline">
+</section>
+<section id="lookahead-example-pipeline">
 <h3>Lookahead Example pipeline<a class="headerlink" href="#lookahead-example-pipeline" title="Permalink to this headline">¶</a></h3>
 <p>Refer to the <a class="reference internal" href="examples/gstreamer/tutorials.html#gstreamer-lookahead-and-scale"><span class="std std-ref">Transcode with Lookahead for Multiple-Resolution outputs</span></a> example for an illustration of how to use this plugin.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 filesrc location=&lt;input mp4 absolute path&gt; ! qtdemux ! queue ! h264parse ! \
@@ -1241,9 +1242,9 @@ function OptanonWrapper() { }
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="moving-data-through-the-pipeline">
+</section>
+</section>
+<section id="moving-data-through-the-pipeline">
 <h2><a class="toc-backref" href="#id7">Moving Data through the Pipeline</a><a class="headerlink" href="#moving-data-through-the-pipeline" title="Permalink to this headline">¶</a></h2>
 <p>The GStreamer plugins included in the Xilinx Video SDK take care of efficiently moving data through the video processing pipeline. For optimal performance, video buffers will be moved between the host and the appropriate device only if needed by plugins in the pipeline. This is known as “zero-copy”.</p>
 <ul class="simple">
@@ -1253,8 +1254,8 @@ function OptanonWrapper() { }
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="working-with-multiple-devices">
+</section>
+<section id="working-with-multiple-devices">
 <span id="gst-multiple-devices"></span><h2><a class="toc-backref" href="#id8">Working with Multiple Devices</a><a class="headerlink" href="#working-with-multiple-devices" title="Permalink to this headline">¶</a></h2>
 <p>By default (if no device identifier is specified) a job is submitted to device 0. When running large jobs or multiple jobs in parallel, device 0 is bound to run out of resources rapidly and additional jobs will error out due to insufficient resources.</p>
 <p>By using the <a class="reference internal" href="#cmdoption-arg-8"><code class="xref std std-option docutils literal notranslate"><span class="pre">dev-idx</span></code></a> option of the GStreamer plugins included in the Xilinx Video SDK, the different functions (decoder, scaler, encoder) of a pipeline can be individually submitted to a specific device. This makes it easy and straightforward to leverage the entire video acceleration capacity of your system, regardless of the number of cards and devices.</p>
@@ -1262,8 +1263,8 @@ function OptanonWrapper() { }
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="mapping-audio-streams">
+</section>
+<section id="mapping-audio-streams">
 <span id="gst-mapping-audio-streams"></span><h2><a class="toc-backref" href="#id9">Mapping Audio Streams</a><a class="headerlink" href="#mapping-audio-streams" title="Permalink to this headline">¶</a></h2>
 <p>This section gives examples on how to decode or transcode the input streams with both video and audio</p>
 <p>Use MP4 container file with H264 video and MP3/AAC audio. Test both audio and video playback.Decode video using VVAS plugins and audio using open source plugins. Make sure both video and audio playback are in sync.</p>
@@ -1358,8 +1359,8 @@ function OptanonWrapper() { }
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="rebuilding-gstreamer">
+</section>
+<section id="rebuilding-gstreamer">
 <span id="rebuild-gstreamer"></span><h2><a class="toc-backref" href="#id10">Rebuilding GStreamer</a><a class="headerlink" href="#rebuilding-gstreamer" title="Permalink to this headline">¶</a></h2>
 <p>Source code and build scripts for the GStreamer plugins developed by Xilinx can be found the in the <code class="file docutils literal notranslate"><span class="pre">sources/video-sdk-gstreamer</span></code> folder of the Xilinx Video SDK repository.</p>
 <p>Follow these steps to rebuild GStreamer with the Xilinx Video SDK plugins enabled:</p>
@@ -1406,8 +1407,8 @@ function OptanonWrapper() { }
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -1438,7 +1439,7 @@ function OptanonWrapper() { }
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on June 06, 2022.
+        Last updated on June 07, 2022.
       </span>
 
     </p>

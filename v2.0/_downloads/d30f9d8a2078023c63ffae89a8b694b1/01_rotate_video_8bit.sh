@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020-2021 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 
 # This script accepts an 8-bit, YUV420, pre-encoded h264 file and will send the rotated, encoded h.264 output to /tmp/xil_rotate_<N>.mp4 at a rate of 8Mbps.
 

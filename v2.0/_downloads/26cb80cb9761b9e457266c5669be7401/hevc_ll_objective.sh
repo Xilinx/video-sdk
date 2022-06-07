@@ -1,3 +1,4 @@
+#!/bin/bash
 #
 # Copyright 2020-2021 Xilinx, Inc.
 #
@@ -14,7 +15,6 @@
 # limitations under the License.
 #
 
-#!/bin/bash
 
 #This file is the most recommended set of flags to produce a low latency encoded HEVC output that will score best on Visual Quality metrics such as PSNR, SSIM, and VMAF.
 
