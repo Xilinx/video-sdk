@@ -1,4 +1,4 @@
-﻿#####################################################
+#####################################################
 Card Management
 #####################################################
 
@@ -73,10 +73,10 @@ For example, the command below detected 4 devices and lists the Management BDF f
     ...
 
     Devices present
-      [0000:e3:00.1] : xilinx_u30_gen3x4_base_1 
-      [0000:e2:00.1] : xilinx_u30_gen3x4_base_1 
-      [0000:22:00.1] : xilinx_u30_gen3x4_base_1 
-      [0000:21:00.1] : xilinx_u30_gen3x4_base_1 
+      [0000:e3:00.1] : xilinx_u30_gen3x4_base_2
+      [0000:e2:00.1] : xilinx_u30_gen3x4_base_2
+      [0000:22:00.1] : xilinx_u30_gen3x4_base_2
+      [0000:21:00.1] : xilinx_u30_gen3x4_base_2
 
 The last device listed has a User BDF of 0000:21:00.1, which describes Domain 0, Bus 21, Device 00, Function 1. 
 
@@ -95,10 +95,10 @@ For example, the command below detected 4 devices and lists the Management BDF f
     ...
 
     Devices present
-      [0000:e3:00.0] : xilinx_u30_gen3x4_base_1 
-      [0000:e2:00.0] : xilinx_u30_gen3x4_base_1 
-      [0000:22:00.0] : xilinx_u30_gen3x4_base_1 
-      [0000:21:00.0] : xilinx_u30_gen3x4_base_1 
+      [0000:e3:00.0] : xilinx_u30_gen3x4_base_2
+      [0000:e2:00.0] : xilinx_u30_gen3x4_base_2
+      [0000:22:00.0] : xilinx_u30_gen3x4_base_2
+      [0000:21:00.0] : xilinx_u30_gen3x4_base_2
 
 The last device listed has a Management BDF of 0000:21:00.0, which describes Domain 0, Bus 21, Device 00, Function 0. 
 
@@ -202,10 +202,10 @@ The ``xbutil examine`` commands provides useful details about your environment a
       XCLMGMT              : 2.10.43, 41f6054b2c19619ceceb07bf7b662e5003388d89
 
     Devices present
-      [0000:e3:00.1] : xilinx_u30_gen3x4_base_1 
-      [0000:e2:00.1] : xilinx_u30_gen3x4_base_1 
-      [0000:22:00.1] : xilinx_u30_gen3x4_base_1 
-      [0000:21:00.1] : xilinx_u30_gen3x4_base_1 
+      [0000:e3:00.1] : xilinx_u30_gen3x4_base_2
+      [0000:e2:00.1] : xilinx_u30_gen3x4_base_2
+      [0000:22:00.1] : xilinx_u30_gen3x4_base_2
+      [0000:21:00.1] : xilinx_u30_gen3x4_base_2
 
 .. |
 
@@ -222,20 +222,20 @@ The ``xbutil examine`` commands provides useful details about your environment a
 ..     $ sudo /opt/xilinx/xrt/bin/xbmgmt examine -d e3:00.0
 
 ..     ----------------------------------------------
-..     1/1 [0000:e3:00.0] : xilinx_u30_gen3x4_base_1
+..     1/1 [0000:e3:00.0] : xilinx_u30_gen3x4_base_2
 ..     ----------------------------------------------
 ..     Flash properties
 ..       Type                 : qspi_ps_x2_single
 ..       Serial Number        : XFL1RT5PHT31
 
 ..     Flashable partitions running on FPGA
-..       Platform             : xilinx_u30_gen3x4_base_1
+..       Platform             : xilinx_u30_gen3x4_base_2
 ..       SC Version           : 6.3.8(FIXED)
 ..       Platform UUID        : 1B5FEB2A-91B6-818D-A3E8-D9867DE17DA0
 ..       Interface UUID       : 937ED708-67CF-3350-BC06-304053F4293C
 
 ..     Flashable partitions installed in system
-..       Platform             : xilinx_u30_gen3x4_base_1
+..       Platform             : xilinx_u30_gen3x4_base_2
 ..       SC Version           : 6.3.8
 ..       Platform UUID        : 1B5FEB2A-91B6-818D-A3E8-D9867DE17DA0
 
