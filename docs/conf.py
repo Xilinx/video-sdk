@@ -66,7 +66,7 @@ extensions = [
 ]
 
 extlinks = {
-    'url_to_repo': ('https://github.com/Xilinx/video-sdk/%s', ''),
+    'url_to_repo': ('https://github.com/Xilinx/video-sdk/tree/v2.0/%s', ''),
 }
 
 # extlinks = {
