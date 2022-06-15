@@ -567,7 +567,7 @@ typedef struct XlnxDynParams {
 </pre></div>
 </div>
 <p>The <a class="reference internal" href="#c.XlnxDynParams" title="XlnxDynParams"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XlnxDynParams</span></code></a> data structure is then passed along as side-data to the encoded frame using the <code class="xref c c-func docutils literal notranslate"><span class="pre">xma_frame_add_side_data()</span></code> API. The encoder plugin then takes care of updating the parameters automatically.</p>
-<p>For of an example of how this can be implemented, refer to lines 279-291 of the <a class="reference external" href="https://github.com/Xilinx/video-sdk/examples/xma/common/enc_utils/src/xlnx_enc_dyn_params.c#L281-L291">examples/xma/common/enc_utils/src/xlnx_enc_dyn_params.c#L281-L291</a> file of the XMA sample encoder application.</p>
+<p>For of an example of how this can be implemented, refer to lines 279-291 of the <a class="reference external" href="https://github.com/Xilinx/video-sdk/tree/v2.0/examples/xma/common/enc_utils/src/xlnx_enc_dyn_params.c#L281-L291">examples/xma/common/enc_utils/src/xlnx_enc_dyn_params.c#L281-L291</a> file of the XMA sample encoder application.</p>
 <p class="rubric">XMA Encoder and Transcoder Applications</p>
 <p>The XMA Encoder and Transcoder sample applications also feature support for dynamically changing encoder parameters. These sample applications are developed using the Video SDK C APIs. Dynamic parameters are handled in the same way as for FFmpeg: they are specified in a configuration file following the same syntax as for FFmpeg, and the configuration file is passed to the application using the <code class="docutils literal notranslate"><span class="pre">-expert-options</span> <span class="pre">dynamic-params=&lt;file&gt;</span></code> option.</p>
 <p>XMA H.264 Encode Example:</p>
@@ -623,7 +623,7 @@ typedef struct XlnxDynParams {
 la_in_frame.is_idr = 1;
 </pre></div>
 </div>
-<p>For a complete source code reference, refer to <code class="xref c c-func docutils literal notranslate"><span class="pre">xlnx_enc_set_if_idr_frame()</span></code> function in the <a class="reference external" href="https://github.com/Xilinx/video-sdk/examples/xma/transcode/lib/src/xlnx_transcoder.c">examples/xma/transcode/lib/src/xlnx_transcoder.c</a> file of the XMA transcoder application.</p>
+<p>For a complete source code reference, refer to <code class="xref c c-func docutils literal notranslate"><span class="pre">xlnx_enc_set_if_idr_frame()</span></code> function in the <a class="reference external" href="https://github.com/Xilinx/video-sdk/tree/v2.0/examples/xma/transcode/lib/src/xlnx_transcoder.c">examples/xma/transcode/lib/src/xlnx_transcoder.c</a> file of the XMA transcoder application.</p>
 <p class="rubric">XMA Encoder and Transcoder Applications</p>
 <p>In the XMA encoder and transcoder applications, use the -force_key_frame command line option to set IDR frames at specific frame numbers:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>u30_xma_transcode -c:v mpsoc_vcu_h264 -i input.264 -c:v mpsoc_vcu_h264 -b:v 6000K -force_key_frame &quot;(200,300,250,200,180,400)&quot; -o out.264
