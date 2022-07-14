@@ -6,8 +6,7 @@
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
 	<head>
 		<meta charset="utf-8">
-		<meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+		
 		<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
 		<link rel="stylesheet" href="https://static.cloud.coveo.com/searchui/v2.4382/css/CoveoFullSearch.css"/>
 		<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -362,7 +361,7 @@ function OptanonWrapper() { }
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <section id="ffmpeg-examples-using-software-filters">
+  <div class="section" id="ffmpeg-examples-using-software-filters">
 <span id="ffmpeg-sw-filters"></span><h1>FFmpeg Examples using Software Filters<a class="headerlink" href="#ffmpeg-examples-using-software-filters" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -379,27 +378,27 @@ function OptanonWrapper() { }
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<section id="video-rotation">
+<div class="section" id="video-rotation">
 <h2><a class="toc-backref" href="#id1">Video Rotation</a><a class="headerlink" href="#video-rotation" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference download internal" download="" href="../../_downloads/d30f9d8a2078023c63ffae89a8b694b1/01_rotate_video_8bit.sh"><code class="xref download docutils literal notranslate"><span class="pre">01_rotate_video_8bit.sh</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/40872ca4dfb0b9edb444c0fef220382e/01_rotate_video_10bit.sh"><code class="xref download docutils literal notranslate"><span class="pre">01_rotate_video_10bit.sh</span></code></a></p>
 <p>This example accepts an 8-bit or 10-bit, YUV420, pre-encoded h264 file and will send the rotated, encoded h.264 output to /tmp/xil_rotate_&lt;N&gt;.mp4 at a rate of 8Mbps.</p>
-</section>
-<section id="logo-overlay">
+</div>
+<div class="section" id="logo-overlay">
 <h2><a class="toc-backref" href="#id2">Logo Overlay</a><a class="headerlink" href="#logo-overlay" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference download internal" download="" href="../../_downloads/d4aed9c05e195fe7a579e14d1a44fbc5/02_logo_overlay_8bit.sh"><code class="xref download docutils literal notranslate"><span class="pre">02_logo_overlay_8bit.sh</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/d358e47628f4a6d318549a70cd893070/02_logo_overlay_10bit.sh"><code class="xref download docutils literal notranslate"><span class="pre">02_logo_overlay_10bit.sh</span></code></a></p>
 <p>This example accepts an 8-bit or 10-bit, YUV420, pre-encoded h264 file and an image file (“logo”). It will scale the logo to 500x100, place it 16 pixels right and 16 pixels down from the top-left corner of the output video file, which will be an encoded h.264 output saved to /tmp/xil_logo_overlay.mp4 at a rate of 8Mbps.</p>
-</section>
-<section id="crop-and-zoom">
+</div>
+<div class="section" id="crop-and-zoom">
 <h2><a class="toc-backref" href="#id3">Crop and Zoom</a><a class="headerlink" href="#crop-and-zoom" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference download internal" download="" href="../../_downloads/6f7541907a1e44560f31547ba53e0d1f/03_crop_zoom_8bit.sh"><code class="xref download docutils literal notranslate"><span class="pre">03_crop_zoom_8bit.sh</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/c59b92e2dfb28283909d17e2dde7c34c/03_crop_zoom_10bit.sh"><code class="xref download docutils literal notranslate"><span class="pre">03_crop_zoom_10bit.sh</span></code></a></p>
 <p>This example accepts an 8-bit or 10-bit, YUV420, pre-encoded h264 file and will crop a 300x200 sized section of the original video. The section’s top left corner begins at 20 pixels to the right, and 10 pixels down from the top-left corner of the original video. The output video is encoded in 8Mbps, and is saved to /tmp/xil_crop_zoom.mp4</p>
-</section>
-<section id="video-composition">
+</div>
+<div class="section" id="video-composition">
 <h2><a class="toc-backref" href="#id4">Video Composition</a><a class="headerlink" href="#video-composition" title="Permalink to this headline">¶</a></h2>
 <p><a class="reference download internal" download="" href="../../_downloads/146d753056d0d088ea8959a6d2f10138/04_multi_comp_8bit.sh"><code class="xref download docutils literal notranslate"><span class="pre">04_multi_comp_8bit.sh</span></code></a> and <a class="reference download internal" download="" href="../../_downloads/633c40879a54501091a01a8a782fc392/04_multi_comp_10bit.sh"><code class="xref download docutils literal notranslate"><span class="pre">04_multi_comp_10bit.sh</span></code></a></p>
 <p>This example accepts 4 8-bit or 10-bit, YUV420, pre-encoded h264 files of equal dimensions, and will create an output 2x2 composite video which will be an encoded h.264 output saved to /tmp/xil_2x2_composite.mp4 at a rate of 8Mbps. The output resolution will be equal to the original input.</p>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
@@ -430,7 +429,7 @@ function OptanonWrapper() { }
   <div role="contentinfo" class="copyright">
     <p class="footerinfo">
       <span class="lastupdated">
-        Last updated on June 15, 2022.
+        Last updated on July 14, 2022.
       </span>
 
     </p>
