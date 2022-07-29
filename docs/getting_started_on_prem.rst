@@ -48,6 +48,8 @@ Install the |SDK|
 
     sudo /opt/xilinx/xrt/bin/xball --device-filter u30 xbmgmt program --base
 
+   + Note: should any problem arise when running the command, revert the card to its golden image (as explained in the :ref:`card recovery instructions <standard-recovery-flow>`) and repeat this step.
+
 #. Cold boot the machine to have the cards use the new binaries::
 
     sudo shutdown now
