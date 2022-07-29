@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -105,7 +106,7 @@ function OptanonWrapper() { }
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="getting-started-with-alveo-u30-on-premises">
+  <section id="getting-started-with-alveo-u30-on-premises">
 <span id="installation-instructions"></span><h1>Getting Started with Alveo U30 on Premises<a class="headerlink" href="#getting-started-with-alveo-u30-on-premises" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -116,7 +117,7 @@ function OptanonWrapper() { }
 <li><p><a class="reference internal" href="#run-your-first-examples" id="id4">Run Your First Examples</a></p></li>
 </ul>
 </div>
-<div class="section" id="important-information-and-prerequisites">
+<section id="important-information-and-prerequisites">
 <h2><a class="toc-backref" href="#id1">Important Information and Prerequisites</a><a class="headerlink" href="#important-information-and-prerequisites" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The Xilinx Video SDK must be installed on a server with one of more Xilinx Alveo U30 cards already installed.</p></li>
@@ -128,8 +129,8 @@ function OptanonWrapper() { }
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="install-the-sdk">
+</section>
+<section id="install-the-sdk">
 <h2><a class="toc-backref" href="#id2">Install the Xilinx Video SDK</a><a class="headerlink" href="#install-the-sdk" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>Download the packages included in this repository:</p>
@@ -151,6 +152,9 @@ function OptanonWrapper() { }
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo /opt/xilinx/xrt/bin/xball --device-filter u30 xbmgmt program --base
 </pre></div>
 </div>
+<ul class="simple">
+<li><p>Note: should any problem arise when running the command, revert the card to its golden image (as explained in the <a class="reference internal" href="card_management.html#standard-recovery-flow"><span class="std std-ref">card recovery instructions</span></a>) and repeat this step.</p></li>
+</ul>
 </li>
 <li><p>Cold boot the machine to have the cards use the new binaries:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo shutdown now
@@ -178,8 +182,8 @@ sudo /opt/xilinx/xrm/tools/restart_xrmd.sh
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="set-up-the-runtime-environment">
+</section>
+<section id="set-up-the-runtime-environment">
 <span id="runtime-setup"></span><h2><a class="toc-backref" href="#id3">Set Up the Runtime Environment</a><a class="headerlink" href="#set-up-the-runtime-environment" title="Permalink to this headline">¶</a></h2>
 <p>Note: These steps below should be performed each time you open a new terminal on your system.</p>
 <ol class="arabic">
@@ -198,12 +202,12 @@ sudo /opt/xilinx/xrm/tools/restart_xrmd.sh
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="run-your-first-examples">
+</section>
+<section id="run-your-first-examples">
 <h2><a class="toc-backref" href="#id4">Run Your First Examples</a><a class="headerlink" href="#run-your-first-examples" title="Permalink to this headline">¶</a></h2>
 <p>See the <a class="reference internal" href="examples.html#tutorials-and-examples"><span class="std std-ref">tutorials and examples</span></a> page to learn how to run jobs on your system.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -227,7 +231,7 @@ sudo /opt/xilinx/xrm/tools/restart_xrmd.sh
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on July 26, 2022.
+      <span class="lastupdated">Last updated on July 28, 2022.
       </span></p>
   </div>
 
