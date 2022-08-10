@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -98,7 +97,6 @@ function OptanonWrapper() { }
       <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
       <li>Getting Started with Alveo U30 on Premises</li>
       <li class="wy-breadcrumbs-aside">
-            <a href="_sources/getting_started_on_prem.rst.txt" rel="nofollow"> View page source</a>
       </li>
   </ul>
   <hr/>
@@ -106,7 +104,7 @@ function OptanonWrapper() { }
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="getting-started-with-alveo-u30-on-premises">
+  <div class="section" id="getting-started-with-alveo-u30-on-premises">
 <span id="installation-instructions"></span><h1>Getting Started with Alveo U30 on Premises<a class="headerlink" href="#getting-started-with-alveo-u30-on-premises" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -117,7 +115,7 @@ function OptanonWrapper() { }
 <li><p><a class="reference internal" href="#run-your-first-examples" id="id4">Run Your First Examples</a></p></li>
 </ul>
 </div>
-<section id="important-information-and-prerequisites">
+<div class="section" id="important-information-and-prerequisites">
 <h2><a class="toc-backref" href="#id1">Important Information and Prerequisites</a><a class="headerlink" href="#important-information-and-prerequisites" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The Xilinx Video SDK must be installed on a server with one of more Xilinx Alveo U30 cards already installed.</p></li>
@@ -129,8 +127,8 @@ function OptanonWrapper() { }
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-<section id="install-the-sdk">
+</div>
+<div class="section" id="install-the-sdk">
 <h2><a class="toc-backref" href="#id2">Install the Xilinx Video SDK</a><a class="headerlink" href="#install-the-sdk" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>Download the packages included in this repository:</p>
@@ -166,8 +164,8 @@ function OptanonWrapper() { }
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>If all cards are up to date, the script will report so and terminate. You can proceed to the next step.</p></li>
-<li><p>Otherwise, you will see one or more messages indicating “Updating Satellite Controller (SC) firmware flash image” and the script will perform the required updates. After all updates are completed, perform a warm reboot of the machine.</p></li>
+<li><p>If all cards are up to date, the command will report so and terminate. You can proceed to the next step.</p></li>
+<li><p>Otherwise, you will see one or more messages indicating “Updating Satellite Controller (SC) firmware flash image” and the command will perform the required updates. After all updates are completed, perform a warm reboot of the machine.</p></li>
 </ul>
 </li>
 <li><p>Test that the installation was successful with the command below. This script will run a validation test on each of the devices in your system. For each of the devices, you should see a message indicating that the test was successful:</p>
@@ -182,8 +180,8 @@ sudo /opt/xilinx/xrm/tools/restart_xrmd.sh
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-<section id="set-up-the-runtime-environment">
+</div>
+<div class="section" id="set-up-the-runtime-environment">
 <span id="runtime-setup"></span><h2><a class="toc-backref" href="#id3">Set Up the Runtime Environment</a><a class="headerlink" href="#set-up-the-runtime-environment" title="Permalink to this headline">¶</a></h2>
 <p>Note: These steps below should be performed each time you open a new terminal on your system.</p>
 <ol class="arabic">
@@ -202,12 +200,12 @@ sudo /opt/xilinx/xrm/tools/restart_xrmd.sh
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-<section id="run-your-first-examples">
+</div>
+<div class="section" id="run-your-first-examples">
 <h2><a class="toc-backref" href="#id4">Run Your First Examples</a><a class="headerlink" href="#run-your-first-examples" title="Permalink to this headline">¶</a></h2>
 <p>See the <a class="reference internal" href="examples.html#tutorials-and-examples"><span class="std std-ref">tutorials and examples</span></a> page to learn how to run jobs on your system.</p>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
@@ -231,7 +229,7 @@ sudo /opt/xilinx/xrm/tools/restart_xrmd.sh
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on July 28, 2022.
+      <span class="lastupdated">Last updated on August 10, 2022.
       </span></p>
   </div>
 

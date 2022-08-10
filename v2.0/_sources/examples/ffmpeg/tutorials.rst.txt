@@ -423,15 +423,15 @@ Lower-Latency Transcode With Multiple-Resolution Outputs
 
     ./ffmpeg_transcode_plus_scale_low_latency.sh <1080p60 h264 clip>
 
-This example is the same as #6, which is a full transcode pipeline (decode, scale, encode), saving the scaled outputs into the files :file:`/tmp/xil_ll_xcode_scale_<reso>.mp4`. This differs in that is a "low latency" version, which removes the B-frames, and reduces the lookahead. This decreases the latency at the cost of video quality.
+This example is similar to #6, which is a full transcode pipeline (decode, scale, encode), saving the scaled outputs into the files :file:`/tmp/xil_ll_xcode_scale_<reso>.mp4`. It differs in that it uses various settings which will reduce the overall latency of the pipeline.
 
-When low-latency is enabled, the decoder will generate invalid data if the input stream contains B-frames. To avoid this, this script will generate an error if it detects that the input stream contains B-frames.
+One of these options is the low-latency decoding mode. This mode doesn't support decoding streams with B-frames. This script will generate an error if it detects that the input stream contains B-frames.
 
 The command included in the script doesn't handle the audio channel of the input video. For an example of how to include audio in the output streams, refer to the example commented out at the bottom of the script and to the section of the documentation about :ref:`Mapping Audio Streams <mapping-audio-streams>`.
 
 **Command Line**::
 
-    ffmpeg -c:v mpsoc_vcu_h264 -low_latency 1 -i $1 \
+    ffmpeg -c:v mpsoc_vcu_h264 -low_latency 1 -splitbuff_mode 1 -i $1 \
     -filter_complex "multiscale_xma=outputs=4: \
     out_1_width=1280: out_1_height=720: out_1_rate=full:   \
     out_2_width=848:  out_2_height=480: out_2_rate=half:   \ 
@@ -457,11 +457,17 @@ Explanation of the flags:
 
 - ``-low_latency 1``
   
-  + This flag disables the Decoder's ability to handle out-of-order frames (i.e. B-Frames). Decoding I and P frames only decreases the latency of the system.
- 
-  + **If your stream contains B-Frames, you will receive a corrupt output**
+  + This flag enables low-latency decoding
+  
+  + **B-frames are not supported in this mode**.
 
   + Remove ``-low_latency 1`` from the command line if your input has B-Frames
+
+- ``-splitbuff_mode 1``
+
+  + This flag configures the decoder in split/unsplit input buffer mode, which reduces latency by handing off buffers to the next pipeline stage earlier. 
+
+  + This flag must be enabled together with the ``low_latency`` one to reduce decoding latency.
 
 - ``-filter_complex``
 
@@ -981,7 +987,7 @@ Once the tunnel is established, you may access the manifest file through ``http:
 ..
   ------------
   
-  © Copyright 2020-2021 Xilinx, Inc.
+  © Copyright 2020-2022 Xilinx, Inc.
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   

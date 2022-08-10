@@ -58,8 +58,8 @@ Install the |SDK|
 
     sudo /opt/xilinx/xrt/bin/xball --device-filter u30 xbmgmt program --base
 
-   + If all cards are up to date, the script will report so and terminate. You can proceed to the next step. 
-   + Otherwise, you will see one or more messages indicating "Updating Satellite Controller (SC) firmware flash image" and the script will perform the required updates. After all updates are completed, perform a warm reboot of the machine.
+   + If all cards are up to date, the command will report so and terminate. You can proceed to the next step. 
+   + Otherwise, you will see one or more messages indicating "Updating Satellite Controller (SC) firmware flash image" and the command will perform the required updates. After all updates are completed, perform a warm reboot of the machine.
 
 #. Test that the installation was successful with the command below. This script will run a validation test on each of the devices in your system. For each of the devices, you should see a message indicating that the test was successful::
 
@@ -100,7 +100,7 @@ See the :ref:`tutorials and examples <tutorials-and-examples>` page to learn how
 ..
   ------------
   
-  © Copyright 2020-2021 Xilinx, Inc.
+  © Copyright 2020-2022 Xilinx, Inc.
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   

@@ -151,7 +151,7 @@ These should add the following switches to your gcc commands::
 ..
   ------------
   
-  © Copyright 2020-2021 Xilinx, Inc.
+  © Copyright 2020-2022 Xilinx, Inc.
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   
