@@ -14,3 +14,14 @@ Many people will argue which metric is best (although PSNR is commonly considere
 Furthermore, due to the industry standard of tracking encoder "performance" to quantitative metrics like the ones listed above, many encoders have "taught to the test"; that is, they provide different command-line arguments that will give higher scores but may look worse to the human eye. For example, common CPU encoders `x264 <https://code.videolan.org/videolan/x264>`__ and `x265 <http://hg.videolan.org/x265>`__ have a ``tune`` parameter which optimizes to objective metrics.
 
 This page discusses the |SDK| command line flags used to optimize for objective quality (scores) and subjective quality (visual appeal) and provides additional details as to what is happening behind the scenes and why.
+
+..
+  ------------
+  
+  © Copyright 2020-2022 Xilinx, Inc.
+  
+  Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
+  
+  http://www.apache.org/licenses/LICENSE-2.0
+  
+  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.

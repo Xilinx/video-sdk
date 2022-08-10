@@ -8,25 +8,29 @@ The Xilinx video decoder is leveraged in FFmpeg by setting the :option:`-c:v` op
 
 The table below describes all the options for the Xilinx video decoder.
 
-====================================  ===========================
-Options                               Descriptions
-====================================  ===========================
-.. option:: -low_latency              | Configure decoder to handle out-of-order frames in order to decrease the latency of the system.
-                                      | IMPORTANT: This option should not be used when processing streams containing B frames. 
-                                      | Valid values: 0 (default) and 1
-.. option:: -entropy_buffers_count    | Specify number of internal entropy buffers.
-                                      | Valid values: 2 (default) to 10
-                                      | Can be used to improve the performance for input streams with a high bitrate (including 4k streams) or a high number of reference frames. 2 is enough for most cases. 5 is the practical limit.
-.. option:: -splitbuff_mode           | Configure decoder in split/unsplit input buffer mode.
-                                      | Valid values: 0 (default) and 1
-====================================  ===========================
+.. table:: 
+   :widths: 30, 70
+
+   ====================================  ===========================
+   Options                               Descriptions
+   ====================================  ===========================
+   .. option:: -low_latency              | **Enable low-latency mode**
+                                         | Valid values: 0 (default) and 1
+                                         | Setting this flag to 1 reduces decoding latency when :option:`splitbuff-mode` is also enabled. **IMPORTANT:** This option should not be used with streams containing B frames. 
+   .. option:: -splitbuff_mode           | **Configure decoder in split/unsplit input buffer mode**
+                                         | Valid values: 0 (default) and 1
+                                         | The split buffer mode hands-off buffers to next pipeline stage earlier. Enabling both :option:`splitbuff-mode` and :option:`low-latency` reduces decoding latency.
+   .. option:: -entropy_buffers_count    | **Number of internal entropy buffers**
+                                         | Valid values: 2 (default) to 10
+                                         | Can be used to improve the performance for input streams with a high bitrate (including 4k streams) or a high number of reference frames. 2 is enough for most cases. 5 is the practical limit.
+   ====================================  ===========================
 
 
 
 ..
   ------------
   
-  © Copyright 2020-2021 Xilinx, Inc.
+  © Copyright 2020-2022 Xilinx, Inc.
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   

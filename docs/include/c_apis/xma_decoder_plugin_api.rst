@@ -154,8 +154,14 @@ In addition to the standard properties, the following :c:struct:`XmaParameter` c
     For HEVC, set "codec_type" to 1.
 
 "low_latency"
-    Setting this parameter gives out decoded frames in decode order instead of display order.
-    Supported values are 0 for display order and 1 for decode order.
+    Setting this flag to 1 reduces decoding latency when ``splitbuff_mode`` is also enabled. 
+    **IMPORTANT:** This option should not be used with streams containing B frames. 
+    Valid values are 0 (disabled, default) and 1 (enabled)
+
+"splitbuff_mode"
+    The split buffer mode hands-off buffers to next pipeline stage earlier. Setting both ``splitbuff_mode`` and ``low_latency`` to 1 reduces decoding latency.
+    **IMPORTANT:** Enable this mode only if you can always send a complete Access Unit in one shot to the decoder.
+    Valid values are 0 (disabled, default) and 1 (enabled)
 
 "entropy_buffers_count"
     Number of internal buffers to be used.
@@ -168,11 +174,11 @@ In addition to the standard properties, the following :c:struct:`XmaParameter` c
 
 "profile"
     Profile of the input stream.
-    Supported are Baseline, Main and High for H264. Main profile for HEVC.
+    Supported values are Baseline, Main and High for H264. Main profile for HEVC.
 
 "level"
     Level of the input stream.
-    Supported are from 1.0 to 5.1.
+    Supported values are from 1.0 to 5.1.
 
 "chroma_mode"
     Chroma mode with which the input has been encoded.
@@ -185,14 +191,10 @@ In addition to the standard properties, the following :c:struct:`XmaParameter` c
 "latency_logging"
     Set to 1 to enable logging of latency information to syslog.
 
-"splitbuff_mode"
-    Splitbuffmode reduces latency by handing off buffers to next pipeline stage earlier. 
-    Set this only if we ensure that we always feed all NAL units that make up a frame in one shot to the decoder.
-
 ..
   ------------
   
-  © Copyright 2020-2021 Xilinx, Inc.
+  © Copyright 2020-2022 Xilinx, Inc.
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   

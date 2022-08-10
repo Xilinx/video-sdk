@@ -19,10 +19,7 @@
 # This script assumes an 8-bit, YUV420, pre-encoded 60FPS h.264 file. It will scale this input into multiple renditions of various sizes,
 # and send them to the encoder targeting various bitrates (as defined by the -b:v flag).
 
-# This is a LOW-LATENCY version: b-frames are removed, as well as a reduced lookahead. This means 2 things:
-# 1) The decoder does not accept B-Frames (out of order decoding). If you provide a clip with B-Frames, the script will give an error.
-# 2) The encoder will not produce B-Frames in its output
-
+# Low-latency decoding is enabled and lookahead depth is reduced. 
 
 # The 1080p60 input is scaled down to the following resolutions, framerates, and bitrates (respectively):
 # 720p60 4.0   Mbps
@@ -59,7 +56,7 @@ if [ $numBframes -gt 0 ]
 fi
 
 
-ffmpeg -c:v mpsoc_vcu_h264 -low_latency 1 -i $1 \
+ffmpeg -c:v mpsoc_vcu_h264 -low_latency 1 -splitbuff_mode 1 -i $1 \
 -filter_complex "multiscale_xma=outputs=4: \
 out_1_width=1280: out_1_height=720: out_1_rate=full:   \
 out_2_width=848:  out_2_height=480: out_2_rate=half:   \
@@ -76,7 +73,7 @@ out_4_width=288:  out_4_height=160: out_4_rate=half    \
 # FFmpeg command to process audio as well as video. 
 # Should only be used if the input video has an audio channel.
 
-# ffmpeg -c:v mpsoc_vcu_h264 -low_latency 1 -i $1 \
+# ffmpeg -c:v mpsoc_vcu_h264 -low_latency 1 -splitbuff_mode 1 -i $1 \
 # -filter_complex "multiscale_xma=outputs=4: \
 # out_1_width=1280: out_1_height=720: out_1_rate=full:   \
 # out_2_width=848:  out_2_height=480: out_2_rate=half:   \ 

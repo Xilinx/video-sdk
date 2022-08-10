@@ -25,7 +25,7 @@ The Xilinx hardware scaler is leveraged in FFmpeg by using the :option:`multisca
 
 
 .. list-table:: Multiscale Filter Options
-   :widths: 25 75
+   :widths: 30 70
    :header-rows: 1
 
    * - Options
@@ -54,9 +54,9 @@ The Xilinx hardware scaler is leveraged in FFmpeg by using the :option:`multisca
      - | **Enable pipelining in multiscaler**
        | Pipelining provides additional performance at the cost of additional latency (2 frames). By default, pipelining is automatically controlled based on where the scaler input is coming from. If the input is coming from the host, pipelining is enabled. If the input is coming from the decoder then pipelining is disabled. Explicitly enabling pipelining has benefits in two situations: in a 2-device use cases where the output of the scaler is transfered to the host; in zero copy 4K ABR ladder use cases with multiple renditions.
        | Valid values: -1 to 1 (default -1)
-       | auto (-1)
-       | disabled (0)
-       | enabled (1)
+       |  (-1) auto 
+       |  (0) disabled 
+       |  (1) enabled
 
 |
 
@@ -137,7 +137,7 @@ Encoded input streams with a high bitrate or with a high number of reference fra
 ..
   ------------
   
-  © Copyright 2020-2021 Xilinx, Inc.
+  © Copyright 2020-2022 Xilinx, Inc.
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   

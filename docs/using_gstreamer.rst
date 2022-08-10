@@ -57,45 +57,50 @@ Decoder Inputs and Outputs
 Decoder Parameters
 ==========================================================
 
-========================================== ===========================
-Property Name                              Description
-========================================== ===========================
-.. option:: avoid-dynamic-alloc            | **Avoid dynamic allocation of output buffers**
-                                           | Type: Boolean
-                                           | Default Value: True
-.. option:: avoid-output-copy              | **Avoid output frames copy**
-                                           | Avoid output frames copy even when downstream does not support GstVideoMeta metadata
-                                           | Type: Boolean
-                                           | Default Value: false
-.. option:: disable-hdr10-sei              | **Whether to passthrough HDR10/10+ SEI messages or not**
-                                           | Type: Boolean
-                                           | Default Value: True
-.. option:: dev-idx                        | **Index of the device on which the decoder should be executed**
-                                           | For more details, refer to the section about :ref:`Working with Multiple Devices <gst-multiple-devices>`
-                                           | Valid Device index is 0 to 31. Default value is set to -1 intentionally so that user provides the correct device index.
-                                           | Type: Integer
-                                           | Range: -1 to 31
-                                           | Default Value: -1
-.. option:: disable-hdr10-sei              | **Whether to passthrough HDR10/10+ SEI messages or not**
-                                           | Type: Boolean
-                                           | Default Value: false
-.. option:: low-latency                    | **Whether to enable low latency or not**
-                                           | Type: Boolean
-                                           | Range: true or false
-                                           | Default Value: false
-.. option:: num-entropy-buf                | **Specifies the number of decoder internal entropy buffers**
-                                           | Used to smooth out entropy decoding performance. Increasing buffering-count increases decoder memory footprint. Set this value to 10 for higher bit-rate use cases, for example uses cases where the bitrate is more than 100 Mb/s.
-                                           | Type: Unsigned integer
-                                           | Range: 2 to 10
-                                           | Default Value: 2
-.. option:: reservation-id                 | **Resource Pool Reservation id**
-                                           | Type: Unsigned Integer64
-                                           | Range: 0 - 18446744073709551615
-                                           | Default Value: 0
-.. option:: slplitbuff-mode                | **Whether to enable splitbuff mode or not**
-                                           | Type: Boolean
-                                           | Default Value: false
-========================================== ===========================
+.. table:: 
+   :widths: 30, 70
+
+   ========================================== ===========================
+   Property Name                              Description
+   ========================================== ===========================
+   .. option:: avoid-dynamic-alloc            | **Avoid dynamic allocation of output buffers**
+                                              | Type: Boolean
+                                              | Default Value: True
+   .. option:: avoid-output-copy              | **Avoid output frames copy**
+                                              | Avoid output frames copy even when downstream does not support GstVideoMeta metadata
+                                              | Type: Boolean
+                                              | Default Value: false
+   .. option:: disable-hdr10-sei              | **Whether to passthrough HDR10/10+ SEI messages or not**
+                                              | Type: Boolean
+                                              | Default Value: True
+   .. option:: dev-idx                        | **Index of the device on which the decoder should be executed**
+                                              | For more details, refer to the section about :ref:`Working with Multiple Devices <gst-multiple-devices>`
+                                              | Valid Device index is 0 to 31. Default value is set to -1 intentionally so that user provides the correct device index.
+                                              | Type: Integer
+                                              | Range: -1 to 31
+                                              | Default Value: -1
+   .. option:: disable-hdr10-sei              | **Whether to passthrough HDR10/10+ SEI messages or not**
+                                              | Type: Boolean
+                                              | Default Value: false
+   .. option:: low-latency                    | **Enable low-latency mode**
+                                              | Enabling this mode reduces decoding latency when :option:`splitbuff-mode` is also enabled. **IMPORTANT:** This option should not be used with streams containing B frames. 
+                                              | Type: Boolean
+                                              | Range: true or false
+                                              | Default Value: false
+   .. option:: splitbuff-mode                 | **Configure decoder in split/unsplit input buffer mode**
+                                              | The split buffer mode hands-off buffers to next pipeline stage earlier. Enabling both :option:`splitbuff-mode` and :option:`low-latency` reduces decoding latency.
+                                              | Type: Boolean
+                                              | Default Value: false                                           
+   .. option:: num-entropy-buf                | **Specifies the number of decoder internal entropy buffers**
+                                              | Used to smooth out entropy decoding performance. Increasing buffering-count increases decoder memory footprint. Set this value to 10 for higher bit-rate use cases, for example uses cases where the bitrate is more than 100 Mb/s.
+                                              | Type: Unsigned integer
+                                              | Range: 2 to 10
+                                              | Default Value: 2
+   .. option:: reservation-id                 | **Resource Pool Reservation id**
+                                              | Type: Unsigned Integer64
+                                              | Range: 0 - 18446744073709551615
+                                              | Default Value: 0
+   ========================================== ===========================
 
 
 Decoder Example Pipelines
@@ -124,110 +129,113 @@ Encoder Inputs and Outputs
 Encoder Parameters
 ==========================================================
 
-========================================== ===========================
-Property Name                              Description
-========================================== ===========================
-.. option:: aspect-ratio                   | **Display aspect ratio of the video sequence to be written in SPS/VUI**
-                                           | Type: Enum
-                                           |  (0): auto             - 4:3 for SD video,16:9 for HD video,unspecified for unknown format
-                                           |  (1): 4-3              - 4:3 aspect ratio
-                                           |  (2): 16-9             - 16:9 aspect ratio
-                                           |  (3): none             - Aspect ratio information is not present in the stream
-                                           | Default: 0
-.. option:: b-frames                       | **Number of B-frames between two consecutive P-frames**
-                                           | Type: Unsigned Integer
-                                           | Range: 0 - 4294967295
-                                           | Default: 2
-                                           | Consult the :ref:`B Frames <tuning-b-frames>` section for more details on how to use this option.
-.. option:: control-rate                   | **Bitrate control method**
-                                           | Type: Enum
-                                           |  (0): disable          - Disable
-                                           |  (1): constant         - Constant
-                                           |  (2): variable         - Variable
-                                           |  (3): low-latency      - Low Latency
-                                           | Default: 1, "constant"
-.. option:: dev-idx                        | **Index of the device on which the encoder should be executed**
-                                           | For more details, refer to the section about :ref:`Working with Multiple Devices <gst-multiple-devices>`
-                                           | Type: Integer
-                                           | Range: -1 - 31
-                                           | Default: -1
-                                           | Valid Device index is 0 to 31. Default value is set to -1 intentionally so that user provides the correct device index.
-.. option:: enable-pipeline                | **Enable buffer pipelining to improve performance in non zero-copy use cases**
-                                           | Type: Boolean
-                                           | Default: False
-                                           | Set this value to True when the encoder on a device receives data from other device
-.. option:: gop-length                     | **Number of frames in a GOP**
-                                           | Distance between two consecutive I frames. Must be a multiple of (b-frames+1)
-                                           | Type: Unsigned Integer
-                                           | Range: 0 - 1000
-                                           | Default: 120
-.. option:: max-bitrate                    | **Max bitrate in Kbps.** Only used if control-rate=variable
-                                           | Type: Unsigned Integer
-                                           | Range: 0 - 4294967295
-                                           | Default: 5000
-.. option:: max-qp                         | **Maximum QP value allowed for the rate control**
-                                           | Type: Unsigned Integer
-                                           | Range: 0 - 51
-                                           | Default: 51
-.. option:: min-qp                         | **Minimum QP value allowed for the rate control**
-                                           | Type: Unsigned Integer
-                                           | Range: 0 - 51
-                                           | Default: 0
-.. option:: num-cores                      | **Number of encoder cores to be used for current stream**
-                                           | If set to 0 (AUTO), the number of encoder cores is automatically determined. Otherwise sets the number of encoder cores to be used.
-                                           | Type: Unsigned Integer
-                                           | Range: 0 - 4
-                                           | Default: 0
-.. option:: num-slices                     | **Number of slices produced for each frame.**
-                                           | Each slice contains one or more complete macroblock/CTU row(s). Slices are distributed over the frame 
-                                           | as regularly as possible.
-                                           | In low-latency mode: 
-                                           |  H.264(AVC): 32
-                                           |  H.265 (HEVC): 22
-                                           | In normal latency-mode:
-                                           |  H.264(AVC): picture_height/16
-                                           |  H.265(HEVC): minimum of picture_height/32
-                                           | Type: Unsigned Integer
-                                           | Range: 1 - 68
-                                           | Default: 1
-.. option:: periodicity-idr                | **Periodicity of IDR frames**
-                                           | Type: Unsigned Integer
-                                           | Range: 0 - 4294967295
-                                           | Default: 4294967295
-.. option:: qp-mode                        | **QP control mode used by the encoder**
-                                           | Type: Enum
-                                           |  (0): Uniform - Use the same QP for all coding units of the frame
-                                           |  (1): Auto - Let the encoder handle the QP for each coding unit according to its content
-                                           |  (2): ROI - Adjust QP according to the regions of interest defined on each frame.
-                                           |  (3): Relative-load - Use the information gathered in the lookahead to calculate the best QP
-                                           | Range: 0 - 3
-                                           | Default: 1 (i.e. auto)
-.. option:: rc-mode                        | **Enable custom rate control mode**
-                                           | To enable custom rate control, the Lookahead must be enabled, and both the Lookahead rc-mode and the Encoder rc-mode parameters must be set to True.
-                                           | Type: Boolean
-                                           | Default: True
-.. option:: reservation-id                 | **Resource Pool Reservation id**
-                                           | Type: Unsigned Integer64
-                                           | Range: 0 - 18446744073709551615
-                                           | Default: 0
-.. option:: scaling-list                   | **Scaling list mode**
-                                           | Type: Enum
-                                           |  (0): Flat
-                                           |  (1): Default
-                                           | Range: 0 - 1
-                                           | Default: 1
-.. option:: slice-qp                       | **Slice QP mode**
-                                           | When RateCtrlMode = CONST_QP the specified QP is applied to all slices.
-                                           | When RateCtrlMode = CBR the specified QP is used as initial QP
-                                           | Type: Integer
-                                           | Range: -1 - 51
-                                           | Default: -1
-.. option:: target-bitrate                 | **Target bitrate in Kbps. (5000 Kbps = component default)**
-                                           | This property can be changed in all the states of the element including PLAYING state.
-                                           | Type: Unsigned Integer
-                                           | Range: 0 - 4294967295
-                                           | Default: 5000
-========================================== ===========================
+.. table:: 
+   :widths: 30, 70
+
+   ========================================== ===========================
+   Property Name                              Description
+   ========================================== ===========================
+   .. option:: aspect-ratio                   | **Display aspect ratio of the video sequence to be written in SPS/VUI**
+                                              | Type: Enum
+                                              |  (0): auto             - 4:3 for SD video,16:9 for HD video,unspecified for unknown format
+                                              |  (1): 4-3              - 4:3 aspect ratio
+                                              |  (2): 16-9             - 16:9 aspect ratio
+                                              |  (3): none             - Aspect ratio information is not present in the stream
+                                              | Default: 0
+   .. option:: b-frames                       | **Number of B-frames between two consecutive P-frames**
+                                              | Type: Unsigned Integer
+                                              | Range: 0 - 4294967295
+                                              | Default: 2
+                                              | Consult the :ref:`B Frames <tuning-b-frames>` section for more details on how to use this option.
+   .. option:: control-rate                   | **Bitrate control method**
+                                              | Type: Enum
+                                              |  (0): disable          - Disable
+                                              |  (1): constant         - Constant
+                                              |  (2): variable         - Variable
+                                              |  (3): low-latency      - Low Latency
+                                              | Default: 1, "constant"
+   .. option:: dev-idx                        | **Index of the device on which the encoder should be executed**
+                                              | For more details, refer to the section about :ref:`Working with Multiple Devices <gst-multiple-devices>`
+                                              | Type: Integer
+                                              | Range: -1 - 31
+                                              | Default: -1
+                                              | Valid Device index is 0 to 31. Default value is set to -1 intentionally so that user provides the correct device index.
+   .. option:: enable-pipeline                | **Enable buffer pipelining to improve performance in non zero-copy use cases**
+                                              | Type: Boolean
+                                              | Default: False
+                                              | Set this value to True when the encoder on a device receives data from other device
+   .. option:: gop-length                     | **Number of frames in a GOP**
+                                              | Distance between two consecutive I frames. Must be a multiple of (b-frames+1)
+                                              | Type: Unsigned Integer
+                                              | Range: 0 - 1000
+                                              | Default: 120
+   .. option:: max-bitrate                    | **Max bitrate in Kbps.** Only used if control-rate=variable
+                                              | Type: Unsigned Integer
+                                              | Range: 0 - 4294967295
+                                              | Default: 5000
+   .. option:: max-qp                         | **Maximum QP value allowed for the rate control**
+                                              | Type: Unsigned Integer
+                                              | Range: 0 - 51
+                                              | Default: 51
+   .. option:: min-qp                         | **Minimum QP value allowed for the rate control**
+                                              | Type: Unsigned Integer
+                                              | Range: 0 - 51
+                                              | Default: 0
+   .. option:: num-cores                      | **Number of encoder cores to be used for current stream**
+                                              | If set to 0 (AUTO), the number of encoder cores is automatically determined. Otherwise sets the number of encoder cores to be used.
+                                              | Type: Unsigned Integer
+                                              | Range: 0 - 4
+                                              | Default: 0
+   .. option:: num-slices                     | **Number of slices produced for each frame.**
+                                              | Each slice contains one or more complete macroblock/CTU row(s). Slices are distributed over the frame 
+                                              | as regularly as possible.
+                                              | In low-latency mode: 
+                                              |  H.264(AVC): 32
+                                              |  H.265 (HEVC): 22
+                                              | In normal latency-mode:
+                                              |  H.264(AVC): picture_height/16
+                                              |  H.265(HEVC): minimum of picture_height/32
+                                              | Type: Unsigned Integer
+                                              | Range: 1 - 68
+                                              | Default: 1
+   .. option:: periodicity-idr                | **Periodicity of IDR frames**
+                                              | Type: Unsigned Integer
+                                              | Range: 0 - 4294967295
+                                              | Default: 4294967295
+   .. option:: qp-mode                        | **QP control mode used by the encoder**
+                                              | Type: Enum
+                                              |  (0): Uniform - Use the same QP for all coding units of the frame
+                                              |  (1): Auto - Let the encoder handle the QP for each coding unit according to its content
+                                              |  (2): ROI - Adjust QP according to the regions of interest defined on each frame.
+                                              |  (3): Relative-load - Use the information gathered in the lookahead to calculate the best QP
+                                              | Range: 0 - 3
+                                              | Default: 1 (i.e. auto)
+   .. option:: rc-mode                        | **Enable custom rate control mode**
+                                              | To enable custom rate control, the Lookahead must be enabled, and both the Lookahead rc-mode and the Encoder rc-mode parameters must be set to True.
+                                              | Type: Boolean
+                                              | Default: True
+   .. option:: reservation-id                 | **Resource Pool Reservation id**
+                                              | Type: Unsigned Integer64
+                                              | Range: 0 - 18446744073709551615
+                                              | Default: 0
+   .. option:: scaling-list                   | **Scaling list mode**
+                                              | Type: Enum
+                                              |  (0): Flat
+                                              |  (1): Default
+                                              | Range: 0 - 1
+                                              | Default: 1
+   .. option:: slice-qp                       | **Slice QP mode**
+                                              | When RateCtrlMode = CONST_QP the specified QP is applied to all slices.
+                                              | When RateCtrlMode = CBR the specified QP is used as initial QP
+                                              | Type: Integer
+                                              | Range: -1 - 51
+                                              | Default: -1
+   .. option:: target-bitrate                 | **Target bitrate in Kbps. (5000 Kbps = component default)**
+                                              | This property can be changed in all the states of the element including PLAYING state.
+                                              | Type: Unsigned Integer
+                                              | Range: 0 - 4294967295
+                                              | Default: 5000
+   ========================================== ===========================
 
 
 Encoder Example Pipelines
@@ -258,38 +266,41 @@ ABR Scaler Inputs and Outputs
 ABR Scaler Parameters
 ==========================================================
 
-========================================== ===========================
-Property Name                              Description
-========================================== ===========================
-.. option:: avoid-output-copy              | **Avoid output frames copy on all source pads**
-                                           | Avoid output frames copy on all source pads even when downstream does not support GstVideoMeta metadata
-                                           | Type: Boolean
-                                           | Default Value: false
-.. option:: coef-load-type                 | **coefficients loading type for scaling**
-                                           | Type: Enum
-                                           |  (0): fixed   - Use fixed filter coefficients
-                                           |  (1): auto    - Auto generate filter coefficients
-                                           | Default: 1
-.. option:: dev-idx                        | **Index of the device on which the scaler should be executed**
-                                           | For more details, refer to the section about :ref:`Working with Multiple Devices <gst-multiple-devices>`
-                                           | Type: Integer
-                                           | Range: -1 to 31
-                                           | Default: -1
-                                           | Valid Device index is 0 to 31. Default value is set to -1 intentionally so that user provides the correct device index
-.. option:: enable-pipeline                | **Enable buffer pipelining to improve performance in non zero-copy use cases**
-                                           | Type: Boolean
-                                           | Default: False
-                                           | Set this value to 1 when the scaler on one device is receiving data from other device
-.. option:: kernel-name                    | **Kernel and instance name**
-                                           | Type: String
-                                           | Range: Must be set to: scaler:scaler_1
-                                           | Default: NULL
-.. option:: reservation-id                 | **Resource Pool Reservation id**
-                                           | Type: Unsigned Integer64
-                                           | Range: 0 - 18446744073709551615
-                                           | Default Value: 0
-========================================== ===========================
+.. table:: 
+   :widths: 30, 70
 
+   ========================================== ===========================
+   Property Name                              Description
+   ========================================== ===========================
+   .. option:: avoid-output-copy              | **Avoid output frames copy on all source pads**
+                                              | Avoid output frames copy on all source pads even when downstream does not support GstVideoMeta metadata
+                                              | Type: Boolean
+                                              | Default Value: false
+   .. option:: coef-load-type                 | **coefficients loading type for scaling**
+                                              | Type: Enum
+                                              |  (0): fixed   - Use fixed filter coefficients
+                                              |  (1): auto    - Auto generate filter coefficients
+                                              | Default: 1
+   .. option:: dev-idx                        | **Index of the device on which the scaler should be executed**
+                                              | For more details, refer to the section about :ref:`Working with Multiple Devices <gst-multiple-devices>`
+                                              | Type: Integer
+                                              | Range: -1 to 31
+                                              | Default: -1
+                                              | Valid Device index is 0 to 31. Default value is set to -1 intentionally so that user provides the correct device index
+   .. option:: enable-pipeline                | **Enable buffer pipelining to improve performance in non zero-copy use cases**
+                                              | Type: Boolean
+                                              | Default: False
+                                              | Set this value to 1 when the scaler on one device is receiving data from other device
+   .. option:: kernel-name                    | **Kernel and instance name**
+                                              | Type: String
+                                              | Range: Must be set to: scaler:scaler_1
+                                              | Default: NULL
+   .. option:: reservation-id                 | **Resource Pool Reservation id**
+                                              | Type: Unsigned Integer64
+                                              | Range: 0 - 18446744073709551615
+                                              | Default Value: 0
+   ========================================== ===========================
+   
 
 ABR Scaler Example Pipelines
 ==========================================================
@@ -315,64 +326,67 @@ Lookahead Inputs and Outputs
 Lookahead Parameters
 ==========================================================
 
-========================================== ===========================
-Property Name                              Description
-========================================== ===========================
-.. option:: b-frames                       | **Number of B-frames between two consecutive P-frames**
-                                           | The same setting should be used for the encoder and lookahead plugins. This property can be changed in PAUSED/PLAYING state of the element when the encoder ``gop-mode`` is basic.
-                                           | Type: Unsigned Integer
-                                           | Range: 0 - 4294967295
-                                           | Default: 2
-.. option:: codec-type                     | **Codec type H264/H265**
-                                           | The same setting should be used for the encoder and lookahead plugins. Based on the codec type, corresponding metadata will be produced and attached to the input frame
-                                           | Type: Enum
-                                           |  (0): H264
-                                           |  (1): H265                                           
-                                           | Range: N/A
-                                           | Default: None
-.. option:: dev-idx                        | **Index of the device on which the lookahead should be executed**
-                                           | For more details, refer to the section about :ref:`Working with Multiple Devices <gst-multiple-devices>`
-                                           | Type: Integer
-                                           | Range: -1 to 31
-                                           | Default: -1
-                                           | Valid Device index is 0 to 31. Default value is set to -1 intentionally so that user provides the correct device index
-.. option:: gop-length                     | **Number of frames between consecutive keyframes. When this is set, same value should be set for encoder plugin as well**
-                                           | Type: Unsigned Integer
-                                           | Range: 0 to 256
-                                           | Default: 120
-.. option:: kernel-name                    | **Lookahead kernel name**
-                                           | Type: String
-                                           | Range: Must be set to: lookahead
-                                           | Default: NULL
-.. option:: lookahead-depth                | **Lookahead depth**
-                                           | Type: Unsinged Integer
-                                           | Range: 1 to 20
-                                           | Default: 8
-.. option:: rc-mode                        | **Enable custom rate control**
-                                           | To enable custom rate control, the Lookahead must be enabled, and both the Lookahead rc-mode and the Encoder rc-mode parameters must be set to True.
-                                           | Type: Boolean
-                                           | Range: N/A
-                                           | Default: False
-.. option:: reservation-id                 | **Resource Pool Reservation id**
-                                           | Type: Unsigned Integer64
-                                           | Range: 0 - 18446744073709551615
-                                           | Default Value: 0
-.. option:: spatial-aq                     | **Enable/Disable Spatial AQ activity**
-                                           | This property can be changed in all the states of the element including PLAYING state.
-                                           | Type: Boolean
-                                           | Range: N/A
-                                           | Default: True
-.. option:: spatial-aq-gain                | **Percentage of Spatial AQ gain**. Applied when enable-spatial-aq is true
-                                           | This property can be changed in all the states of the element including PLAYING state.
-                                           | Type: Unsigned Integer
-                                           | Range: 0 to 100
-                                           | Default: 50
-.. option:: temporal-aq                    | **Enable/Disable Temporal AQ linear**
-                                           | This property can be changed in all the states of the element including PLAYING state.
-                                           | Type: Boolean
-                                           | Range: N/A
-                                           | Default: True
-========================================== ===========================
+.. table:: 
+   :widths: 30, 70
+
+   ========================================== ===========================
+   Property Name                              Description
+   ========================================== ===========================
+   .. option:: b-frames                       | **Number of B-frames between two consecutive P-frames**
+                                              | The same setting should be used for the encoder and lookahead plugins. This property can be changed in PAUSED/PLAYING state of the element when the encoder ``gop-mode`` is basic.
+                                              | Type: Unsigned Integer
+                                              | Range: 0 - 4294967295
+                                              | Default: 2
+   .. option:: codec-type                     | **Codec type H264/H265**
+                                              | The same setting should be used for the encoder and lookahead plugins. Based on the codec type, corresponding metadata will be produced and attached to the input frame
+                                              | Type: Enum
+                                              |  (0): H264
+                                              |  (1): H265                                           
+                                              | Range: N/A
+                                              | Default: None
+   .. option:: dev-idx                        | **Index of the device on which the lookahead should be executed**
+                                              | For more details, refer to the section about :ref:`Working with Multiple Devices <gst-multiple-devices>`
+                                              | Type: Integer
+                                              | Range: -1 to 31
+                                              | Default: -1
+                                              | Valid Device index is 0 to 31. Default value is set to -1 intentionally so that user provides the correct device index
+   .. option:: gop-length                     | **Number of frames between consecutive keyframes. When this is set, same value should be set for encoder plugin as well**
+                                              | Type: Unsigned Integer
+                                              | Range: 0 to 256
+                                              | Default: 120
+   .. option:: kernel-name                    | **Lookahead kernel name**
+                                              | Type: String
+                                              | Range: Must be set to: lookahead
+                                              | Default: NULL
+   .. option:: lookahead-depth                | **Lookahead depth**
+                                              | Type: Unsinged Integer
+                                              | Range: 1 to 20
+                                              | Default: 8
+   .. option:: rc-mode                        | **Enable custom rate control**
+                                              | To enable custom rate control, the Lookahead must be enabled, and both the Lookahead rc-mode and the Encoder rc-mode parameters must be set to True.
+                                              | Type: Boolean
+                                              | Range: N/A
+                                              | Default: False
+   .. option:: reservation-id                 | **Resource Pool Reservation id**
+                                              | Type: Unsigned Integer64
+                                              | Range: 0 - 18446744073709551615
+                                              | Default Value: 0
+   .. option:: spatial-aq                     | **Enable/Disable Spatial AQ activity**
+                                              | This property can be changed in all the states of the element including PLAYING state.
+                                              | Type: Boolean
+                                              | Range: N/A
+                                              | Default: True
+   .. option:: spatial-aq-gain                | **Percentage of Spatial AQ gain**. Applied when enable-spatial-aq is true
+                                              | This property can be changed in all the states of the element including PLAYING state.
+                                              | Type: Unsigned Integer
+                                              | Range: 0 to 100
+                                              | Default: 50
+   .. option:: temporal-aq                    | **Enable/Disable Temporal AQ linear**
+                                              | This property can be changed in all the states of the element including PLAYING state.
+                                              | Type: Boolean
+                                              | Range: N/A
+                                              | Default: True
+   ========================================== ===========================
 
 
 Lookahead Example pipeline
@@ -427,7 +441,7 @@ Consult the :ref:`Using Explicit Device IDs <using-explicit-device-ids>` section
 ..
   ------------
 
-  © Copyright 2020-2021 Xilinx, Inc.
+  © Copyright 2020-2022 Xilinx, Inc.
 
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 

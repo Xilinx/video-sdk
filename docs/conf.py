@@ -175,6 +175,9 @@ html_css_files = ['_static/custom.css']
 #        'donate.html',
 #    ]}
 
+# Set this to True to active the "View page source" link
+html_show_sourcelink = False
+
 
 # -- Options for HTMLHelp output ---------------------------------------------
 
