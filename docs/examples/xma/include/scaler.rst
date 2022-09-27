@@ -28,7 +28,7 @@ Scale 1080p nv12 to 720p, 480p, 360p, and 240p nv12::
         720 -o Kimono_1280x720.NV12 -w 852 -h 480 -o Kimono_852x480.NV12 -w \
         640 -h 360 -o Kimono_640x360.NV12 -w 480 -h 240 -o Kimono_480x240.NV12
 
-For more examples, refer to the :download:`scaler/test/scripts/scaler_app_test.sh </../examples/xma/scaler/test/scripts/scaler_app_test.sh>` script.
+For more examples, refer to the :url_to_xma_apps:`scaler/test/scripts/scaler_app_test.sh` script.
 
 
 Limitations of the Scaler App

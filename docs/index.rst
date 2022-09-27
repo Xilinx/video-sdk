@@ -4,15 +4,12 @@
 
 The |SDK| is a complete software stack allowing users to seamlessly leverage the hardware accelerated features of Xilinx video codec units and enable high-density real-time transcoding for live streaming video service providers, OEMs, and Content Delivery Network (CDNs). Included in the |SDK| are pre-compiled versions of FFmpeg and GStreamer which integrate video transcoding plug-ins for Xilinx devices, enabling simple hardware acceleration of video decoding, scaling and encoding using these popular tools. The |SDK| also provides a C-based application programming interface (API) which facilitates the integration of Xilinx video codec units transcoding capabilities in proprietary frameworks. The |SDK| can be leveraged on-premises with Alveo U30 cards and in the cloud with |VT1| instances.
 
-.. raw:: html
+|
 
-   <iframe 
-     width="640" height="340"
-     src="https://www.youtube.com/embed/kv-OS_cFOvg" 
-     title="YouTube video player" 
-     frameborder="0">
-   </iframe>
+.. note::
+   A new Kubernetes plugin is available for U30 cards. This new plugin no longer requires an exact version number when specifying U30 resource limits. This allows for compatibility of pod description files across all releases of the |SDK|. Kubernetes clusters using this plugin will continue to work seamlessly even after an upgrade of the |SDK|. **If using Kubernetes, to prevent service degradation, it is necessary to deploy this new plugin (version 1.1.0)**  before upgrading to the latest version of the |SDK|. For more details, refer to the instructions for :ref:`deploying with Kubernetes <deploying-with-kubernetes>`. 
 
+|
 
 *************************
 Quick Links
@@ -23,6 +20,18 @@ Quick Links
 - :doc:`Get Started on Premises with Alveo U30 </getting_started_on_prem>`
 - :doc:`Get Started in the Cloud with Amazon EC2 VT1 </getting_started_on_vt1>`
 - :doc:`Tutorials and Examples </examples>`
+
+|
+
+.. raw:: html
+
+   <iframe 
+     width="640" height="340"
+     src="https://www.youtube.com/embed/kv-OS_cFOvg" 
+     title="YouTube video player" 
+     frameborder="0">
+   </iframe>
+
 
 
 .. toctree::

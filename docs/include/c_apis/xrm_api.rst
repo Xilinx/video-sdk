@@ -17,7 +17,7 @@ More details on the XRM command line tool (xrmadm) and the XRM daemon (xrmd) can
 The XRM C APIs are defined in :file:`xrm.h`. The detailed description of these APIs can be found in the `XRM documentation <https://xilinx.github.io/XRM/lib.html>`_. The XRM APIs listed below are the most commonly used to manage video acceleration resources:
 
 - `xrmCheckCuPoolAvailableNumV2 <https://xilinx.github.io/XRM/lib.html#xrmcheckcupoolavailablenumv2>`_
-- `xrmCuPoolReserveV2 <https://https://xilinx.github.io/XRM/lib.html#xrmcupoolreservev2>`_
+- `xrmCuPoolReserveV2 <https://xilinx.github.io/XRM/lib.html#xrmcupoolreservev2>`_
 - `xrmReservationQueryV2 <https://xilinx.github.io/XRM/lib.html#xrmreservationqueryv2>`_
 - `xrmCuPoolRelinquishV2 <https://xilinx.github.io/XRM/lib.html#xrmcupoolrelinquishv2>`_
 - `xrmCuAllocV2 <https://xilinx.github.io/XRM/lib.html#xrmcuallocv2>`_

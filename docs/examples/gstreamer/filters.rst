@@ -13,28 +13,28 @@ The ``examples/filters/`` folder contains different examples showing how to use 
 
 Video Rotation
 ==============
-:download:`01_rotate_video.sh </../examples/gstreamer/filters/01_rotate_video.sh>`
+- Example script: :url_to_examples:`examples/gstreamer/filters/01_rotate_video.sh`
 
 This example accepts an 8-bit, YUV420, pre-encoded h264 file and will send the rotated, encoded h.264 output to /tmp/xil_rotate_<N>.mp4 at a rate of 8Mbps.
 
 
 Logo Overlay
 ============
-:download:`02_logo_overlay.sh </../examples/gstreamer/filters/02_logo_overlay.sh>`
+- Example script: :url_to_examples:`examples/gstreamer/filters/02_logo_overlay.sh`
 
 This example accepts an 8-bit, YUV420, pre-encoded h264 file and an image file ("logo"). It will scale the logo to 500x100, place it 16 pixels right and 16 pixels down from the top-left corner of the output video file, which will be an encoded h.264 output saved to /tmp/xil_logo_overlay.mp4 at a rate of 8Mbps.
 
 
 Crop and Zoom
 =============
-:download:`03_crop_zoom.sh </../examples/gstreamer/filters/03_crop_zoom.sh>`
+- Example script: :url_to_examples:`examples/gstreamer/filters/03_crop_zoom.sh`
 
 This example accepts an 8-bit, YUV420, pre-encoded h264 file and will crop a 300x200 sized section of the original video. The section's top left corner begins at 20 pixels to the right, and 10 pixels down from the top-left corner of the original video. The output video is encoded in 8Mbps, and is saved to /tmp/xil_crop_zoom.mp4
 
 
 Video Composition
 =================
-:download:`04_multi_comp.sh </../examples/gstreamer/filters/04_multi_comp.sh>`
+- Example script: :url_to_examples:`examples/gstreamer/filters/04_multi_comp.sh`
 
 This example accepts 4x 8-bit, YUV420, pre-encoded h264 files of equal dimensions, and will create an output 2x2 composite video which will be an encoded h.264 output saved to /tmp/xil_2x2_composite.mp4 at a rate of 8Mbps. The output resolution will be equal to the original input.
 

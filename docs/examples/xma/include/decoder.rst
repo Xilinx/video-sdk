@@ -30,7 +30,9 @@ Decode an h264 encoded file::
 
   u30_xma_decode  -i ~/CSGO_1920x1080_5000kbps.264 -c:v mpsoc_vcu_h264 -o ./CSGO_1920x1080.NV12
 
-For more examples, refer to the :download:`decoder/test/scripts/decoder_app_test.sh </../examples/xma/decoder/test/scripts/decoder_app_test.sh>` script.
+For more examples, refer to the :url_to_xma_apps:`decoder/test/scripts/decoder_app_test.sh` script.
+
+examples/xma/include/decoder.rst
 
 ..
   ------------

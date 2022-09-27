@@ -46,7 +46,7 @@ H.264 ABR Transcoder with dynamic encoder parameters::
   -c:v mpsoc_vcu_h264 -b:v 4000K -expert-options dynamic-params=cmdfile.txt -qp-mode 2 -lookahead-depth 16 -temporal-aq 1 -spatial-aq 1 -spatial-aq-gain 75 -o out_dp_test1.h264 \
   -c:v mpsoc_vcu_h264 -b:v 3000K -expert-options dynamic-params=cmdfile.txt -qp-mode 2 -lookahead-depth 16 -temporal-aq 1 -spatial-aq 1 -spatial-aq-gain 75 -o out_dp_test2.h264
 
-For more examples, refer to the :download:`transcoder/test/scripts/transcoder_app_test.sh </../examples/xma/transcoder/test/scripts/transcoder_app_test.sh>` script.
+For more examples, refer to the :url_to_xma_apps:`transcoder/test/scripts/transcoder_app_test.sh` script.
 
 
 Dynamic params config file format for the Transcoder app

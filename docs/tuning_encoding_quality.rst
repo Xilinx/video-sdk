@@ -233,7 +233,7 @@ Encoder parameters which should be changed dynamically must be specified in a da
 
 The :c:struct:`XlnxDynParams` data structure is then passed along as side-data to the encoded frame using the :c:func:`xma_frame_add_side_data` API. The encoder plugin then takes care of updating the parameters automatically. 
 
-For of an example of how this can be implemented, refer to lines 279-291 of the :url_to_repo:`examples/xma/common/enc_utils/src/xlnx_enc_dyn_params.c#L281-L291` file of the XMA sample encoder application.
+For of an example of how this can be implemented, refer to lines 279-291 of the :url_to_repo:`examples/xma/common/enc_utils/src/xlnx_enc_dyn_params.c#L289` file of the XMA sample encoder application.
 
 
 .. rubric:: XMA Encoder and Transcoder Applications
@@ -314,7 +314,7 @@ To encode an incoming frame as IDR, the application needs to set the ``is_idr`` 
   la_in_frame.is_idr = 1;
 
 
-For a complete source code reference, refer to :c:func:`xlnx_enc_set_if_idr_frame` function in the :url_to_repo:`examples/xma/transcode/lib/src/xlnx_transcoder.c` file of the XMA transcoder application.
+For a complete source code reference, refer to :c:func:`xlnx_enc_set_if_idr_frame` function in the :url_to_repo:`examples/xma/transcoder/lib/src/xlnx_transcoder.c` file of the XMA transcoder application.
 
 
 .. rubric:: XMA Encoder and Transcoder Applications

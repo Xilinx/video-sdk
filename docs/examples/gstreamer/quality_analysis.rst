@@ -33,8 +33,9 @@ Flags not illustrated in this page are covered in the :doc:`Using GStreamer </us
 Subjective Quality
 ==================
 
-:download:`h264_subjective.sh </../examples/gstreamer/quality_analysis/h264_subjective.sh>`
-:download:`hevc_subjective.sh </../examples/gstreamer/quality_analysis/hevc_subjective.sh>`
+- Example script for H264 streams: :url_to_examples:`examples/ffmpeg/quality_analysis/h264_subjective.sh`
+- Example script for HEVC streams: :url_to_examples:`examples/ffmpeg/quality_analysis/hevc_subjective.sh`
+
 
 These are the command you should use to get maximum video quality to the human eye in most situations. It accepts a clip that is already decoded or a RAW YUV.
 
@@ -53,8 +54,8 @@ These are the command you should use to get maximum video quality to the human e
 Objective Quality
 =================
 
-:download:`h264_objective.sh </../examples/gstreamer/quality_analysis/h264_objective.sh>`
-:download:`hevc_objective.sh </../examples/gstreamer/quality_analysis/hevc_objective.sh>`
+- Example script for H264 streams: :url_to_examples:`examples/ffmpeg/quality_analysis/h264_objective.sh`
+- Example script for HEVC streams: :url_to_examples:`examples/ffmpeg/quality_analysis/hevc_objective.sh`
 
 **Usage**::
 
@@ -142,7 +143,7 @@ The description and usage of the iqa-vmaf plugin can be found in https://gitlab.
 Performing VQ Scoring with GStreamer and the VMAF Plugin
 ========================================================
 
-:download:`measure_vq.sh </../examples/gstreamer/quality_analysis/measure_vq.sh>`
+- Example script: :url_to_examples:`examples/ffmpeg/quality_analysis/measure_vq.sh`
 
 **Usage**::
     
@@ -246,8 +247,8 @@ With the above information in hand, below are the optimized commands for general
 Low Latency Subjective Quality
 ------------------------------
 
-:download:`h264_ll_subjective.sh </../examples/gstreamer/quality_analysis/h264_ll_subjective.sh>`
-:download:`hevc_ll_subjective.sh </../examples/gstreamer/quality_analysis/hevc_ll_subjective.sh>`
+- Example script for H264 streams: :url_to_examples:`examples/ffmpeg/quality_analysis/h264_ll_subjective.sh`
+- Example script for HEVC streams: :url_to_examples:`examples/ffmpeg/quality_analysis/hevc_ll_subjective.sh`
 
 
 **Usage**::
@@ -263,8 +264,8 @@ Low Latency Subjective Quality
 Low Latency Objective Quality
 -----------------------------
 
-:download:`h264_ll_objective.sh </../examples/gstreamer/quality_analysis/h264_ll_objective.sh>`
-:download:`hevc_ll_objective.sh </../examples/gstreamer/quality_analysis/hevc_ll_objective.sh>`
+- Example script for H264 streams: :url_to_examples:`examples/ffmpeg/quality_analysis/h264_ll_objective.sh`
+- Example script for HEVC streams: :url_to_examples:`examples/ffmpeg/quality_analysis/hevc_ll_objective.sh`
 
 **Usage** ::
 
@@ -287,7 +288,7 @@ Ladder pipeline with 1080p60 MP4 file with H264 elementarty stream with I and P 
 
 Latency Measurement Script
 --------------------------
-:download:`latency_test.sh </../examples/gstreamer/quality_analysis/latency_test.sh>`
+- Example script: :url_to_examples:`examples/ffmpeg/quality_analysis/latency_test.sh`
 
 **Usage** ::
 

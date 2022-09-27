@@ -5,9 +5,6 @@
 .. note::
    Version: |release|
 
-.. note::
-   A patch is required to use version 1.5 of the |SDK| on AWS VT1 instances running the latest version of the U30 firmware. See instructions :ref:`here <patch-for-vt1>`.
-
 .. highlight:: none
 
 .. contents:: Table of Contents

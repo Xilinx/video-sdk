@@ -47,7 +47,7 @@ You can rebuild the FFmpeg executable with optional plugins by following the ins
 Using the Git Patch File
 ===============================
 
-The :url_to_repo:`sources/app-ffmpeg4-xma-patch <sources/app-ffmpeg4-xma-patch>` folder contains a git patch file which can be applied to a FFmpeg fork to enable the |SDK| plugins.
+The :url_to_repo_folder:`sources/app-ffmpeg4-xma-patch <sources/app-ffmpeg4-xma-patch>` folder contains a git patch file which can be applied to a FFmpeg fork to enable the |SDK| plugins.
 
 This patch is intended to be applied to FFmpeg n4.4. As such, applying this patch to earlier or later versions of FFmpeg may require edits to successfully merge these changes and represent untested configurations.
 

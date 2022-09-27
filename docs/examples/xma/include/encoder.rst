@@ -48,7 +48,7 @@ HEVC encoding, using dynamic encoder paramters::
 
   u30_xma_encode -w 1920 -h 1080 -pix_fmt yuv420p -i input_1080.yuv -fps 60 -g 120 -periodicity-idr 120 -frames 600 -c:v mpsoc_vcu_hevc -expert-options dynamic-params=cmdfile.txt -lookahead-depth 20 -spatial-aq 1 -temporal-aq 1 -spatial-aq-gain 80 -o out3.265
 
-For more examples, refer to the :download:`encoder/test/scripts/encoder_app_test.sh </../examples/xma/encoder/test/scripts/encoder_app_test.sh>` script.
+For more examples, refer to the :url_to_xma_apps:`encoder/test/scripts/encoder_app_test.sh` script.
 
 Dynamic params config file format for the Encoder app
 -----------------------------------------------------

@@ -40,7 +40,8 @@ Some of the examples read or write RAW files from disk (encode-only or decode-on
 
 Decode Only
 ===========
-:download:`01_ffmpeg_decode_only.sh </../examples/ffmpeg/tutorials/01_ffmpeg_decode_only.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/01_ffmpeg_decode_only.sh`
+
 
 **Usage**::
 
@@ -87,7 +88,7 @@ Explanation of the flags:
 
 Encode Only
 ===========
-:download:`02_ffmpeg_encode_only_1080p.sh </../examples/ffmpeg/tutorials/02_ffmpeg_encode_only_1080p.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/02_ffmpeg_encode_only_1080p.sh`
 
 **Usage**::
 
@@ -148,7 +149,7 @@ Explanation of the flags:
     
 Basic Transcode
 ===============
-:download:`03_ffmpeg_transcode_only.sh </../examples/ffmpeg/tutorials/03_ffmpeg_transcode_only.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/03_ffmpeg_transcode_only.sh`
 
 **Usage**::
 
@@ -196,7 +197,7 @@ Explanation of the flags:
 
 Decode Only Into Multiple-Resolution Outputs
 ============================================
-:download:`04_ffmpeg_decode_plus_scale.sh </../examples/ffmpeg/tutorials/04_ffmpeg_decode_plus_scale.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/04_ffmpeg_decode_plus_scale.sh`
 
 **Usage**::
 
@@ -264,7 +265,7 @@ Explanation of the flags:
 
 Encode Only Into Multiple-Resolution Outputs
 ============================================
-:download:`05_ffmpeg_encode_plus_scale_1080p.sh </../examples/ffmpeg/tutorials/05_ffmpeg_encode_plus_scale_1080p.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/05_ffmpeg_encode_plus_scale_1080p.sh`
 
 **Usage**::
     
@@ -344,7 +345,7 @@ Explanation of the flags:
 
 Transcode With Multiple-Resolution Outputs
 ==========================================
-:download:`06_ffmpeg_transcode_plus_scale.sh </../examples/ffmpeg/tutorials/06_ffmpeg_transcode_plus_scale.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/06_ffmpeg_transcode_plus_scale.sh`
 
 **Usage**::
     
@@ -417,7 +418,7 @@ Explanation of the flags:
 
 Lower-Latency Transcode With Multiple-Resolution Outputs
 ========================================================
-:download:`07_ffmpeg_transcode_plus_scale_lowlatency.sh </../examples/ffmpeg/tutorials/07_ffmpeg_transcode_plus_scale_lowlatency.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/07_ffmpeg_transcode_plus_scale_lowlatency.sh`
 
 **Usage**::
 
@@ -522,7 +523,7 @@ The |SDK| supports real-time decoding and encoding of 4k streams with the follow
 
 4k H.264 Real-Time Encode Only
 ==============================
-:download:`08_ffmpeg_encode_only_4k.sh </../examples/ffmpeg/tutorials/08_ffmpeg_encode_only_4k.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/08_ffmpeg_encode_only_4k.sh`
 
 **Usage**::
     
@@ -537,7 +538,7 @@ This example takes an 8-bit, YUV420, 2160p60 RAW file, encodes it to H.264 at a 
 
 4k H.264 Real-Time Transcode
 ============================
-:download:`09_ffmpeg_transcode_only_4k.sh </../examples/ffmpeg/tutorials/09_ffmpeg_transcode_only_4k.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/09_ffmpeg_transcode_only_4k.sh`
 
 **Usage**::
     
@@ -570,8 +571,7 @@ This script transcodes three H264 streams to HEVC, sending the outputs to :file:
 .. note::
    This example leverages the ``xterm`` program. Make sure it is installed on your system before proceeding.
 
-
-:download:`10_ffmpeg_multiple_jobs.sh </../examples/ffmpeg/tutorials/10_ffmpeg_multiple_jobs.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/10_ffmpeg_multiple_jobs.sh`
 
 **Usage**::
 
@@ -638,8 +638,7 @@ This script transcodes three H264 streams to HEVC, sending the outputs to :file:
 
 Splitting a Job across Two Devices
 ==================================
-
-:download:`14_ffmpeg_multidevice_abr_ladder.sh </../examples/ffmpeg/tutorials/14_ffmpeg_multidevice_abr_ladder.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/14_ffmpeg_multidevice_abr_ladder.sh`
 
 **Usage**::
 
@@ -704,7 +703,8 @@ This example demonstrates two features of the |SDK|:
 - How to use the job slot reservation tool to reserve the required resources for running multiple instances of a given job
 
 
-:download:`15_ffmpeg_transcode_2dev_4k.sh </../examples/ffmpeg/tutorials/15_ffmpeg_transcode_2dev_4k.sh>` and :download:`15_ffmpeg_transcode_2dev_4k.json </../examples/ffmpeg/tutorials/15_ffmpeg_transcode_2dev_4k.json>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/15_ffmpeg_transcode_2dev_4k.sh`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/15_ffmpeg_transcode_2dev_4k.json`
 
 
 The :file:`15_ffmpeg_transcode_2dev_4k.sh` script takes two arguments: 
@@ -771,8 +771,7 @@ The ``13_ffmpeg_transcode_only_split_stitch.py`` script starts by automatically 
 
 This example script is provided for demonstration purposes. It is not intended to work for all input clips and all use cases. 
 
-
-:download:`13_ffmpeg_transcode_only_split_stitch.py </../examples/ffmpeg/tutorials/13_ffmpeg_transcode_only_split_stitch.py>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/13_ffmpeg_transcode_only_split_stitch.py`
 
 **Command Line**::
 
@@ -827,7 +826,7 @@ These flags, and others, are defined further on the `FFmpeg main help page <http
 
 Replay Saved Files with Downscaling
 ===================================
-:download:`12_ffmpeg_streaming_transcode_from_file.sh </../examples/ffmpeg/tutorials/12_ffmpeg_streaming_transcode_from_file.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/12_ffmpeg_streaming_transcode_from_file.sh`
 
 **Usage**::
 
@@ -897,7 +896,7 @@ Explanation of the flags:
 
 Live HLS Streaming
 ==================
-:download:`16_ffmpeg_live_hls.sh </../examples/ffmpeg/tutorials/16_ffmpeg_live_hls.sh>`
+- Example script : :url_to_examples:`examples/ffmpeg/tutorials/16_ffmpeg_live_hls.sh`
 
 **Usage**::
 
