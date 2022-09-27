@@ -21,28 +21,32 @@ For more details about implicit and explicit data transfers between FFmpeg and X
 
 Video Rotation
 ==============
-:download:`01_rotate_video_8bit.sh </../examples/ffmpeg/filters/01_rotate_video_8bit.sh>` and :download:`01_rotate_video_10bit.sh </../examples/ffmpeg/filters/01_rotate_video_10bit.sh>`
+- Example script for 8bit streams:  :url_to_examples:`examples/ffmpeg/filters/01_rotate_video_8bit.sh`
+- Example script for 10bit streams: :url_to_examples:`examples/ffmpeg/filters/01_rotate_video_10bit.sh`
 
 This example accepts an 8-bit or 10-bit, YUV420, pre-encoded h264 file and will send the rotated, encoded h.264 output to /tmp/xil_rotate_<N>.mp4 at a rate of 8Mbps.
 
 
 Logo Overlay
 ============
-:download:`02_logo_overlay_8bit.sh </../examples/ffmpeg/filters/02_logo_overlay_8bit.sh>` and :download:`02_logo_overlay_10bit.sh </../examples/ffmpeg/filters/02_logo_overlay_10bit.sh>`
+- Example script for 8bit streams:  :url_to_examples:`examples/ffmpeg/filters/02_logo_overlay_8bit.sh`
+- Example script for 10bit streams: :url_to_examples:`examples/ffmpeg/filters/02_logo_overlay_10bit.sh`
 
 This example accepts an 8-bit or 10-bit, YUV420, pre-encoded h264 file and an image file ("logo"). It will scale the logo to 500x100, place it 16 pixels right and 16 pixels down from the top-left corner of the output video file, which will be an encoded h.264 output saved to /tmp/xil_logo_overlay.mp4 at a rate of 8Mbps.
 
 
 Crop and Zoom
 =============
-:download:`03_crop_zoom_8bit.sh </../examples/ffmpeg/filters/03_crop_zoom_8bit.sh>` and :download:`03_crop_zoom_10bit.sh </../examples/ffmpeg/filters/03_crop_zoom_10bit.sh>`
+- Example script for 8bit streams:  :url_to_examples:`examples/ffmpeg/filters/03_crop_zoom_8bit.sh`
+- Example script for 10bit streams: :url_to_examples:`examples/ffmpeg/filters/03_crop_zoom_10bit.sh`
 
 This example accepts an 8-bit or 10-bit, YUV420, pre-encoded h264 file and will crop a 300x200 sized section of the original video. The section's top left corner begins at 20 pixels to the right, and 10 pixels down from the top-left corner of the original video. The output video is encoded in 8Mbps, and is saved to /tmp/xil_crop_zoom.mp4
 
 
 Video Composition
 =================
-:download:`04_multi_comp_8bit.sh </../examples/ffmpeg/filters/04_multi_comp_8bit.sh>` and :download:`04_multi_comp_10bit.sh </../examples/ffmpeg/filters/04_multi_comp_10bit.sh>`
+- Example script for 8bit streams:  :url_to_examples:`examples/ffmpeg/filters/04_multi_comp_8bit.sh`
+- Example script for 10bit streams: :url_to_examples:`examples/ffmpeg/filters/04_multi_comp_10bit.sh`
 
 This example accepts 4 8-bit or 10-bit, YUV420, pre-encoded h264 files of equal dimensions, and will create an output 2x2 composite video which will be an encoded h.264 output saved to /tmp/xil_2x2_composite.mp4 at a rate of 8Mbps. The output resolution will be equal to the original input.
 

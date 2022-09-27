@@ -100,12 +100,17 @@ function OptanonWrapper() { }
   <div class="section" id="sdk">
 <h1>Xilinx Video SDK<a class="headerlink" href="#sdk" title="Permalink to this headline">¶</a></h1>
 <p>The Xilinx Video SDK is a complete software stack allowing users to seamlessly leverage the hardware accelerated features of Xilinx video codec units and enable high-density real-time transcoding for live streaming video service providers, OEMs, and Content Delivery Network (CDNs). Included in the Xilinx Video SDK are pre-compiled versions of FFmpeg and GStreamer which integrate video transcoding plug-ins for Xilinx devices, enabling simple hardware acceleration of video decoding, scaling and encoding using these popular tools. The Xilinx Video SDK also provides a C-based application programming interface (API) which facilitates the integration of Xilinx video codec units transcoding capabilities in proprietary frameworks. The Xilinx Video SDK can be leveraged on-premises with Alveo U30 cards and in the cloud with Amazon EC2 VT1 instances.</p>
-<iframe
-  width="640" height="340"
-  src="https://www.youtube.com/embed/kv-OS_cFOvg"
-  title="YouTube video player"
-  frameborder="0">
-</iframe><div class="section" id="quick-links">
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A new Kubernetes plugin is available for U30 cards. This new plugin no longer requires an exact version number when specifying U30 resource limits. This allows for compatibility of pod description files across all releases of the Xilinx Video SDK. Kubernetes clusters using this plugin will continue to work seamlessly even after an upgrade of the Xilinx Video SDK. <strong>If using Kubernetes, to prevent service degradation, it is necessary to deploy this new plugin (version 1.1.0)</strong>  before upgrading to the latest version of the Xilinx Video SDK. For more details, refer to the instructions for <a class="reference internal" href="deploying_with_kubernetes.html#deploying-with-kubernetes"><span class="std std-ref">deploying with Kubernetes</span></a>.</p>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="section" id="quick-links">
 <h2>Quick Links<a class="headerlink" href="#quick-links" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><a class="reference internal" href="specs_and_features.html"><span class="doc">Specs and Features</span></a></p></li>
@@ -114,7 +119,15 @@ function OptanonWrapper() { }
 <li><p><a class="reference internal" href="getting_started_on_vt1.html"><span class="doc">Get Started in the Cloud with Amazon EC2 VT1</span></a></p></li>
 <li><p><a class="reference internal" href="examples.html"><span class="doc">Tutorials and Examples</span></a></p></li>
 </ul>
-<div class="toctree-wrapper compound">
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<iframe
+  width="640" height="340"
+  src="https://www.youtube.com/embed/kv-OS_cFOvg"
+  title="YouTube video player"
+  frameborder="0">
+</iframe><div class="toctree-wrapper compound">
 </div>
 <div class="toctree-wrapper compound">
 </div>
@@ -144,7 +157,7 @@ function OptanonWrapper() { }
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on August 10, 2022.
+      <span class="lastupdated">Last updated on September 27, 2022.
       </span></p>
   </div>
 

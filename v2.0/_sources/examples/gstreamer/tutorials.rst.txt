@@ -49,8 +49,7 @@ For brevity purposes, explanations of the GStreamer element properties are not r
 
 Decode only
 ===========
-
-:download:`01_gst_decode_only.sh </../examples/gstreamer/tutorials/01_gst_decode_only.sh>`
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/01_gst_decode_only.sh`
 
 **Usage**::
 
@@ -114,7 +113,7 @@ Explanation of the pipeline elements and their properties:
 
 Encode only
 ===========
-:download:`02_gst_h264_encode_only_1080p.sh </../examples/gstreamer/tutorials/02_gst_h264_encode_only_1080p.sh>`
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/02_gst_h264_encode_only_1080p.sh`
 
 **Usage**::
 
@@ -198,7 +197,7 @@ Explanation of the pipeline elements and their properties:
 
 Basic Transcode
 ===============
-:download:`03_gst_h264_transcode_only.sh </../examples/gstreamer/tutorials/03_gst_h264_transcode_only.sh>`
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/03_gst_h264_transcode_only.sh`
 
 **Usage**::
 
@@ -234,7 +233,7 @@ Refer to the :ref:`Encode Only <gstreamer-encode-only>` and :ref:`Decode Only <g
 
 Decode only into Multiple-Resolution outputs
 ============================================
-:download:`04_gst_decode_plus_scale.sh </../examples/gstreamer/tutorials/04_gst_decode_plus_scale.sh>`
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/04_gst_decode_plus_scale.sh`
 
 **Usage**::
 
@@ -318,8 +317,7 @@ Explanation of the pipeline elements and their properties:
 
 Encode only into Multiple-Resolution outputs
 ============================================
-
-:download:`./05_gst_encode_plus_scale_1080p.sh </../examples/gstreamer/tutorials/05_gst_encode_plus_scale_1080p.sh>`
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/05_gst_encode_plus_scale_1080p.sh`
 
 **Usage**::
 
@@ -377,8 +375,7 @@ Refer to the :ref:`Decode only into Multiple-Resolution outputs <gstreamer-decod
 
 Transcode with Multiple-Resolution outputs
 ==========================================
-
-:download:`./06_gst_transcode_plus_scale.sh </../examples/gstreamer/tutorials/06_gst_transcode_plus_scale.sh>`
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/06_gst_transcode_plus_scale.sh`
 
 **Usage**::
 
@@ -454,8 +451,7 @@ Refer to the :ref:`Decode only into Multiple-Resolution outputs <gstreamer-decod
 
 Lower-Latency Transcode With Multiple-Resolution outputs
 ========================================================
-
-:download:`./07_gst_transcode_plus_scale_lowlatency.sh </../examples/gstreamer/tutorials/07_gst_transcode_plus_scale_lowlatency.sh>`
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/07_gst_transcode_plus_scale_lowlatency.sh`
 
 **Usage**::
 
@@ -551,8 +547,7 @@ The |SDK| supports real-time decoding and encoding of 4k streams with the follow
 
 4K H.264 Real-Time Encode Only
 ==============================
-
-:download:`./08_gst_encode_only_4k.sh </../examples/gstreamer/tutorials/08_gst_encode_only_4k.sh>`
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/08_gst_encode_only_4k.sh`
 
 **Usage**::
 
@@ -588,8 +583,7 @@ Explanation of the pipeline elements and their properties:
 
 4K H.264 Real-Time Transcode
 ==========================================================
-
-:download:`./09_gst_transcode_only_4k.sh </../examples/gstreamer/tutorials/09_gst_transcode_only_4k.sh>`
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/09_gst_transcode_only_4k.sh`
 
 **Usage**::
 
@@ -651,7 +645,7 @@ This script transcodes three H.264 streams to HEVC, sending the outputs to /tmp/
 .. note::
    This example leverages the ``xterm`` program. Make sure it is installed on your system before proceeding.
 
-:download:`10_gst_multiple_jobs.sh </../examples/gstreamer/tutorials/10_gst_multiple_jobs.sh>`
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/10_gst_multiple_jobs.sh`
 
 **Usage**::
 
@@ -711,10 +705,9 @@ This script transcodes three H.264 streams to HEVC, sending the outputs to /tmp/
 
   This will try to simultaneously run the 4k60 and the 1080p60 jobs on device #1. The compute requirements of these two combined jobs will exceed the capacity of a single device. Only one of the two jobs will proceed and the second one will error out due to insufficient resources.
 
-Running Multiple GStreamer Jobs using the vvas_xabrladder application
-=====================================================================
-
-:download:`14_gst_app_transcode_plus_scale.sh </../examples/gstreamer/tutorials/14_gst_app_transcode_plus_scale.sh>`
+Running Multiple Jobs using the vvas_xabrladder Application
+===========================================================
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/14_gst_app_transcode_plus_scale.sh`
 
 **Usage**::
 
@@ -729,9 +722,8 @@ This script calls four processes of vvas_xabrladder application simultaneously. 
 .. _gstreamer-lookahead-and-scale:
 
 Transcode with lookahead for Multiple-Resolution outputs
-==========================================================
-
-:download:`15_gst_transcode_plus_scale_la.sh </../examples/gstreamer/tutorials/15_gst_transcode_plus_scale_la.sh>`
+========================================================
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/15_gst_transcode_plus_scale_la.sh`
 
 **Usage**::
 
@@ -770,7 +762,7 @@ The ``13_gst_transcode_only_split_stitch.py`` python script starts by automatica
 
 This example script is provided for demonstration purposes. It is not intended to work for all input clips and all use cases.
 
-:download:`13_gst_transcode_only_split_stitch.py </../examples/gstreamer/tutorials/13_gst_transcode_only_split_stitch.py>`
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/13_gst_transcode_only_split_stitch.py`
 
 **Usage**::
 
@@ -826,8 +818,7 @@ These examples is will leverage example #6, which is a full transcode pipeline (
 
 Replay Saved Files with Downscaling
 ===================================
-
-:download:`12_gst_streaming_transcode_from_file.sh  </../examples/gstreamer/tutorials/12_gst_streaming_transcode_from_file.sh>`
+- Example script : :url_to_examples:`examples/gstreamer/tutorials/12_gst_streaming_transcode_from_file.sh`
 
 **Usage**::
 

@@ -32,8 +32,8 @@ Flags not illustrated in this page are covered in the :doc:`Using FFmpeg </using
 Subjective Quality
 ==================
 
-:download:`h264_subjective.sh </../examples/ffmpeg/quality_analysis/h264_subjective.sh>`
-:download:`hevc_subjective.sh </../examples/ffmpeg/quality_analysis/hevc_subjective.sh>`
+- Example script for H264 streams: :url_to_examples:`examples/ffmpeg/quality_analysis/h264_subjective.sh`
+- Example script for HEVC streams: :url_to_examples:`examples/ffmpeg/quality_analysis/hevc_subjective.sh`
 
 These are the command you should use to get maximum video quality to the human eye in most situations. It accepts a clip that is already decoded or a RAW YUV.
 
@@ -133,8 +133,8 @@ Explanation of the flags:
 Objective Quality
 =================
 
-:download:`h264_objective.sh </../examples/ffmpeg/quality_analysis/h264_objective.sh>`
-:download:`hevc_objective.sh </../examples/ffmpeg/quality_analysis/hevc_objective.sh>`
+- Example script for H264 streams: :url_to_examples:`examples/ffmpeg/quality_analysis/h264_objective.sh`
+- Example script for HEVC streams: :url_to_examples:`examples/ffmpeg/quality_analysis/hevc_objective.sh`
 
 **Usage**::
 
@@ -262,7 +262,7 @@ Due to licensing reasons, the FFmpeg binary delivered in this package does not i
 
 #. Recompile the FFmpeg starting from the source code included in this repository and include the `VMAF library <https://github.com/Netflix/vmaf/>`__. For instructions on how to customize and rebuild the FFmpeg provided with the |SDK|, see the :ref:`Rebuilding FFmpeg <rebuild-ffmpeg>` section.
 
-:download:`measure_vq.sh </../examples/ffmpeg/quality_analysis/measure_vq.sh>`
+- Example script: :url_to_examples:`examples/ffmpeg/quality_analysis/measure_vq.sh`
 
 **Usage**::
     
@@ -399,9 +399,8 @@ With the above information in hand, below are the optimized commands for general
 Low Latency Subjective Quality
 ------------------------------
 
-:download:`h264_ll_subjective.sh </../examples/ffmpeg/quality_analysis/h264_ll_subjective.sh>`
-:download:`hevc_ll_subjective.sh </../examples/ffmpeg/quality_analysis/hevc_ll_subjective.sh>`
-
+- Example script for H264 streams: :url_to_examples:`examples/ffmpeg/quality_analysis/h264_ll_subjective.sh`
+- Example script for HEVC streams: :url_to_examples:`examples/ffmpeg/quality_analysis/hevc_ll_subjective.sh`
 
 **Usage**::
 
@@ -425,8 +424,8 @@ Low Latency Subjective Quality
 Low Latency Objective Quality
 -----------------------------
 
-:download:`h264_ll_objective.sh </../examples/ffmpeg/quality_analysis/h264_ll_objective.sh>`
-:download:`hevc_ll_objective.sh </../examples/ffmpeg/quality_analysis/hevc_ll_objective.sh>`
+- Example script for H264 streams: :url_to_examples:`examples/ffmpeg/quality_analysis/h264_ll_objective.sh`
+- Example script for HEVC streams: :url_to_examples:`examples/ffmpeg/quality_analysis/hevc_ll_objective.sh`
 
 **Usage** ::
 
@@ -457,8 +456,7 @@ Latency Measurement Script
 --------------------------
 You will need to identify the PID for the ``ffmpeg`` context and have ``sudo`` to access the syslog to use this script. ``ps -aux | grep ffmpeg`` should return the PIDs of all instances of ``ffmpeg`` running on your system.
 
-:download:`latency_test.sh </../examples/ffmpeg/quality_analysis/latency_test.sh>`
-
+- Example script: :url_to_examples:`examples/ffmpeg/quality_analysis/latency_test.sh`
 
 **Usage** ::
 

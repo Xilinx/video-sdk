@@ -123,8 +123,8 @@ function OptanonWrapper() { }
 <div class="line"><br /></div>
 </div>
 <p>The Github repository for the Xilinx Video SDK includes predefined <a class="reference external" href="https://github.com/Xilinx/video-sdk/tree/v2.0/dockerfiles">dockerfiles</a> which can be used to easily create Docker images with the Xilinx Video SDK for different OS configurations. There are different Dockerfiles for on-prem and Amazon EC2 VT1 usage. The Dockerfiles included in the repository can be used as-is or customized based on end-user needs.</p>
-<p>The instructions below explain how to create and then launch a Docker image from one of the Dockerfiles included in the Xilinx Video SDK repository.</p>
-<p>A working installation of Docker is required.</p>
+<p>The instructions below explain how to create and then launch a Docker image from one of the Dockerfiles included in the Xilinx Video SDK repository. A working <a class="reference external" href="https://docs.docker.com/engine/install/">installation</a> of Docker is required.</p>
+<p><strong>IMPORTANT:</strong> Whether working on premises or on Amazon EC2 VT1 instances, each Xilinx device can have a single point of access (whether host or container). Having multiple container instances access the same device is not currently supported and can lead to unpredictable errors.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
@@ -269,7 +269,7 @@ xbutil examine
 
   <div role="contentinfo">
     <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on August 10, 2022.
+      <span class="lastupdated">Last updated on September 27, 2022.
       </span></p>
   </div>
 
