@@ -11,6 +11,13 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
   <title>XMA Examples for Xilinx U30 &mdash; Xilinx Video SDK 1.0 (Production) documentation</title>
       <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
@@ -30,7 +37,11 @@ function OptanonWrapper() { }
     <link rel="prev" title="Video Quality Examples" href="../ffmpeg/quality_analysis.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -115,6 +126,7 @@ function OptanonWrapper() { }
 <p class="caption" role="heading"><span class="caption-text">Support</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
 </ul>
 
@@ -380,7 +392,7 @@ Encoder params:
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">u30_xma_enc</span> <span class="o">-</span><span class="n">w</span> <span class="mi">1920</span> <span class="o">-</span><span class="n">h</span> <span class="mi">1080</span>  <span class="o">-</span><span class="n">i</span> <span class="n">input_1080sp</span><span class="o">.</span><span class="n">yuv</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_hevc</span> <span class="o">-</span><span class="n">fps</span> <span class="mi">60</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">4000</span> <span class="o">-</span><span class="n">g</span> <span class="mi">120</span> <span class="o">-</span><span class="n">periodicity</span><span class="o">-</span><span class="n">idr</span> <span class="mi">120</span> <span class="o">-</span><span class="n">qp</span><span class="o">-</span><span class="n">mode</span> <span class="mi">3</span> <span class="o">-</span><span class="n">bf</span> <span class="mi">1</span> <span class="o">-</span><span class="n">lookahead</span><span class="o">-</span><span class="n">depth</span> <span class="mi">20</span> <span class="o">-</span><span class="n">temporal</span><span class="o">-</span><span class="n">aq</span> <span class="mi">1</span> <span class="o">-</span><span class="n">spatial</span><span class="o">-</span><span class="n">aq</span> <span class="mi">1</span> <span class="o">-</span><span class="n">o</span> <span class="n">out2</span><span class="o">.</span><span class="mi">265</span>
 </pre></div>
 </div>
-<p>For more examples, refer to the <a class="reference download internal" download="" href="../../_downloads/c4689c8aa0ba56b1a1b6f7df92176337/enc_app_test.sh"><code class="xref download docutils literal notranslate"><span class="pre">encode_only/test/scripts/enc_app_test.sh</span></code></a> script.</p>
+<p>For more examples, refer to the <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/xma/encode_only/test/scripts/enc_app_test.sh">examples/xma/encode_only/test/scripts/enc_app_test.sh</a> script.</p>
 </div>
 </div>
 <div class="section" id="limitations-of-the-encoder-app">
@@ -648,7 +660,7 @@ Encoder options:
 <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_hevc</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">4000</span><span class="n">K</span>  <span class="o">-</span><span class="n">o</span> <span class="n">out3_sc_test1</span><span class="o">.</span><span class="mi">265</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_hevc</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">3000</span><span class="n">K</span> <span class="o">-</span><span class="n">o</span> <span class="n">out3_sc_test2</span><span class="o">.</span><span class="mi">265</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_hevc</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">2500</span><span class="n">K</span> <span class="o">-</span><span class="n">o</span> <span class="n">out3_sc_test3</span><span class="o">.</span><span class="mi">265</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_hevc</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">1250</span><span class="n">K</span> <span class="o">-</span><span class="n">o</span> <span class="n">out3_sc_test4</span><span class="o">.</span><span class="mi">265</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_hevc</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">625</span><span class="n">K</span> <span class="o">-</span><span class="n">o</span> <span class="n">out3_sc_test5</span><span class="o">.</span><span class="mi">265</span>
 </pre></div>
 </div>
-<p>For more examples, refer to the <a class="reference download internal" download="" href="../../_downloads/e3686f08e308c1dcb6f4b45f8de7c034/transcoder_app_test.sh"><code class="xref download docutils literal notranslate"><span class="pre">transcode/test/scripts/transcoder_app_test.sh</span></code></a> script.</p>
+<p>For more examples, refer to the <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/xma/transcode/test/scripts/transcoder_app_test.sh">examples/xma/transcode/test/scripts/transcoder_app_test.sh</a> script.</p>
 </div>
 </div>
 <div class="section" id="limitations-of-the-transcoder-app">
@@ -683,8 +695,8 @@ Encoder options:
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on July 26, 2022.
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 01, 2023.
       </span></p>
   </div>
 
@@ -696,7 +708,7 @@ Encoder options:
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="https://pages.gitenterprise.xilinx.com/techdocs/Test/vvas/build/html/index.html#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

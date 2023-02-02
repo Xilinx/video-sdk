@@ -11,6 +11,13 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
   <title>Getting Started on Amazon EC2 VT1 &mdash; Xilinx Video SDK 2.0 (Production) documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
@@ -30,7 +37,11 @@ function OptanonWrapper() { }
     <link rel="prev" title="Getting Started with Alveo U30 on Premises" href="getting_started_on_prem.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -56,11 +67,7 @@ function OptanonWrapper() { }
 <li class="toctree-l1 current"><a class="current reference internal" href="#">Amazon EC2 VT1</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="#vt1-configurations">Amazon EC2 VT1 Configurations</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#quick-start-guide-for-vt1">Quick Start Guide for Amazon EC2 VT1</a></li>
-<li class="toctree-l2"><a class="reference internal" href="#installing-the-sdk-on-an-existing-ami">Installing the Xilinx Video SDK on an existing AMI</a><ul>
-<li class="toctree-l3"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
-<li class="toctree-l3"><a class="reference internal" href="#installation-procedure">Installation Procedure</a></li>
-</ul>
-</li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-the-sdk-on-an-existing-ami">Installing the Xilinx Video SDK on an existing AMI</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#patching-amis-using-v1-5-of-the-video-sdk">Patching AMIs using v1.5 of the Video SDK</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#working-with-containers">Working with Containers</a></li>
 <li class="toctree-l2"><a class="reference internal" href="#working-with-kubernetes">Working with Kubernetes</a></li>
@@ -206,29 +213,25 @@ For more details about the transcoding performance of these different configurat
 <h2><a class="toc-backref" href="#id4">Installing the Xilinx Video SDK on an existing AMI</a><a class="headerlink" href="#installing-the-sdk-on-an-existing-ami" title="Permalink to this headline">¶</a></h2>
 <p>In order to use a custom AMI on a Amazon EC2 VT1 instance, it is necessary to install the Xilinx Video SDK in the AMI. This section explains how to do this. These steps are not necessary when using the public Xilinx Video SDK AMI since it already includes a complete installation of the Xilinx Video SDK and can readily be used on a Amazon EC2 VT1 instance.</p>
 <p>Additionally, AWS provides packer scripts to make it easy for customers to build their own AMI’s for use with VT1 instances. Those scripts can be found at the following repo: <a class="reference external" href="https://github.com/aws-samples/aws-vt-baseami-pipeline">https://github.com/aws-samples/aws-vt-baseami-pipeline</a></p>
-<div class="section" id="prerequisites">
-<h3>Prerequisites<a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h3>
-<p>Install the following packages if they are not already present in your AMI.</p>
-<ul>
-<li><p>For Ubuntu:</p>
+<ol class="arabic">
+<li><p>Open a bash shell in your existing AMI</p></li>
+<li><p>Disable automatic kernel updates on your system</p></li>
+<li><p>Install the following packages if they are not already present in your AMI.</p>
+<ul class="simple">
+<li><p>Ubuntu</p></li>
+</ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt install linux-modules-extra-$(uname -r)
 sudo apt install python
 </pre></div>
 </div>
-</li>
-<li><p>For AL2:</p>
+<ul class="simple">
+<li><p>AL2</p></li>
+</ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo amazon-linux-extras install epel -y
 sudo yum install kernel-devel-$(uname -r) kernel-headers-$(uname -r) boost-devel gcc-c++ -y
 </pre></div>
 </div>
 </li>
-</ul>
-<p>It is recommended to disable automatic kernel updates before installing the Xilinx Video SDK.</p>
-</div>
-<div class="section" id="installation-procedure">
-<h3>Installation Procedure<a class="headerlink" href="#installation-procedure" title="Permalink to this headline">¶</a></h3>
-<ol class="arabic">
-<li><p>Open a bash shell in your existing AMI</p></li>
 <li><p>Download the packages included in this repository:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/Xilinx/video-sdk -b v2.0 --depth 1
 </pre></div>
@@ -249,6 +252,7 @@ Leaving xclbinutil.
 </pre></div>
 </div>
 </li>
+<li><p>Perform a warm reboot of the instance.</p></li>
 <li><p>Always set up the runtime environment for the Xilinx Video SDK before running video transcoding jobs on your Amazon EC2 VT1 instance:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
 </pre></div>
@@ -257,7 +261,6 @@ Leaving xclbinutil.
 </ol>
 <div class="line-block">
 <div class="line"><br /></div>
-</div>
 </div>
 </div>
 <div class="section" id="patching-amis-using-v1-5-of-the-video-sdk">
@@ -308,8 +311,8 @@ Leaving xclbinutil.
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on September 27, 2022.
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 01, 2023.
       </span></p>
   </div>
 
@@ -321,7 +324,7 @@ Leaving xclbinutil.
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="https://pages.gitenterprise.xilinx.com/techdocs/Test/vvas/build/html/index.html#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>

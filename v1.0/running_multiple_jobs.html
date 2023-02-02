@@ -11,6 +11,13 @@
 function OptanonWrapper() { }
 </script>
 <!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
   <title>Running Multiple FFmpeg Jobs &mdash; Xilinx Video SDK 1.0 (Production) documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
@@ -30,7 +37,11 @@ function OptanonWrapper() { }
     <link rel="prev" title="Using FFmpeg" href="using_ffmpeg.html" /> 
 </head>
 
-<body class="wy-body-for-nav"> 
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
   <div class="wy-grid-for-nav">
     <nav data-toggle="wy-nav-shift" class="wy-nav-side">
       <div class="wy-side-scroll">
@@ -87,6 +98,7 @@ function OptanonWrapper() { }
 <p class="caption" role="heading"><span class="caption-text">Support</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
 <li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
 </ul>
 
@@ -293,7 +305,7 @@ This option will be deprecated and removed in a future release. The job-count op
 <span id="id3"></span><h3>Using Job Slot Reservations<a class="headerlink" href="#using-job-slot-reservations" title="Permalink to this headline">¶</a></h3>
 <p>The job slot reservation application takes as input a video transcode job reservation in the form of a JSON file as described in the previous section. The video transcode job description provides information to the resource manager about what kind of transcode is intended to run on the card. With this information the resource manager calculates the CU load for the specified job as well as the maximum possible number of jobs that can be run real-time in parallel.</p>
 <p>Once the maximum possible number of jobs is known, CUs and job slots are reserved, and corresponding reservation IDs are stored in a bash file at <code class="docutils literal notranslate"><span class="pre">/var/tmp/xilinx/xrm_jobReservation.sh</span></code>. A reservation ID is a unique identifier which is valid while the job slot reservation application is running. These reservation IDs are passed to individual FFmpeg process via an environment variable XRM_RESERVE_ID. The FFmpeg processes then use this reservation ID to retrieve the corresponding CUs reserved earlier.</p>
-<p>The <a class="reference external" href="https://github.com/Xilinx/app-jobslot-reservation-xrm/tree/master/jobSlot_reservation.cpp">source code of the job slot reservation application</a> is included in the Github repository of Xilinx Video SDK and can be used as a starting point for developing custom orchestration layers.</p>
+<p>The <a class="reference external" href="https://github.com/Xilinx/app-jobslot-reservation-xrm/blob/U30_GA/jobSlot_reservation.cpp">source code of the job slot reservation application</a> is included in the Github repository of Xilinx Video SDK and can be used as a starting point for developing custom orchestration layers.</p>
 <p>The following steps show how to use the job slot reservation to dispatch multiple parallel instances of an ABR ladder job on an Alveo U30 card:</p>
 <ol class="arabic">
 <li><p>Setup the environment:</p>
@@ -412,8 +424,8 @@ ffmpeg -c:v mpsoc_vcu_h264 ...
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021-2022, Xilinx, Inc. Xilinx is now a part of AMD.
-      <span class="lastupdated">Last updated on July 26, 2022.
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on February 01, 2023.
       </span></p>
   </div>
 
@@ -425,7 +437,7 @@ ffmpeg -c:v mpsoc_vcu_h264 ...
 
 													                    <div class="row">
                         <div class="col-xs-24">
-                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="https://pages.gitenterprise.xilinx.com/techdocs/Test/vvas/build/html/index.html#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
                         </div>
                     </div>
 												</div>
