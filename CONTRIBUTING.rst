@@ -1,14 +1,14 @@
 ###########################################
-Contributing to the |SDK|
+Contributing to the Xilinx Video SDK
 ###########################################
 
 .. highlight:: none
  
-Thank you for your interest in contributing to the |SDK| project. Whether it's a bug report, new feature, correction, or additional documentation, we greatly value feedback and contributions from our community.
+Thank you for your interest in contributing to the Xilinx Video SDK project. Whether it's a bug report, new feature, correction, or additional documentation, we greatly value feedback and contributions from our community.
 
 - You can report bugs and feature requests
-- You can send patches to update the documentation, the tutorials and the examples included in the in the |SDK|
-- You can send patches which add new features or fix bugs to the various packages included in the |SDK|
+- You can send patches to update the documentation, the tutorials and the examples included in the in the Xilinx Video SDK
+- You can send patches which add new features or fix bugs to the various packages included in the Xilinx Video SDK
 
 ***********************************
 Reporting Bugs and Feature Requests
@@ -19,7 +19,7 @@ Please use the `GitHub issue tracker <https://github.com/Xilinx/video-sdk/issues
 When filing an issue, please check existing open, or recently closed, issues to make sure somebody else hasn't already reported the issue. Please try to include as much information as you can. Details like these are incredibly useful:
 
 - A reproducible test case or series of steps
-- The version of the |SDK| which is being used
+- The version of the Xilinx Video SDK which is being used
 - Output of ``xbutil examine``
 - Any modifications you've made relevant to the bug
 - Anything unusual about your environment or deployment
@@ -29,7 +29,7 @@ When filing an issue, please check existing open, or recently closed, issues to 
 Contributing via Pull Requests
 ******************************
 
-Please use GitHub Pull Requests (PR) for sending code contributions. When sending code, sign your work as described below. Be sure to use the same license for your contributions as the current license of the |SDK| component you are contributing to.
+Please use GitHub Pull Requests (PR) for sending code contributions. When sending code, sign your work as described below. Be sure to use the same license for your contributions as the current license of the Xilinx Video SDK component you are contributing to.
 
 General Guidelines
 ==================
@@ -37,7 +37,7 @@ General Guidelines
 Contributions via pull requests are much appreciated. Before sending us a pull request, please follow these general guidelines:
 
 - Check existing open, and recently merged, pull requests to make sure someone else hasn't addressed the problem already
-- Work against the latest source on the master branch
+- The .rst source code for the HTML documentation is maintained on the gh-pages branch of the repository
 - If editing the documentation, build the HTML output (as explained in docs/README.rst) and check its final appearance before submitting your pull request
 - Open an issue to discuss any significant work
 - Focus on the specific change you are contributing. If you also reformat all the code, it will be hard for us to focus on your change
@@ -99,13 +99,13 @@ Here is an example Signed-off-by line which indicates that the contributor accep
 Code License
 ============
 
-All |SDK| code is licensed under the terms of the `LICENSE <https://github.com/Xilinx/video-sdk/blob/master/LICENSE.top>`_. Your contribution will be accepted under the same license of the |SDK| component which you are contributing to.
+All Xilinx Video SDK code is licensed under the terms of the license (see LICENSE.top). Your contribution will be accepted under the same license of the Xilinx Video SDK component which you are contributing to.
 
 ..
   ------------
   
-  © Copyright 2020-2021 Xilinx, Inc.
-  
+  © Copyright 2020-2023, Advanced Micro Devices, Inc.
+
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   
   http://www.apache.org/licenses/LICENSE-2.0
