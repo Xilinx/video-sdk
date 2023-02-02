@@ -24,7 +24,7 @@ The Xilinx Video SDK can be leveraged on-premises with Alveo U30 cards and in th
 
 ---------------------------------------------------
 
-© Copyright 2020-2021 Xilinx, Inc.
+© Copyright 2020-2023, Advanced Micro Devices, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
 
