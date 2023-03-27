@@ -104,7 +104,8 @@ All Xilinx Video SDK code is licensed under the terms of the license (see LICENS
 ..
   ------------
   
-  © Copyright 2020-2023, Advanced Micro Devices, Inc.
+  © Copyright 2020-2022 Xilinx, Inc.
+  © Copyright 2022, Advanced Micro Device, Inc.
 
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   

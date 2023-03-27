@@ -6,7 +6,7 @@ well as the Texas Instruments license presented within this file.
 
 XILINX BINARY ONLY LICENSE
 
-Copyright (c) 2021 Xilinx, Inc.
+Copyright (c) 2022 Xilinx, Inc.
 
 Redistribution and use in binary form only, without modification, is permitted
 provided that the following conditions are met:

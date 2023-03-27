@@ -1,12 +1,12 @@
-LICENSE SUMMARY FOR THE XILINX U30 VIDEO TRANSCODE SOLUTION PACKAGE REPOSITORY
+LICENSE SUMMARY FOR THE XILINX VIDEO SDK
 
-The following repository consists of a number of individual packages available
-for download to enable the Xilinx U30 Video Transcode Solution.
-Each package is independently licensed and the user is responsible for
-consulting and complying with the terms and conditions of the license(s)
-presented in each package.
 
-Below is a summary of the packages in this repository listed
+The Xilinx Video SDK consists of a number of individual packages installed
+via meta-packages. Each individual package is independently licensed and 
+the user is  responsible for consulting and complying with the terms and 
+conditions of the license(s) presented in each package.
+
+Below is a summary of the packages included in the Xilinx Video SDK listed
 by license type. In the event a package may be dual licensed or consist
 of components subject to different licenses, it may appear multiple times
 in the list below. This list is not a substitute for consulting and complying
@@ -15,55 +15,47 @@ any given package.  The user is referred to such source files and/or license
 files for the license terms.
 
 
+
+XILINX-ALVEO-U30-CORE
+The xilinx-alveo-u30-core meta-package installs the following packages:
+
 ============================================================================================
 PACKAGE NAME                                       |  LICENSE(s) TYPE(S)
 (less rpm|deb extension)                           |
 ============================================================================================
-xilinx-u30-xffmpeg_4.4.xlnx.1                      | LGPLv2 or LGPLv3
+xilinx-u30-xffmpeg_4.4.xlnx.2                      | LGPLv2 or LGPLv3
                                                    |
                                                    | See FFMPEG LICENSING NOTE for add'l
                                                    | licensing details
 --------------------------------------------------------------------------------------------
-xilinx-u30-xcdr_2.0.0 (software)                   | Apache v2 (software)
+xilinx-u30-xcdr_3.0.0 (software)                   | Apache v2 (software)
                                                    |
                                                    | Xilinx non-open source permissive
                                                    | (hardware binaries)
                                                    |
                                                    | See LICENSE.xclbin for additional details
 --------------------------------------------------------------------------------------------
-xilinx-u30-launcher_1.1.0                          | Apache v2
+xilinx-u30-xmapropstojson_1.0.2                    | Apache v2
 --------------------------------------------------------------------------------------------
-xilinx-u30-jobslotreservation_1.1.0                | Apache v2
+xilinx-u30-xmpsoccodecs_1.2.0                      | Apache v2
 --------------------------------------------------------------------------------------------
-xilinx-u30-xmapropstojson_1.0.1                    | Apache v2
+xilinx-u30-xma-multiscaler_1.1.1                   | Apache v2
 --------------------------------------------------------------------------------------------
-xilinx-u30-xmpsoccodecs_1.1.0                      | Apache v2
+xilinx-u30-xlookahead_1.2.0                        | Apache v2
 --------------------------------------------------------------------------------------------
-xilinx-u30-xma-multiscaler_1.1.0                   | Apache v2
+xilinx-u30-xrm-decoder_1.1.1                       | Apache v2
 --------------------------------------------------------------------------------------------
-xilinx-xvbm_1.0.2                                  | Apache v2 or LGPLv3
+xilinx-u30-xrm-encoder_1.1.1                       | Apache v2
 --------------------------------------------------------------------------------------------
-xilinx-u30-xlookahead_1.1.0                        | Apache v2
+xilinx-u30-xrm-multiscaler_1.1.1                   | Apache v2
 --------------------------------------------------------------------------------------------
-xilinx-u30-vvas_1.0                                | Apache v2 (VVAS source code)
-                                                   | LGPL v2 (VVAS GStreamer libraries)
-                                                   | MIT (VVAS GStreamer plugins)
-                                                   | BSD (VVAS test applications)
+xilinx-xvbm_1.0.3                                  | Apache v2 or LGPLv3
 --------------------------------------------------------------------------------------------
-xilinx-u30-gstreamer-1.16.2_1.0                    | LGPL V2, GPL V2 and later, MIT, Apache
-                                                   | MPL and additional open source Licenses                                       
+xilinx-container-runtime_1.1.27                    | Apache v2
 --------------------------------------------------------------------------------------------
-xilinx-u30-xma-apps-2.0.0                          | Apache v2
+xrm_202220.1.5.103                                 | Apache v2
 --------------------------------------------------------------------------------------------
-xilinx-u30-xrm-decoder_1.1.0                       | Apache v2
---------------------------------------------------------------------------------------------
-xilinx-u30-xrm-encoder_1.1.0                       | Apache v2
---------------------------------------------------------------------------------------------
-xilinx-u30-xrm-multiscaler_1.1.0                   | Apache v2
---------------------------------------------------------------------------------------------
-xrm_202120.1.3.29                                  | Apache v2
---------------------------------------------------------------------------------------------
-xrt_202110.2.11.691                                | Apache v2 (user-space libraries)
+xrt_202110.2.11.716                                | Apache v2 (user-space libraries)
                                                    |
                                                    | GPLv2 (kernel drivers)
 --------------------------------------------------------------------------------------------
@@ -74,7 +66,7 @@ xilinx-sc-fw-u30_6.3.8-1.cd35f69                   | Xilinx binary non-open sour
                                                    |
                                                    | See LICENSE.sc for additional details
 --------------------------------------------------------------------------------------------
-xilinx-u30-gen3x4-base_2-3391496                   | Xilinx non-open source permissive
+xilinx-u30-gen3x4-base_2-3485939                   | Xilinx non-open source permissive
                                                    | (hardware binaries)
                                                    |
                                                    | Various open-source
@@ -89,19 +81,57 @@ xilinx-u30-gen3x4-validate_2-3380610               | Xilinx non-open source perm
 --------------------------------------------------------------------------------------------
 
 
-FFMPEG LICENSING NOTE
-The binary version of ffmpeg included in xffmpeg-4.4.1-Linux package includes
-the drawtext (vf_drawtext.c) filter plugin.  This plugin creates a dependency
-on two dynamically linked libraries: libfontconfig and libfreetype.  The user
-is advised to review the license terms for these two libraries as they must be
-installed and present on the user's host system in order to successfully execute
-the included ffmpeg application. User is advised to elect non-GPL licensed
-versions of the required dynamic libraries if the intended use of the ffmpeg
-binary build is for commercial applications.
 
+XILINX-ALVEO-U30-FFMPEG
+The xilinx-alveo-u30-ffmpeg meta-package installs all the package included in
+xilinx-alveo-u30-core as well as the following packages:
+
+============================================================================================
+PACKAGE NAME                                       |  LICENSE(s) TYPE(S)
+(less rpm|deb extension)                           |
+============================================================================================
+xilinx-u30-xffmpeg_4.4.xlnx.2                      | LGPLv2 or LGPLv3
+                                                   |
+                                                   | See FFMPEG LICENSING NOTE for add'l
+                                                   | licensing details
+--------------------------------------------------------------------------------------------
+xilinx-u30-launcher_1.1.1                          | Apache v2
+--------------------------------------------------------------------------------------------
+xilinx-u30-jobslotreservation_1.1.1                | Apache v2
+--------------------------------------------------------------------------------------------
+
+
+
+XILINX-ALVEO-U30-GSTREAMER
+The xilinx-alveo-u30-gstreamer meta-package installs all the package included in
+xilinx-alveo-u30-core as well as the following packages:
+
+============================================================================================
+PACKAGE NAME                                       |  LICENSE(s) TYPE(S)
+(less rpm|deb extension)                           |
+============================================================================================
+xilinx-u30-vvas_1.1.0                              | Apache v2 (VVAS source code)
+                                                   | LGPL v2 (VVAS GStreamer libraries)
+                                                   | MIT (VVAS GStreamer plugins)
+                                                   | BSD (VVAS test applications)
+--------------------------------------------------------------------------------------------
+xilinx-u30-gstreamer-1.16.2_1.1.0                  | LGPL V2, GPL V2 and later, MIT, Apache
+                                                   | MPL and additional open source Licenses                                       
+--------------------------------------------------------------------------------------------
+
+
+
+XILINX-ALVEO-U30-EXAMPLES
+The xilinx-alveo-u30-gstreamer meta-package installs all the package included in
+xilinx-alveo-u30-core, xilinx-alveo-u30-ffmpeg and xilinx-alveo-u30-gstreamer.
+
+
+
+EXAMPLES AND DOCUMENTATION
 All documentation and examples authored by Xilinx is released under the following license:
 
-Copyright 2020-2021 Xilinx, Inc.
+Copyright 2020-2022 Xilinx, Inc.
+Copyright 2022, Advanced Micro Device, Inc.
 
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -114,3 +144,17 @@ distributed under the License is distributed on an "AS IS" BASIS,
 WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
+
+
+
+FFMPEG LICENSING NOTE
+The binary version of ffmpeg included in xffmpeg-4.4.1-Linux package includes
+the drawtext (vf_drawtext.c) filter plugin.  This plugin creates a dependency
+on two dynamically linked libraries: libfontconfig and libfreetype.  The user
+is advised to review the license terms for these two libraries as they must be
+installed and present on the user's host system in order to successfully execute
+the included ffmpeg application. User is advised to elect non-GPL licensed
+versions of the required dynamic libraries if the intended use of the ffmpeg
+binary build is for commercial applications.
+
+

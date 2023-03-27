@@ -34,12 +34,18 @@
 [submodule "sources/app-ffmpeg4-xma"]
 	path = sources/app-ffmpeg4-xma
 	url = https://github.com/Xilinx/app-ffmpeg4-xma
-[submodule "sources/video-sdk-gstreamer"]
-	path = sources/video-sdk-gstreamer
-	url = https://github.com/Xilinx/video-sdk-gstreamer
 [submodule "sources/xrm"]
 	path = sources/xrm
 	url = https://github.com/Xilinx/xrm
 [submodule "sources/xrt"]
 	path = sources/xrt
 	url = https://github.com/Xilinx/xrt
+[submodule "sources/Xilinx_Container_Runtime"]
+	path = sources/Xilinx_Container_Runtime
+	url = https://github.com/Xilinx/Xilinx_Container_Runtime
+[submodule "sources/video-sdk-gstreamer"]
+	path = sources/video-sdk-gstreamer
+	url = https://github.com/Xilinx/video-sdk-gstreamer
+[submodule "sources/video-sdk-u30-examples"]
+	path = sources/video-sdk-u30-examples
+	url = https://github.com/Xilinx/video-sdk-u30-examples
