@@ -75,8 +75,10 @@ Quick Start Guide for |VT1|
 
 |
 
+.. _installing-in-existing-ami:
+
 ****************************************************
-Installing the |SDK| on an existing AMI
+Installing the |SDK| in an existing AMI
 ****************************************************
 
 In order to use a custom AMI on a |VT1| instance, it is necessary to install the |SDK| in the AMI. This section explains how to do this. These steps are not necessary when using the public |SDK| AMI since it already includes a complete installation of the |SDK| and can readily be used on a |VT1| instance.

@@ -7,6 +7,9 @@ The |SDK| is a complete software stack allowing users to seamlessly leverage the
 |
 
 .. note::
+   The v2.0.1 update release is now available. This update includes several bug fixes in the Xilinx Runtime (XRT). For more details about this update release and how to install it, refer to the :ref:`Release Notes <release-notes>`. 
+
+.. note::
    A new Kubernetes plugin is available for U30 cards. This new plugin no longer requires an exact version number when specifying U30 resource limits. This allows for compatibility of pod description files across all releases of the |SDK|. Kubernetes clusters using this plugin will continue to work seamlessly even after an upgrade of the |SDK|. **If using Kubernetes, to prevent service degradation, it is necessary to deploy this new plugin (version 1.1.0)**  before upgrading to the latest version of the |SDK|. For more details, refer to the instructions for :ref:`deploying with Kubernetes <deploying-with-kubernetes>`. 
 
 |

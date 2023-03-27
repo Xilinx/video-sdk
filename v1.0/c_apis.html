@@ -29,7 +29,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -161,7 +163,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="c-api-programming-guide">
-<span id="id1"></span><h1>C API Programming Guide<a class="headerlink" href="#c-api-programming-guide" title="Permalink to this headline">¶</a></h1>
+<span id="id1"></span><h1>C API Programming Guide<a class="headerlink" href="#c-api-programming-guide" title="Permalink to this heading">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
@@ -178,7 +180,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="section" id="overview">
-<h2><a class="toc-backref" href="#id11">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id11">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>The Xilinx Video SDK provides a C-based application programming interface (API) which facilitates the integration of Alveo U30 transcoding capabilities in proprietary frameworks. This API is provided in the form plugins leveraging the Xilinx Media Accelerator (XMA) library and the Xilinx Resource Manager (XRM) library.</p>
 <p class="rubric">The XMA Library</p>
 <p>The XMA library (libxmaapi) is meant to simplify the development of applications managing and controlling video accelerators such as decoders, scalers, filters, and encoders. The libxmaapi is comprised of two API interfaces: the lower-edge interface and the upper-edge interface:</p>
@@ -206,7 +208,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="general-application-development-guide">
-<h2><a class="toc-backref" href="#id12">General Application Development Guide</a><a class="headerlink" href="#general-application-development-guide" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id12">General Application Development Guide</a><a class="headerlink" href="#general-application-development-guide" title="Permalink to this heading">¶</a></h2>
 <p>Integration layers for applications using the Xilinx Video SDK are organized around the following steps:</p>
 <ol class="arabic simple">
 <li><p>Initialization</p></li>
@@ -216,26 +218,26 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Cleanup</p></li>
 </ol>
 <div class="section" id="initialization">
-<h3>Initialization<a class="headerlink" href="#initialization" title="Permalink to this headline">¶</a></h3>
+<h3>Initialization<a class="headerlink" href="#initialization" title="Permalink to this heading">¶</a></h3>
 <p>Applications using the plugins must first create a XRM context using the <code class="xref c c-func docutils literal notranslate"><span class="pre">xrmCreateContext()</span></code> function in order to establish a connection with the XRM daemon. The application must then initialize the XMA library using the <code class="xref c c-func docutils literal notranslate"><span class="pre">xma_initialize()</span></code> function.</p>
 <p>Detailled examples of how to perform these two steps in order to initialize an application can be found in all of the sample XMA applications, for instance <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/xma/decode_only/src/xlnx_dec_xrm_interface.c">examples/xma/decode_only/src/xlnx_dec_xrm_interface.c</a>.</p>
 <p>Further information about these APIs can be found in the online <a class="reference external" href="https://xilinx.github.io/XRT/master/html/xmakernels.main.html">XRT</a> and <a class="reference external" href="https://xilinx.github.io/XRM/lib.html#global-functions">XRM</a> documentation.</p>
 </div>
 <div class="section" id="resource-allocation">
-<h3>Resource Allocation<a class="headerlink" href="#resource-allocation" title="Permalink to this headline">¶</a></h3>
+<h3>Resource Allocation<a class="headerlink" href="#resource-allocation" title="Permalink to this heading">¶</a></h3>
 <p>After the initialization step, the application must determine on which device to run and reserve the necessary hardware resources (CUs) on that device. This is done using the XRM APIs, as described in detail in the <a class="reference internal" href="#xrm-api-reference"><span class="std std-ref">XRM API Reference Guide</span></a> below.</p>
 </div>
 <div class="section" id="session-creation">
-<h3>Session Creation<a class="headerlink" href="#session-creation" title="Permalink to this headline">¶</a></h3>
+<h3>Session Creation<a class="headerlink" href="#session-creation" title="Permalink to this heading">¶</a></h3>
 <p>Once the resources have been allocated, the application must create dedicated plugin sessions for each of the hardware accelerators that need to be used (decoder, scaler, encoder, lookahead).</p>
 <p>To create a session, the application must first initialize all the required properties and parameters of the particular plugin. It must then call the  corresponding session creation function. A complete reference for all the plugins is provided below.</p>
 </div>
 <div class="section" id="runtime-processing">
-<h3>Runtime Processing<a class="headerlink" href="#runtime-processing" title="Permalink to this headline">¶</a></h3>
+<h3>Runtime Processing<a class="headerlink" href="#runtime-processing" title="Permalink to this heading">¶</a></h3>
 <p>The plugins provide functions to send data from the host and receive data from the device. The data is in the form of video frames (<a class="reference internal" href="#c.XmaFrame" title="XmaFrame"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFrame</span></code></a>) or encoded video data (<code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFrameData</span></code>), depending on the nature of the plugin. It is also possible to do zero-copy operations where frames are passed from one hardware accelerator to the next without being copied back to the host. The send and receive functions are specific to each plugin and the return code should be used to determine the next suitable action. A complete reference for all the plugins is provided below.</p>
 </div>
 <div class="section" id="cleanup">
-<h3>Cleanup<a class="headerlink" href="#cleanup" title="Permalink to this headline">¶</a></h3>
+<h3>Cleanup<a class="headerlink" href="#cleanup" title="Permalink to this heading">¶</a></h3>
 <p>When the application finishes, it should destroy each plugin session using the corresponding destroy function. Doing so will free the resources on the Alveo U30 cards for other jobs and ensure that everything is released and cleaned-up properly.</p>
 <p>The application should also use the <code class="xref c c-func docutils literal notranslate"><span class="pre">xrmDestroyContext()</span></code> function to destroy the XRM session, stop the connection to the daemon and ensure all resources are properly released.</p>
 <div class="line-block">
@@ -244,7 +246,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="compiling-and-linking-with-the-xilinx-video-sdk-plugins">
-<h2><a class="toc-backref" href="#id13">Compiling and Linking with the Xilinx Video SDK Plugins</a><a class="headerlink" href="#compiling-and-linking-with-the-xilinx-video-sdk-plugins" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id13">Compiling and Linking with the Xilinx Video SDK Plugins</a><a class="headerlink" href="#compiling-and-linking-with-the-xilinx-video-sdk-plugins" title="Permalink to this heading">¶</a></h2>
 <p>The plugins can be dynamically linked to the application. The required packages to build applications are XRT, XRM and XVBM. These packages provided as part of the Xilinx Video SDK.</p>
 <p>To provide the necessary declarations in your application, include the following headers in your source code:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="c1">#include &lt;xrm.h&gt;</span>
@@ -269,7 +271,7 @@ LDFLAGS += $(shell pkg-config --libs   libxma2api libxma2plugin xvbm libxrm)
 </div>
 </div>
 <div class="section" id="common-xma-data-structures">
-<h2><a class="toc-backref" href="#id14">Common XMA Data Structures</a><a class="headerlink" href="#common-xma-data-structures" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id14">Common XMA Data Structures</a><a class="headerlink" href="#common-xma-data-structures" title="Permalink to this heading">¶</a></h2>
 <dl class="c struct">
 <dt class="sig sig-object c" id="c.XmaParameter">
 <span class="k"><span class="pre">struct</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">XmaParameter</span></span></span><a class="headerlink" href="#c.XmaParameter" title="Permalink to this definition">¶</a><br /></dt>
@@ -305,9 +307,9 @@ LDFLAGS += $(shell pkg-config --libs   libxma2api libxma2plugin xvbm libxrm)
 </div>
 </div>
 <div class="section" id="alveo-u30-decoder-plugin-reference">
-<h2><a class="toc-backref" href="#id15">Alveo U30 Decoder Plugin Reference</a><a class="headerlink" href="#alveo-u30-decoder-plugin-reference" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id15">Alveo U30 Decoder Plugin Reference</a><a class="headerlink" href="#alveo-u30-decoder-plugin-reference" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="decoder-interface">
-<h3>Decoder Interface<a class="headerlink" href="#decoder-interface" title="Permalink to this headline">¶</a></h3>
+<h3>Decoder Interface<a class="headerlink" href="#decoder-interface" title="Permalink to this heading">¶</a></h3>
 <p>The external interface to the Alveo U30 decoder plugin consists of the following XMA upper-edge functions:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#c.xma_dec_session_create" title="xma_dec_session_create"><code class="xref c c-func docutils literal notranslate"><span class="pre">xma_dec_session_create()</span></code></a></p></li>
@@ -375,7 +377,7 @@ LDFLAGS += $(shell pkg-config --libs   libxma2api libxma2plugin xvbm libxrm)
 </div>
 </div>
 <div class="section" id="decoder-properties">
-<h3>Decoder Properties<a class="headerlink" href="#decoder-properties" title="Permalink to this headline">¶</a></h3>
+<h3>Decoder Properties<a class="headerlink" href="#decoder-properties" title="Permalink to this heading">¶</a></h3>
 <p>The Alveo U30 decoder is configured using a combination of standard XMA decoder properties and custom decoder parameters, both of which are specified using a <a class="reference internal" href="#c.XmaDecoderProperties" title="XmaDecoderProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaDecoderProperties</span></code></a> data structure.</p>
 <p>To facilitate application development, Xilinx recommends working with a simplified data structure from which the required <a class="reference internal" href="#c.XmaDecoderProperties" title="XmaDecoderProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaDecoderProperties</span></code></a> can be populated using a specialized function. A reusable example of this can found in the <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/xma/transcode/include/xlnx_transcoder_xma_props.h">examples/xma/transcode/include/xlnx_transcoder_xma_props.h</a> and <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/xma/transcode/src/xlnx_transcoder_xma_props.c">examples/xma/transcode/src/xlnx_transcoder_xma_props.c</a> files of the XMA transcoder example application.</p>
 <div class="line-block">
@@ -478,9 +480,9 @@ Set this only if we ensure that we always feed all NAL units that make up a fram
 </div>
 </div>
 <div class="section" id="alveo-u30-scaler-plugin-reference">
-<h2><a class="toc-backref" href="#id16">Alveo U30 Scaler Plugin Reference</a><a class="headerlink" href="#alveo-u30-scaler-plugin-reference" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id16">Alveo U30 Scaler Plugin Reference</a><a class="headerlink" href="#alveo-u30-scaler-plugin-reference" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="scaler-interface">
-<h3>Scaler Interface<a class="headerlink" href="#scaler-interface" title="Permalink to this headline">¶</a></h3>
+<h3>Scaler Interface<a class="headerlink" href="#scaler-interface" title="Permalink to this heading">¶</a></h3>
 <p>The external interface to the Alveo U30 scaler plugin consists of the following XMA application-level functions:</p>
 <ul class="simple">
 <li><p><code class="xref c c-func docutils literal notranslate"><span class="pre">xma_scaler_default_filter_coeff_set()</span></code></p></li>
@@ -540,7 +542,7 @@ Set this only if we ensure that we always feed all NAL units that make up a fram
 </div>
 </div>
 <div class="section" id="scaler-properties">
-<h3>Scaler Properties<a class="headerlink" href="#scaler-properties" title="Permalink to this headline">¶</a></h3>
+<h3>Scaler Properties<a class="headerlink" href="#scaler-properties" title="Permalink to this heading">¶</a></h3>
 <p>The Alveo U30 lookahead is configured using a combination of standard XMA scaler properties, standard XMA scaler input and ouput properties and custom scaler parameters, all of which are specified using <a class="reference internal" href="#c.XmaScalerFilterProperties" title="XmaScalerFilterProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaScalerFilterProperties</span></code></a> and <a class="reference internal" href="#c.XmaScalerInOutProperties" title="XmaScalerInOutProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaScalerInOutProperties</span></code></a> data structures.</p>
 <p>To facilitate application development, Xilinx recommends working with a simplified data structure from which the required <a class="reference internal" href="#c.XmaScalerFilterProperties" title="XmaScalerFilterProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaScalerFilterProperties</span></code></a> and <a class="reference internal" href="#c.XmaScalerInOutProperties" title="XmaScalerInOutProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaScalerInOutProperties</span></code></a> can be populated using a specialized function. A reusable example of this can found in the <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/xma/transcode/include/xlnx_transcoder_xma_props.h">examples/xma/transcode/include/xlnx_transcoder_xma_props.h</a> and <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/xma/transcode/src/xlnx_transcoder_xma_props.c">examples/xma/transcode/src/xlnx_transcoder_xma_props.c</a> files of the XMA transcoder example application.</p>
 <div class="line-block">
@@ -627,7 +629,7 @@ For mix-rate scaling, the application will need to create two different scaler s
 </dd>
 </dl>
 <div class="section" id="mix-rate-support-with-the-scaler-plugin">
-<span id="mix-rate-support"></span><h4>Mix-Rate Support with the Scaler Plugin<a class="headerlink" href="#mix-rate-support-with-the-scaler-plugin" title="Permalink to this headline">¶</a></h4>
+<span id="mix-rate-support"></span><h4>Mix-Rate Support with the Scaler Plugin<a class="headerlink" href="#mix-rate-support-with-the-scaler-plugin" title="Permalink to this heading">¶</a></h4>
 <p>The application can configure the scaler to work at mixed rate, where some output channels will be produced at the full input frame rate and some output channels will be produced at half the input frame rate.</p>
 <p>Mix-rate is achieved by creating two different scaler sessions. One for full rate and the one for full and half rate (all rate) outputs.</p>
 <p>Enabling mixed rate outputs requires that the following conditions be met:</p>
@@ -650,9 +652,9 @@ For mix-rate scaling, the application will need to create two different scaler s
 </div>
 </div>
 <div class="section" id="alveo-u30-encoder-plugin-reference">
-<h2><a class="toc-backref" href="#id17">Alveo U30 Encoder Plugin Reference</a><a class="headerlink" href="#alveo-u30-encoder-plugin-reference" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id17">Alveo U30 Encoder Plugin Reference</a><a class="headerlink" href="#alveo-u30-encoder-plugin-reference" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="encoder-interface">
-<h3>Encoder Interface<a class="headerlink" href="#encoder-interface" title="Permalink to this headline">¶</a></h3>
+<h3>Encoder Interface<a class="headerlink" href="#encoder-interface" title="Permalink to this heading">¶</a></h3>
 <p>The external interface to the Alveo U30 encoder plugin consists of the following XMA application-level functions:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#c.xma_enc_session_create" title="xma_enc_session_create"><code class="xref c c-func docutils literal notranslate"><span class="pre">xma_enc_session_create()</span></code></a></p></li>
@@ -711,7 +713,7 @@ For mix-rate scaling, the application will need to create two different scaler s
 </div>
 </div>
 <div class="section" id="encoder-properties">
-<h3>Encoder Properties<a class="headerlink" href="#encoder-properties" title="Permalink to this headline">¶</a></h3>
+<h3>Encoder Properties<a class="headerlink" href="#encoder-properties" title="Permalink to this heading">¶</a></h3>
 <p>The Alveo U30 encoder is configured using a combination of standard XMA encoder properties and custom encoder parameters, both of which are specified using a <a class="reference internal" href="#c.XmaEncoderProperties" title="XmaEncoderProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaEncoderProperties</span></code></a> data structure.</p>
 <p>To facilitate application development, Xilinx recommends working with a simplified data structure from which the required <a class="reference internal" href="#c.XmaEncoderProperties" title="XmaEncoderProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaEncoderProperties</span></code></a> can be populated using a specialized function. A reusable example of this can found in the <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/xma/transcode/include/xlnx_transcoder_xma_props.h">examples/xma/transcode/include/xlnx_transcoder_xma_props.h</a> and <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/xma/transcode/src/xlnx_transcoder_xma_props.c">examples/xma/transcode/src/xlnx_transcoder_xma_props.c</a> files of the sample XMA transcoder application.</p>
 <div class="line-block">
@@ -794,9 +796,9 @@ If the yuv frame is already on device memory, set it to 1.</p>
 </div>
 </div>
 <div class="section" id="alveo-u30-look-ahead-plugin-reference">
-<h2><a class="toc-backref" href="#id18">Alveo U30 Look-Ahead Plugin Reference</a><a class="headerlink" href="#alveo-u30-look-ahead-plugin-reference" title="Permalink to this headline">¶</a></h2>
+<h2><a class="toc-backref" href="#id18">Alveo U30 Look-Ahead Plugin Reference</a><a class="headerlink" href="#alveo-u30-look-ahead-plugin-reference" title="Permalink to this heading">¶</a></h2>
 <div class="section" id="look-ahead-interface">
-<h3>Look-Ahead Interface<a class="headerlink" href="#look-ahead-interface" title="Permalink to this headline">¶</a></h3>
+<h3>Look-Ahead Interface<a class="headerlink" href="#look-ahead-interface" title="Permalink to this heading">¶</a></h3>
 <p>The Alveo U30 Look-Ahead plugin is based on the Filter XMA plugin type. The external interface to the Alveo U30 lookahead plugin consists of the following XMA application-level functions:</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#c.xma_filter_session_create" title="xma_filter_session_create"><code class="xref c c-func docutils literal notranslate"><span class="pre">xma_filter_session_create()</span></code></a></p></li>
@@ -853,7 +855,7 @@ The application can take further action depending upon the return value from thi
 </div>
 </div>
 <div class="section" id="look-ahead-properties">
-<h3>Look-Ahead Properties<a class="headerlink" href="#look-ahead-properties" title="Permalink to this headline">¶</a></h3>
+<h3>Look-Ahead Properties<a class="headerlink" href="#look-ahead-properties" title="Permalink to this heading">¶</a></h3>
 <p>The Alveo U30 lookahead is configured using a combination of standard XMA filter properties, standard XMA filter input and output properties and custom lookahead parameters, all of which are specified using <a class="reference internal" href="#c.XmaFilterProperties" title="XmaFilterProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFilterProperties</span></code></a> and <a class="reference internal" href="#c.XmaFilterPortProperties" title="XmaFilterPortProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFilterPortProperties</span></code></a> data structures.</p>
 <p>To facilitate application development, Xilinx recommends working with a simplified data structure from which the required <a class="reference internal" href="#c.XmaFilterProperties" title="XmaFilterProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFilterProperties</span></code></a> and <a class="reference internal" href="#c.XmaFilterPortProperties" title="XmaFilterPortProperties"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaFilterPortProperties</span></code></a> can be populated using a specialized function. A reusable example of this can found in the <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/xma/transcode/include/xlnx_transcoder_xma_props.h">examples/xma/transcode/include/xlnx_transcoder_xma_props.h</a> and <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/xma/transcode/src/xlnx_transcoder_xma_props.c">examples/xma/transcode/src/xlnx_transcoder_xma_props.c</a> files of the XMA transcoder example application.</p>
 <p><strong>IMPORTANT</strong>: Xilinx recommends enabling custom rate-control when using the lookahead. This is done as follows:</p>
@@ -984,7 +986,7 @@ Value range from 0 to Integer max.</p>
 </div>
 </div>
 <div class="section" id="xvbm-api-reference">
-<span id="xvbm-reference"></span><h2><a class="toc-backref" href="#id19">XVBM API Reference</a><a class="headerlink" href="#xvbm-api-reference" title="Permalink to this headline">¶</a></h2>
+<span id="xvbm-reference"></span><h2><a class="toc-backref" href="#id19">XVBM API Reference</a><a class="headerlink" href="#xvbm-api-reference" title="Permalink to this heading">¶</a></h2>
 <p>The Xilinx Video Buffer Management (XVBM) library is used by the Xilinx Video SDK plugins to manage pools of video buffers. The XVBM API must be used to interact with the XVBM buffers associated with c:struct:<cite>XmaFrame</cite> frames of the <code class="xref c c-macro docutils literal notranslate"><span class="pre">XMA_DEVICE_BUFFER_TYPE</span></code> type.</p>
 <p>The <code class="xref c c-macro docutils literal notranslate"><span class="pre">XMA_DEVICE_BUFFER_TYPE</span></code> frames and their XVBM buffers can either be directly passed to other hardware accelerators without being copied back to the host (zero-copy operation in a multistage pipeline) or copied back to the host for further processing in software.</p>
 <p>If the application needs to access the content of a XVBM buffer, it must do so using the XVBM <a class="reference internal" href="#c.xvbm_buffer_get_host_ptr" title="xvbm_buffer_get_host_ptr"><code class="xref c c-func docutils literal notranslate"><span class="pre">xvbm_buffer_get_host_ptr()</span></code></a> and <a class="reference internal" href="#c.xvbm_buffer_read" title="xvbm_buffer_read"><code class="xref c c-func docutils literal notranslate"><span class="pre">xvbm_buffer_read()</span></code></a> APIs.</p>
@@ -995,7 +997,7 @@ Value range from 0 to Integer max.</p>
 <div class="line"><br /></div>
 </div>
 <div class="section" id="buffer-pool-related-functions">
-<h3>Buffer Pool Related Functions<a class="headerlink" href="#buffer-pool-related-functions" title="Permalink to this headline">¶</a></h3>
+<h3>Buffer Pool Related Functions<a class="headerlink" href="#buffer-pool-related-functions" title="Permalink to this heading">¶</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.xvbm_buffer_pool_create">
 <span class="n"><span class="pre">XvbmPoolHandle</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_pool_create</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">xclDeviceHandle</span></span><span class="w"> </span><span class="n"><span class="pre">d_handle</span></span>, <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="n"><span class="pre">num_buffers</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="n"><span class="pre">flags</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_pool_create" title="Permalink to this definition">¶</a><br /></dt>
@@ -1079,7 +1081,7 @@ Value range from 0 to Integer max.</p>
 </div>
 </div>
 <div class="section" id="buffer-related-accessor-functions">
-<h3>Buffer related accessor functions<a class="headerlink" href="#buffer-related-accessor-functions" title="Permalink to this headline">¶</a></h3>
+<h3>Buffer related accessor functions<a class="headerlink" href="#buffer-related-accessor-functions" title="Permalink to this heading">¶</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.xvbm_buffer_get_bo_handle">
 <span class="n"><span class="pre">uint32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_get_bo_handle</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_get_bo_handle" title="Permalink to this definition">¶</a><br /></dt>
@@ -1154,7 +1156,7 @@ Value range from 0 to Integer max.</p>
 </div>
 </div>
 <div class="section" id="functions-for-reading-and-writing-buffers">
-<h3>Functions for reading and writing buffers<a class="headerlink" href="#functions-for-reading-and-writing-buffers" title="Permalink to this headline">¶</a></h3>
+<h3>Functions for reading and writing buffers<a class="headerlink" href="#functions-for-reading-and-writing-buffers" title="Permalink to this heading">¶</a></h3>
 <dl class="c function">
 <dt class="sig sig-object c" id="c.xvbm_buffer_write">
 <span class="n"><span class="pre">int32_t</span></span><span class="w"> </span><span class="sig-name descname"><span class="n"><span class="pre">xvbm_buffer_write</span></span></span><span class="sig-paren">(</span><span class="n"><span class="pre">XvbmBufferHandle</span></span><span class="w"> </span><span class="n"><span class="pre">b_handle</span></span>, <span class="k"><span class="pre">const</span></span><span class="w"> </span><span class="kt"><span class="pre">void</span></span><span class="w"> </span><span class="n"><span class="pre">src</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">size</span></span>, <span class="n"><span class="pre">size_t</span></span><span class="w"> </span><span class="n"><span class="pre">offset</span></span><span class="sig-paren">)</span><a class="headerlink" href="#c.xvbm_buffer_write" title="Permalink to this definition">¶</a><br /></dt>
@@ -1176,7 +1178,7 @@ Value range from 0 to Integer max.</p>
 </div>
 </div>
 <div class="section" id="xrm-api-reference">
-<span id="id10"></span><h2><a class="toc-backref" href="#id20">XRM API Reference</a><a class="headerlink" href="#xrm-api-reference" title="Permalink to this headline">¶</a></h2>
+<span id="id10"></span><h2><a class="toc-backref" href="#id20">XRM API Reference</a><a class="headerlink" href="#xrm-api-reference" title="Permalink to this heading">¶</a></h2>
 <p>The Xilinx® FPGA Resource Manager (XRM) library is used to manage the hardware accelerators available in the system. XRM keeps track of total system capacity for each of the compute units such as the decoder, scaler, and encoder.</p>
 <p>The XRM library includes a daemon, a command line tool and a C application programming interface (API). Using the library API, external applications can communicate with the XRM daemon and perform actions such as reserving, allocating and releasing resources; calculating resource load and max capacity.</p>
 <p>More details on the XRM command line tool (xrmadm) and the XRM daemon (xrmd) can be found in the <a class="reference internal" href="card_management.html#xrmadm-and-xrmd-commands"><span class="std std-ref">xrmadm and xrmd Commands</span></a> section of the documentation.</p>
@@ -1187,7 +1189,7 @@ Value range from 0 to Integer max.</p>
 <li><p>Resource allocation (required for XMA session creation)</p></li>
 </ul>
 <div class="section" id="device-id-selection-with-xrm">
-<h3>Device ID Selection with XRM<a class="headerlink" href="#device-id-selection-with-xrm" title="Permalink to this headline">¶</a></h3>
+<h3>Device ID Selection with XRM<a class="headerlink" href="#device-id-selection-with-xrm" title="Permalink to this heading">¶</a></h3>
 <p>In order to initialize the XMA library, the ID of the device on which the job will run must be known.</p>
 <ul class="simple">
 <li><p>If the user provides the device ID, the application can directly perform XMA initialization based on this information.</p></li>
@@ -1207,7 +1209,7 @@ Value range from 0 to Integer max.</p>
 </ul>
 </div>
 <div class="section" id="resource-allocation-with-xrm">
-<h3>Resource Allocation with XRM<a class="headerlink" href="#resource-allocation-with-xrm" title="Permalink to this headline">¶</a></h3>
+<h3>Resource Allocation with XRM<a class="headerlink" href="#resource-allocation-with-xrm" title="Permalink to this heading">¶</a></h3>
 <p>In order to create an XMA plugin session (encoder/decoder/scaler/lookahead), the necessary the compute unit (CU) resources must first be successfully reserved and allocated.</p>
 <ul class="simple">
 <li><p>If the user provides device ID, the application should perform CU allocation on that particular device. If there are not enough resources available to support the specific channel load, the application should error out and exit.</p></li>
@@ -1222,7 +1224,7 @@ Value range from 0 to Integer max.</p>
 </ul>
 </div>
 <div class="section" id="reserving-multiple-job-slots">
-<h3>Reserving Multiple Job Slots<a class="headerlink" href="#reserving-multiple-job-slots" title="Permalink to this headline">¶</a></h3>
+<h3>Reserving Multiple Job Slots<a class="headerlink" href="#reserving-multiple-job-slots" title="Permalink to this heading">¶</a></h3>
 <p>Another example of XMR API usage can be found in the <a class="reference external" href="https://github.com/Xilinx/app-jobslot-reservation-xrm/blob/U30_GA/jobSlot_reservation.cpp">source code of the job slot reservation application</a>. This example shows how to reserve as many job slots as possible given an input job description. This example works as follows:</p>
 <ol class="arabic simple">
 <li><p>Calculate the channel load based on a JSON job description</p></li>
@@ -1260,7 +1262,7 @@ Value range from 0 to Integer max.</p>
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on February 01, 2023.
+      <span class="lastupdated">Last updated on March 27, 2023.
       </span></p>
   </div>
 

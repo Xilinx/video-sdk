@@ -1,0 +1,788 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Specs and Features of the Xilinx Video SDK &mdash; Xilinx Video SDK 3.0 (Production) documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Using FFmpeg" href="using_ffmpeg.html" />
+    <link rel="prev" title="XMA Examples for the Xilinx Video SDK" href="examples/xma/xma_apps.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home"> Xilinx Video SDK
+            <img src="_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_prem.html">On Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_vt1.html">Amazon EC2 VT1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container_setup.html">Container Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Tutorials and Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guides</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Specs and Features</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#the-sdk">The Xilinx Video SDK</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-xilinx-alveo-u30-card">The Xilinx Alveo U30 Card</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#video-codec-unit">Video Codec Unit</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#adaptive-bitrate-scaler">Adaptive Bitrate Scaler</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#video-quality">Video Quality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#performance-tables">Performance Tables</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#performance-tables-for-8-bit-color">Performance Tables for 8-bit Color</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-tables-for-10-bit-color">Performance Tables for 10-bit Color</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="using_ffmpeg.html">Using FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gstreamer.html">Using GStreamer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_video_quality.html">Tuning Video Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_pipeline_latency.html">Tuning Transcode Latency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managing_compute_resources.html">Managing Compute Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploying_with_kubernetes.html">Deploying with Kubernetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="card_management.html">Card Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_feed.html">Package Feed Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Xilinx Video SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Specs and Features of the Xilinx Video SDK</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="specs-and-features-of-the-sdk">
+<h1>Specs and Features of the Xilinx Video SDK<a class="headerlink" href="#specs-and-features-of-the-sdk" title="Permalink to this heading">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#the-sdk" id="id9">The Xilinx Video SDK</a></p></li>
+<li><p><a class="reference internal" href="#the-xilinx-alveo-u30-card" id="id10">The Xilinx Alveo U30 Card</a></p>
+<ul>
+<li><p><a class="reference internal" href="#video-codec-unit" id="id11">Video Codec Unit</a></p></li>
+<li><p><a class="reference internal" href="#adaptive-bitrate-scaler" id="id12">Adaptive Bitrate Scaler</a></p></li>
+<li><p><a class="reference internal" href="#video-quality" id="id13">Video Quality</a></p></li>
+<li><p><a class="reference internal" href="#performance-tables" id="id14">Performance Tables</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="the-sdk">
+<h2><a class="toc-backref" href="#id9">The Xilinx Video SDK</a><a class="headerlink" href="#the-sdk" title="Permalink to this heading">¶</a></h2>
+<p>The Xilinx Video SDK is a complete software stack allowing users to seamlessly leverage the features of Xilinx video acceleration units such as the ones available on Alveo U30 cards and Amazon EC2 VT1 instances. It includes the following elements:</p>
+<ul class="simple">
+<li><p>Pre-compiled versions of FFmpeg and GStreamer which integrate key video transcoding plug-ins, enabling simple hardware offloading of compute-intensive workloads using these two popular frameworks. These custom versions of FFmpeg and GStreamer link to a host driver which communicates with the hardware on the PCIe card. No hardware experience is required to run FFmpeg or GStreamer commands with the Xilinx Video SDK.</p></li>
+<li><p>The Xilinx Resource Manager (XRM) which is the software used to manage and allocate all the hardware-accelerated features available in the system.  XRM allows running multiple video processing jobs across multiple devices and multiple Xilinx video acceleration cards.</p></li>
+<li><p>A C-based application programming interface (API) which facilitates the integration of Xilinx video transcoding capabilities in proprietary frameworks. This API is provided in the form plugins which can be called from external application using the Xilinx Media Accelerator (XMA) interface.</p></li>
+<li><p>A suite of card management tools used to perform actions such as programming, resetting, or querying the status of Xilinx video acceleration cards.</p></li>
+<li><p>Many examples and tutorials illustrating how to use and make the most of the Xilinx Video SDK.</p></li>
+</ul>
+<img alt="FFmpeg Transcoding Application" class="align-center" src="_images/ffmpeg_transcoding_application.png" />
+</div>
+<div class="section" id="the-xilinx-alveo-u30-card">
+<h2><a class="toc-backref" href="#id10">The Xilinx Alveo U30 Card</a><a class="headerlink" href="#the-xilinx-alveo-u30-card" title="Permalink to this heading">¶</a></h2>
+<p>The Xilinx® Alveo™ U30 data center accelerator card is a low-profile, PCI™-based media accelerator card that delivers a high-density real-time transcoding solution for live streaming video service providers, OEMs, and Content Delivery Network (CDNs).</p>
+<p>The Alveo U30 card is primarily targeted at real-time video workloads. It is expected that one or more sources of video input, either from files or from live video streams, are fed into the transcode pipeline. The encoder encodes one or more output streams from each scaled rendition of the input.</p>
+<div class="section" id="video-codec-unit">
+<span id="id1"></span><h3><a class="toc-backref" href="#id11">Video Codec Unit</a><a class="headerlink" href="#video-codec-unit" title="Permalink to this heading">¶</a></h3>
+<p>The Alveo U30 data center accelerator card is powered by two Zynq® UltraScale+™ MPSoC devices with H.264/H.265 Video Codec Unit (VCU) cores. Features of the H.264/H.265 VCUs include:</p>
+<ul class="simple">
+<li><p>Video format: YCbCr 4:2:0, 8 or 10-bit per color channel</p></li>
+<li><p>Multi-standard encoding/decoding support, including:</p>
+<ul>
+<li><p>ISO MPEG-4 Part 10: Advanced Video Coding (AVC)/ITU H.264 - Baseline, Constrained Baseline, High, High-10, High-10-Intra up to Level 5.2</p></li>
+<li><p>ISO MPEG-H Part 2: High Efficiency Video Coding (HEVC)/ITU H.265 - Main, Main-Intra, Main10, Main-10-Intra, up to Level 5.2 High Tier</p></li>
+</ul>
+</li>
+<li><p>Supports resolutions from 128x128 to 3840x2160</p></li>
+<li><p>Simultaneous encoding and decoding with a maximum aggregated bandwidth of 2x 4Kp60 per card</p></li>
+<li><p>Look-ahead driven video quality improvements through temporal adaptive and spatial adaptive quantization</p></li>
+<li><p>Low latency rate control</p></li>
+<li><p>Flexible rate control: CBR, VBR, and Constant QP</p></li>
+<li><p>Simultaneous encoding and decoding up to 2 times 4K UHD resolution at 60 Hz per card</p></li>
+<li><p>Progressive support for H.264 and H.265</p></li>
+<li><p>HDR10/10+: HDR data is automatically populated by the decoder and passed to other accelerators in the transcode pipeline.</p>
+<ul>
+<li><p>The following HDR10 SEI are supported:</p>
+<ul>
+<li><p>Mastering Display Color Volume (SEI ITU)</p></li>
+<li><p>Content Light Level (SEI ITU)</p></li>
+<li><p>Alternative Transfer Charateristics (SEI ITU)</p></li>
+</ul>
+</li>
+<li><p>The following HDR10+ SEI are supported:</p>
+<ul>
+<li><p>ST2094_10 (DolbyVision, User defined SEI)</p></li>
+<li><p>ST2094_40 (Samsung, User defined SEI)</p></li>
+</ul>
+</li>
+<li><p>Behavior for HDR10/10+ SEI is as follows:</p>
+<ul>
+<li><p>Static HDR SEI (MDCV, CLL &amp; ATC) will not change in-between IDRs (and even in the video sequence according the HDR standards).</p></li>
+<li><p>MDCV, CLL &amp; ATC will be written only on IDRs, according to the persistency of MDCV, CLL &amp; ATC SEIs.</p></li>
+<li><p>ST2094_10 will be written on each access unit as per constraint of section A.2.1 ts_103572v010101p.pdf.</p></li>
+<li><p>ST2094_40 will be written on IDRs, and whenever the user changes its content, according to the persistency specification in A341S34-1-582r4-A341-Amendment-2094-40.pdf</p></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="adaptive-bitrate-scaler">
+<span id="id2"></span><h3><a class="toc-backref" href="#id12">Adaptive Bitrate Scaler</a><a class="headerlink" href="#adaptive-bitrate-scaler" title="Permalink to this heading">¶</a></h3>
+<p>For streaming applications, video is distributed in different resolutions and bit rates to adapt to varying network bandwidth conditions. All adaptive bitrate (ABR) transcoding systems require an ABR scaler that downscales an input video stream to several different smaller resolutions that are then re-encoded. These smaller resolutions are referred to as an image pyramid or an ABR ladder.</p>
+<p>The Xilinx ABR scaler is an accelerator capable of generating up to eight lower resolution output images from a single input image. The ABR scaler supports the following features:</p>
+<ul class="simple">
+<li><p>Supports up to 12 taps in both horizontal and vertical direction per stage</p></li>
+<li><p>High quality polyphase scaling with 64 phases and up to 12 taps in both horizontal and vertical direction per stage</p></li>
+<li><p>Supports 8 and 10-bit 4:2:0</p></li>
+<li><p>Luma and Chroma processed in parallel</p></li>
+<li><p>Supports 1080p60 real time or equivalent distributed between up to eight outputs</p></li>
+<li><p>Supports resolutions from 128x128 to 3840x2160, in multiples of 4</p></li>
+<li><p>Supports aggregate bandwidth of 2160p120 per device, to enable creating multiple ABR ladder renditions from a 2160p60 input</p></li>
+<li><p>The scaler is tuned for downscaling and expects non-increasing resolutions in an ABR ladder. Increasing resolutions between outputs is supported but will reduce video quality.</p></li>
+</ul>
+<p>The Xilinx Video SDK allows using the Xilinx ABR scaler as follows:</p>
+<ul class="simple">
+<li><p>Up to 32 input streams of raw or encoded video can be scaled down per device</p></li>
+<li><p>Each input stream can be scaled down to a maximum of 8 outputs streams of lower resolution and/or lower frame rate</p></li>
+<li><p>Up to 32 scaled outputs streams are supported per device, up to a maximum total equivalent bandwidth of 4kp60</p></li>
+<li><p>Supports resolutions from 128x128 to 3840x2160, in multiples of 4</p></li>
+<li><p>The scaler passes scaled frames and meta data to the next scaling level (if one is defined) and to the encoder (if one is being used)</p></li>
+<li><p>Each level of scaling adds a little more latency to the pipeline</p></li>
+</ul>
+</div>
+<div class="section" id="video-quality">
+<span id="perf-vq"></span><h3><a class="toc-backref" href="#id13">Video Quality</a><a class="headerlink" href="#video-quality" title="Permalink to this heading">¶</a></h3>
+<p>The Alveo U30 card nominally produces video quality (VQ) that is closely correlated to x264 and x265 faster presets. This video quality is highly dependent on video content so actual results may vary.</p>
+</div>
+<div class="section" id="performance-tables">
+<span id="perf-tables"></span><h3><a class="toc-backref" href="#id14">Performance Tables</a><a class="headerlink" href="#performance-tables" title="Permalink to this heading">¶</a></h3>
+<p>The video processing power of the Alveo U30 cards can be harnessed in many different ways, from running a few high-definition jobs to running many low-resolution ones, with or without scaling. The tables below show how many jobs can be run at real-time speed based on the use case and the number of cards available. All these configurations have been tested and validated by Xilinx and assume normal operating ranges.</p>
+<div class="section" id="performance-tables-for-8-bit-color">
+<h4>Performance Tables for 8-bit Color<a class="headerlink" href="#performance-tables-for-8-bit-color" title="Permalink to this heading">¶</a></h4>
+<table class="colwidths-given docutils align-default" id="id3">
+<caption><span class="caption-text">Number of Real-Time Transcode Jobs (8-bit)</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Transcode Use Case</p></th>
+<th class="head"><p>1 Card</p></th>
+<th class="head"><p>2 Cards</p></th>
+<th class="head"><p>8 Cards</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4kp60</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>4kp30</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>1440p60</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>1440p30</p></td>
+<td><p>8</p></td>
+<td><p>16</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-even"><td><p>1080p60</p></td>
+<td><p>8</p></td>
+<td><p>16</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-odd"><td><p>1080p30</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>128</p></td>
+</tr>
+<tr class="row-even"><td><p>720p60</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>128</p></td>
+</tr>
+<tr class="row-odd"><td><p>720p30</p></td>
+<td><p>32</p></td>
+<td><p>64</p></td>
+<td><p>256</p></td>
+</tr>
+<tr class="row-even"><td><p>540p60</p></td>
+<td><p>28</p></td>
+<td><p>56</p></td>
+<td><p>224</p></td>
+</tr>
+<tr class="row-odd"><td><p>540p30</p></td>
+<td><p>48</p></td>
+<td><p>96</p></td>
+<td><p>384</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-default" id="id4">
+<caption><span class="caption-text">Number of Real-Time Transcode with Scale Jobs (8-bit)</span><a class="headerlink" href="#id4" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Transcode with Scale Use Case</p></th>
+<th class="head"><p>1 Card</p></th>
+<th class="head"><p>2 Cards</p></th>
+<th class="head"><p>8 Cards</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4kp60 to 1440p60</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>4kp30 to 1440p30</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>1440p60 to 1080p60</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>1440p30 to 1080p30</p></td>
+<td><p>8</p></td>
+<td><p>16</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-even"><td><p>1080p60 to 720p60</p></td>
+<td><p>8</p></td>
+<td><p>16</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-odd"><td><p>1080p30 to 720p30</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>128</p></td>
+</tr>
+<tr class="row-even"><td><p>720p60 to 540p60</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>128</p></td>
+</tr>
+<tr class="row-odd"><td><p>720p30 to 540p30</p></td>
+<td><p>32</p></td>
+<td><p>64</p></td>
+<td><p>256</p></td>
+</tr>
+<tr class="row-even"><td><p>540p60 to 480p60</p></td>
+<td><p>28</p></td>
+<td><p>56</p></td>
+<td><p>224</p></td>
+</tr>
+<tr class="row-odd"><td><p>540p30 to 480p30</p></td>
+<td><p>48</p></td>
+<td><p>96</p></td>
+<td><p>384</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-default" id="id5">
+<caption><span class="caption-text">Number of Real-Time ABR Ladders (8-bit)</span><a class="headerlink" href="#id5" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>ABR Ladders Use Case</p></th>
+<th class="head"><p>1 Card</p></th>
+<th class="head"><p>2 Cards</p></th>
+<th class="head"><p>8 Cards</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2160p60 to 2160p60, 1440p60, 1080p60, 720p30, 480p30, 360p30, 240p30, 144p30</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>2160p60 to 2160p60, 2160p30, 1440p30, 1080p30, 720p30, 480p30, 360p30, 240p30, 144p30</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>2160p60 to 2160p60, 1440p30, 1080p30, 720p30, 480p30, 360p30, 240p30, 144p30</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>2160p60 to 2160p60, 1080p60, 720p60, 720p30, 480p30, 360p30, 160p30</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>2160p60 to 2160p60, 720p60, 720p30, 480p30, 360p30, 160p30</p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-odd"><td><p>2160p60 to 1440p60, 1080p60, 720p30, 480p30, 360p30, 240p30, 144p30</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-even"><td><p>2160p30 to 2160p30, 1440p30, 1080p30, 720p30, 480p30, 360p30, 240p30, 144p30</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>2160p30 to 1440p30, 1080p30, 720p30, 480p30, 360p30, 240p30, 144p30</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>1440p60 to 1440p60, 1080p60, 720p30, 480p30, 360p30, 240p30, 144p30</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>1440p60 to 1080p60, 720p30, 480p30, 360p30, 240p30, 144p30</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>1080p60 to 1080p60, 720p60, 720p30, 480p30, 360p30, 160p30</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>1080p60 to 720p60, 720p30, 480p30, 360p30, 160p30</p></td>
+<td><p>8</p></td>
+<td><p>16</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-even"><td><p>1080p30 to 1080p30, 720p30, 480p30, 240p30</p></td>
+<td><p>8</p></td>
+<td><p>16</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-odd"><td><p>1080p30 to 720p30, 480p30, 360p30</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>128</p></td>
+</tr>
+<tr class="row-even"><td><p>720p30 to 720p30, 480p30, 240p30</p></td>
+<td><p>18</p></td>
+<td><p>36</p></td>
+<td><p>144</p></td>
+</tr>
+<tr class="row-odd"><td><p>480p30 to 480p30, 240p30</p></td>
+<td><p>28</p></td>
+<td><p>56</p></td>
+<td><p>224</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="performance-tables-for-10-bit-color">
+<h4>Performance Tables for 10-bit Color<a class="headerlink" href="#performance-tables-for-10-bit-color" title="Permalink to this heading">¶</a></h4>
+<table class="colwidths-given docutils align-default" id="id6">
+<caption><span class="caption-text">Number of Real-Time Transcode Jobs (10-bit)</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Transcode Use Case</p></th>
+<th class="head"><p>1 Card</p></th>
+<th class="head"><p>2 Cards</p></th>
+<th class="head"><p>8 Cards</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4kp60 <em>(HEVC decode)</em></p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>4kp30</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>1440p60</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>1440p30 <em>(H264 decode)</em></p></td>
+<td><p>8</p></td>
+<td><p>16</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-even"><td><p>1080p60</p></td>
+<td><p>6</p></td>
+<td><p>12</p></td>
+<td><p>48</p></td>
+</tr>
+<tr class="row-odd"><td><p>1080p30</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>128</p></td>
+</tr>
+<tr class="row-even"><td><p>720p60</p></td>
+<td><p>14</p></td>
+<td><p>28</p></td>
+<td><p>112</p></td>
+</tr>
+<tr class="row-odd"><td><p>720p30</p></td>
+<td><p>28</p></td>
+<td><p>56</p></td>
+<td><p>224</p></td>
+</tr>
+<tr class="row-even"><td><p>540p60</p></td>
+<td><p>26</p></td>
+<td><p>52</p></td>
+<td><p>208</p></td>
+</tr>
+<tr class="row-odd"><td><p>540p30</p></td>
+<td><p>46</p></td>
+<td><p>92</p></td>
+<td><p>368</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-default" id="id7">
+<caption><span class="caption-text">Number of Real-Time Transcode with Scale Jobs (10-bit)</span><a class="headerlink" href="#id7" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Transcode with Scale Use Case</p></th>
+<th class="head"><p>1 Card</p></th>
+<th class="head"><p>2 Cards</p></th>
+<th class="head"><p>8 Cards</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>4kp60 to 1440p60</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>4kp30 to 1440p30</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>1440p60 to 1080p60</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>1440p30 to 1080p30 <em>(H264 decode)</em></p></td>
+<td><p>8</p></td>
+<td><p>16</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-even"><td><p>1080p60 to 720p60</p></td>
+<td><p>6</p></td>
+<td><p>12</p></td>
+<td><p>48</p></td>
+</tr>
+<tr class="row-odd"><td><p>1080p30 to 720p30</p></td>
+<td><p>16</p></td>
+<td><p>32</p></td>
+<td><p>128</p></td>
+</tr>
+<tr class="row-even"><td><p>720p60 to 540p60</p></td>
+<td><p>14</p></td>
+<td><p>28</p></td>
+<td><p>112</p></td>
+</tr>
+<tr class="row-odd"><td><p>720p30 to 540p30</p></td>
+<td><p>28</p></td>
+<td><p>56</p></td>
+<td><p>224</p></td>
+</tr>
+<tr class="row-even"><td><p>540p60 to 480p60</p></td>
+<td><p>26</p></td>
+<td><p>52</p></td>
+<td><p>208</p></td>
+</tr>
+<tr class="row-odd"><td><p>540p30 to 480p30</p></td>
+<td><p>46</p></td>
+<td><p>92</p></td>
+<td><p>368</p></td>
+</tr>
+</tbody>
+</table>
+<table class="colwidths-given docutils align-default" id="id8">
+<caption><span class="caption-text">Number of Real-Time ABR Ladders (10-bit)</span><a class="headerlink" href="#id8" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 55%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+<col style="width: 15%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>ABR Ladders Use Case</p></th>
+<th class="head"><p>1 Card</p></th>
+<th class="head"><p>2 Cards</p></th>
+<th class="head"><p>8 Cards</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>2160p60 to 2160p60, 1440p60, 1080p60, 720p30, 480p30, 360p30, 240p30, 144p30    <em>(HEVC only)</em></p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-odd"><td><p>2160p60 to 2160p60, 2160p30, 1440p30, 1080p30, 720p30, 480p30, 360p30, 240p30, 144p30    <em>(HEVC only)</em></p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>8</p></td>
+</tr>
+<tr class="row-even"><td><p>2160p60 to 2160p60, 1440p30, 1080p30, 720p30, 480p30, 360p30, 240p30, 144p30    <em>(HEVC only)</em></p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-odd"><td><p>2160p60 to 2160p60, 1080p60, 720p60, 720p30, 480p30, 360p30, 160p30    <em>(HEVC only)</em></p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>10</p></td>
+</tr>
+<tr class="row-even"><td><p>2160p60 to 2160p60, 720p60, 720p30, 480p30, 360p30, 160p30    <em>(HEVC only)</em></p></td>
+<td><p>1</p></td>
+<td><p>2</p></td>
+<td><p>12</p></td>
+</tr>
+<tr class="row-odd"><td><p>2160p60 to 1440p60, 1080p60, 720p30, 480p30, 360p30, 240p30, 144p30    <em>(HEVC only)</em></p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-even"><td><p>2160p30 to 2160p30, 1440p30, 1080p30, 720p30, 480p30, 360p30, 240p30, 144p30</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>2160p30 to 1440p30, 1080p30, 720p30, 480p30, 360p30, 240p30, 144p30</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-even"><td><p>1440p60 to 1440p60, 1080p60, 720p30, 480p30, 360p30, 240p30, 144p30</p></td>
+<td><p>2</p></td>
+<td><p>4</p></td>
+<td><p>16</p></td>
+</tr>
+<tr class="row-odd"><td><p>1440p60 to 1080p60, 720p30, 480p30, 360p30, 240p30, 144p30</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-even"><td><p>1080p60 to 1080p60, 720p60, 720p30, 480p30, 360p30, 160p30</p></td>
+<td><p>4</p></td>
+<td><p>8</p></td>
+<td><p>32</p></td>
+</tr>
+<tr class="row-odd"><td><p>1080p60 to 720p60, 720p30, 480p30, 360p30, 160p30</p></td>
+<td><p>6</p></td>
+<td><p>12</p></td>
+<td><p>48</p></td>
+</tr>
+<tr class="row-even"><td><p>1080p30 to 1080p30, 720p30, 480p30, 240p30</p></td>
+<td><p>8</p></td>
+<td><p>16</p></td>
+<td><p>64</p></td>
+</tr>
+<tr class="row-odd"><td><p>1080p30 to 720p30, 480p30, 360p30</p></td>
+<td><p>14</p></td>
+<td><p>28</p></td>
+<td><p>112</p></td>
+</tr>
+<tr class="row-even"><td><p>720p30 to 720p30, 480p30, 240p30</p></td>
+<td><p>18</p></td>
+<td><p>36</p></td>
+<td><p>144</p></td>
+</tr>
+<tr class="row-odd"><td><p>480p30 to 480p30, 240p30</p></td>
+<td><p>28</p></td>
+<td><p>56</p></td>
+<td><p>224</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="examples/xma/xma_apps.html" class="btn btn-neutral float-left" title="XMA Examples for the Xilinx Video SDK" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="using_ffmpeg.html" class="btn btn-neutral float-right" title="Using FFmpeg" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on March 27, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

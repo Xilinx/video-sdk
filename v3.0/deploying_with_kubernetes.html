@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Deploying with Kubernetes &mdash; Xilinx Video SDK 3.0 (Production) documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="C API Programming Guide" href="c_apis.html" />
+    <link rel="prev" title="Managing Video Acceleration Compute Resources" href="managing_compute_resources.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home"> Xilinx Video SDK
+            <img src="_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_prem.html">On Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_vt1.html">Amazon EC2 VT1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container_setup.html">Container Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Tutorials and Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="specs_and_features.html">Specs and Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_ffmpeg.html">Using FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gstreamer.html">Using GStreamer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_video_quality.html">Tuning Video Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_pipeline_latency.html">Tuning Transcode Latency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managing_compute_resources.html">Managing Compute Resources</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Deploying with Kubernetes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#prerequisites">Prerequisites</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#installing-the-xilinx-device-plugin-for-kubernetes">Installing the Xilinx device plugin for Kubernetes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deploying-user-pods">Deploying User Pods</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="card_management.html">Card Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_feed.html">Package Feed Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Xilinx Video SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Deploying with Kubernetes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="deploying-with-kubernetes">
+<span id="id1"></span><h1>Deploying with Kubernetes<a class="headerlink" href="#deploying-with-kubernetes" title="Permalink to this heading">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id2">Overview</a></p></li>
+<li><p><a class="reference internal" href="#prerequisites" id="id3">Prerequisites</a></p></li>
+<li><p><a class="reference internal" href="#installing-the-xilinx-device-plugin-for-kubernetes" id="id4">Installing the Xilinx device plugin for Kubernetes</a></p></li>
+<li><p><a class="reference internal" href="#deploying-user-pods" id="id5">Deploying User Pods</a></p></li>
+</ul>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>A new Kubernetes plugin is available for U30 cards. This new plugin no longer requires an exact version number when specifying U30 resource limits. This allows for compatibility of pod description files across all releases of the Xilinx Video SDK. Kubernetes clusters using this plugin will continue to work seamlessly even after an upgrade of the Xilinx Video SDK. <strong>If using Kubernetes, to prevent service degradation, it is necessary to deploy this new plugin (version 1.1.0)</strong> before upgrading to the latest version of the Xilinx Video SDK. For more details, refer to the instructions below.</p>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>The Xilinx device plugin for Kubernetes is a daemonset deployed on a Kubernetes cluster which:</p>
+<ul class="simple">
+<li><p>Discovers the Xilinx cards inserted in each node of the cluster and exposes information about their properties</p></li>
+<li><p>Enables containers to access Xilinx card resources installed in the worker nodes of the Kubernetes cluster</p></li>
+</ul>
+<p>Noting that each Alveo U30 card is made of 2 devices, plugin provides device level granularity, allowing access to either individual devices or a card. Therefore, care should be taken in the pod’s description, under “limits” field, to ensure that requested resources match those defined in the plugin, i.e., device or card. Furthermore, to isolate pod’s description from future upgrades, plugin implements both generic and exact naming in pod’s resources. See <a class="reference internal" href="#dev-plugin"><span class="std std-ref">Installing the Xilinx device plugin for Kubernetes</span></a> for specific details.</p>
+<p>The plugin is available on the ECR repository: <a class="reference external" href="https://gallery.ecr.aws/xilinx_dcg/k8s-device-plugin">https://gallery.ecr.aws/xilinx_dcg/k8s-device-plugin</a></p>
+<p>The following instructions explain how to install the Xilinx device plugin for Kubernetes and how to deploy user pods to access Xilinx devices.</p>
+<p>In addition, a comprehensive step-by-step guide on how to run containerized workloads on Amazon ECS and Amazon EKS can be found on the AWS Compute Blog: <a class="reference external" href="https://aws.amazon.com/blogs/compute/deep-dive-on-amazon-ec2-vt1-instances/">https://aws.amazon.com/blogs/compute/deep-dive-on-amazon-ec2-vt1-instances/</a></p>
+</div>
+<div class="section" id="prerequisites">
+<h2><a class="toc-backref" href="#id3">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<p>The following instructions assume that your system satisfies the following requirements:</p>
+<ul class="simple">
+<li><p>A Kubernetes cluster, e.g., Amazon EKS, is created and the Xilinx Video SDK is installed on all U30/Amazon EC2 VT1 worker nodes</p></li>
+<li><p>The client is configured to access the cluster:</p>
+<ul>
+<li><p>kubectl is installed and connected to the cluster</p></li>
+</ul>
+</li>
+</ul>
+<dl class="simple">
+<dt>Additionally for AWS EKS:</dt><dd><ul class="simple">
+<li><p>The AWS CLI is installed and the access key is correctly configured</p></li>
+<li><p>eksctl is installed</p></li>
+</ul>
+</dd>
+</dl>
+<p>For information regarding Kubernetes installation refer to <a class="reference external" href="https://github.com/Xilinx/FPGA_as_a_Service/blob/master/k8s-device-plugin/full-tutorial.md">https://github.com/Xilinx/FPGA_as_a_Service/blob/master/k8s-device-plugin/full-tutorial.md</a>. For additional information about Amazon EKS, refer to the Amazon EKS user guide: <a class="reference external" href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html">https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html</a></p>
+</div>
+<div class="section" id="installing-the-xilinx-device-plugin-for-kubernetes">
+<span id="dev-plugin"></span><h2><a class="toc-backref" href="#id4">Installing the Xilinx device plugin for Kubernetes</a><a class="headerlink" href="#installing-the-xilinx-device-plugin-for-kubernetes" title="Permalink to this heading">¶</a></h2>
+<p>The following steps require kubectl to be connected to your cluster. After the Xilinx device plugin for Kubernetes is installed, no additional configuration is needed when adding nodes to the cluster.</p>
+<ol class="arabic">
+<li><p>Remove the current device plugin daemonset:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>kubectl delete daemonset current-device-plugin-daemonset-name -n kube-system.
+</pre></div>
+</div>
+</li>
+<li><p>Create a file called xilinx-device-plugin.yml and paste the following content in it:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>apiVersion: apps/v1
+kind: DaemonSet
+metadata:
+  name: device-plugin-daemonset
+  namespace: kube-system
+spec:
+  selector:
+    matchLabels:
+      name: device-plugin
+  template:
+    metadata:
+      annotations:
+        scheduler.alpha.kubernetes.io/critical-pod: &quot;&quot;
+      labels:
+        name: device-plugin
+    spec:
+      tolerations:
+      - key: CriticalAddonsOnly
+        operator: Exists
+      containers:
+      - image: public.ecr.aws/xilinx_dcg/k8s-device-plugin:1.1.0
+        name: device-plugin
+        env:
+        - name: U30NameConvention
+          value: &quot;{CommonName|ExactName}&quot;
+        - name: U30AllocUnit
+          value: &quot;{Card|Device}&quot;
+        securityContext:
+          allowPrivilegeEscalation: false
+          capabilities:
+            drop: [&quot;ALL&quot;]
+        volumeMounts:
+          - name: device-plugin
+            mountPath: /var/lib/kubelet/device-plugins
+      volumes:
+        - name: device-plugin
+          hostPath:
+            path: /var/lib/kubelet/device-plugins
+</pre></div>
+</div>
+<p>In the above yaml file, the following 2 environmental variables define naming convention and access granularity:</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-U30NameConvention">
+<span id="cmdoption-arg-u30nameconvention"></span><span class="sig-name descname"><span class="pre">U30NameConvention</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-U30NameConvention" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<ul class="simple">
+<li><p>Defines how the resource name in the pod-description yaml file should be interpreted by the plugin. Allowed values are <code class="docutils literal notranslate"><span class="pre">ExactName</span></code> and <code class="docutils literal notranslate"><span class="pre">CommonName</span></code>.</p></li>
+<li><p>If set to <code class="docutils literal notranslate"><span class="pre">CommonName</span></code>, the resource string used in the pod-description file must be set to <code class="docutils literal notranslate"><span class="pre">amd.com/ama_u30</span></code>. This allows setting resource limits without having to specify an exact U30 firmware version number. Using <code class="docutils literal notranslate"><span class="pre">CommonName</span></code> provides forward and backward compatibility of pod-description files with respect to all releases of the Xilinx Video SDK. This is the recommended setting.</p></li>
+<li><p>If set to <code class="docutils literal notranslate"><span class="pre">ExactName</span></code>, the resource string used in the pod-description file must be set to <code class="docutils literal notranslate"><span class="pre">amd.com/xilinx_u30_gen3x4_base_2-0</span></code>. This allows setting resource limits for cards flashed with this specific version of the U30 firmware. When <code class="docutils literal notranslate"><span class="pre">ExactName</span></code> is used, there is no guarantee of forward or backward compatibility of pod-description files with respect to future releases of the Xilinx Video SDK.</p></li>
+<li><p>If this variable is not specified or is set incorrectly, it will default to <code class="docutils literal notranslate"><span class="pre">CommonName</span></code>.</p></li>
+</ul>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-U30AllocUnit">
+<span id="cmdoption-arg-u30allocunit"></span><span class="sig-name descname"><span class="pre">U30AllocUnit</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-U30AllocUnit" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<ul class="simple">
+<li><p>Defines the unit for the resource numeration set in the pod-description yaml file. Allowed values are <code class="docutils literal notranslate"><span class="pre">Card</span></code> and <code class="docutils literal notranslate"><span class="pre">Device</span></code>.</p></li>
+<li><p>If set to <code class="docutils literal notranslate"><span class="pre">Card</span></code>, the resource is measured in number of cards.</p></li>
+<li><p>If set to <code class="docutils literal notranslate"><span class="pre">Device</span></code>, the resource is measured in number of devices.</p></li>
+<li><p>If this variable is not specified or is set incorrectly, it will default to <code class="docutils literal notranslate"><span class="pre">Card</span></code>.</p></li>
+</ul>
+</li>
+<li><p>Deploy the Xilinx device plugin as a daemonset:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Apply the Xilinx device plugin
+kubectl apply -f ./xilinx-device-plugin.yml
+
+# Check the status of daemonset:
+kubectl get daemonset -n kube-system
+
+# Check the status of device-plugin pod:
+kubectl get pod -n kube-system
+</pre></div>
+</div>
+</li>
+<li><p>List visible nodes and check Xilinx resources available:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Get node names
+kubectl get node
+
+# Check Xilinx resources available in specific worker node
+kubectl describe node &lt;node-name&gt;
+</pre></div>
+</div>
+<p>For each node, you will see a similar report:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Name:               ip-192-168-58-12.ec2.internal
+Roles:              &lt;none&gt;
+......
+Capacity:
+  amd.com/ama_u30:                             4
+  attachable-volumes-aws-ebs:                  39
+  cpu:                                         24
+  ephemeral-storage:                           104845292Ki
+  hugepages-1Gi:                               0
+  hugepages-2Mi:                               0
+  memory:                                      47284568Ki
+  pods:                                        1
+Allocatable:
+  amd.com/ama_u30:                             4
+  attachable-volumes-aws-ebs:                  39
+  cpu:                                         23870m
+  ephemeral-storage:                           95551679124
+  hugepages-1Gi:                               0
+  hugepages-2Mi:                               0
+  memory:                                      46752088Ki
+  pods:                                        1
+</pre></div>
+</div>
+<p>In this example, 2 Alveo U30 cards are available in the node. Furthermore, the granularity of the plugin was set to Device and naming convention to CommonName.</p>
+</li>
+</ol>
+</div>
+<div class="section" id="deploying-user-pods">
+<h2><a class="toc-backref" href="#id5">Deploying User Pods</a><a class="headerlink" href="#deploying-user-pods" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Confirm U30AllocUnit type, i.e., Card or Device, by issuing the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>kubectl describe daemonset device-plugin-daemonset -n kube-system | grep U30AllocUnit
+</pre></div>
+</div>
+</li>
+<li><p>Paste and customize the content below in a pod-description yaml file:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>apiVersion: v1
+kind: Pod
+metadata:
+  name: &lt;pod-name&gt;                                     # Choose a unique test pod name
+spec:
+  containers:
+  - name: &lt;container-name&gt;                             # Choose a unique container name
+    image: &lt;path-to-docker-image&gt;                      # Path to the Docker image on ECR
+    resources:
+      limits:
+        amd.com/ama_u30: 1
+    command: [&quot;/bin/sh&quot;]
+    args: [&quot;-c&quot;, &quot;while true; do echo hello; sleep 10;done&quot;]
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><p>In the above example, the pod has a limit of 1 resource of the <code class="docutils literal notranslate"><span class="pre">amd.com/ama_u30</span></code> kind. Variables set in the daemonset yaml file determine the effective result of this setting.</p>
+<ul class="simple">
+<li><p>When the <a class="reference internal" href="#cmdoption-arg-U30NameConvention"><code class="xref std std-option docutils literal notranslate"><span class="pre">U30NameConvention</span></code></a> variable is set to <code class="docutils literal notranslate"><span class="pre">CommonName</span></code> in the daemonset yaml file, the <code class="docutils literal notranslate"><span class="pre">amd.com/ama_u30</span></code> string allows setting resource limits without having to specify an exact U30 firmware version number. This provides backward and forward compatibility of pod-description file.</p></li>
+<li><p>The effective unit for the limit count is determined by the choice of <a class="reference internal" href="#cmdoption-arg-U30AllocUnit"><code class="xref std std-option docutils literal notranslate"><span class="pre">U30AllocUnit</span></code></a> in the daemonset yaml file. The allocation unit can be Card or Device.</p></li>
+</ul>
+</div></blockquote>
+<ol class="arabic">
+<li><p>Create the pod using the pod-description yaml file:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>kubectl create -f &lt;pod-description.yml&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Check the status of the created pod:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>kubectl get pod -o wide
+</pre></div>
+</div>
+<p>You will see a similar report when the pod is successfully deployed on the cluster:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>NAME         READY   STATUS    RESTARTS   AGE
+&lt;pod-name&gt;   1/1     Running   0          1m
+</pre></div>
+</div>
+<p>Note: If the pod gets stuck during the container creation process or is being evicted, use the command below to get detailed status information:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>kubectl describe pod &lt;pod-name&gt;
+</pre></div>
+</div>
+</li>
+<li><p>Log into the pod once it is in the running state:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>kubectl exec -it &lt;pod-name&gt; -- /bin/bash
+</pre></div>
+</div>
+</li>
+<li><p>Inside the pod, source the environment and verify that the Xilinx devices are correctly mounted and visible:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xrt/setup.sh
+xbutil examine
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="managing_compute_resources.html" class="btn btn-neutral float-left" title="Managing Video Acceleration Compute Resources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="c_apis.html" class="btn btn-neutral float-right" title="C API Programming Guide" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on March 27, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

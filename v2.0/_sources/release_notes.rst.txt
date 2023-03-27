@@ -1,3 +1,5 @@
+.. _release-notes:
+
 ########################################
 |SDK| Release Notes
 ########################################
@@ -17,6 +19,20 @@
 ******************************
 What's New
 ******************************
+
+v2.0.1
+======
+
+This update release provides several bug fixes in the Xilinx Runtime (XRT). 
+
+Upgrade instructions:
+
+- For |VT1| AMIs: follow the steps for :ref:`installing in an existing AMI <installing-in-existing-ami>`. 
+- For on-prem systems: follow the step for :ref:`installing on-premises <installation-instructions>`.
+
+
+v2.0
+====
 
 This version provides various performance and stability improvements and new features including:
 

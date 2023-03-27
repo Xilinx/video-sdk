@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Tuning Transcode Latency &mdash; Xilinx Video SDK 3.0 (Production) documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Managing Video Acceleration Compute Resources" href="managing_compute_resources.html" />
+    <link rel="prev" title="Tuning Video Quality" href="tuning_video_quality.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home"> Xilinx Video SDK
+            <img src="_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_prem.html">On Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_vt1.html">Amazon EC2 VT1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container_setup.html">Container Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Tutorials and Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="specs_and_features.html">Specs and Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_ffmpeg.html">Using FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gstreamer.html">Using GStreamer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_video_quality.html">Tuning Video Quality</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Tuning Transcode Latency</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#decoder-latency">Decoder Latency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#encoder-latency">Encoder Latency</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#guidelines-on-encoder-latency-configuration">Guidelines on Encoder Latency Configuration</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ultra-low-latency-ull-mode">Ultra Low Latency (ULL) Mode</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#example-use-cases">Example Use Cases</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="managing_compute_resources.html">Managing Compute Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploying_with_kubernetes.html">Deploying with Kubernetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="card_management.html">Card Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_feed.html">Package Feed Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Xilinx Video SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Tuning Transcode Latency</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="tuning-transcode-latency">
+<span id="latency-tuning"></span><h1>Tuning Transcode Latency<a class="headerlink" href="#tuning-transcode-latency" title="Permalink to this heading">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#decoder-latency" id="id1">Decoder Latency</a></p></li>
+<li><p><a class="reference internal" href="#encoder-latency" id="id2">Encoder Latency</a></p></li>
+<li><p><a class="reference internal" href="#example-use-cases" id="id3">Example Use Cases</a></p></li>
+</ul>
+</div>
+<p>Latency tuning allows for trade off among end to end delay, video bit rate, GOP composition, etc. Interactive applications that require low latency, can do so by setting relevant parameters in both decoder and encoder. In the latter case, it is understood that lowering the latency comes at the cost of increased bit rate, for a given visual quality.</p>
+<div class="section" id="decoder-latency">
+<span id="tuning-decoder-latency"></span><h2><a class="toc-backref" href="#id1">Decoder Latency</a><a class="headerlink" href="#decoder-latency" title="Permalink to this heading">¶</a></h2>
+<p>For streams without B frames, decoding latency can be reduced by enabling both the <a class="reference internal" href="using_ffmpeg.html#cmdoption-low_latency"><code class="xref std std-option docutils literal notranslate"><span class="pre">-low_latency</span></code></a> and <a class="reference internal" href="using_ffmpeg.html#cmdoption-splitbuff_mode"><code class="xref std std-option docutils literal notranslate"><span class="pre">-splitbuff_mode</span></code></a> decoder options in FFmpeg or the <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-low-latency"><code class="xref std std-option docutils literal notranslate"><span class="pre">low-latency</span></code></a> and <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-splitbuff-mode"><code class="xref std std-option docutils literal notranslate"><span class="pre">splitbuff-mode</span></code></a> options in GStreamer.</p>
+<p>The low latency decoding mode is not compatible with B frames. If the input streams contains B-frames, the <code class="docutils literal notranslate"><span class="pre">low_latency</span></code> option should not be used.</p>
+<p>When using the XMA APIs, the <code class="docutils literal notranslate"><span class="pre">splitbuff_mode</span></code> should only be used if the application can always send a complete Access Unit in one shot to the decoder.</p>
+</div>
+<div class="section" id="encoder-latency">
+<span id="tuning-encoder-latency"></span><h2><a class="toc-backref" href="#id2">Encoder Latency</a><a class="headerlink" href="#encoder-latency" title="Permalink to this heading">¶</a></h2>
+<p>Xilinx encoder performs multi-objective optimization with set constraints on bit rate, GOP topology, visual quality measures, etc. As such, it may be tuned to achieve a compromise between latency and quality or be specialized to ultra low latency.</p>
+<div class="section" id="guidelines-on-encoder-latency-configuration">
+<h3>Guidelines on Encoder Latency Configuration<a class="headerlink" href="#guidelines-on-encoder-latency-configuration" title="Permalink to this heading">¶</a></h3>
+<p>Encoding latency can also be reduced by trading off compression rate or visual quality. The following table lists the encoder options which can used to reduce to that effect.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 35%" />
+<col style="width: 65%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Encode Options</p></th>
+<th class="head"><p>Notes</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Look Ahead Depth</p></td>
+<td><div class="line-block">
+<div class="line">For best visual quality, it is recommend to set the lookahead depth to 1/3 of the frame rate; however, this also increases latency proportionally to the requested depth. It is possible to reduce latency at the expense of visual quality by reducing the lookahead depth.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>QP Mode</p></td>
+<td><div class="line-block">
+<div class="line">Any option other than <em>uniform</em> requires extra processing and hence will increase the pipeline delay.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Scaling List</p></td>
+<td><div class="line-block">
+<div class="line">Disabling this option skips over a visual quality refinement process and as such will reduce the pipeline delay.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Adaptive Quantizations (AQ)</p></td>
+<td><div class="line-block">
+<div class="line">Temporal and Spatial AQ require extra processing stage and will increase the pipeline delay. Disabling AQ will improve encoding latency.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>Rate Control</p></td>
+<td><div class="line-block">
+<div class="line">Setting this to any option other than <em>low latency</em> will result in extra delay.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>Number of B frames</p></td>
+<td><div class="line-block">
+<div class="line">It is understood that for every inserted B frame there will be a frame period delay.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="ultra-low-latency-ull-mode">
+<h3>Ultra Low Latency (ULL) Mode<a class="headerlink" href="#ultra-low-latency-ull-mode" title="Permalink to this heading">¶</a></h3>
+<p>Ultra Low Latency (ULL) encoding is enabled by setting <a class="reference internal" href="using_ffmpeg.html#cmdoption-disable-pipeline"><code class="xref std std-option docutils literal notranslate"><span class="pre">-disable-pipeline</span></code></a> flag in FFmpeg or <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-ultra-low-latency"><code class="xref std std-option docutils literal notranslate"><span class="pre">ultra-low-latency</span></code></a> in GStreamer.</p>
+<p class="rubric">Notes</p>
+<ul class="simple">
+<li><p>The ultra low latency encoding mode is not compatible with B frames. Requesting the insertion of B frames by the encoder will result in an immediate termination of the pipeline when ULL is enabled. The user must choose between encoding in ULL mode or adding B frames to the encoded stream.</p></li>
+<li><p>When ULL is enabled, the maximum achievable real-time rate is 4kp30.</p></li>
+</ul>
+<p class="rubric">Considerations for AVC encoding</p>
+<p>Encoding to AVC using the ULL mode affects the maximum density and resolution per device. The FFmpeg <a class="reference internal" href="using_ffmpeg.html#cmdoption-avc-lowlat"><code class="xref std std-option docutils literal notranslate"><span class="pre">-avc-lowlat</span></code></a> and GStreamer <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-avc-lowlat"><code class="xref std std-option docutils literal notranslate"><span class="pre">avc-lowlat</span></code></a> options must be set as a based on the desired density or resolution, as explained below.</p>
+<ul class="simple">
+<li><p>If <code class="docutils literal notranslate"><span class="pre">avc-lowlat</span></code> is set to 0 (default), only a single accelerator core can be used per stream. This implies that only resolutions up to 1080p60 are supported. However, multiple streams may be active on a given core, which means that density is maximized.</p></li>
+<li><p>If <code class="docutils literal notranslate"><span class="pre">avc-lowlat</span></code> is set to 1, multiple accelerator cores can be used per stream. This implies that all resolutions are supported. However, only a single stream may be active on a given core which limits overall density on the device.</p></li>
+</ul>
+<p>Given that each accelerator core is capable of encoding at an aggregate rate of 1080p60, it is usually best to use the following <code class="docutils literal notranslate"><span class="pre">avc-lowlat</span></code> settings when encoding to AVC in ULL mode:</p>
+<ul class="simple">
+<li><p>If the resolution is 4kp30 or higher, set <code class="docutils literal notranslate"><span class="pre">avc-lowlat</span></code> to 1 (as more than 1 core is needed for these resolutions)</p></li>
+<li><p>If the resolution is 1080p60 or lower, set <code class="docutils literal notranslate"><span class="pre">avc-lowlat</span></code> to 0 for of 1080p60 or lower (to maximize density)</p></li>
+</ul>
+<p>Furthermore, when encoding to AVC in the ULL mode, realtime performance is only guaranteed for 1080p60 and not beyond.</p>
+<p>These considerations do not apply when encoding to HEVC in ULL mode.</p>
+</div>
+</div>
+<div class="section" id="example-use-cases">
+<h2><a class="toc-backref" href="#id3">Example Use Cases</a><a class="headerlink" href="#example-use-cases" title="Permalink to this heading">¶</a></h2>
+<p>The following scripts exemplify typical use cases for each possible low latency pipeline configuration:</p>
+<ol class="arabic simple">
+<li><p>To achieve low latency with control over visual quality refer to:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/quality_analysis/h264_ll_subjective.sh">examples/u30/ffmpeg/quality_analysis/h264_ll_subjective.sh</a> and <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/quality_analysis/hevc_ll_subjective.sh">examples/u30/ffmpeg/quality_analysis/hevc_ll_subjective.sh</a> to obtain low latency with good subjective quality</p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/quality_analysis/h264_ll_objective.sh">examples/u30/ffmpeg/quality_analysis/h264_ll_objective.sh</a> and <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/quality_analysis/hevc_ll_objective.sh">examples/u30/ffmpeg/quality_analysis/hevc_ll_objective.sh</a> to obtain low latency with good objective quality</p></li>
+</ul>
+</li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/07_ffmpeg_transcode_lowlatency.sh">examples/u30/ffmpeg/tutorials/07_ffmpeg_transcode_lowlatency.sh</a> to obtain ultra low latency transcode</p></li>
+<li><p><a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/quality_analysis/latency_test.sh">examples/u30/ffmpeg/quality_analysis/latency_test.sh</a> to measure decode and encode latencies.</p></li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="tuning_video_quality.html" class="btn btn-neutral float-left" title="Tuning Video Quality" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="managing_compute_resources.html" class="btn btn-neutral float-right" title="Managing Video Acceleration Compute Resources" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on March 27, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

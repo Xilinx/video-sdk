@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Card Management &mdash; Xilinx Video SDK 3.0 (Production) documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Distribution Package Feed" href="package_feed.html" />
+    <link rel="prev" title="C API Programming Guide" href="c_apis.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home"> Xilinx Video SDK
+            <img src="_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_prem.html">On Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_vt1.html">Amazon EC2 VT1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container_setup.html">Container Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Tutorials and Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="specs_and_features.html">Specs and Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_ffmpeg.html">Using FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gstreamer.html">Using GStreamer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_video_quality.html">Tuning Video Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_pipeline_latency.html">Tuning Transcode Latency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managing_compute_resources.html">Managing Compute Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploying_with_kubernetes.html">Deploying with Kubernetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Card Management</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xbutil-and-xbmgmt">xbutil and xbmgmt</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#xrmadm-and-xrmd">xrmadm and xrmd</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#card-and-device-identifiers">Card and Device Identifiers</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#device-user-bdf">Device User BDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device-management-bdf">Device Management BDF</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device-renderid">Device renderID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#device-xclmgmtid">Device xclmgmtID</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#card-serial-number">Card Serial Number</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#checking-system-status">Checking System Status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#checking-device-status">Checking Device Status</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#checking-resource-utilization">Checking Resource Utilization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapping-devices-to-cards">Mapping Devices to Cards</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#running-device-self-test">Running Device Self-Test</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#resetting-a-card">Resetting a Card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#recovering-a-card">Recovering a Card</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#standard-recovery-flow">Standard Recovery Flow</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#advanced-recovery-flow">Advanced Recovery Flow</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="package_feed.html">Package Feed Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Xilinx Video SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Card Management</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="card-management">
+<h1>Card Management<a class="headerlink" href="#card-management" title="Permalink to this heading">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#overview" id="id7">Overview</a></p></li>
+<li><p><a class="reference internal" href="#card-and-device-identifiers" id="id8">Card and Device Identifiers</a></p></li>
+<li><p><a class="reference internal" href="#checking-system-status" id="id9">Checking System Status</a></p></li>
+<li><p><a class="reference internal" href="#checking-device-status" id="id10">Checking Device Status</a></p></li>
+<li><p><a class="reference internal" href="#checking-resource-utilization" id="id11">Checking Resource Utilization</a></p></li>
+<li><p><a class="reference internal" href="#mapping-devices-to-cards" id="id12">Mapping Devices to Cards</a></p></li>
+<li><p><a class="reference internal" href="#running-device-self-test" id="id13">Running Device Self-Test</a></p></li>
+<li><p><a class="reference internal" href="#resetting-a-card" id="id14">Resetting a Card</a></p></li>
+<li><p><a class="reference internal" href="#recovering-a-card" id="id15">Recovering a Card</a></p></li>
+</ul>
+</div>
+<div class="section" id="overview">
+<h2><a class="toc-backref" href="#id7">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<p>The Xilinx Video SDK builds on the Xilinx Runtime (XRT) and the Xilinx Resource Manager (XRM) to interface with Xilinx video acceleration cards. The Xilinx Video SDK includes the <code class="docutils literal notranslate"><span class="pre">xbutil</span></code>, <code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> and <code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> command line tools for card installation, upgrade, and management.</p>
+<div class="section" id="xbutil-and-xbmgmt">
+<h3>xbutil and xbmgmt<a class="headerlink" href="#xbutil-and-xbmgmt" title="Permalink to this heading">¶</a></h3>
+<p>The Xilinx® Board Utility (<code class="docutils literal notranslate"><span class="pre">xbutil</span></code>) and the Xilinx® Board Management Utility (<code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code>) are standalone command line tools used to query and administer Xilinx acceleration cards such as the Alveo U30.</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">xbutil</span></code> is used to examine, identify, program, and validate the installed accelerator card(s).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> is used to flash the card firmware, examine devices, and administer the installed accelerator card(s). Running this command requires sudo privileges.</p></li>
+</ul>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> tool is not supported on Amazon EC2 VT1 instances.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span></code> and <code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> commands typically target one device at a time using a PCIe BDF (Bus:Device.Function) identifier. Each device has two BDFs: a User BDF and a Management BDF. The BDF notation works as follows:</p>
+<ul class="simple">
+<li><p>PCI Domain number, often padded using leading zeros to four digits</p></li>
+<li><p>A colon (:)</p></li>
+<li><p>PCI Bus number in hexadecimal, often padded using a leading zeros to two or four digits</p></li>
+<li><p>A colon (:)</p></li>
+<li><p>PCI Device number in hexadecimal, often padded using a leading zero to two digits . Sometimes this is also referred to as the slot number.</p></li>
+<li><p>A decimal point (.)</p></li>
+<li><p>PCI Function number in hexadecimal. Only this last digit will differ between the User BDF and the Management BDF.</p></li>
+</ul>
+<p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span></code> command expects the User BDF of the targeted device while the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> command expects the Management BDF of the targeted device.</p>
+</div>
+<div class="section" id="xrmadm-and-xrmd">
+<h3>xrmadm and xrmd<a class="headerlink" href="#xrmadm-and-xrmd" title="Permalink to this heading">¶</a></h3>
+<p>The Xilinx® FPGA resource manager (XRM) is the software which manages the hardware accelerators available in the system. The XRM daemon (<code class="docutils literal notranslate"><span class="pre">xrmd</span></code>) is a background process supporting reservation, allocation, and release of hardware acceleration resources. The XRM <code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> command line tool is used to interact with the XRM daemon (<code class="docutils literal notranslate"><span class="pre">xrmd</span></code>) in order to check status and generate resource utilization reports.</p>
+<p>For more details about the XRM commands specific to the Xilinx Video SDK refer to the <a class="reference internal" href="managing_compute_resources.html#xrm-reference"><span class="std std-ref">XRM Command Reference Guide</span></a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="card-and-device-identifiers">
+<h2><a class="toc-backref" href="#id8">Card and Device Identifiers</a><a class="headerlink" href="#card-and-device-identifiers" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="device-user-bdf">
+<span id="device-bdf"></span><h3>Device User BDF<a class="headerlink" href="#device-user-bdf" title="Permalink to this heading">¶</a></h3>
+<p>The list of all installed Xilinx devices, including their User BDF is obtained with the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> command.</p>
+<p>For example, the command below detected 4 devices and lists the Management BDF for each of them:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ xbutil examine
+
+...
+
+Devices present
+  [0000:e3:00.1] : xilinx_u30_gen3x4_base_2
+  [0000:e2:00.1] : xilinx_u30_gen3x4_base_2
+  [0000:22:00.1] : xilinx_u30_gen3x4_base_2
+  [0000:21:00.1] : xilinx_u30_gen3x4_base_2
+</pre></div>
+</div>
+<p>The last device listed has a User BDF of 0000:21:00.1, which describes Domain 0, Bus 21, Device 00, Function 1.</p>
+</div>
+<div class="section" id="device-management-bdf">
+<span id="id1"></span><h3>Device Management BDF<a class="headerlink" href="#device-management-bdf" title="Permalink to this heading">¶</a></h3>
+<p>The list of all installed Xilinx devices, including their Management BDF is obtained with the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> command.</p>
+<p>For example, the command below detected 4 devices and lists the Management BDF for each of them:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ xbmgmt examine
+
+...
+
+Devices present
+  [0000:e3:00.0] : xilinx_u30_gen3x4_base_2
+  [0000:e2:00.0] : xilinx_u30_gen3x4_base_2
+  [0000:22:00.0] : xilinx_u30_gen3x4_base_2
+  [0000:21:00.0] : xilinx_u30_gen3x4_base_2
+</pre></div>
+</div>
+<p>The last device listed has a Management BDF of 0000:21:00.0, which describes Domain 0, Bus 21, Device 00, Function 0.</p>
+<p>Note that only the last digit (PCI Function) will differ between the User BDF and the Management BDF.</p>
+</div>
+<div class="section" id="device-renderid">
+<span id="device-render-id"></span><h3>Device renderID<a class="headerlink" href="#device-renderid" title="Permalink to this heading">¶</a></h3>
+<p>You can look-up the renderID of a device by using its User BDF and running the following command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ls /sys/bus/pci/devices/&lt;Domain&gt;\:&lt;Bus&gt;\:&lt;Device&gt;.&lt;Function&gt;/drm
+</pre></div>
+</div>
+<p>NOTE: The colons of the BDF identifier must be separated by a backslash.</p>
+<p class="rubric">Example</p>
+<ul>
+<li><p>Assuming a device with User BDF 0000:e3:00.1:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ ls /sys/bus/pci/devices/0000\:e3\:00.1/drm
+card4  renderD131
+</pre></div>
+</div>
+</li>
+<li><p>The renderID of this device is 131</p></li>
+</ul>
+</div>
+<div class="section" id="device-xclmgmtid">
+<span id="device-xclmgmt-id"></span><h3>Device xclmgmtID<a class="headerlink" href="#device-xclmgmtid" title="Permalink to this heading">¶</a></h3>
+<p>You can look-up the xclmgmtID of a device by using its Management BDF and running the following command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cat /sys/bus/pci/devices/&lt;Domain&gt;\:&lt;Bus&gt;\:&lt;Device&gt;.&lt;Function&gt;/instance
+</pre></div>
+</div>
+<p>NOTE: The colons of the BDF identifier must be separated by a backslash.</p>
+<p class="rubric">Example</p>
+<ul>
+<li><p>Assuming a device with Management BDF 0000:e3:00.0:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ cat /sys/bus/pci/devices/0000\:e3\:00.0/instance
+58112
+</pre></div>
+</div>
+</li>
+<li><p>The xclmgmtID of this device is 58112</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="card-serial-number">
+<span id="id2"></span><h3>Card Serial Number<a class="headerlink" href="#card-serial-number" title="Permalink to this heading">¶</a></h3>
+<p>You can look-up the serial number of a card by using the User BDF of a device located on the card and running the following command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cat /sys/bus/pci/devices/&lt;Domain&gt;\:&lt;Bus&gt;\:&lt;Device&gt;.&lt;Function&gt;/xmc.u.&lt;xxx&gt;/serial_num
+</pre></div>
+</div>
+<p>NOTE: The colons of the BDF identifier must be separated by a backslash and &lt;xxx&gt; is an integer number unique to each device.</p>
+<p class="rubric">Example</p>
+<ul>
+<li><p>Assuming a device with BDF 0000:e3:00.1:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ cat /sys/bus/pci/devices/0000\:e3\:00.1/xmc.u.19922947/serial_num
+XFL1RT5PHT31
+</pre></div>
+</div>
+</li>
+<li><p>The serial number of the card on which this device is located XFL1RT5PHT31</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="checking-system-status">
+<span id="examining-cards"></span><h2><a class="toc-backref" href="#id9">Checking System Status</a><a class="headerlink" href="#checking-system-status" title="Permalink to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> commands provides useful details about your environment and can be used to ensure that your cards and devices are properly detected. In the example below, four devices are found and usable:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ xbutil examine
+
+System Configuration
+  OS Name              : Linux
+  Release              : 5.4.0-050400-generic
+  Version              : #201911242031 SMP Mon Nov 25 01:35:10 UTC 2019
+  Machine              : x86_64
+  CPU Cores            : 32
+  Memory               : 64078 MB
+  Distribution         : Ubuntu 18.04.5 LTS
+  GLIBC                : 2.27
+  Model                : PowerEdge R7525
+
+XRT
+  Version              : 2.11.722
+  Branch               : 2021.1
+  Hash                 : d1ecc641da7b8805e778926e3354e8dd3fdaa6a8
+  Hash Date            : 2023-01-25 15:37:52
+  XOCL                 : 2.11.722, d1ecc641da7b8805e778926e3354e8dd3fdaa6a8
+  XCLMGMT              : 2.11.722, d1ecc641da7b8805e778926e3354e8dd3fdaa6a8
+
+Devices present
+  [0000:e3:00.1] : xilinx_u30_gen3x4_base_2
+  [0000:e2:00.1] : xilinx_u30_gen3x4_base_2
+  [0000:22:00.1] : xilinx_u30_gen3x4_base_2
+  [0000:21:00.1] : xilinx_u30_gen3x4_base_2
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="checking-device-status">
+<span id="device-status"></span><h2><a class="toc-backref" href="#id10">Checking Device Status</a><a class="headerlink" href="#checking-device-status" title="Permalink to this heading">¶</a></h2>
+<p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span> <span class="pre">-d</span> <span class="pre">&lt;User</span> <span class="pre">BDF&gt;</span> <span class="pre">--report</span> <span class="pre">&lt;type&gt;</span></code> commands provides additional details about the status of each Xilinx device installed.</p>
+<p>The –report (or -r) switch is used to view specific report(s) of interest from the following options:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">electrical</span></code>: Reports Electrical and power sensors present on the device</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">firewall</span></code>: Reports the current firewall status</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">host</span></code>: Reports the host configuration and drivers</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">mailbox</span></code>: Mailbox metrics of the device</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">memory</span></code>: Reports memory topology of the XCLBIN (if XCLBIN is already loaded)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pcie-info</span></code>: PCIe information of the device</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">platform</span></code>: Platforms flashed on the device</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">thermal</span></code>: Reports thermal sensors present on the device</p></li>
+</ul>
+<p>These reports can also be generated in a JSON file by adding <code class="docutils literal notranslate"><span class="pre">--format</span> <span class="pre">JSON</span> <span class="pre">-o</span> <span class="pre">&lt;filename&gt;</span></code> to the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> command.</p>
+<p>Example of thermal and electrical reports for the device with User BDF 0000:e3:00.1:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ xbutil examine -d e3:00.1 --report thermal electrical
+
+----------------------------------------------
+1/1 [0000:e3:00.1] : xilinx_u30_gen3x4_base_2
+----------------------------------------------
+Thermals
+  PCB Top Front          : 32 C
+  PCB Top Rear           : 34 C
+  FPGA                   : 37 C
+
+Electrical
+  Max Power              : 75 Watts
+  Power                  : 15.156126 Watts
+  Power Warning          : false
+
+  Power Rails            : Voltage   Current
+  12 Volts PCI Express   : 12.203 V,  1.242 A
+  Internal FPGA Vcc      :  0.852 V, 10.063 A
+  DDR Vpp Top            :  2.493 V
+  Vcc 1.2 Volts Top      :  1.211 V
+  1.8 Volts Top          :  1.803 V
+  0.9 Volts Vcc          :  0.898 V
+  Mgt Vtt                :  1.217 V
+  3.3 Volts Vcc          :  3.321 V
+  0.9 Volts Vcc Vcu      :  0.900 V
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="checking-resource-utilization">
+<h2><a class="toc-backref" href="#id11">Checking Resource Utilization</a><a class="headerlink" href="#checking-resource-utilization" title="Permalink to this heading">¶</a></h2>
+<p>To check the current loading of all the devices in your system, use the following command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xrmadm /opt/xilinx/xrm/test/list_cmd.json
+</pre></div>
+</div>
+<p>This will generate a report in JSON format containing the load information for all the compute unit (CU) resources. The report contains a section for each device in the system. The device sections contain sub-sections for each of the CUs (decoder, scaler, lookahead, encoder) in that device. For example, the load information for the encoder on device 0 may look as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;device_0&quot;: {
+    ...
+    &quot;cu_4&quot;: {
+        &quot;cuId         &quot;: &quot;4&quot;,
+        &quot;cuType       &quot;: &quot;IP Kernel&quot;,
+        &quot;kernelName   &quot;: &quot;encoder&quot;,
+        &quot;kernelAlias  &quot;: &quot;ENCODER_MPSOC&quot;,
+        &quot;instanceName &quot;: &quot;encoder_1&quot;,
+        &quot;cuName       &quot;: &quot;encoder:encoder_1&quot;,
+        &quot;kernelPlugin &quot;: &quot;/opt/xilinx/xma_plugins/libvcu-xma-enc-plg.so&quot;,
+        &quot;maxCapacity  &quot;: &quot;497664000&quot;,
+        &quot;numChanInuse &quot;: &quot;20&quot;,
+        &quot;usedLoad     &quot;: &quot;831472 of 1000000&quot;,
+        &quot;reservedLoad &quot;: &quot;0 of 1000000&quot;,
+        &quot;resrvUsedLoad&quot;: &quot;0 of 1000000&quot;
+    },
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">usedLoad</span></code> value indicates how much of that resource is currently being used. The value will range from 0 (nothing running) to 1000000 (fully loaded). The <code class="docutils literal notranslate"><span class="pre">reservedLoad</span></code> value indicates how much of that resource is being reserved using XRM. The <code class="docutils literal notranslate"><span class="pre">resrvUsedLoad</span></code> value indicates how much of the reserved load is actually being used.</p>
+<p>In the above example, the encoder is 83.14% utilized. An additional job may only be run on this device if it requires less than 17% of the encoder resources.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="mapping-devices-to-cards">
+<span id="id3"></span><h2><a class="toc-backref" href="#id12">Mapping Devices to Cards</a><a class="headerlink" href="#mapping-devices-to-cards" title="Permalink to this heading">¶</a></h2>
+<p>Knowing which devices are on which card is useful to selectively reset or recover a card. This is done by mapping the BDFs of the devices to the serial number of the cards as explained in the instructions below:</p>
+<ol class="arabic">
+<li><p>List the User BDFs of each of the devices on all the Alveo U30 cards installed in your system:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xbutil examine
+</pre></div>
+</div>
+</li>
+<li><p>For each User BDF, look-up the corresponding serial number:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cat /sys/bus/pci/devices/&lt;Domain&gt;\:&lt;Bus&gt;\:&lt;Device&gt;.&lt;Function&gt;/xmc.u.&lt;xxx&gt;/serial_num
+</pre></div>
+</div>
+<p>The colons of the BDF identifier must be separated by a backslash and &lt;xxx&gt; is an integer number unique to each device. For example, for the device with BDF 0000:e3:00.1:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ cat /sys/bus/pci/devices/0000\:e3\:00.1/xmc.u.19922947/serial_num
+XFL1RT5PHT31
+</pre></div>
+</div>
+</li>
+<li><p>Note the serial number associated with each BDF. Two devices with the same serial number are on the same card.</p></li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="running-device-self-test">
+<span id="xbutil-validate"></span><h2><a class="toc-backref" href="#id13">Running Device Self-Test</a><a class="headerlink" href="#running-device-self-test" title="Permalink to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This action is only available on-premises and is not supported on Amazon EC2 VT1 instances.</p>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> command can be used to check and validate the health of the devices on your Alveo U30 cards by executing a special built-in test. In order to run this command, the XRM daemon must first be stopped, otherwise the test will error with <code class="docutils literal notranslate"><span class="pre">xclbin</span> <span class="pre">on</span> <span class="pre">card</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">use</span></code> and <code class="docutils literal notranslate"><span class="pre">failed</span> <span class="pre">to</span> <span class="pre">load</span> <span class="pre">xclbin</span></code> messages.</p>
+<ol class="arabic">
+<li><p>List the User BDFs of each of the devices on all the Alveo U30 cards installed in your system:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xbutil examine
+</pre></div>
+</div>
+</li>
+<li><p>Stop the XRM daemon:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo /opt/xilinx/xrm/tools/stop_xrmd.sh
+</pre></div>
+</div>
+</li>
+<li><p>For each of the devices, run the self-checking test:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xbutil validate --device &lt;User BDF&gt;
+</pre></div>
+</div>
+</li>
+<li><p>After all tests have been run, restart the XRM daemon and reload the environment:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo /opt/xilinx/xrm/tools/start_xrmd.sh
+source /opt/xilinx/xcdr/setup.sh
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="resetting-a-card">
+<span id="card-reset"></span><h2><a class="toc-backref" href="#id14">Resetting a Card</a><a class="headerlink" href="#resetting-a-card" title="Permalink to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This action is only available on-premises and is not supported on Amazon EC2 VT1 instances.</p>
+</div>
+<p>Resetting an Alveo U30 card is done with the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">reset</span> <span class="pre">--device</span> <span class="pre">&lt;BDF&gt;</span></code> command, where BDF identifies one of the two devices on the card to be reset. If you need to identify which two devices are on a given card in order reset only these two devices, refer to the <a class="reference internal" href="#mapping-devices-to-cards"><span class="std std-ref">device-to-card mapping</span></a> instructions.</p>
+<p class="rubric">IMPORTANT</p>
+<ul class="simple">
+<li><p>The command will reset the device specified with the User BDF <strong>as well as all other devices present on the same Xilinx card</strong>. It is not possible to reset only one device.</p></li>
+<li><p>Since <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">reset</span></code> resets all devices of a given card, Xilinx recommends against assigning a single device to a containerized application.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">reset</span></code> will not work within containers or virtual machines when the management functions are not opened to the user.</p></li>
+</ul>
+<ol class="arabic">
+<li><p>Verify that all jobs running on both devices of the card can be safely interrupted.</p></li>
+<li><p>List the User BDFs of each of the devices on all the Alveo U30 cards installed in your system:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xbutil examine
+</pre></div>
+</div>
+</li>
+<li><p>Reset one of the two devices on the card which needs to be reset. This command will reset <strong>both</strong> devices on that card, not just the specified device:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xbutil reset --device &lt;BDF&gt;
+</pre></div>
+</div>
+</li>
+<li><p>The resetted cards and devices will not be readily usable. The hardware binaries must be reloaded on the devices before running new jobs:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
+</pre></div>
+</div>
+</li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="recovering-a-card">
+<span id="card-recovery"></span><h2><a class="toc-backref" href="#id15">Recovering a Card</a><a class="headerlink" href="#recovering-a-card" title="Permalink to this heading">¶</a></h2>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This action is only available on-premises and is not supported on Amazon EC2 VT1 instances.</p>
+</div>
+<p>In the event that your card has become corrupted and that a reset is not sufficient, you will need to recover it. This is normally be done in-band via a set of simple commands. Should the card’s flash devices become corrupted to the point where it is no longer detected by PCIe, out-of-band recovery with a JTAG cable may be required.</p>
+<div class="section" id="standard-recovery-flow">
+<span id="id4"></span><h3>Standard Recovery Flow<a class="headerlink" href="#standard-recovery-flow" title="Permalink to this heading">¶</a></h3>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>The instructions below assume that you are trying to recover a system which was flashed with release 0.96.0 or newer. If this is not the case, <a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">contact Xilinx</a>.</p>
+</div>
+<ol class="arabic">
+<li><p>Set up your environment:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xrt/setup.sh
+</pre></div>
+</div>
+</li>
+<li><p>List the Management BDF of your devices:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo /opt/xilinx/xrt/bin/xbmgmt examine
+</pre></div>
+</div>
+<p>NOTE: There are two devices per Alveo U30 card. If you want to identify which two devices are on a given card in order recover only these two devices, refer to the <a class="reference internal" href="#mapping-devices-to-cards"><span class="std std-ref">device-to-card mapping</span></a> instructions.</p>
+</li>
+<li><p>For each device which needs to be recovered, run the following command to flash it with the golden image:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo /opt/xilinx/xrt/bin/xbmgmt program --revert-to-golden --device &lt;BDF&gt;
+</pre></div>
+</div>
+<p>NOTE: You may receive an error indicating <code class="docutils literal notranslate"><span class="pre">Factory</span> <span class="pre">reset</span> <span class="pre">not</span> <span class="pre">supported.</span> <span class="pre">No</span> <span class="pre">Golden</span> <span class="pre">image</span> <span class="pre">found</span> <span class="pre">on</span> <span class="pre">flash.</span></code>. This indicates the golden image must first be reflashed by following these instructions: <a class="reference external" href="https://github.com/Xilinx/video-sdk/issues/16#issuecomment-996230146">reflashing the golden image</a>.</p>
+</li>
+<li><p>Cold boot the machine when all desired devices have been reverted to factory settings.</p></li>
+</ol>
+</div>
+<div class="section" id="advanced-recovery-flow">
+<span id="id5"></span><h3>Advanced Recovery Flow<a class="headerlink" href="#advanced-recovery-flow" title="Permalink to this heading">¶</a></h3>
+<p>Should there be an issue with the standard in-band recovery process, it is still possible to recover the card using out-of-band methods. Please <a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">contact Xilinx</a> for more details.</p>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="c_apis.html" class="btn btn-neutral float-left" title="C API Programming Guide" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="package_feed.html" class="btn btn-neutral float-right" title="Distribution Package Feed" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on March 27, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

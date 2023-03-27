@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Video Quality Examples &mdash; Xilinx Video SDK 3.0 (Production) documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="GStreamer Compositor Application" href="xcompositor.html" />
+    <link rel="prev" title="GStreamer Examples using Software Filters" href="filters.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../index.html" class="icon icon-home"> Xilinx Video SDK
+            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started_on_prem.html">On Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started_on_vt1.html">Amazon EC2 VT1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container_setup.html">Container Setup</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../examples.html">Tutorials and Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ffmpeg/tutorials.html">FFmpeg Introductory Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ffmpeg/filters.html">FFmpeg Software Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ffmpeg/quality_analysis.html">FFmpeg Video Quality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html">GStreamer Introductory Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">GStreamer Software Filters</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GStreamer Video Quality</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environment-setup">Environment Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#introduction-to-video-quality">Introduction to Video Quality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#optimized-settings-for-the-sdk">Optimized Settings for the Xilinx Video SDK</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#subjective-quality">Subjective Quality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#objective-quality">Objective Quality</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#setting-differences-between-objective-and-subjective-quality">Setting Differences Between Objective and Subjective Quality</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-psnr-ssim-vmaf-scores">Running PSNR/SSIM/VMAF scores</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#enabling-vq-scoring-in-gstreamer">Enabling VQ Scoring in GStreamer</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performing-vq-scoring-with-gstreamer-and-the-vmaf-plugin">Performing VQ Scoring with GStreamer and the VMAF Plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#quality-vs-latency">Quality vs. Latency</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#xilinx-specific-latency-flags">Xilinx-Specific Latency Flags</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#optimized-settings-for-low-latency-streams">Optimized Settings for Low Latency Streams</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#measuring-latency">Measuring Latency</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="xcompositor.html">GStreamer Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="xabrladder.html">GStreamer ABR Ladder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../xma/xma_apps.html">C-Based Applications</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../specs_and_features.html">Specs and Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using_ffmpeg.html">Using FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using_gstreamer.html">Using GStreamer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tuning_video_quality.html">Tuning Video Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tuning_pipeline_latency.html">Tuning Transcode Latency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../managing_compute_resources.html">Managing Compute Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deploying_with_kubernetes.html">Deploying with Kubernetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../card_management.html">Card Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../package_feed.html">Package Feed Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Xilinx Video SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../examples.html">Tutorials and Examples</a> &raquo;</li>
+      <li>Video Quality Examples</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="video-quality-examples">
+<h1>Video Quality Examples<a class="headerlink" href="#video-quality-examples" title="Permalink to this heading">¶</a></h1>
+<p>This page is dedicated to explaining some of the details behind Video Quality (VQ), how it is measured, and how you can optimize your GStreamer commands with the Alveo U30 card to maximize its performance.</p>
+<p>Further documentation on this topic can be found in the <a class="reference internal" href="../../tuning_video_quality.html#tuning-video-quality"><span class="std std-ref">Tuning Video Quality</span></a> section of the U30 Video SDK user guide.</p>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#environment-setup" id="id1">Environment Setup</a></p></li>
+<li><p><a class="reference internal" href="#introduction-to-video-quality" id="id2">Introduction to Video Quality</a></p></li>
+<li><p><a class="reference internal" href="#optimized-settings-for-the-sdk" id="id3">Optimized Settings for the Xilinx Video SDK</a></p>
+<ul>
+<li><p><a class="reference internal" href="#subjective-quality" id="id4">Subjective Quality</a></p></li>
+<li><p><a class="reference internal" href="#objective-quality" id="id5">Objective Quality</a></p></li>
+<li><p><a class="reference internal" href="#setting-differences-between-objective-and-subjective-quality" id="id6">Setting Differences Between Objective and Subjective Quality</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#running-psnr-ssim-vmaf-scores" id="id7">Running PSNR/SSIM/VMAF scores</a></p>
+<ul>
+<li><p><a class="reference internal" href="#enabling-vq-scoring-in-gstreamer" id="id8">Enabling VQ Scoring in GStreamer</a></p></li>
+<li><p><a class="reference internal" href="#performing-vq-scoring-with-gstreamer-and-the-vmaf-plugin" id="id9">Performing VQ Scoring with GStreamer and the VMAF Plugin</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#quality-vs-latency" id="id10">Quality vs. Latency</a></p>
+<ul>
+<li><p><a class="reference internal" href="#xilinx-specific-latency-flags" id="id11">Xilinx-Specific Latency Flags</a></p></li>
+<li><p><a class="reference internal" href="#optimized-settings-for-low-latency-streams" id="id12">Optimized Settings for Low Latency Streams</a></p></li>
+<li><p><a class="reference internal" href="#measuring-latency" id="id13">Measuring Latency</a></p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="environment-setup">
+<h2><a class="toc-backref" href="#id1">Environment Setup</a><a class="headerlink" href="#environment-setup" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>The Xilinx Video SDK examples can be found in the <code class="file docutils literal notranslate"><span class="pre">/opt/xilinx/examples/u30</span></code> folder of your system. If this folder is not present, first <a class="reference internal" href="../../package_feed.html#package-feed-configuration"><span class="std std-ref">make sure your package management client points to the remote package repository</span></a> for the Xilinx Video SDK. Then install the <code class="file docutils literal notranslate"><span class="pre">xilinx-alveo-u30-examples</span></code> package:</p>
+<ul class="simple">
+<li><p>Ubuntu</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt-get install xilinx-alveo-u30-example
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>RHEL and Amazon Linux 2</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo yum install xilinx-alveo-u30-example
+</pre></div>
+</div>
+</li>
+<li><p>Configure the environment to use the Xilinx Video SDK:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+<div class="section" id="introduction-to-video-quality">
+<h2><a class="toc-backref" href="#id2">Introduction to Video Quality</a><a class="headerlink" href="#introduction-to-video-quality" title="Permalink to this heading">¶</a></h2>
+<p>There has been a longstanding goal for video engineers to quantitatively determine the output quality of an encoder without having to watch and inspect every individual frame. This has led to an evolution of algorithmic solutions, the most common of which are:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio">Peak Signal to Noise Ratio (PSNR)</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Structural_similarity">Structural Similarity Index Metric (SSIM)</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Video_Multimethod_Assessment_Fusion">Video Multimethod Assessment Fusion (VMAF)</a></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Mean_opinion_score">Mean Opinion Score (MOS) - Humans visually watching the screen and providing feedback</a></p></li>
+</ul>
+<p>Many people will argue which metric is best (although PSNR is commonly considered the least accurate). Jan Ozer from the Streaming Media Center posted his experimental correlation of MOS vs the above metrics. You can review the findings <a class="reference external" href="https://streaminglearningcenter.com/wp-content/uploads/2017/08/PSRN-vs.-VMAF-vs.-SSIMPlus.pdf">here.</a></p>
+<p>Furthermore, due to the industry standard of tracking encoder “performance” to quantitative metrics like the ones listed above, many encoders have “taught to the test”; that is, they provide different command-line arguments that will give higher scores but may look worse to the human eye. For example, common CPU encoders <a class="reference external" href="https://code.videolan.org/videolan/x264">x264</a> and <a class="reference external" href="http://hg.videolan.org/x265">x265</a> have a <code class="docutils literal notranslate"><span class="pre">tune</span></code> parameter which optimizes to objective metrics.</p>
+<p>This page discusses the Xilinx Video SDK command line flags used to optimize for objective quality (scores) and subjective quality (visual appeal) and provides additional details as to what is happening behind the scenes and why.</p>
+</div>
+<div class="section" id="optimized-settings-for-the-sdk">
+<h2><a class="toc-backref" href="#id3">Optimized Settings for the Xilinx Video SDK</a><a class="headerlink" href="#optimized-settings-for-the-sdk" title="Permalink to this heading">¶</a></h2>
+<p>It is highly recommended to perform encoding on raw video clips; that is, clips that have not undergone a transform/compression/encoding in the past. This ensures that the clips are in a universally known state in order to fairly compare encoders.</p>
+<p>Alternatively, you can add the flags to decode before encoding, and the results will remain accurate as long as the same pre-encoded file is used as the source across all encoders under test. Information on this process can be found on the <a class="reference internal" href="tutorials.html"><span class="doc">GStreamer tutorial page</span></a>.</p>
+<p>Flags not illustrated in this page are covered in the <a class="reference internal" href="../../using_gstreamer.html"><span class="doc">Using GStreamer</span></a> chapter of the Xilinx Video SDK user guide.</p>
+<div class="section" id="subjective-quality">
+<h3><a class="toc-backref" href="#id4">Subjective Quality</a><a class="headerlink" href="#subjective-quality" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script for H264 streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/quality_analysis/h264_subjective.sh">examples/u30/gstreamer/quality_analysis/h264_subjective.sh</a></p></li>
+<li><p>Example script for HEVC streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/quality_analysis/hevc_subjective.sh">examples/u30/gstreamer/quality_analysis/hevc_subjective.sh</a></p></li>
+</ul>
+<p>These are the command you should use to get maximum video quality to the human eye in most situations. It accepts a clip that is already decoded or a RAW YUV.</p>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./h264_subjective.sh  &lt;device index&gt; &lt;Input 1080p60 NV12 file&gt; &lt;target-bitrate in kbps&gt;
+./hevc_subjective.sh  &lt;device index&gt; &lt;Input 1080p60 NV12 file&gt; &lt;target-bitrate in kbps&gt;
+</pre></div>
+</div>
+<p><strong>Command Line Example</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 filesrc location=~/videos/Test_1080p60.nv12 ! rawvideoparse format=nv12 width=1920 height=1080 framerate=60/1 ! vvas_xlookahead codec-type=0 lookahead-depth=20 spatial-aq=true temporal-aq=true dev-idx=0 b-frames=1 ! vvas_xvcuenc dev-idx=0 b-frames=1 gop-length=120 periodicity-idr=120 qp-mode=relative-load target-bitrate=5000 max-bitrate=5000 ! h264parse ! fpsdisplaysink video-sink=&quot;filesink location=/tmp/xil_enc_5000_subjective.h264 &quot; text-overlay=false sync=false -v
+</pre></div>
+</div>
+</div>
+<div class="section" id="objective-quality">
+<h3><a class="toc-backref" href="#id5">Objective Quality</a><a class="headerlink" href="#objective-quality" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script for H264 streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/quality_analysis/h264_objective.sh">examples/u30/gstreamer/quality_analysis/h264_objective.sh</a></p></li>
+<li><p>Example script for HEVC streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/quality_analysis/hevc_objective.sh">examples/u30/gstreamer/quality_analysis/hevc_objective.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./h264_objective.sh &lt;device index&gt; &lt;Input 1080p60 NV12 file&gt; &lt;target-bitrate in kbps&gt;
+./hevc_objective.sh &lt;device index&gt; &lt;Input 1080p60 NV12 file&gt; &lt;target-bitrate in kbps&gt;
+</pre></div>
+</div>
+<p><strong>Command Line Example</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 filesrc location=Test_1080p60.NV12 ! rawvideoparse format=nv12 width=1920 height=1080 framerate=60/1 ! vvas_xlookahead codec-type=0 lookahead-depth=20 b-frames=1 dev-idx=0 ! vvas_xvcuenc dev-idx=0 b-frames=1 gop-length=120 periodicity-idr=120 tune-metrics=1 target-bitrate=5000 max-bitrate=5000 ! h264parse ! fpsdisplaysink video-sink=&quot;filesink location=/tmp/xil_enc__objective.h264 &quot; text-overlay=false sync=false -v
+</pre></div>
+</div>
+<p>This is the command you should run to get maximum objective scoring (PSNR, SSIM, VMAF). It accepts a clip that is already decoded or a RAW NV12 file.</p>
+</div>
+<div class="section" id="setting-differences-between-objective-and-subjective-quality">
+<h3><a class="toc-backref" href="#id6">Setting Differences Between Objective and Subjective Quality</a><a class="headerlink" href="#setting-differences-between-objective-and-subjective-quality" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">qp-mode</span></code></p>
+<ul>
+<li><p>How an encoder quantizes its CU’s (Macroblocks/Coding Tree Units/etc.) is what fundamentally defines a large amount of its quality.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">spatial-aq</span></code> and <code class="docutils literal notranslate"><span class="pre">temporal-aq</span></code></p>
+<ul>
+<li><p>Adaptive Quantization (AQ) exploits the fact that the human eye is more sensitive to certain regions of a frame. This method drops information from high-frequency locations and keeps more information in low-frequency locations in a frame. The result appears more visually appealing. To enable spatial or temporal AQ, qp-mode should be set to relative-load and lookahead should be enabled.</p></li>
+<li><p>Imagine a scene of a windy forest: the moving leaves (high frequency/texture data), and tree trunks on the ground (low-frequency/texture data). Artifacts and issues in the low-frequency data will catch your eye much more than the high-frequency data. AQ will drop data in the leaves (they are much harder to see changes from frame-to-frame) and make sure the trunks and ground keep more of their data. It is a zero-sum game when compressing data.</p></li>
+<li><p>Spatial AQ is redistribution of bits/data within a frame, while temporal AQ is data over time (i.e. over many frames). With Temporal AQ, the same concepts apply: high-motion regions are less noticeable than low-motion regions; Temporal AQ looks ahead in the Lookahead buffer to determine which is which and will redistribute bits/data accordingly for a more visually appealing scene.</p></li>
+<li><p>There is another flag which is enabled (but is set to default in these strings, so it is omitted in the command line) with <code class="docutils literal notranslate"><span class="pre">spatial-aq</span></code>. The flag is <code class="docutils literal notranslate"><span class="pre">spatial-aq-gain</span></code> and can be set 0-100; default is 50. This parameter is the strength of the redistribution of data within the frame. Setting too high a value may have a consequence of blurring edges. Experimentation across your clips is recommended if you wish to tune the parameter. We keep it to 50(%) to cover the widest set of use cases.</p></li>
+</ul>
+</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="running-psnr-ssim-vmaf-scores">
+<h2><a class="toc-backref" href="#id7">Running PSNR/SSIM/VMAF scores</a><a class="headerlink" href="#running-psnr-ssim-vmaf-scores" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="enabling-vq-scoring-in-gstreamer">
+<h3><a class="toc-backref" href="#id8">Enabling VQ Scoring in GStreamer</a><a class="headerlink" href="#enabling-vq-scoring-in-gstreamer" title="Permalink to this heading">¶</a></h3>
+<p>In order to enable VQ scoring in GStreamer, but VMAG plugin must be added. The VMAF GStreamer plugin can be compiled by following the steps described in <a class="reference external" href="https://werti.github.io/GSoC2019/">https://werti.github.io/GSoC2019/</a>. It is required to integrate <a class="reference external" href="https://gitlab.freedesktop.org/szve/gst-plugins-bad/-/tree/master/ext/iqa">https://gitlab.freedesktop.org/szve/gst-plugins-bad/-/tree/master/ext/iqa</a> with gst-plugins-bad-1.16.2 to match the GStreamer version of ths release package.</p>
+<p>The <code class="file docutils literal notranslate"><span class="pre">examples/gstreamer/quality_analysis/vmaf</span></code> directory included in this repository contains the following files which can be used to integrate the VMAF plugin in gst-plugins-bad-1.16.2:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>+-- install_vmaf.sh
++-- model
++-- patches
+¦   +-- 0001-Add-Xilinx-s-format-support.patch
+¦   +-- 0001-build-Adapt-to-backwards-incompatible-change-in-GNU-.patch
+¦   +-- 0001-Building-the-vmaf-as-dynamic-library.patch
+¦   +-- 0001-Derive-src-fps-from-vui_time_scale-vui_num_units_in_.patch
+¦   +-- 0001-gst-plugins-base-Add-HDR10-support.patch
+¦   +-- 0001-Update-Colorimetry-and-SEI-parsing-for-HDR10.patch
+¦   +-- 0001-Videoaggregator-cleanup-functions.patch
+¦   +-- 0001-VMAF-integration-in-gst-plugins-bad-1.16.2.patch
++-- README.md
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>The <code class="file docutils literal notranslate"><span class="pre">install_vmaf.sh</span></code> script installs VMAF as follows:</p>
+<ul>
+<li><p>Applies the required patches from patches directory</p></li>
+<li><p>Clones VMAF and builds the VMAF library</p></li>
+<li><p>Builds and installs the iqa-vmaf plugin</p></li>
+</ul>
+</li>
+<li><p>vmaf/model is a directory which contains different models used by the iqa-vmaf plugin.</p></li>
+<li><p>0001-Add-Xilinx-s-format-support.patch adds a patch to gst-plugins-base-1.16.2 which supports xilinxs format buffers and discussion about this patch is out of scope for this topic.</p></li>
+<li><p>0001-build-Adapt-to-backwards-incompatible-change-in-GNU-.patch adds a patch to adapt to backwards incompatible change in GNU Make 4.3 and discussion about this patch is out of scope for this topic.</p></li>
+<li><p>0001-Building-the-vmaf-as-dynamic-library.patch adds a patch on meson build of vmaf library to build it dynamically and to link dynamically with the iqa-vmaf plugin.y</p></li>
+<li><p>0001-Derive-src-fps-from-vui_time_scale-vui_num_units_in.patch adds a patch to derive source fps from vui parameters and discussion about this patch is out of scope for this topic.</p></li>
+<li><p>0001-gst-plugins-base-Add-HDR10-support.patch adds a patch to enhance base plugins with HDR10 support and corresponding colorimetry info . The discussion about this patch is out of scope for this topic.</p></li>
+<li><p>0001-Update-Colorimetry-and-SEI-parsing-for-HDR10.patch adds a patch to update colorimetry and sei parsing and discussion about this patch is out of scope for this topic.</p></li>
+<li><p>0001-Videoaggregator-patch.patch  adds a patch to gst-plugins-base-1.16.2/gst-libs/gst/video/gstvideoaggregator.h . This patch contains the macros of some cleanup functions which were later introduced in gst-plugins-base-1.17.1. This patch is required to build the iqa-vmaf plugin.</p></li>
+<li><p>0001-VMAF-integration-in-gst-plugins-bad-1.16.2.patch adds a patch to gst-plugins-bad-1.16.2. i) This patch replaces gst-plugins-bad-1.16.2/ext/iqa directory with <a class="reference external" href="https://gitlab.freedesktop.org/szve/gst-plugins-bad/-/tree/master/ext/iqa">https://gitlab.freedesktop.org/szve/gst-plugins-bad/-/tree/master/ext/iqa</a> which contains the source code of iqa-vmaf plugin.</p></li>
+</ul>
+<p><strong>Building the VMAF GStreamer plugin</strong></p>
+<p>Build and install the VMAF plugin as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd vmaf
+source install_vmaf.sh
+</pre></div>
+</div>
+<p>Verify that the plugin was successfully installed:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gst-inspect-1.0 iqa-vmaf
+</pre></div>
+</div>
+<p>The description and usage of the iqa-vmaf plugin can be found in <a class="reference external" href="https://gitlab.freedesktop.org/szve/gst-plugins-bad/-/blob/master/ext/iqa/iqa-vmaf.c">https://gitlab.freedesktop.org/szve/gst-plugins-bad/-/blob/master/ext/iqa/iqa-vmaf.c</a></p>
+</div>
+<div class="section" id="performing-vq-scoring-with-gstreamer-and-the-vmaf-plugin">
+<h3><a class="toc-backref" href="#id9">Performing VQ Scoring with GStreamer and the VMAF Plugin</a><a class="headerlink" href="#performing-vq-scoring-with-gstreamer-and-the-vmaf-plugin" title="Permalink to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script for HEVC streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/quality_analysis/measure_vq.sh">examples/u30/gstreamer/quality_analysis/measure_vq.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./measure_vq.sh &lt;Encoded Clip generated using Master YUV clip&gt; &lt;Resolution (&#39;W&#39;x&#39;H&#39;)&gt; &lt;Framerate&gt; &lt;Master YUV clip&gt; &lt;VMAF mMdel&gt;
+</pre></div>
+</div>
+<p><strong>Command Line Example</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./measure_vq.sh u30_3mpbs_clip.mp4 1920x1080 60 original_clip.yuv vmaf/model/vmaf_v0.6.1.pkl
+</pre></div>
+</div>
+<p>After installing vmaf using the <code class="docutils literal notranslate"><span class="pre">install_vmaf.sh</span></code> script, you can generate VQ metrics using the <code class="docutils literal notranslate"><span class="pre">measure_vq.sh</span></code> script</p>
+<p>For each frame of the input clip, the <code class="docutils literal notranslate"><span class="pre">measure_vq.sh</span></code> script calculates and prints out several VQ metrics, such as ADM2, MOTION2, MS_SSIM, PSNR, SSIM, etc…</p>
+<p>The sample below shows the output of the <code class="docutils literal notranslate"><span class="pre">measure_vq.sh</span></code> script for frame number 499 of the input clip:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Got message #678 from element &quot;vmaf&quot; (element): IQA-VMAF, padname=(string)sink_1, frame_num=(uint)499, metrics=(structure)&quot;metrics\,\ adm2\=\(double\)0.96335089655397854\,\ motion2\=\(double\)3.5312457084655762\,\ ms_ssim\=\(double\)0.98481947307803175\,\ psnr\=\(double\)34.567887440129212\,\ ssim\=\(double\)0.99244385957717896\,\ vif_scale0\=\(double\)0.50567488401912375\,\ vif_scale1\=\(double\)0.88340058464896432\,\ vif_scale2\=\(double\)0.94600789149917519\,\ vif_scale3\=\(double\)0.9717222600144203\,\ vmaf\=\(double\)89.285598932085932\;&quot;;
+</pre></div>
+</div>
+<p><strong>Complete Sequence:</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Install the VMAF plugin
+cd vmaf
+source install_vmaf.sh
+cd ..
+
+# Generate an encoded mp4 file from a 1080p60 8-bit YUV input file
+gst-launch-1.0 -v filesrc location=original_8bit_1080p60_clip.yuv \
+    ! queue \
+    ! rawvideoparse format=i420 width=1920 height=1080 framerate=60/1 \
+    ! videoconvert ! video/x-raw, format=NV12 \
+    ! vvas_xvcuenc dev-idx=0 target-bitrate=3000 max-bitrate=3000 \
+    ! h264parse \
+    ! qtmux \
+    ! fpsdisplaysink video-sink=&quot;filesink location=/tmp/u30_3mpbs_clip.mp4&quot; text-overlay=false sync=false&quot;
+
+# Measure VQ
+./measure_vq.sh u30_3mpbs_clip.mp4 1920x1080 60 original_8bit_1080p60_clip.yuv vmaf/model/vmaf_v0.6.1.pkl
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="quality-vs-latency">
+<h2><a class="toc-backref" href="#id10">Quality vs. Latency</a><a class="headerlink" href="#quality-vs-latency" title="Permalink to this heading">¶</a></h2>
+<p>A given encoder’s “quality” is often a function of many different algorithms/functions/features. It is quite possible (and often seen) that an encoder can produce an h.264/HEVC compliant stream but have drastically different quality from one to another.</p>
+<p>Some of these features add latency, either by adding “pitstops” on the way to an outputted stream, or by increasing the complexity of the core-encoding functions. Most things in the video realm are content-dependent, or use-case-dependent, so the designer needs to determine what is best for them… a gradient of:</p>
+<ul class="simple">
+<li><p>absolute best quality with high latency</p></li>
+<li><p>lower quality with lowest latency.</p></li>
+</ul>
+<div class="section" id="xilinx-specific-latency-flags">
+<h3><a class="toc-backref" href="#id11">Xilinx-Specific Latency Flags</a><a class="headerlink" href="#xilinx-specific-latency-flags" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="decoder-options">
+<h4>Decoder Options<a class="headerlink" href="#decoder-options" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">low_latency</span></code></p>
+<ul>
+<li><p>This flag when set to 0 disables the decoder’s ability to process B-frames. Skipping this logic and providing an input with B-Frames will have jittery, undesired outputs.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="encoder-options">
+<h4>Encoder Options<a class="headerlink" href="#encoder-options" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">b-frames=&lt;INT&gt;</span></code></p>
+<ul>
+<li><p>This is the number of B-Frames inserted into the GOP. B-frames reference both past and future frames, so to build them, it will be required to have a buffer.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">scaling</span> <span class="pre">list</span></code></p>
+<ul>
+<li><p>Enabling this allows for an extra step of scaling low-frequency coefficients before they are quantized in the encoder. When enabled, better quality, higher latency; when disabled, lower quality, better/lower latency.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="lookahead-options">
+<h4>Lookahead Options<a class="headerlink" href="#lookahead-options" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-lookahead_depth</span> <span class="pre">&lt;INT&gt;</span></code></p>
+<ul>
+<li><p>In order to best determine how best to encode the incoming video, you can create a buffer that the encoder can use to search for clues/hints. It drastically improves quality, but every frame you provide is another frame of latency.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">qp-mode=relative-load</span></code></p>
+<ul>
+<li><p>Using the FPGA, we are preprocessing the stream and making intelligent decisions which we can provide to the encoder as “hints”. Adding this step helps improve quality at the cost of latency.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">auto</span></code> uses a more basic engine and will be slightly faster, lower quality.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">uniform</span></code> is fastest at the lowest quality for this option</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">temporal-aq</span></code> and <code class="docutils literal notranslate"><span class="pre">spatial-aq</span></code></p>
+<ul>
+<li><p>These features are described above on this page; performing their functions increases both latency and quality.</p></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="optimized-settings-for-low-latency-streams">
+<h3><a class="toc-backref" href="#id12">Optimized Settings for Low Latency Streams</a><a class="headerlink" href="#optimized-settings-for-low-latency-streams" title="Permalink to this heading">¶</a></h3>
+<p>With the above information in hand, below are the optimized commands for general types of video. Your content may require modifications to optimize fully.</p>
+<div class="section" id="low-latency-subjective-quality">
+<h4>Low Latency Subjective Quality<a class="headerlink" href="#low-latency-subjective-quality" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Example script for H264 streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/quality_analysis/h264_ll_subjective.sh">examples/u30/gstreamer/quality_analysis/h264_ll_subjective.sh</a></p></li>
+<li><p>Example script for HEVC streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/quality_analysis/hevc_ll_subjective.sh">examples/u30/gstreamer/quality_analysis/hevc_ll_subjective.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./h264_ll_subjective.sh &lt;device index&gt; &lt;Input 1080p60 NV12 file&gt; &lt;target-bitrate in kbps&gt;
+./hevc_ll_subjective.sh &lt;device index&gt; &lt;Input 1080p60 NV12 file&gt; &lt;target-bitrate in kbps&gt;
+</pre></div>
+</div>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 filesrc location=Test_1080p60.NV12 ! rawvideoparse format=nv12 width=1920 height=1080 framerate=60/1 ! vvas_xvcuenc dev-idx=0 b-frames=0 gop-length=120 periodicity-idr=120 qp-mode=auto target-bitrate=5000 max-bitrate=5000 ! h264parse ! fpsdisplaysink video-sink=&quot;filesink location=/tmp/xil_enc__ll_subjective.h264 &quot; text-overlay=false sync=false -v
+</pre></div>
+</div>
+</div>
+<div class="section" id="low-latency-objective-quality">
+<h4>Low Latency Objective Quality<a class="headerlink" href="#low-latency-objective-quality" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Example script for H264 streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/quality_analysis/h264_ll_objective.sh">examples/u30/gstreamer/quality_analysis/h264_ll_objective.sh</a></p></li>
+<li><p>Example script for HEVC streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/quality_analysis/hevc_ll_objective.sh">examples/u30/gstreamer/quality_analysis/hevc_ll_objective.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./h264_ll_objective.sh &lt;device index&gt; &lt;Input 1080p60 NV12 file&gt; &lt;target-bitrate in kbps&gt;
+./hevc_ll_objective.sh &lt;device index&gt; &lt;Input 1080p60 NV12 file&gt; &lt;target-bitrate in kbps&gt;
+</pre></div>
+</div>
+<p><strong>Command Line</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gst-launch-1.0 filesrc location=~/videos/Test_1080p60.NV12 ! rawvideoparse format=nv12 width=1920 height=1080 framerate=60/1 ! vvas_xvcuenc dev-idx=0 b-frames=0 gop-length=120 periodicity-idr=120 tune-metrics=1 target-bitrate=5000 max-bitrate=5000 ! h264parse ! fpsdisplaysink video-sink=&quot;filesink location=/tmp/xil_enc__ll_objective.h264 &quot; text-overlay=false sync=false -v
+</pre></div>
+</div>
+</div>
+</div>
+<div class="section" id="measuring-latency">
+<h3><a class="toc-backref" href="#id13">Measuring Latency</a><a class="headerlink" href="#measuring-latency" title="Permalink to this heading">¶</a></h3>
+<p>Latency numbers are measured using GStreamer framework’s latency tracer module. After enabling GST_DEBUG as follows, run the given example script which will dump the log to log.txt and retrieve the latency values using <code class="docutils literal notranslate"><span class="pre">gst-stats-1.0</span></code> command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>export GST_DEBUG=&quot;GST_TRACER:7&quot; GST_TRACERS=&quot;latency(flags=pipeline+element)&quot; GST_DEBUG_FILE=log.txt
+</pre></div>
+</div>
+<p>Ladder pipeline with 1080p60 MP4 file with H264 elementarty stream with I and P frames as input, and generates 720p60, 720p30, 480p30, 360p30 and 160p30 output ladders is used to measure the latency. This script has encoder and decoder parameters set to ensure minumum latency requirements of the acceleration components.</p>
+<div class="section" id="latency-measurement-script">
+<h4>Latency Measurement Script<a class="headerlink" href="#latency-measurement-script" title="Permalink to this heading">¶</a></h4>
+<ul class="simple">
+<li><p>Example script for HEVC streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/quality_analysis/latency_test.sh">examples/u30/gstreamer/quality_analysis/latency_test.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./latency_test.sh &lt;Input 1080p60 MP4 file with H.264&gt;
+</pre></div>
+</div>
+<p><strong>Command Line</strong></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>e.g. ./latency_test.sh ~/videos/bbb_sunflower_1080p_60fps_normal.mp4
+
+Average end to end latency (720p60 leg) in milli seconds :  56.0469
+Average decoder latency in milli seconds :  11.4191
+Average ecnoder latency (720p60 leg) in milli seconds :  38.5176
+Average scaler latency (720p60 leg) in milli seconds :  5.7965
+</pre></div>
+</div>
+<p>Change the script accordingly to measure latencies of the other ABR ladders</p>
+</div>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="filters.html" class="btn btn-neutral float-left" title="GStreamer Examples using Software Filters" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="xcompositor.html" class="btn btn-neutral float-right" title="GStreamer Compositor Application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on March 27, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

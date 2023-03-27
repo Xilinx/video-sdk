@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Using FFmpeg &mdash; Xilinx Video SDK 3.0 (Production) documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="_static/doctools.js"></script>
+        <script src="_static/sphinx_highlight.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Using GStreamer" href="using_gstreamer.html" />
+    <link rel="prev" title="Specs and Features of the Xilinx Video SDK" href="specs_and_features.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home"> Xilinx Video SDK
+            <img src="_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_prem.html">On Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_vt1.html">Amazon EC2 VT1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container_setup.html">Container Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Tutorials and Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guides</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="specs_and_features.html">Specs and Features</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Using FFmpeg</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#example-commands">Example Commands</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#general-ffmpeg-options">General FFmpeg Options</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#video-decoding">Video Decoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#video-encoding">Video Encoding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#video-scaling">Video Scaling</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-multiscale-filter">Using the Multiscale Filter</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiscale-usage-considerations">Multiscale Usage Considerations</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#managing-input-resolutions">Managing Input Resolutions</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#performance-considerations">Performance Considerations</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encoding-scaler-outputs">Encoding Scaler Outputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-raw-scaler-outputs">Using Raw Scaler Outputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#scaling-and-encoding-on-two-different-devices">Scaling and Encoding on Two Different Devices</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#moving-data-through-the-video-pipeline">Moving Data through the Video Pipeline</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#automatic-data-movement">Automatic Data Movement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#explicit-data-movement">Explicit Data Movement</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#working-with-multiple-devices">Working with Multiple Devices</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapping-audio-streams">Mapping Audio Streams</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rebuilding-ffmpeg">Rebuilding FFmpeg</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-source-code">Using the Source Code</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#using-the-git-patch-file">Using the Git Patch File</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="using_gstreamer.html">Using GStreamer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_video_quality.html">Tuning Video Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_pipeline_latency.html">Tuning Transcode Latency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managing_compute_resources.html">Managing Compute Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploying_with_kubernetes.html">Deploying with Kubernetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="card_management.html">Card Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_feed.html">Package Feed Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Xilinx Video SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Using FFmpeg</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="using-ffmpeg">
+<h1>Using FFmpeg<a class="headerlink" href="#using-ffmpeg" title="Permalink to this heading">¶</a></h1>
+<p>This page documents how to use FFmpeg with the Xilinx Video SDK.</p>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id4">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#video-decoding" id="id5">Video Decoding</a></p></li>
+<li><p><a class="reference internal" href="#video-encoding" id="id6">Video Encoding</a></p></li>
+<li><p><a class="reference internal" href="#video-scaling" id="id7">Video Scaling</a></p></li>
+<li><p><a class="reference internal" href="#moving-data-through-the-video-pipeline" id="id8">Moving Data through the Video Pipeline</a></p></li>
+<li><p><a class="reference internal" href="#working-with-multiple-devices" id="id9">Working with Multiple Devices</a></p></li>
+<li><p><a class="reference internal" href="#mapping-audio-streams" id="id10">Mapping Audio Streams</a></p></li>
+<li><p><a class="reference internal" href="#rebuilding-ffmpeg" id="id11">Rebuilding FFmpeg</a></p></li>
+</ul>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id4">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>FFmpeg is an industry standard, open source, widely used utility for handling video. FFmpeg has many capabilities, including encoding and decoding all video compression formats, encoding and decoding audio, encapsulating, and extracting audio, and video from transport streams, and many more. The Xilinx Video SDK includes an enhanced version of FFmpeg that can communicate with the hardware accelerated transcode pipeline in Xilinx devices.</p>
+<p>The FFmpeg executable included with version 3.0 of the Video SDK is a fork of the main FFmpeg GitHub (release 4.4, tag n4.4, commid ID dc91b913b6260e85e1304c74ff7bb3c22a8c9fb1) with a Xilinx patch applied to enable the Xilinx Video SDK plugins.</p>
+<p>It is not within the scope of this document to provide an exhaustive guide on the usage of FFmpeg. Various resources can be found online, for example:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://www.ffmpeg.org/documentation.html">https://www.ffmpeg.org/documentation.html</a></p></li>
+<li><p><a class="reference external" href="http://howto-pages.org/ffmpeg/">http://howto-pages.org/ffmpeg/</a></p></li>
+</ul>
+<p>The following sections describe the options used with FFmpeg to configure the various hardware accelerators available on Xilinx devices.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="section" id="example-commands">
+<h3>Example Commands<a class="headerlink" href="#example-commands" title="Permalink to this heading">¶</a></h3>
+<p>A simple FFmpeg command for accelerated encoding with the Xilinx Video SDK will look similar to this one:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264 -i infile.mp4 -c:v mpsoc_vcu_hevc -s:v 1920x1080 -b:v 1000K -r 60 -f mp4 -y transcoded.mp4
+</pre></div>
+</div>
+<p>There are many other ways in which FFmpeg can be used to leverage the video transcoding features of Xilinx devices. Examples illustrating how to run FFmpeg for encoding, decoding, and transcoding with and without ABR scaling. To see examples of all these possibilities, refer to the <a class="reference internal" href="examples/ffmpeg/tutorials.html"><span class="doc">FFmpeg tutorials</span></a> included in this repository.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="general-ffmpeg-options">
+<h3>General FFmpeg Options<a class="headerlink" href="#general-ffmpeg-options" title="Permalink to this heading">¶</a></h3>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Descriptions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-i">
+<span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-i" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line">The input file.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-c-v">
+<span class="sig-name descname"><span class="pre">-c:v</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-c-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line">Specify the video codec.</div>
+<div class="line">This option must be set for any video stream sent to a Xilinx device.</div>
+<div class="line">Valid values are <code class="docutils literal notranslate"><span class="pre">mpsoc_vcu_hevc</span></code> (for HEVC) or <code class="docutils literal notranslate"><span class="pre">mpsoc_vcu_h264</span></code> (for H.264)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-s">
+<span class="sig-name descname"><span class="pre">-s</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-s" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line">The frame size (WxH). For example 1920x1080 or 3840x2160.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-f">
+<span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-f" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line">The container format.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-r">
+<span class="sig-name descname"><span class="pre">-r</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-r" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line">The frame rate in fps (Hz).</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-filter_complex">
+<span id="cmdoption-filter-complex"></span><span class="sig-name descname"><span class="pre">-filter_complex</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-filter_complex" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line">Used to specify ABR scaling options. Consult the section about <a class="reference internal" href="#using-the-multiscale-filter"><span class="std std-ref">Using the Xilinx Multiscale Filter</span></a> for more details on how to use this option.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-xlnx_hwdev">
+<span id="cmdoption-xlnx-hwdev"></span><span class="sig-name descname"><span class="pre">-xlnx_hwdev</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-xlnx_hwdev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line">Global option used to specify on which Xilinx device the FFmpeg job should run. Consult the <a class="reference internal" href="managing_compute_resources.html#using-explicit-device-ids"><span class="std std-ref">Using Explicit Device IDs</span></a> section for more details on how to use this option.</div>
+<div class="line">Valid values are positive integers. Default is device 0.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-lxlnx_hwdev">
+<span id="cmdoption-lxlnx-hwdev"></span><span class="sig-name descname"><span class="pre">-lxlnx_hwdev</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-lxlnx_hwdev" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line">Component-level option used to specify on which Xilinx device a specific component of the FFmpeg job should be run. When set, it overwrites the global <a class="reference internal" href="#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option for that component. Consult the <a class="reference internal" href="managing_compute_resources.html#using-explicit-device-ids"><span class="std std-ref">Using Explicit Device IDs</span></a> section for more details on how to use this option.</div>
+<div class="line">Valid values are positive integers. Default is device 0.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-latency_logging">
+<span id="cmdoption-latency-logging"></span><span class="sig-name descname"><span class="pre">-latency_logging</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-latency_logging" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line">Log latency information to syslog.</div>
+<div class="line">Valid values: 0 (disabled, default) and 1 (enabled)</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-loglevel">
+<span class="sig-name descname"><span class="pre">-loglevel</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-loglevel" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line">Configures the FFmpeg log level.</div>
+<div class="line">Setting this option to <code class="docutils literal notranslate"><span class="pre">debug</span></code> displays comprehensive debug information about the job</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="video-decoding">
+<h2><a class="toc-backref" href="#id5">Video Decoding</a><a class="headerlink" href="#video-decoding" title="Permalink to this heading">¶</a></h2>
+<p>For the complete list of features and capabilities of the Xilinx hardware decoder, refer to the <a class="reference internal" href="specs_and_features.html#video-codec-unit"><span class="std std-ref">Video Codec Unit</span></a> section of the <a class="reference internal" href="specs_and_features.html"><span class="doc">Specs and Features</span></a> chapter of the documentation.</p>
+<p>The Xilinx video decoder is leveraged in FFmpeg by setting the <a class="reference internal" href="#cmdoption-c-v"><code class="xref std std-option docutils literal notranslate"><span class="pre">-c:v</span></code></a> option to <code class="docutils literal notranslate"><span class="pre">mpsoc_vcu_hevc</span></code> for HEVC or to <code class="docutils literal notranslate"><span class="pre">mpsoc_vcu_h264</span></code> for H.264.</p>
+<p>The table below describes all the options for the Xilinx video decoder.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Descriptions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-low_latency">
+<span id="cmdoption-low-latency"></span><span class="sig-name descname"><span class="pre">-low_latency</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-low_latency" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Enable low-latency mode</strong></div>
+<div class="line">Valid values: 0 (default) and 1</div>
+<div class="line">Setting this flag to 1 reduces decoding latency when <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-splitbuff-mode"><code class="xref std std-option docutils literal notranslate"><span class="pre">splitbuff-mode</span></code></a> is also enabled. Streams containing B frames are not supported in low-latency mode.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-splitbuff_mode">
+<span id="cmdoption-splitbuff-mode"></span><span class="sig-name descname"><span class="pre">-splitbuff_mode</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-splitbuff_mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Configure decoder in split/unsplit input buffer mode</strong></div>
+<div class="line">Valid values: 0 (default) and 1</div>
+<div class="line">The split buffer mode hands-off buffers to next pipeline stage earlier. Enabling both <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-splitbuff-mode"><code class="xref std std-option docutils literal notranslate"><span class="pre">splitbuff-mode</span></code></a> and <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-low-latency"><code class="xref std std-option docutils literal notranslate"><span class="pre">low-latency</span></code></a> reduces decoding latency.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-entropy_buffers_count">
+<span id="cmdoption-entropy-buffers-count"></span><span class="sig-name descname"><span class="pre">-entropy_buffers_count</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-entropy_buffers_count" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Number of internal entropy buffers</strong></div>
+<div class="line">Valid values: 2 (default) to 10</div>
+<div class="line">Can be used to improve the performance for input streams with a high bitrate (including 4k streams) or a high number of reference frames. 2 is enough for most cases. 5 is the practical limit.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="video-encoding">
+<h2><a class="toc-backref" href="#id6">Video Encoding</a><a class="headerlink" href="#video-encoding" title="Permalink to this heading">¶</a></h2>
+<p>For the complete list of features and capabilities of the Xilinx hardware encoder, refer to the <a class="reference internal" href="specs_and_features.html#video-codec-unit"><span class="std std-ref">Video Codec Unit</span></a> section of the <a class="reference internal" href="specs_and_features.html"><span class="doc">Specs and Features</span></a> chapter of the documentation.</p>
+<p>The Xilinx video encoder is leveraged in FFmpeg by setting the <a class="reference internal" href="#cmdoption-c-v"><code class="xref std std-option docutils literal notranslate"><span class="pre">-c:v</span></code></a> option to <code class="docutils literal notranslate"><span class="pre">mpsoc_vcu_hevc</span></code> for HEVC or to <code class="docutils literal notranslate"><span class="pre">mpsoc_vcu_h264</span></code> for H.264.</p>
+<p>The table below describes all the options for the Xilinx video encoder.</p>
+<table class="colwidths-given docutils align-default">
+<colgroup>
+<col style="width: 30%" />
+<col style="width: 70%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Descriptions</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-b-v">
+<span class="sig-name descname"><span class="pre">-b:v</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-b-v" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Specify the video bitrate</strong></div>
+<div class="line">You can specify this in Mb or Kb. For example -b:v 1M or -b:v 1000K.</div>
+<div class="line">Can be specified in Mb or Kb. For example -b:v 1M or -b:v 1000K</div>
+<div class="line">The bitrate can also be adjusted dynamically. Consult the <a class="reference internal" href="tuning_video_quality.html#dyn-parameters"><span class="std std-ref">Dynamic Encoder Parameters</span></a> section for more details on how to change this option during runtime.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-max-bitrate">
+<span class="sig-name descname"><span class="pre">-max-bitrate</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-max-bitrate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Maximum bitrate</strong></div>
+<div class="line">Valid values: 0 to 3.5e+10 (default 5000000)</div>
+<div class="line">You may want to use this to limit encoding bitrate if you have not specified a <a class="reference internal" href="#cmdoption-b-v"><code class="xref std std-option docutils literal notranslate"><span class="pre">-b:v</span></code></a> bitrate</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-g">
+<span class="sig-name descname"><span class="pre">-g</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-g" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>GOP size</strong></div>
+<div class="line">Set the GOP size to 2x frame rate for a 2 second GOP</div>
+<div class="line">The maximum supported GOP size is 1000.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-aspect-ratio">
+<span class="sig-name descname"><span class="pre">-aspect-ratio</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-aspect-ratio" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Aspect ratio</strong></div>
+<div class="line">Valid values: 0 to 3 (default is 0)</div>
+<div class="line-block">
+<div class="line">(0) auto - 4:3 for SD video, 16:9 for HD video, unspecified for unknown format</div>
+<div class="line">(1) 4:3</div>
+<div class="line">(2) 16:9</div>
+<div class="line">(3) none - Aspect ratio information is not present in the stream</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-cores">
+<span class="sig-name descname"><span class="pre">-cores</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-cores" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Number of encoder cores in the Xilinx device to utilize</strong></div>
+<div class="line">Valid values: 0 to 4 (default is 0)</div>
+<div class="line-block">
+<div class="line">(0) auto</div>
+</div>
+<div class="line">The FFmpeg encoder plugin automatically determines how many encoder cores are needed to sustain real-time performance (e.g. 1 for 1080p60, 4 for 4K60). The <a class="reference internal" href="#cmdoption-cores"><code class="xref std std-option docutils literal notranslate"><span class="pre">-cores</span></code></a> option can be used to manually specify how many encoder cores are to be used for a given job. When encoding file-based clips with a resolution of 1080p60 or lower, leveraging additional cores may increase performance. This option will provide diminishing returns when multiple streams are processed on the same device. This option has no impact on live streaming use-cases as a video stream cannot be processed faster than it is received.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-slices">
+<span class="sig-name descname"><span class="pre">-slices</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-slices" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Number of slices to operate on at once within a core</strong></div>
+<div class="line">Valid values: 1 to 68 (default is 1)</div>
+<div class="line">Slices are a fundamental part of the stream format. You can operate on slices in parallel to increase speed at which a stream is processed. However, operating on multiple “slices” of video at once will have a negative impact on video quality. This option must be used when encoding 4k streams to H.264 in order to sustain real-time performance. The maximum practical value for this option is 4 since there are 4 encoder cores in a device.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-level">
+<span class="sig-name descname"><span class="pre">-level</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-level" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Encoding level restriction</strong></div>
+<div class="line">If the user does not set this value, the encoder will automatically assign appropriate level based on resolution, frame rate and bitrate</div>
+<div class="line">Valid values for H.264: 1, 1.1, 1.2, 1.3, 2, 2.1, 2.2, 3, 3.1, 3.2, 4, 4.1, 4.2, 5, 5.1, 5.2</div>
+<div class="line">Valid values for HEVC: 1, 2, 2.1, 3, 3.1, 4, 4.1, 5, 5.1, 5.2</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-profile">
+<span class="sig-name descname"><span class="pre">-profile</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-profile" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Set the encoding profile</strong></div>
+<div class="line">Valid values for H.264: baseline (66), main (77), high (100, default), high-10 (110), high-10-intra (2158)</div>
+<div class="line">Valid values for HEVC: main (0, default), main-intra (1), main-10 (2), main-10-intra (3)</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tier">
+<span class="sig-name descname"><span class="pre">-tier</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tier" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Set the encoding tier</strong> (HEVC only)</div>
+<div class="line">Valid values: 0, 1 (default is 0)</div>
+<div class="line-block">
+<div class="line">(0) Main tier</div>
+<div class="line">(1) High tier</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-bf">
+<span class="sig-name descname"><span class="pre">-bf</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-bf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Number of B frames</strong></div>
+<div class="line">Valid values: 0 to 4 (default is 2)</div>
+<div class="line">For tuning use 1 or 2 to improve video quality at the cost of latency. Consult the <a class="reference internal" href="tuning_video_quality.html#tuning-b-frames"><span class="std std-ref">B Frames</span></a> section for more details on how to use this option.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-lookahead_depth">
+<span id="cmdoption-lookahead-depth"></span><span class="sig-name descname"><span class="pre">-lookahead_depth</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-lookahead_depth" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Number of frames to lookahead for qp maps</strong></div>
+<div class="line">Valid values: 0 to 20 (default is 0)</div>
+<div class="line">The maximum lookahead depth allowed is 1/3 of the stream frame rate. When latency is tolerable, use the maximum lookahead depth to get optimum video quality to get optimum video quality. Consult the <a class="reference internal" href="tuning_video_quality.html#tuning-lookahead"><span class="std std-ref">Lookahead</span></a> section for more details on how to use this option.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-spatial-aq">
+<span class="sig-name descname"><span class="pre">-spatial-aq</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-spatial-aq" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Enable spatial AQ</strong></div>
+<div class="line">Valid values: 0, 1 (default is 1)</div>
+<div class="line-block">
+<div class="line">(0) disable</div>
+<div class="line">(1) enable - Default</div>
+</div>
+<div class="line">Consult the <a class="reference internal" href="tuning_video_quality.html#tuning-aq"><span class="std std-ref">Adaptive Quantization</span></a> section for more details on how to use this option.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-spatial-aq-gain">
+<span class="sig-name descname"><span class="pre">-spatial-aq-gain</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-spatial-aq-gain" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line">Percentage of spatial AQ gain.</div>
+<div class="line">Valid values: 0 to 100 (default is 50)</div>
+<div class="line">Consult the <a class="reference internal" href="tuning_video_quality.html#tuning-aq"><span class="std std-ref">Adaptive Quantization</span></a> section for more details on how to use this option.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-temporal-aq">
+<span class="sig-name descname"><span class="pre">-temporal-aq</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-temporal-aq" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Enable temporal AQ</strong></div>
+<div class="line">Valid values: 0, 1 (default is 1)</div>
+<div class="line-block">
+<div class="line">(0) disable</div>
+<div class="line">(1) enable - Default</div>
+</div>
+<div class="line">Consult the <a class="reference internal" href="tuning_video_quality.html#tuning-aq"><span class="std std-ref">Adaptive Quantization</span></a> section for more details on how to use this option.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-scaling-list">
+<span class="sig-name descname"><span class="pre">-scaling-list</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-scaling-list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Determine if the quantization values are auto scaled</strong></div>
+<div class="line">Valid values:  0, 1 (default is 1)</div>
+<div class="line-block">
+<div class="line">(0) flat - Flat scaling list mode, improves objective metrics</div>
+<div class="line">(1) default - Default scaling list mode, improves video quality</div>
+</div>
+<div class="line">Consult the <a class="reference internal" href="tuning_video_quality.html#tuning-scaling-list"><span class="std std-ref">Scaling List</span></a> section for more details on how to use this option.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-qp-mode">
+<span class="sig-name descname"><span class="pre">-qp-mode</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-qp-mode" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>QP control mode</strong></div>
+<div class="line">Valid values: 0 to 2 (default is 1)</div>
+<div class="line-block">
+<div class="line">(0) uniform</div>
+<div class="line">(1) auto - default</div>
+<div class="line">(2) relative_load</div>
+</div>
+<div class="line">For best objective scores use <code class="docutils literal notranslate"><span class="pre">uniform</span></code>. For best subjective quality use <code class="docutils literal notranslate"><span class="pre">auto</span></code> or <code class="docutils literal notranslate"><span class="pre">relative_load</span></code>. Consult the <a class="reference internal" href="tuning_video_quality.html#tuning-aq"><span class="std std-ref">Adaptive Quantization</span></a> section for more details on how to use this option.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-control-rate">
+<span class="sig-name descname"><span class="pre">-control-rate</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-control-rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Set the Rate Control mode</strong></div>
+<div class="line">Valid values: 0 to 3 (default is 1)</div>
+<div class="line-block">
+<div class="line">(0) Constant QP</div>
+<div class="line">(1) Constant Bitrate - default</div>
+<div class="line">(2) Variable Bitrate</div>
+<div class="line">(3) Low Latency</div>
+</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-min-qp">
+<span class="sig-name descname"><span class="pre">-min-qp</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-min-qp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Minimum QP value allowed for rate control</strong></div>
+<div class="line">Valid values: 0 to 51 (default is 0)</div>
+<div class="line">This option has no effect when <a class="reference internal" href="#cmdoption-control-rate"><code class="xref std std-option docutils literal notranslate"><span class="pre">-control-rate</span></code></a> is set to Constant QP (0).</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-max-qp">
+<span class="sig-name descname"><span class="pre">-max-qp</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-max-qp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Maximum QP value allowed for rate control</strong></div>
+<div class="line">Valid values: 0 to 51 (default is 51)</div>
+<div class="line">This option has no effect when <a class="reference internal" href="#cmdoption-control-rate"><code class="xref std std-option docutils literal notranslate"><span class="pre">-control-rate</span></code></a> is set to Constant QP (0).</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-slice-qp">
+<span class="sig-name descname"><span class="pre">-slice-qp</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-slice-qp" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Slice QP</strong></div>
+<div class="line">Valid values: -1 to 51 (default is -1)</div>
+<div class="line-block">
+<div class="line">(-1) auto</div>
+</div>
+<div class="line">This sets the QP values when <a class="reference internal" href="#cmdoption-control-rate"><code class="xref std std-option docutils literal notranslate"><span class="pre">-control-rate</span></code></a> is Constant QP (0). The specified QP value applies to all the slices. This parameter can also be used to provide QP for the first Intra frame when <a class="reference internal" href="#cmdoption-lookahead_depth"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lookahead_depth</span></code></a> = 0. When set to -1, the QP for first Intra frame is internally calculated.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-periodicity-idr">
+<span class="sig-name descname"><span class="pre">-periodicity-idr</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-periodicity-idr" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>IDR frame frequency</strong></div>
+<div class="line">Valid values: -1 to INT_MAX32 (default is -1)</div>
+<div class="line">If this option is not specified, a closed GOP is generated: the IDR periodicity is aligned with the GOP size and IDR frame is inserted at the start of each GOP. To insert IDR frames less frequently, use a value which is a multiple of the GOP size.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-force_key_frames">
+<span id="cmdoption-force-key-frames"></span><span class="sig-name descname"><span class="pre">-force_key_frames</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-force_key_frames" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Force insertion of IDR frames</strong></div>
+<div class="line">Valid values: time[,time…] or expr:expr</div>
+<div class="line">Force an IDR frame to be inserted at the specified frame number(s). Consult the <a class="reference internal" href="tuning_video_quality.html#dyn-idr-frame"><span class="std std-ref">Dynamic IDR Frame Insertion</span></a> section for more details on how to use this option.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-expert-options">
+<span class="sig-name descname"><span class="pre">-expert-options</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-expert-options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Set advanced encoding options</strong></div>
+<div class="line">Valid values: dynamic-params=&lt;options file&gt;</div>
+<div class="line">Consult the <a class="reference internal" href="tuning_video_quality.html#dyn-parameters"><span class="std std-ref">Dynamic Encoder Parameters</span></a> section for more details on how to use this option.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-tune-metrics">
+<span class="sig-name descname"><span class="pre">-tune-metrics</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-tune-metrics" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Enable tuning video quality for objective metrics</strong></div>
+<div class="line">Valid value: 0, 1 (default is 0)</div>
+<div class="line-block">
+<div class="line">(0) disable - Disable tune metrics</div>
+<div class="line">(1) enable - Enable tune metrics</div>
+</div>
+<div class="line">Enabling <a class="reference internal" href="#cmdoption-tune-metrics"><code class="xref std std-option docutils literal notranslate"><span class="pre">-tune-metrics</span></code></a> automatically forces <a class="reference internal" href="#cmdoption-qp-mode"><code class="xref std std-option docutils literal notranslate"><span class="pre">-qp-mode</span></code></a> = <code class="docutils literal notranslate"><span class="pre">uniform</span></code> and <a class="reference internal" href="#cmdoption-scaling-list"><code class="xref std std-option docutils literal notranslate"><span class="pre">-scaling-list</span></code></a> = <code class="docutils literal notranslate"><span class="pre">flat</span></code>, overwritting any explicit user settings of two values. This option improves objective quality by providing equal importance to all the blocks in the frame: the same quantization parameters and transform coefficients are used for all of them. This option should be disabled when measuring subjective quality or visually checking the video. This option should be enabled when measuring objective metrics such as PSNR/SSIM/VMAF.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-vsync">
+<span class="sig-name descname"><span class="pre">-vsync</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-vsync" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Add a vsync frame</strong></div>
+<div class="line">Valid values: 0, 1</div>
+<div class="line">Set this to 0 to prevent extra frames being added.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-disable-pipeline">
+<span class="sig-name descname"><span class="pre">-disable-pipeline</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-disable-pipeline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Enable Ultra Low Latency (ULL) encoding</strong></div>
+<div class="line">Valid values: 0, 1 (default is 0)</div>
+<div class="line">Set this to 1 to enable ultra low-latency encoding. Consult the <a class="reference internal" href="tuning_pipeline_latency.html#latency-tuning"><span class="std std-ref">Tuning Transcode Latency</span></a> section for more details.</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-avc-lowlat">
+<span class="sig-name descname"><span class="pre">-avc-lowlat</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-avc-lowlat" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>AVC Ultra Low Latency (ULL) density tuning</strong></div>
+<div class="line">Valid values: 0, 1 (default is 0)</div>
+<div class="line">This option only takes effect, when <a class="reference internal" href="#cmdoption-disable-pipeline"><code class="xref std std-option docutils literal notranslate"><span class="pre">-disable-pipeline</span></code></a> is enabled. Set this to 0 to allow for high density encoding, for resolutions up to 1080p60. Set this to 1 to allow for low density encoding, for resolutions up to 4kp60. Consult the <a class="reference internal" href="tuning_pipeline_latency.html#latency-tuning"><span class="std std-ref">Tuning Transcode Latency</span></a> section for more details.</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-dynamic-gop">
+<span class="sig-name descname"><span class="pre">-dynamic-gop</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-dynamic-gop" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Enable Dynamic GOP</strong></div>
+<div class="line">Valid values: 0, 1 (default is 0)</div>
+<div class="line">Set this to 1 to enable dynamic insertion of B frames based on motion vectors. Requires a lookahead depth of at least 5. Consult the <a class="reference internal" href="tuning_video_quality.html#dynamic-gop"><span class="std std-ref">Dynamic GOP</span></a> section for more details.</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="video-scaling">
+<span id="using-ffmpeg-for-video-scaling"></span><h2><a class="toc-backref" href="#id7">Video Scaling</a><a class="headerlink" href="#video-scaling" title="Permalink to this heading">¶</a></h2>
+<p>The Xilinx hardware scaler is leveraged in FFmpeg by using the <a class="reference internal" href="#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> complex filter and the <a class="reference external" href="https://ffmpeg.org/ffmpeg-filters.html#Filtergraph-syntax-1">FFmpeg filter graph syntax</a>. This section describes the options of the <a class="reference internal" href="#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> complex filter.</p>
+<p>For optimal visual quality in scaling operations, refer to <a class="reference internal" href="tuning_video_quality.html#tuning-abr-scaling"><span class="std std-ref">ABR Scaling</span></a> section of the Xilinx Video SDK user guide.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-multiscale_xma">
+<span id="cmdoption-arg-multiscale-xma"></span><span class="sig-name descname"><span class="pre">multiscale_xma</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-multiscale_xma" title="Permalink to this definition">¶</a></dt>
+<dd><p>Filter implementing the Xilinx ABR multiscaler. Takes one input and up to 8 output streams. The complete list of options is described below.</p>
+</dd></dl>
+
+<table class="colwidths-given docutils align-default" id="id3">
+<caption><span class="caption-text">Multiscale Filter Options</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 75%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Options</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-outputs">
+<span class="sig-name descname"><span class="pre">outputs</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-outputs" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Specify the number of scaler outputs</strong></div>
+<div class="line">Valid values are integers between 1 and 8</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-out_-N-_width">
+<span id="cmdoption-arg-out-n-width"></span><span class="sig-name descname"><span class="pre">out_{N}_width</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-out_-N-_width" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Specify the width of each of the scaler outputs</strong></div>
+<div class="line">The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs specified with <a class="reference internal" href="#cmdoption-arg-outputs"><code class="xref std std-option docutils literal notranslate"><span class="pre">outputs</span></code></a></div>
+<div class="line">Valid values are integers between 3840 and 128, in multiples of 4</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-out_-N-_height">
+<span id="cmdoption-arg-out-n-height"></span><span class="sig-name descname"><span class="pre">out_{N}_height</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-out_-N-_height" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Specify the height of each of the scaler outputs</strong></div>
+<div class="line">The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs specified with <a class="reference internal" href="#cmdoption-arg-outputs"><code class="xref std std-option docutils literal notranslate"><span class="pre">outputs</span></code></a></div>
+<div class="line">Valid values are integers between 2160 and 128, in multiples of 4</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-out_-N-_rate">
+<span id="cmdoption-arg-out-n-rate"></span><span class="sig-name descname"><span class="pre">out_{N}_rate</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-out_-N-_rate" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Specify the frame rate of each of the scaler outputs</strong></div>
+<div class="line">By default, the scaler uses the input stream frame rate for all outputs. While the encoder supports frame dropping with the -r option, there is also hardware support in the scaler for dropping frames. Dropping frames in the scaler is preferred since it saves scaler bandwidth, allowing the scaler and encoder to operate more efficiently.</div>
+<div class="line">The output number {N} must be an integer value between 1 and 8, and must not exceed the number of outputs specified with <a class="reference internal" href="#cmdoption-arg-outputs"><code class="xref std std-option docutils literal notranslate"><span class="pre">outputs</span></code></a></div>
+<div class="line">Valid values: <code class="docutils literal notranslate"><span class="pre">full</span></code> and <code class="docutils literal notranslate"><span class="pre">half</span></code> (default <code class="docutils literal notranslate"><span class="pre">full</span></code>). The first output has to be at full rate (<code class="docutils literal notranslate"><span class="pre">out_1_rate=full</span></code>).</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-enable_pipeline">
+<span id="cmdoption-arg-enable-pipeline"></span><span class="sig-name descname"><span class="pre">enable_pipeline</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-enable_pipeline" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</td>
+<td><div class="line-block">
+<div class="line"><strong>Enable pipelining in multiscaler</strong></div>
+<div class="line">Pipelining provides additional performance at the cost of additional latency (2 frames). By default, pipelining is automatically controlled based on where the scaler input is coming from. If the input is coming from the host, pipelining is enabled. If the input is coming from the decoder then pipelining is disabled. Explicitly enabling pipelining has benefits in two situations: in a 2-device use cases where the output of the scaler is transfered to the host; in zero copy 4K ABR ladder use cases with multiple renditions.</div>
+<div class="line">Valid values: -1 to 1 (default -1)</div>
+<div class="line">auto (-1)</div>
+<div class="line">disabled (0)</div>
+<div class="line">enabled (1)</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<div class="section" id="using-the-multiscale-filter">
+<span id="id1"></span><h3>Using the Multiscale Filter<a class="headerlink" href="#using-the-multiscale-filter" title="Permalink to this heading">¶</a></h3>
+<p>The filter graph specification for the <a class="reference internal" href="#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> filter should be constructed in the following way:</p>
+<ul class="simple">
+<li><p>Add the <a class="reference internal" href="#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> filter to the graph</p></li>
+<li><p>Set the number of scaler outputs</p></li>
+<li><p>Set the width, height, and rate settings for each scaler output</p></li>
+<li><p>Define the name each scaler output</p></li>
+<li><p>If the outputs are not to encoded on the device, add <a class="reference internal" href="#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filters to the filter graph to copy the frames back to the host and convert them to AV frames.</p></li>
+</ul>
+<p>The following example shows a complete command to decode, scale and encode to five different resolutions:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264 -i input.mp4 \
+  -filter_complex &quot; \
+    multiscale_xma=outputs=4: \
+    out_1_width=1280: out_1_height=720: out_1_rate=full: \
+    out_2_width=848:  out_2_height=480: out_2_rate=half: \
+    out_3_width=640:  out_3_height=360: out_3_rate=half: \
+    out_4_width=288:  out_4_height=160: out_4_rate=half  \
+    [a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]&quot; \
+  -map &quot;[aa]&quot;  -b:v 4M    -c:v mpsoc_vcu_h264 -f mp4 -y ./scaled_720p60.mp4 \
+  -map &quot;[abb]&quot; -b:v 3M    -c:v mpsoc_vcu_h264 -f mp4 -y ./scaled_720p30.mp4 \
+  -map &quot;[b]&quot;   -b:v 2500K -c:v mpsoc_vcu_h264 -f mp4 -y ./scaled_480p30.mp4 \
+  -map &quot;[c]&quot;   -b:v 1250K -c:v mpsoc_vcu_h264 -f mp4 -y ./scaled_360p30.mp4 \
+  -map &quot;[d]&quot;   -b:v 625K  -c:v mpsoc_vcu_h264 -f mp4 -y ./scaled_288p30.mp4
+</pre></div>
+</div>
+<p>This example can also be found in the FFmpeg introductory tutorials: <a class="reference internal" href="examples/ffmpeg/tutorials.html#transcode-with-abr-ladder"><span class="std std-ref">Transcode With Multiple-Resolution Outputs</span></a>.</p>
+</div>
+<div class="section" id="multiscale-usage-considerations">
+<h3>Multiscale Usage Considerations<a class="headerlink" href="#multiscale-usage-considerations" title="Permalink to this heading">¶</a></h3>
+<div class="section" id="managing-input-resolutions">
+<h4>Managing Input Resolutions<a class="headerlink" href="#managing-input-resolutions" title="Permalink to this heading">¶</a></h4>
+<p>The decoder supports resolutions which are multiples of 2, but the multiscaler supports resolutions which are multiples of 4. Therefore, pipelines leveraging both the decoder and the multiscaler will only work for streams with resolutions which are multiples of 4.</p>
+<p>If the resolution out of the decoder is not a multiple of 4, the decoded output can be copied back to the host using the <a class="reference internal" href="#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filter and can be scaled to a suitable resolution using a software filter.</p>
+</div>
+<div class="section" id="performance-considerations">
+<h4>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permalink to this heading">¶</a></h4>
+<p>Encoded input streams with a high bitrate or with a high number of reference frames can degrade the performance of an ABR ladder. The <a class="reference internal" href="#cmdoption-entropy_buffers_count"><code class="xref std std-option docutils literal notranslate"><span class="pre">-entropy_buffers_count</span></code></a> decoder option can be used to help with this. A value of 2 is enough for most cases, 5 is the practical limit.</p>
+</div>
+<div class="section" id="encoding-scaler-outputs">
+<h4>Encoding Scaler Outputs<a class="headerlink" href="#encoding-scaler-outputs" title="Permalink to this heading">¶</a></h4>
+<p>The outputs of an ABR ladder can be encoded on the device using either the <code class="docutils literal notranslate"><span class="pre">mpsoc_vcu_h264</span></code> or the <code class="docutils literal notranslate"><span class="pre">mpsoc_vcu_hevc</span></code> codec. All outputs must be encoded using the same codec.</p>
+</div>
+<div class="section" id="using-raw-scaler-outputs">
+<h4>Using Raw Scaler Outputs<a class="headerlink" href="#using-raw-scaler-outputs" title="Permalink to this heading">¶</a></h4>
+<p>To return raw video outputs from the ABR ladder, use the <a class="reference internal" href="#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filter to copy the frames from the device to the host and convert them to AV frames. The converted AV frames can then be used in FFmpeg software filters or directly saved to file as shown in this command:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264 -i input.mp4 \
+-filter_complex &quot; \
+  multiscale_xma=outputs=4: \
+  out_1_width=1280: out_1_height=720:  out_1_rate=full: \
+  out_2_width=848:  out_2_height=480:  out_2_rate=half: \
+  out_3_width=640:  out_3_height=360:  out_3_rate=half: \
+  out_4_width=288:  out_4_height=160:  out_4_rate=half  \
+  [a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]; \
+  [aa]xvbm_convert[aa1];[abb]xvbm_convert[abb1];[b]xvbm_convert[b1];[c]xvbm_convert[c1]; \
+  [d]xvbm_convert[d1]&quot; \
+-map &quot;[aa1]&quot;  -pix_fmt yuv420p -f rawvideo ./scaled_720p60.yuv \
+-map &quot;[abb1]&quot; -pix_fmt yuv420p -f rawvideo ./scaled_720p30.yuv \
+-map &quot;[b1]&quot;   -pix_fmt yuv420p -f rawvideo ./scaled_480p30.yuv \
+-map &quot;[c1]&quot;   -pix_fmt yuv420p -f rawvideo ./scaled_360p30.yuv \
+-map &quot;[d1]&quot;   -pix_fmt yuv420p -f rawvideo ./scaled_288p30.yuv
+</pre></div>
+</div>
+<p>This example can also be found in the FFmpeg introductory tutorials: <a class="reference internal" href="examples/ffmpeg/tutorials.html#decode-and-scale-only"><span class="std std-ref">Decode Only Into Multiple-Resolution Outputs</span></a>.</p>
+</div>
+<div class="section" id="scaling-and-encoding-on-two-different-devices">
+<h4>Scaling and Encoding on Two Different Devices<a class="headerlink" href="#scaling-and-encoding-on-two-different-devices" title="Permalink to this heading">¶</a></h4>
+<p>The Xilinx Video SDK supports up to 32 scaled outputs streams per device, up to a maximum total equivalent bandwidth of 4kp60. For some use cases, such as 4K ladders or 1080p ladders many outputs, it may not be possible to scale or encode all streams on a single device. In this situation, it is possible to split the job across two devices and run part of job on one device and the other part on another device. This accomplished by using the <a class="reference internal" href="#cmdoption-lxlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lxlnx_hwdev</span></code></a> option which allows specifying the device on which a specific job component (decoder, scaler, encoder) should be run.</p>
+<p>Consult the <a class="reference internal" href="managing_compute_resources.html#using-explicit-device-ids"><span class="std std-ref">Using Explicit Device IDs</span></a> section for more details on how to use the <a class="reference internal" href="#cmdoption-lxlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lxlnx_hwdev</span></code></a> option and work with multiple devices.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+</div>
+<div class="section" id="moving-data-through-the-video-pipeline">
+<span id="ffmpeg-data-movement"></span><h2><a class="toc-backref" href="#id8">Moving Data through the Video Pipeline</a><a class="headerlink" href="#moving-data-through-the-video-pipeline" title="Permalink to this heading">¶</a></h2>
+<div class="section" id="automatic-data-movement">
+<h3>Automatic Data Movement<a class="headerlink" href="#automatic-data-movement" title="Permalink to this heading">¶</a></h3>
+<p>The Xilinx Video SDK takes care of moving data efficiently through the FFmpeg pipeline in these situations:</p>
+<p>Individual operations:</p>
+<ul class="simple">
+<li><p>Decoder input: encoded video is automatically sent from the host to the device</p></li>
+<li><p>Scaler input: raw video is automatically sent from the host to the device</p></li>
+<li><p>Encoder input: raw video is automatically sent from the host to the device</p></li>
+<li><p>Encoder output: encoded video is automatically sent from the device to the host</p></li>
+</ul>
+<p>Multistage pipelines</p>
+<ul class="simple">
+<li><p>Pipelines with hardware accelerators only (such as transcoding with ABR ladder): the video frames remain on the device and are passed from one accelerator to the next, thereby avoiding unnecessary data movement between the host and the device</p></li>
+<li><p>Pipelines with software filters: when using the ouput of the decoder or the scaler with a FFmpeg software filter, the video frames are automatically copied back to the host, as long as the software filter performs frame cloning. Examples of such filters include <code class="docutils literal notranslate"><span class="pre">fps</span></code> and <code class="docutils literal notranslate"><span class="pre">split</span></code>.</p></li>
+</ul>
+</div>
+<div class="section" id="explicit-data-movement">
+<span id="ffmpeg-explicit-data-movement"></span><h3>Explicit Data Movement<a class="headerlink" href="#explicit-data-movement" title="Permalink to this heading">¶</a></h3>
+<p>It is necessary to explicitly copy video frames from the device to the host in these situations:</p>
+<ul class="simple">
+<li><p>Writing the output of the decoder or the scaler to file.</p></li>
+<li><p>Using the output of the decoder or the scaler with a FFmpeg software filter which does not perform frame cloning.</p></li>
+<li><p>Performing different operations on different devices, in which case the video frames must be copied from the first device to the host and then from the host to the second device.</p></li>
+</ul>
+<p>This is done using the <a class="reference internal" href="#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filter.</p>
+<p><strong>IMPORTANT</strong>: Failing to use the <a class="reference internal" href="#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filter will result in garbage data being propagated throught the processing pipeline.</p>
+<dl class="std option">
+<dt class="sig sig-object std" id="cmdoption-arg-xvbm_convert">
+<span id="cmdoption-arg-xvbm-convert"></span><span class="sig-name descname"><span class="pre">xvbm_convert</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-arg-xvbm_convert" title="Permalink to this definition">¶</a></dt>
+<dd><p>FFmpeg filter which converts and copies a XVBM frame on the device to an AV frame on the host. The pixel format of the frame on the host depends on the pixel format of the frame on the device. If the frame on the device is 8-bit, the frame will be stored as nv12 on the host. If the frame on the device is 10-bit, the frame will be stored as xv15 on the host. The <a class="reference internal" href="#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filter does not support other formats and does not support converting 8-bit frames to 10-bit frames.</p>
+</dd></dl>
+
+<p>Examples using the <a class="reference internal" href="#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filter can be found here:</p>
+<ul class="simple">
+<li><p>FFmpeg tutorials <a class="reference internal" href="examples/ffmpeg/tutorials.html#decode-only"><span class="std std-ref">Decode Only</span></a> and <a class="reference internal" href="examples/ffmpeg/tutorials.html#decode-and-scale-only"><span class="std std-ref">Decode Only Into Multiple-Resolution Outputs</span></a></p></li>
+<li><p>FFmpeg examples with <a class="reference internal" href="examples/ffmpeg/filters.html"><span class="doc">Software Filters</span></a></p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+</div>
+<div class="section" id="working-with-multiple-devices">
+<span id="ffmpeg-multiple-devices"></span><h2><a class="toc-backref" href="#id9">Working with Multiple Devices</a><a class="headerlink" href="#working-with-multiple-devices" title="Permalink to this heading">¶</a></h2>
+<p>By default (if no device identifier is specified) a job is submitted to device 0. When running large jobs or multiple jobs in parallel, device 0 is bound to run out of resources rapidly and additional jobs will error out due to insufficient resources.</p>
+<p>By using the <a class="reference internal" href="#cmdoption-lxlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lxlnx_hwdev</span></code></a> and <a class="reference internal" href="#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> options, the different components (decoder, scaler, encoder) of a job can be individually submitted to a specific device. This makes it easy and straightforward to leverage the entire video acceleration capacity of your system, regardless of the number of cards and devices.</p>
+<p>Consult the <a class="reference internal" href="managing_compute_resources.html#using-explicit-device-ids"><span class="std std-ref">Using Explicit Device IDs</span></a> section for more details on how to work with multiple devices.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="mapping-audio-streams">
+<span id="id2"></span><h2><a class="toc-backref" href="#id10">Mapping Audio Streams</a><a class="headerlink" href="#mapping-audio-streams" title="Permalink to this heading">¶</a></h2>
+<p>When the FFmpeg job has a single input and a single output, the audio stream of the input is automatically mapped to the output video.</p>
+<p>When the FFmpeg job has multiple outputs, FFmpeg must be explicitely told which audio stream to map to each of the output streams. The example below implements an transcoding pipeline with an ABR ladder. The input audio stream is split into 4 different channels using the <code class="docutils literal notranslate"><span class="pre">asplit</span></code> filter, one for each video output. Each audio channel is then uniquely mapped to one of the output video streams using the <code class="docutils literal notranslate"><span class="pre">-map</span></code> option.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264 -i input.mp4
+    -filter_complex &quot;multiscale_xma=outputs=4:
+    out_1_width=1280: out_1_height=720:  out_1_rate=full:
+    out_2_width=848:  out_2_height=480:  out_2_rate=full:
+    out_3_width=640:  out_3_height=360:  out_3_rate=full:
+    out_4_width=288:  out_4_height=160:  out_4_rate=full
+    [vid1][vid2][vid3][vid4]; [0:1]asplit=outputs=4[aud1][aud2][aud3][aud4]&quot; \
+    -map &quot;[vid1]&quot; -b:v 3M    -c:v mpsoc_vcu_h264 -map &quot;[aud1]&quot; -c:a aac -f mp4 -y output1.mp4
+    -map &quot;[vid2]&quot; -b:v 2500K -c:v mpsoc_vcu_h264 -map &quot;[aud2]&quot; -c:a aac -f mp4 -y output2.mp4
+    -map &quot;[vid3]&quot; -b:v 1250K -c:v mpsoc_vcu_h264 -map &quot;[aud3]&quot; -c:a aac -f mp4 -y output3.mp4
+    -map &quot;[vid4]&quot; -b:v 625K  -c:v mpsoc_vcu_h264 -map &quot;[aud4]&quot; -c:a aac -f mp4 -y output4.mp4
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="rebuilding-ffmpeg">
+<span id="rebuild-ffmpeg"></span><h2><a class="toc-backref" href="#id11">Rebuilding FFmpeg</a><a class="headerlink" href="#rebuilding-ffmpeg" title="Permalink to this heading">¶</a></h2>
+<p>There are two methods for rebuilding FFmpeg with the Xilinx Video SDK plugins enabled:</p>
+<ul class="simple">
+<li><p>Using the complete source code</p></li>
+<li><p>Using the git patch file</p></li>
+</ul>
+<div class="section" id="using-the-source-code">
+<h3>Using the Source Code<a class="headerlink" href="#using-the-source-code" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference external" href="https://github.com/Xilinx/app-ffmpeg4-xma/tree/U30_GA_3">sources/app-ffmpeg4-xma</a> submodule contains the entire source code for the FFmpeg executable included with the Video SDK. This is a fork of the main FFmpeg GitHub (<a class="reference external" href="https://github.com/Xilinx/app-ffmpeg4-xma/commit/dc91b913b6260e85e1304c74ff7bb3c22a8c9fb1">release 4.4, tag n4.4, commid ID dc91b913b6260e85e1304c74ff7bb3c22a8c9fb1</a>) with a Xilinx patch applied to enable the Xilinx Video SDK plugins. Due to licensing restrictions, the FFmpeg executable included in the Video SDK is enabled with the Xilinx Video SDK plugins only.</p>
+<p>You can rebuild the FFmpeg executable with optional plugins by following the instructions below. Additionally, comprehensive instructions for compiling FFmpeg can be found <a class="reference external" href="https://trac.ffmpeg.org/wiki/CompilationGuide">on the FFmpeg wiki page</a>.</p>
+<ol class="arabic">
+<li><p>Make sure <code class="docutils literal notranslate"><span class="pre">nasm</span></code> and <code class="docutils literal notranslate"><span class="pre">yasm</span></code> are installed on your machine.</p></li>
+<li><p>Navigate the top of the Xilinx Video SDK repository:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd /path/to/video-sdk
+</pre></div>
+</div>
+</li>
+<li><p>Make sure the sources have been downloaded from the repository:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git submodule update --init --recursive
+</pre></div>
+</div>
+</li>
+<li><p>Navigate to the directory containing the FFmpeg sources:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd sources/app-ffmpeg4-xma
+</pre></div>
+</div>
+</li>
+<li><p>Optionally install FFmpeg plugins you wish to enable (either from source or from your package manager like <code class="docutils literal notranslate"><span class="pre">yum</span></code> or <code class="docutils literal notranslate"><span class="pre">apt</span></code>). For example: libx264, or libx265.</p></li>
+<li><p>Configure FFmpeg with <code class="docutils literal notranslate"><span class="pre">--enable</span></code> flags to enable the desired plugins. The <code class="docutils literal notranslate"><span class="pre">-enable-libxma2api</span></code> flag enables the Xilinx Video SDK plugins. The command below will configure the Makefile to install the custom FFmpeg in the <code class="file docutils literal notranslate"><span class="pre">/tmp/ffmpeg</span></code> directory. To install in another location, modify the <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> and <code class="docutils literal notranslate"><span class="pre">--datadir</span></code> options:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./configure --prefix=/tmp/ffmpeg --datadir=/tmp/ffmpeg/etc  --enable-x86asm --enable-libxma2api --disable-doc --enable-libxvbm --enable-libxrm --extra-cflags=-I/opt/xilinx/xrt/include/xma2 --extra-ldflags=-L/opt/xilinx/xrt/lib --extra-libs=-lxma2api --extra-libs=-lxrt_core --extra-libs=-lxrt_coreutil --extra-libs=-lpthread --extra-libs=-ldl --disable-static --enable-shared
+</pre></div>
+</div>
+</li>
+<li><p>Build and install the FFmpeg executable:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make -j &amp;&amp; sudo make install
+</pre></div>
+</div>
+</li>
+<li><p>The <code class="file docutils literal notranslate"><span class="pre">/opt/xilinx/xcdr/setup.sh</span></code> script puts the Xilinx-provided FFmpeg in the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> environment variable. To use the newly built FFmpeg, update your <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> or provide the full path to the custom-built executable.</p></li>
+</ol>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</div>
+<div class="section" id="using-the-git-patch-file">
+<h3>Using the Git Patch File<a class="headerlink" href="#using-the-git-patch-file" title="Permalink to this heading">¶</a></h3>
+<p>The <a class="reference external" href="https://github.com/Xilinx/video-sdk/tree/v3.0/sources/app-ffmpeg4-xma-patch">sources/app-ffmpeg4-xma-patch</a> folder contains a git patch file which can be applied to a FFmpeg fork to enable the Xilinx Video SDK plugins.</p>
+<p>This patch is intended to be applied to FFmpeg n4.4. As such, applying this patch to earlier or later versions of FFmpeg may require edits to successfully merge these changes and represent untested configurations.</p>
+<p>The patch makes edits to FFmpeg and adds new plugins to FFmpeg to initialize, configure and use Xilinx video accelerators.</p>
+<p>The patch can be applied to a FFmpeg fork as follows:</p>
+<ol class="arabic">
+<li><p>Clone the n4.4 version of FFmpeg:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/FFmpeg/FFmpeg.git -b n4.4
+</pre></div>
+</div>
+</li>
+<li><p>After the git clone, you will have a directory named FFmpeg. Enter this directory:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cd FFmpeg
+</pre></div>
+</div>
+</li>
+<li><p>Copy the patch file into the FFmpeg directory:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cp /path/to/sources/app-ffmpeg4-xma-patch/0001-Updates-to-ffmpeg-n4.4-to-support-Alveo-U30-SDK-v3.patch .
+</pre></div>
+</div>
+</li>
+<li><p>Apply the patch:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git am 0001-Updates-to-ffmpeg-n4.4-to-support-Alveo-U30-SDK-v3.patch --ignore-whitespace --ignore-space-change
+</pre></div>
+</div>
+</li>
+<li><p>Optionally install FFmpeg plugins you wish to enable (either from source or from your package manager like <code class="docutils literal notranslate"><span class="pre">yum</span></code> or <code class="docutils literal notranslate"><span class="pre">apt</span></code>). For example: libx264, or libx265.</p></li>
+<li><p>Configure FFmpeg with <code class="docutils literal notranslate"><span class="pre">--enable</span></code> flags to enable the desired plugins. The <code class="docutils literal notranslate"><span class="pre">-enable-libxma2api</span></code> flag enables the Xilinx Video SDK plugins. The command below will configure the Makefile to install the custom FFmpeg in the <code class="file docutils literal notranslate"><span class="pre">/tmp/ffmpeg</span></code> directory. To install in another location, modify the <code class="docutils literal notranslate"><span class="pre">--prefix</span></code> and <code class="docutils literal notranslate"><span class="pre">--datadir</span></code> options:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./configure --prefix=/tmp/ffmpeg --datadir=/tmp/ffmpeg/etc  --enable-x86asm --enable-libxma2api --disable-doc --enable-libxvbm --enable-libxrm --extra-cflags=-I/opt/xilinx/xrt/include/xma2 --extra-ldflags=-L/opt/xilinx/xrt/lib --extra-libs=-lxma2api --extra-libs=-lxrt_core --extra-libs=-lxrt_coreutil --extra-libs=-lpthread --extra-libs=-ldl --disable-static --enable-shared
+</pre></div>
+</div>
+</li>
+<li><p>Build and install the FFmpeg executable:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make -j &amp;&amp; sudo make install
+</pre></div>
+</div>
+</li>
+<li><p>The <code class="file docutils literal notranslate"><span class="pre">/opt/xilinx/xcdr/setup.sh</span></code> script puts the Xilinx-provided FFmpeg in the <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> environment variable. To use the newly built FFmpeg, update your <span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">PATH</span></code> or provide the full path to the custom-built executable.</p></li>
+</ol>
+</div>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="specs_and_features.html" class="btn btn-neutral float-left" title="Specs and Features of the Xilinx Video SDK" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="using_gstreamer.html" class="btn btn-neutral float-right" title="Using GStreamer" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on March 27, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

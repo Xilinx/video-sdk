@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>GStreamer Compositor Application &mdash; Xilinx Video SDK 3.0 (Production) documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+        <script src="../../_static/jquery.js"></script>
+        <script src="../../_static/underscore.js"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+        <script src="../../_static/doctools.js"></script>
+        <script src="../../_static/sphinx_highlight.js"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="GStreamer ABR Ladder Application" href="xabrladder.html" />
+    <link rel="prev" title="Video Quality Examples" href="quality_analysis.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../index.html" class="icon icon-home"> Xilinx Video SDK
+            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started_on_prem.html">On Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started_on_vt1.html">Amazon EC2 VT1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container_setup.html">Container Setup</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../examples.html">Tutorials and Examples</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../ffmpeg/tutorials.html">FFmpeg Introductory Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ffmpeg/filters.html">FFmpeg Software Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../ffmpeg/quality_analysis.html">FFmpeg Video Quality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="tutorials.html">GStreamer Introductory Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">GStreamer Software Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quality_analysis.html">GStreamer Video Quality</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">GStreamer Compositor</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#host-system-requirement">Host System Requirement</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="xabrladder.html">GStreamer ABR Ladder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../xma/xma_apps.html">C-Based Applications</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../specs_and_features.html">Specs and Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using_ffmpeg.html">Using FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using_gstreamer.html">Using GStreamer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tuning_video_quality.html">Tuning Video Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tuning_pipeline_latency.html">Tuning Transcode Latency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../managing_compute_resources.html">Managing Compute Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deploying_with_kubernetes.html">Deploying with Kubernetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../card_management.html">Card Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../package_feed.html">Package Feed Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Xilinx Video SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../examples.html">Tutorials and Examples</a> &raquo;</li>
+      <li>GStreamer Compositor Application</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="gstreamer-compositor-application">
+<h1>GStreamer Compositor Application<a class="headerlink" href="#gstreamer-compositor-application" title="Permalink to this heading">¶</a></h1>
+<div class="contents local topic" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
+<li><p><a class="reference internal" href="#host-system-requirement" id="id2">Host System Requirement</a></p></li>
+<li><p><a class="reference internal" href="#usage" id="id3">Usage</a></p></li>
+<li><p><a class="reference internal" href="#examples" id="id4">Examples</a></p></li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+<p>The <strong class="program">/opt/xilinx/vvas/bin/vvas_xcompositor</strong> application is a command line utility which implements the GStreamer video transcoding pipeline described in the diagram below. This application expects four input video files 60(mp4 with H.264/H.265 or H.264/H.265 elementary stream). The resolution of each input cannot exceed 1080p. The application creates an output stream by first composing the four inputs in a 2x2 grid, then by adding an optional logo and lastly by inserting a time stamp.</p>
+<p>This application is installed through the xilinx-alveo-u30-gstreamer package. If this package is not present on your system, install it by following the steps described in the <a class="reference internal" href="../../package_feed.html#package-feed"><span class="std std-ref">package feed</span></a> page.</p>
+<a class="reference internal image-reference" href="../../_images/gst_xcompositor.png"><img alt="GStreamer pipeline of the vvas_xcompositor application" class="align-center" src="../../_images/gst_xcompositor.png" style="width: 1024px;" /></a>
+</div>
+<div class="section" id="host-system-requirement">
+<h2><a class="toc-backref" href="#id2">Host System Requirement</a><a class="headerlink" href="#host-system-requirement" title="Permalink to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>Xilinx Video SDK</p></li>
+<li><p>GStreamer 1.16.2</p></li>
+<li><p>gst-plugins-good</p></li>
+<li><p>gst-plugins-base</p></li>
+<li><p>gst-plugins-bad</p></li>
+<li><p>gst-libav</p></li>
+<li><p>Opensource GStreamer plugins to be verified after installation of above packages:</p>
+<ul>
+<li><p>compositor</p></li>
+<li><p>gdkpixbufoverlay</p></li>
+<li><p>timeoverlay</p></li>
+<li><p>h264parse</p></li>
+<li><p>qtdemux</p></li>
+<li><p>qtmux</p></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="usage">
+<h2><a class="toc-backref" href="#id3">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+<table class="docutils align-default">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 90%" />
+</colgroup>
+<thead>
+<tr class="row-odd"><th class="head"><p>Parameter</p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>-f</p></td>
+<td><div class="line-block">
+<div class="line">mp4/elementary-stream file path. Resolutions up to 1080p are supported.</div>
+<div class="line">Type:    string</div>
+<div class="line">Range:   NA</div>
+<div class="line">Default: NA</div>
+<div class="line">Option:  Mandatory</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>-l</p></td>
+<td><div class="line-block">
+<div class="line">png/jpg logo file path. No logo will be overlayed if this option is not specified.</div>
+<div class="line">Type:    string</div>
+<div class="line">Range:   NA</div>
+<div class="line">Default: Null</div>
+<div class="line">Option:  Optional</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>-b</p></td>
+<td><div class="line-block">
+<div class="line">Max bitrate for encoder in Kbps</div>
+<div class="line">Type:    int</div>
+<div class="line">Range:   0 to 4294967295</div>
+<div class="line">Default: 5000</div>
+<div class="line">Option:  Optional</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>-i</p></td>
+<td><div class="line-block">
+<div class="line">device index</div>
+<div class="line">Type:    int</div>
+<div class="line">Range:   0 to 31</div>
+<div class="line">Default: 0</div>
+<div class="line">Option:  Optional</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>-h</p></td>
+<td><div class="line-block">
+<div class="line">Horizontal offset of overlay logo in fractions of video image width, from top-left corner of video image (in relative positioning)</div>
+<div class="line">Type:    double</div>
+<div class="line">Range:   0 to 1</div>
+<div class="line">Default: 0.9</div>
+<div class="line">Option:  Optional</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>-v</p></td>
+<td><div class="line-block">
+<div class="line">Vertical offset of overlay logo in fractions of video image height, from top-left corner of video image (in relative positioning)</div>
+<div class="line">Type:    double</div>
+<div class="line">Range:   0 to 1</div>
+<div class="line">Default: 0</div>
+<div class="line">Option:  Optional</div>
+</div>
+</td>
+</tr>
+<tr class="row-even"><td><p>-n</p></td>
+<td><div class="line-block">
+<div class="line">Number of input buffers</div>
+<div class="line">Type:    integer</div>
+<div class="line">Range:   20 to 2147483647</div>
+<div class="line">Default: 2000</div>
+<div class="line">Option:  Optional</div>
+</div>
+</td>
+</tr>
+<tr class="row-odd"><td><p>-o</p></td>
+<td><div class="line-block">
+<div class="line">Output file name and path</div>
+<div class="line">Type:    String</div>
+<div class="line">Range:   NA</div>
+<div class="line">Default: ./result.mp4</div>
+<div class="line">Option:  Optional</div>
+</div>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="section" id="examples">
+<h2><a class="toc-backref" href="#id4">Examples</a><a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>Composition along with logo on top right of video:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vvas_xcompositor -f ./video1.mp4 -f ./video2.mp4 -f ./video3.h264 -f ./video4.h265 -l ./logo.png
+</pre></div>
+</div>
+</li>
+<li><p>Composition with logo on top left of video:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vvas_xcompositor -f ./video1.mp4 -f ./video2.mp4 -f ./video3.h264 -f ./video4.h265 -l ./logo.png -h 0 -v 0
+</pre></div>
+</div>
+</li>
+<li><p>Composition with logo on center of video:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vvas_xcompositor -f ./video1.mp4 -f ./video2.mp4 -f ./video3.h264 -f ./video4.h265 -l ./logo.png -h 0.5 -v 0.5
+</pre></div>
+</div>
+</li>
+<li><p>Composition without logo layer:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vvas_xcompositor -f ./video1.mp4 -f ./video2.mp4 -f ./video3.h264 -f ./video4.h265
+</pre></div>
+</div>
+</li>
+<li><p>Composition on device with index 2:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vvas_xcompositor -f ./video1.mp4 -f ./video2.mp4 -f ./video3.h264 -f ./video4.h265 -i 2
+</pre></div>
+</div>
+</li>
+<li><p>Composition on decoder soft kernel start index at 8:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vvas_xcompositor -f ./video1.mp4 -f ./video2.mp4 -f ./video3.h264 -f ./video4.h265
+</pre></div>
+</div>
+</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="quality_analysis.html" class="btn btn-neutral float-left" title="Video Quality Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="xabrladder.html" class="btn btn-neutral float-right" title="GStreamer ABR Ladder Application" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on March 27, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
