@@ -18,16 +18,6 @@ Quick Links
 - :doc:`Tutorials and Examples </examples>`
 
 
-.. raw:: html
-
-   <iframe 
-     width="640" height="340"
-     src="https://www.youtube.com/embed/kv-OS_cFOvg" 
-     title="YouTube video player" 
-     frameborder="0">
-   </iframe>
-
-
 .. toctree::
    :maxdepth: 3
    :caption: Get Started

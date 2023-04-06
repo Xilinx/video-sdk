@@ -24,18 +24,6 @@ Quick Links
 - :doc:`Get Started in the Cloud with Amazon EC2 VT1 </getting_started_on_vt1>`
 - :doc:`Tutorials and Examples </examples>`
 
-|
-
-.. raw:: html
-
-   <iframe 
-     width="640" height="340"
-     src="https://www.youtube.com/embed/kv-OS_cFOvg" 
-     title="YouTube video player" 
-     frameborder="0">
-   </iframe>
-
-
 
 .. toctree::
    :maxdepth: 3

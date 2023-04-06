@@ -33,7 +33,7 @@ The |SDK| is a complete software stack allowing users to seamlessly leverage the
 The Xilinx Alveo U30 Card
 *************************
 
-The Xilinx® Alveo™ U30 data center accelerator card is a low-profile, PCI™-based media accelerator card that delivers a high-density real-time transcoding solution for live streaming video service providers, OEMs, and Content Delivery Network (CDNs).
+The `Xilinx® Alveo™ U30 data center accelerator card <https://www.xilinx.com/products/boards-and-kits/alveo/u30.html>`_ is a low-profile, PCI™-based media accelerator card that delivers a high-density real-time transcoding solution for live streaming video service providers, OEMs, and Content Delivery Network (CDNs).
 
 The Alveo U30 card is primarily targeted at real-time video workloads. It is expected that one or more sources of video input, either from files or from live video streams, are fed into the transcode pipeline. The encoder encodes one or more output streams from each scaled rendition of the input.
 

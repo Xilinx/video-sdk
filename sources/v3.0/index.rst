@@ -2,16 +2,9 @@
 |SDK|
 #####
 
-The |SDK| is a complete software stack allowing users to seamlessly leverage the hardware accelerated features of Xilinx video codec units and enable high-density real-time transcoding for live streaming video service providers, OEMs, and Content Delivery Network (CDNs). Included in the |SDK| are pre-compiled versions of FFmpeg and GStreamer which integrate video transcoding plug-ins for Xilinx devices, enabling simple hardware acceleration of video decoding, scaling and encoding using these popular tools. The |SDK| also provides a C-based application programming interface (API) which facilitates the integration of Xilinx video codec units transcoding capabilities in proprietary frameworks. The |SDK| can be leveraged on-premises with Alveo U30 cards and in the cloud with |VT1| instances.
+The |SDK| is a complete software stack allowing users to seamlessly leverage the hardware accelerated features of Xilinx video codec units and enable high-density real-time transcoding for live streaming video service providers, OEMs, and Content Delivery Network (CDNs). Included in the |SDK| are pre-compiled versions of FFmpeg and GStreamer which integrate video transcoding plug-ins for Xilinx devices, enabling simple hardware acceleration of video decoding, scaling and encoding using these popular tools. The |SDK| also provides a C-based application programming interface (API) which facilitates the integration of Xilinx video codec units transcoding capabilities in proprietary frameworks. The |SDK| can be leveraged on-premises with Alveo U30 cards and in the cloud with |VT1| instances. 
 
-.. .. raw:: html
-
-..    <iframe 
-..      width="640" height="340"
-..      src="https://www.youtube.com/embed/kv-OS_cFOvg" 
-..      title="YouTube video player" 
-..      frameborder="0">
-..    </iframe>
+For a rapid overview of the |SDK| v3.0, see `this blog post <https://community.amd.com/t5/adaptive-computing/amd-xilinx-video-sdk-3-0-now-available-to-further-ease-the/ba-p/593533>`_.
 
 
 ***********
@@ -23,6 +16,17 @@ Quick Links
 - :doc:`Get Started on Premises with Alveo U30 </getting_started_on_prem>`
 - :doc:`Get Started in the Cloud with Amazon EC2 VT1 </getting_started_on_vt1>`
 - :doc:`Tutorials and Examples </examples>`
+
+|
+
+.. raw:: html
+
+   <iframe 
+     width="640" height="340"
+     src="https://www.youtube.com/embed/GJoxKyjvyuo" 
+     title="YouTube video player" 
+     frameborder="0">
+   </iframe>
 
 
 .. toctree::
