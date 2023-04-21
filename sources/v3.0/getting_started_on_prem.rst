@@ -32,10 +32,11 @@ Install the |SDK|
 
 .. include:: ./include/installation/install_procedure.rst
 
-7. Set up the bitstreams for the U30 devices::
+7. Set up the bitstreams for the U30 devices and reboot::
 
     sudo cp /opt/xilinx/xcdr/xclbins/transcode.xclbin /opt/xilinx/xcdr/xclbins/transcode_lite.xclbin
     sudo cp /opt/xilinx/xcdr/xclbins/on_prem/transcode.xclbin /opt/xilinx/xcdr/xclbins/transcode.xclbin
+    sudo reboot
 
 #. Program the binary images in the nonvolatile flash memories of the devices on your Alveo U30 cards. **Note**: should any problem arise when running the command, revert the card to its golden image (as explained in the :ref:`card recovery instructions <standard-recovery-flow>`) and repeat this step. ::
 
