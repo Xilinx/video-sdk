@@ -85,10 +85,10 @@ The table below describes all the options for the Xilinx video encoder.
                                   |  (2) Variable Bitrate
                                   |  (3) Low Latency
    .. option:: -min-qp            | **Minimum QP value allowed for rate control**
-                                  | Valid values: 0 to 51 (default is 0)
+                                  | Valid values: 1 to 51 (default is 1)
                                   | This option has no effect when :option:`-control-rate` is set to Constant QP (0).
    .. option:: -max-qp            | **Maximum QP value allowed for rate control**
-                                  | Valid values: 0 to 51 (default is 51)
+                                  | Valid values: 1 to 51 (default is 51)
                                   | This option has no effect when :option:`-control-rate` is set to Constant QP (0).
    .. option:: -slice-qp          | **Slice QP**
                                   | Valid values: -1 to 51 (default is -1)

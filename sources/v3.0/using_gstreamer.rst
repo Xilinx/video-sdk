@@ -198,12 +198,12 @@ Encoder Parameters
                                               | Default: 5000
    .. option:: max-qp                         | **Maximum QP value allowed for the rate control**
                                               | Type: Unsigned Integer
-                                              | Range: 0 - 51
+                                              | Range: 1 - 51
                                               | Default: 51
    .. option:: min-qp                         | **Minimum QP value allowed for the rate control**
                                               | Type: Unsigned Integer
-                                              | Range: 0 - 51
-                                              | Default: 0
+                                              | Range: 1 - 51
+                                              | Default: 1
    .. option:: num-cores                      | **Number of encoder cores to be used for current stream**
                                               | If set to 0 (AUTO), the number of encoder cores is automatically determined. Otherwise sets the number of encoder cores to be used.
                                               | Type: Unsigned Integer

@@ -18,9 +18,9 @@ Decoder Latency
 ===============
 For streams without B frames, decoding latency can be reduced by enabling both the :option:`-low_latency` and :option:`-splitbuff_mode` decoder options in FFmpeg or the :option:`low-latency` and :option:`splitbuff-mode` options in GStreamer. 
 
-The low latency decoding mode is not compatible with B frames. If the input streams contains B-frames, the ``low_latency`` option should not be used.
+The low latency decoding mode is not compatible with B frames. If the input streams contains B-frames, the :option:`-low_latency` option should not be used.
 
-When using the XMA APIs, the ``splitbuff_mode`` should only be used if the application can always send a complete Access Unit in one shot to the decoder.
+When using the XMA APIs, the :option:`-splitbuff_mode` should only be used if the application can always send a complete Access Unit in one shot to the decoder.
 
 .. _tuning-encoder-latency:
 

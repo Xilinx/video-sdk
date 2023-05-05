@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -164,7 +165,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="using-ffmpeg">
+  <section id="using-ffmpeg">
 <h1>Using FFmpeg<a class="headerlink" href="#using-ffmpeg" title="Permalink to this heading">¶</a></h1>
 <p>This page documents how to use FFmpeg with the Xilinx Video SDK.</p>
 <div class="contents local topic" id="table-of-contents">
@@ -183,7 +184,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2><a class="toc-backref" href="#id4">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>FFmpeg is an industry standard, open source, widely used utility for handling video. FFmpeg has many capabilities, including encoding and decoding all video compression formats, encoding and decoding audio, encapsulating, and extracting audio, and video from transport streams, and many more. The Xilinx Video SDK includes an enhanced version of FFmpeg that can communicate with the hardware accelerated transcode pipeline in Xilinx devices.</p>
 <p>It is not within the scope of this document to provide an exhaustive guide on the usage of FFmpeg. Various resources can be found online, for example:</p>
@@ -195,8 +196,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="example-commands">
+</section>
+<section id="example-commands">
 <h2><a class="toc-backref" href="#id5">Example Commands</a><a class="headerlink" href="#example-commands" title="Permalink to this heading">¶</a></h2>
 <p>A simple FFmpeg command for accelerated encoding with the Xilinx Video SDK will look similar to this one:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264 -i infile.mp4 -c:v mpsoc_vcu_hevc -s:v 1920x1080 -b:v 1000K -r 60 -f mp4 -y transcoded.mp4
@@ -206,10 +207,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="using-ffmpeg-for-video-encoding-and-decoding">
+</section>
+<section id="using-ffmpeg-for-video-encoding-and-decoding">
 <h2><a class="toc-backref" href="#id6">Using FFmpeg for Video Encoding and Decoding</a><a class="headerlink" href="#using-ffmpeg-for-video-encoding-and-decoding" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="general-ffmpeg-options">
+<section id="general-ffmpeg-options">
 <h3>General FFmpeg Options<a class="headerlink" href="#general-ffmpeg-options" title="Permalink to this heading">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
@@ -319,8 +320,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="encoder-options">
+</section>
+<section id="encoder-options">
 <h3>Encoder Options<a class="headerlink" href="#encoder-options" title="Permalink to this heading">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
@@ -543,8 +544,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="decoder-options">
+</section>
+<section id="decoder-options">
 <h3>Decoder Options<a class="headerlink" href="#decoder-options" title="Permalink to this heading">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
@@ -598,8 +599,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="miscellaneous-options">
+</section>
+<section id="miscellaneous-options">
 <h3>Miscellaneous Options<a class="headerlink" href="#miscellaneous-options" title="Permalink to this heading">¶</a></h3>
 <table class="docutils align-default">
 <colgroup>
@@ -638,12 +639,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table>
-</div>
-<div class="section" id="tuning-video-quality-of-encoded-video">
+</section>
+<section id="tuning-video-quality-of-encoded-video">
 <span id="tuning-encoder-options"></span><h3>Tuning Video Quality of Encoded Video<a class="headerlink" href="#tuning-video-quality-of-encoded-video" title="Permalink to this heading">¶</a></h3>
 <p>The quality of encoded video depends on various factors. It is primarily a function of target bit rate and type of video content. However, there are some encoder parameters which can be used to adjust the video quality.</p>
 <p>The sections below describe the major FFmpeg options impacting video quality. Various examples illustrating the effect of these settings can be found here: <a class="reference internal" href="examples/ffmpeg/quality_analysis.html"><span class="doc">Quality analysis examples</span></a>.</p>
-<div class="section" id="number-of-b-frames">
+<section id="number-of-b-frames">
 <span id="tuning-b-frames"></span><h4>Number of B Frames<a class="headerlink" href="#number-of-b-frames" title="Permalink to this heading">¶</a></h4>
 <p>The default number of B frames is 2, but for most streams, the optimal number of B frames is 1. This provides the best tradeoffs for both video quality and objective quality use cases. The number of B frames can be adjusted according to the amount of motion in the video content. Generally, more B-frames helps compression, but hurts very high motion scenes. Xilinx recommends the following B frames settings:</p>
 <ul class="simple">
@@ -651,13 +652,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><a class="reference internal" href="#cmdoption-bf"><code class="xref std std-option docutils literal notranslate"><span class="pre">-bf</span></code></a> 1 for all other content, including gaming and fast motion streams.</p></li>
 </ul>
 <p>To change B frames, use the <a class="reference internal" href="#cmdoption-bf"><code class="xref std std-option docutils literal notranslate"><span class="pre">-bf</span></code></a> option on the FFmpeg command line. Valid values are 0 to 4, default is 2.</p>
-</div>
-<div class="section" id="lookahead">
+</section>
+<section id="lookahead">
 <span id="tuning-lookahead"></span><h4>Lookahead<a class="headerlink" href="#lookahead" title="Permalink to this heading">¶</a></h4>
 <p>Lookahead is used to improve the accuracy of rate control by enabling the encoder to buffer a specified number of frames (using the parameter). Spatial and temporal complexity measures are computed for these frames. The rate control uses these measures to distribute more bits to frames which are hard to encode, and less bits to frames which are easy to encode. This redistribution results in better video quality. When latency is tolerable in applications, Xilinx recommends a lookahead depth of 20 frames to get optimum video quality.</p>
 <p>To enable lookahead, use the <a class="reference internal" href="#cmdoption-lookahead_depth"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lookahead_depth</span></code></a> option on the FFmpeg command line.</p>
-</div>
-<div class="section" id="adaptive-quantization">
+</section>
+<section id="adaptive-quantization">
 <span id="tuning-aq"></span><h4>Adaptive Quantization<a class="headerlink" href="#adaptive-quantization" title="Permalink to this heading">¶</a></h4>
 <p>This tool improves the video qualitity by changing the quantization parameter (QP) within a frame. The QP for each frame is determined by the rate control, and adaptive quantization (AQ) adjusts QP on top of that for different regions within a frame. It exploits the fact that the human eye is more sensitive to certain regions of a frame and redistributes more bits to those regions.</p>
 <p>The Xilinx video encoders support two types of AQ: Spatial Adaptive Quantization and Temporal Adaptive Quantization. Both of these AQ modes are enabled by default, and <a class="reference internal" href="#cmdoption-qp-mode"><code class="xref std std-option docutils literal notranslate"><span class="pre">-qp-mode</span></code></a> is set to <code class="docutils literal notranslate"><span class="pre">relative-load</span></code> when <a class="reference internal" href="#cmdoption-lookahead_depth"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lookahead_depth</span></code></a> &gt;= 1.</p>
@@ -668,15 +669,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="rubric">Temporal Adaptive Quantization</p>
 <p>Temporal AQ adjusts the QP based on the temporal characteristics of the sequence. It utilizes the lookahead frames to capture the temporal characteristics where static/low motion or background is differentiated with high motion regions. The high motion regions are not very sensitive to the human eye as compared with low motion regions. Temporal AQ exploits this fact and redistributes more bits to static or low motion regions.</p>
 <p>To enable temporal AQ, set the <a class="reference internal" href="#cmdoption-temporal-aq"><code class="xref std std-option docutils literal notranslate"><span class="pre">-temporal-aq</span></code></a> option to 1 on the FFmpeg command line.</p>
-</div>
-<div class="section" id="scaling-list">
+</section>
+<section id="scaling-list">
 <span id="tuning-scaling-list"></span><h4>Scaling List<a class="headerlink" href="#scaling-list" title="Permalink to this heading">¶</a></h4>
 <p>Scaling list offers a mechanism to scale the transform coefficients by specifying scaling matrices. This influences the quality of encoded video. There are two options to specify the scaling lists mode: 0 = default and 1 = flat.</p>
 <p>For video qualitity improvements, the scaling list mode must be set to default. The default scaling mode gives more importance to low-frequency coefficients and less importance to high-frequency coefficients. To improve the objective numbers (such as PSNR and VMAF), the scaling mode must be set to flat, where all the coefficients are scaled equally.</p>
 <p>To change the scaling list mode, use the <a class="reference internal" href="#cmdoption-scaling-list"><code class="xref std std-option docutils literal notranslate"><span class="pre">-scaling-list</span></code></a> option (0 = flat, 1 = default) on the FFmpeg command line.</p>
-</div>
-</div>
-<div class="section" id="considerations-for-decoding-and-encoding-4k-streams">
+</section>
+</section>
+<section id="considerations-for-decoding-and-encoding-4k-streams">
 <h3>Considerations for Decoding and Encoding 4K Streams<a class="headerlink" href="#considerations-for-decoding-and-encoding-4k-streams" title="Permalink to this heading">¶</a></h3>
 <p>The Xilinx Video SDK solution supports real-time decoding and encoding of 4k streams with the following notes:</p>
 <ul class="simple">
@@ -689,9 +690,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="video-scaling">
+</section>
+</section>
+<section id="video-scaling">
 <span id="using-ffmpeg-for-video-scaling"></span><h2><a class="toc-backref" href="#id7">Video Scaling</a><a class="headerlink" href="#video-scaling" title="Permalink to this heading">¶</a></h2>
 <p>Xilinx devices provide hardware-accelerated video decoding, scaling, and encoding. Each device supports multiple input channels (raw or encoded) up to a total equivalent bandwidth of 4kp60. Using the Multiscale XMA FFmpeg plug-in included in the Xilinx Video SDK, each input channel can be scaled in hardware to multiple lower resolution and/or lower frame rate outputs.</p>
 <p>The Xilinx Video SDK supports the following scaling features and capabilities:</p>
@@ -711,7 +712,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<div class="section" id="multiscale-filter-options">
+<section id="multiscale-filter-options">
 <h3>Multiscale Filter Options<a class="headerlink" href="#multiscale-filter-options" title="Permalink to this heading">¶</a></h3>
 <p>An ABR ladder is created using the <a class="reference internal" href="#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> complex filter and the <a class="reference external" href="https://ffmpeg.org/ffmpeg-filters.html#Filtergraph-syntax-1">FFmpeg filter graph syntax</a>. This section describes the options of the <a class="reference internal" href="#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> complex filter.</p>
 <dl class="std option">
@@ -799,8 +800,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="using-the-multiscale-filter">
+</section>
+<section id="using-the-multiscale-filter">
 <span id="id1"></span><h3>Using the Multiscale Filter<a class="headerlink" href="#using-the-multiscale-filter" title="Permalink to this heading">¶</a></h3>
 <p>The filter graph specification for the <a class="reference internal" href="#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> filter should be constructed in the following way:</p>
 <ul class="simple">
@@ -827,11 +828,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 </div>
 <p>This example can also be found in the FFMpeg introductory tutorials: <a class="reference internal" href="examples/ffmpeg/tutorials.html#transcode-with-abr-ladder"><span class="std std-ref">Transcode With Multiple-Resolution Outputs</span></a>.</p>
-<div class="section" id="encoding-scaler-outputs">
+<section id="encoding-scaler-outputs">
 <h4>Encoding Scaler Outputs<a class="headerlink" href="#encoding-scaler-outputs" title="Permalink to this heading">¶</a></h4>
 <p>The outputs of an ABR ladder can be encoded on the device using either the <code class="docutils literal notranslate"><span class="pre">mpsoc_vcu_h264</span></code> or the <code class="docutils literal notranslate"><span class="pre">mpsoc_vcu_hevc</span></code> codec. <strong>IMPORTANT:</strong> All outputs must be encoded using the same codec.</p>
-</div>
-<div class="section" id="using-raw-scaler-outputs">
+</section>
+<section id="using-raw-scaler-outputs">
 <h4>Using Raw Scaler Outputs<a class="headerlink" href="#using-raw-scaler-outputs" title="Permalink to this heading">¶</a></h4>
 <p>To return raw video outputs from the ABR ladder, use the <a class="reference internal" href="#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filter to copy the frames from the device to the host and convert them to AV frames. The converted AV frames can then be used in FFmpeg software filters or directly saved to file as shown in this command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264 -i input.mp4 \
@@ -852,19 +853,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 </div>
 <p>This example can also be found in the FFMpeg introductory tutorials: <a class="reference internal" href="examples/ffmpeg/tutorials.html#decode-and-scale-only"><span class="std std-ref">Decode Only Into Multiple-Resolution Outputs</span></a>.</p>
-</div>
-</div>
-<div class="section" id="performance-considerations">
+</section>
+</section>
+<section id="performance-considerations">
 <h3>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permalink to this heading">¶</a></h3>
 <p>Encoded input streams with a high bitrate or with a high number of reference frames can degrade the performance of an ABR ladder. The <a class="reference internal" href="#cmdoption-entropy_buffers_count"><code class="xref std std-option docutils literal notranslate"><span class="pre">-entropy_buffers_count</span></code></a> decoder option can be used to help with this. A value of 2 is enough for most cases, 5 is the practical limit.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="moving-data-through-the-video-pipeline">
+</section>
+</section>
+<section id="moving-data-through-the-video-pipeline">
 <span id="ffmpeg-data-movement"></span><h2><a class="toc-backref" href="#id8">Moving Data through the Video Pipeline</a><a class="headerlink" href="#moving-data-through-the-video-pipeline" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="automatic-data-movement">
+<section id="automatic-data-movement">
 <h3>Automatic Data Movement<a class="headerlink" href="#automatic-data-movement" title="Permalink to this heading">¶</a></h3>
 <p>The Xilinx Video SDK takes care of moving data efficiently through the FFmpeg pipeline in these situations:</p>
 <p>Individual operations:</p>
@@ -879,8 +880,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Pipelines with hardware accelerators only (such as transcoding with ABR ladder): the video frames remain on the device and are passed from one accelerator to the next, thereby avoiding unnecessary data movement between the host and the device</p></li>
 <li><p>Pipelines with software filters: when using the ouput of the decoder or the scaler with a FFmpeg software filter, the video frames are automatically copied back to the host, as long as the software filter performs frame cloning. Examples of such filters include <code class="docutils literal notranslate"><span class="pre">fps</span></code> and <code class="docutils literal notranslate"><span class="pre">split</span></code>.</p></li>
 </ul>
-</div>
-<div class="section" id="explicit-data-movement">
+</section>
+<section id="explicit-data-movement">
 <h3>Explicit Data Movement<a class="headerlink" href="#explicit-data-movement" title="Permalink to this heading">¶</a></h3>
 <p>It is necessary to explicitly copy video frames from the device to the host in these situations:</p>
 <ul class="simple">
@@ -902,9 +903,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="mapping-audio-streams">
+</section>
+</section>
+<section id="mapping-audio-streams">
 <span id="id2"></span><h2><a class="toc-backref" href="#id9">Mapping Audio Streams</a><a class="headerlink" href="#mapping-audio-streams" title="Permalink to this heading">¶</a></h2>
 <p>When the FFmpeg job has a single input and a single output, the audio stream of the input is automatically mapped to the output video.</p>
 <p>When the FFmpeg job has multiple outputs, FFmpeg must be explicitely told which audio stream to map to each of the output streams. The example below implements an transcoding pipeline with an ABR ladder. The input audio stream is split into 4 different channels using the <code class="docutils literal notranslate"><span class="pre">asplit</span></code> filter, one for each video output. Each audio channel is then uniquely mapped to one of the output video streams using the <code class="docutils literal notranslate"><span class="pre">-map</span></code> option.</p>
@@ -924,15 +925,15 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="rebuilding-ffmpeg">
+</section>
+<section id="rebuilding-ffmpeg">
 <span id="rebuild-ffmpeg"></span><h2><a class="toc-backref" href="#id10">Rebuilding FFmpeg</a><a class="headerlink" href="#rebuilding-ffmpeg" title="Permalink to this heading">¶</a></h2>
 <p>There are two methods for rebuilding FFmpeg with the Xilinx Video SDK plugins enabled:</p>
 <ul class="simple">
 <li><p>Using the complete source code</p></li>
 <li><p>Using the git patch file</p></li>
 </ul>
-<div class="section" id="using-the-source-code">
+<section id="using-the-source-code">
 <h3>Using the Source Code<a class="headerlink" href="#using-the-source-code" title="Permalink to this heading">¶</a></h3>
 <p>The <a class="reference external" href="https://github.com/Xilinx/app-ffmpeg4-xma/tree/v4.1.10">sources/app-ffmpeg4-xma</a> submodule contains the entire source code for the FFmpeg executable included with the Video SDK. This is a fork of the main FFmpeg GitHub (release 4.1, commid ID bb01cd3cc01c9982e4b57f8ce5cfd6ec4724f848) with a <a class="reference external" href="https://github.com/Xilinx/video-sdk/tree/v1.5/sources/app-ffmpeg4-xma-patch">Xilinx patch applied</a> to enable the Xilinx Video SDK plugins. Due to licensing restrictions, the FFmpeg executable included in the Video SDK is enabled with the Xilinx Video SDK plugins only.</p>
 <p>You can rebuild the FFmpeg executable with optional plugins by following the instructions below. Additionally, comprehensive instructions for compiling FFmpeg can be found <a class="reference external" href="https://trac.ffmpeg.org/wiki/CompilationGuide">on the FFmpeg wiki page</a>.</p>
@@ -969,8 +970,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="using-the-git-patch-file">
+</section>
+<section id="using-the-git-patch-file">
 <h3>Using the Git Patch File<a class="headerlink" href="#using-the-git-patch-file" title="Permalink to this heading">¶</a></h3>
 <p>The <a class="reference external" href="https://github.com/Xilinx/video-sdk/tree/v1.5/sources/app-ffmpeg4-xma-patch">Xilinx patch applied</a> folder contains a git patch file which can be applied to a FFmpeg fork to enable the Xilinx Video SDK plugins.</p>
 <p>This patch is designed to apply to FFmpeg n4.1. As such, applying this patch to earlier or later versions of FFmpeg may require edits to successfully merge these changes and represent untested configurations.</p>
@@ -1002,13 +1003,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="xilinx-ffmpeg-reference-guide">
+</section>
+</section>
+<section id="xilinx-ffmpeg-reference-guide">
 <h2><a class="toc-backref" href="#id11">Xilinx FFmpeg Reference Guide</a><a class="headerlink" href="#xilinx-ffmpeg-reference-guide" title="Permalink to this heading">¶</a></h2>
-<div class="section" id="h-264-codec-reference">
+<section id="h-264-codec-reference">
 <h3>H.264 Codec Reference<a class="headerlink" href="#h-264-codec-reference" title="Permalink to this heading">¶</a></h3>
-<div class="section" id="h-264-decoder-options">
+<section id="h-264-decoder-options">
 <h4>H.264 Decoder Options<a class="headerlink" href="#h-264-decoder-options" title="Permalink to this heading">¶</a></h4>
 <p>The entire list options for the Xilinx H.264 decoder (mpsoc_vcu_h264) can be displayed using the following command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -h decoder=mpsoc_vcu_h264
@@ -1027,8 +1028,8 @@ MPSOC H.264 decoder AVOptions:
 
 </pre></div>
 </div>
-</div>
-<div class="section" id="h-264-encoder-options">
+</section>
+<section id="h-264-encoder-options">
 <h4>H.264 Encoder Options<a class="headerlink" href="#h-264-encoder-options" title="Permalink to this heading">¶</a></h4>
 <p>The entire list options for the Xilinx H.264 encoder (mpsoc_vcu_h264) can be displayed using the following command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -h encoder=mpsoc_vcu_h264
@@ -1104,11 +1105,11 @@ MPSOC VCU H264 encoder AVOptions:
 
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="hevc-codec-reference">
+</section>
+</section>
+<section id="hevc-codec-reference">
 <h3>HEVC Codec Reference<a class="headerlink" href="#hevc-codec-reference" title="Permalink to this heading">¶</a></h3>
-<div class="section" id="hevc-decoder-options">
+<section id="hevc-decoder-options">
 <h4>HEVC Decoder Options<a class="headerlink" href="#hevc-decoder-options" title="Permalink to this heading">¶</a></h4>
 <p>The entire list options for the Xilinx HEVC decoder (mpsoc_vcu_hevc) can be displayed using the following command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -h decoder=mpsoc_vcu_hevc
@@ -1127,8 +1128,8 @@ MPSOC HEVC decoder AVOptions:
 
 </pre></div>
 </div>
-</div>
-<div class="section" id="hevc-encoder-options">
+</section>
+<section id="hevc-encoder-options">
 <h4>HEVC Encoder Options<a class="headerlink" href="#hevc-encoder-options" title="Permalink to this heading">¶</a></h4>
 <p>The entire list options for the Xilinx HEVC encoder (mpsoc_vcu_hevc) can be displayed using the following command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -h encoder=mpsoc_vcu_hevc
@@ -1199,9 +1200,9 @@ MPSOC VCU HEVC encoder AVOptions:
 
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="multiscaler-filter-reference">
+</section>
+</section>
+<section id="multiscaler-filter-reference">
 <h3>Multiscaler Filter Reference<a class="headerlink" href="#multiscaler-filter-reference" title="Permalink to this heading">¶</a></h3>
 <p>The entire list options for the Xilinx Multiscaler (multiscale_xma) can be displayed using the following command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -h filter=multiscale_xma
@@ -1252,9 +1253,9 @@ multiscale_xma AVOptions:
 
 </pre></div>
 </div>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
@@ -1278,7 +1279,7 @@ multiscale_xma AVOptions:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on April 21, 2023.
+      <span class="lastupdated">Last updated on May 05, 2023.
       </span></p>
   </div>
 

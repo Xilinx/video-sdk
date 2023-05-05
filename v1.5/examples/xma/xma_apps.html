@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -143,7 +144,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="xma-examples-for-the-sdk">
+  <section id="xma-examples-for-the-sdk">
 <h1>XMA Examples for the Xilinx Video SDK<a class="headerlink" href="#xma-examples-for-the-sdk" title="Permalink to this heading">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -157,7 +158,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <p>The examples in the <code class="docutils literal notranslate"><span class="pre">examples/xma</span></code> folder illustrate how C-based applications can natively interact with Xilinx devices using the Xilinx Video SDK plugins and the XMA (Xilinx Media Accelerator) APIs. The examples are for advanced use-cases where using the FFmpeg command-line interface is not appropriate.</p>
 <p>Detailed documentation on the Xilinx Video SDK plugin interface and the XMA APIs can be found in the <a class="reference internal" href="../../c_apis.html"><span class="doc">C API Programming Guide</span></a> section of the documentation.</p>
-<div class="section" id="build-and-test-instructions">
+<section id="build-and-test-instructions">
 <h2><a class="toc-backref" href="#id1">Build and Test Instructions</a><a class="headerlink" href="#build-and-test-instructions" title="Permalink to this heading">¶</a></h2>
 <p>To build and test the sample XMA applications, the Xilinx Video SDK packages must be installed on the server, and the Xilinx devices must to be flashed with the shell provided in the release package.</p>
 <p>To build and test all the XMA applications at once, run the following command from within the <code class="docutils literal notranslate"><span class="pre">./examples/xma</span></code> directory:</p>
@@ -170,11 +171,11 @@ The executables are placed in the <code class="docutils literal notranslate"><sp
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="xma-decoder-app">
+</section>
+<section id="xma-decoder-app">
 <span id="xma-decoder-example"></span><h2><a class="toc-backref" href="#id2">XMA Decoder App</a><a class="headerlink" href="#xma-decoder-app" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">examples/xma/decode_only</span></code> folder contains a standalone decoder application using the C APIs (XMA) of the Xilinx Video SDK to interact with the Xilinx video accelerators.</p>
-<div class="section" id="decoder-build-instructions">
+<section id="decoder-build-instructions">
 <h3>Decoder Build Instructions<a class="headerlink" href="#decoder-build-instructions" title="Permalink to this heading">¶</a></h3>
 <p>Export the XRT and XRM environment variables needed to build the decoder application:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xrt/setup.sh
@@ -190,11 +191,11 @@ make
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./build/u30_xma_decode
 </pre></div>
 </div>
-</div>
-<div class="section" id="decoder-test-instructions">
+</section>
+<section id="decoder-test-instructions">
 <h3>Decoder Test Instructions<a class="headerlink" href="#decoder-test-instructions" title="Permalink to this heading">¶</a></h3>
 <p>The XMA decoder application supports most of the decode options supported by FFmpeg. The XMA application supports only NV12 semi-planar input and outputs NV12 encoded elementary stream. It ingests an H.264 or H.265 encoded file and utilizes hardware acceleration to get the decoded output.</p>
-<div class="section" id="decoder-usage">
+<section id="decoder-usage">
 <h4>Decoder Usage<a class="headerlink" href="#decoder-usage" title="Permalink to this heading">¶</a></h4>
 <p>Before running decoding application, source the xcdr environment:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
@@ -239,8 +240,8 @@ Codec Arguments:
 
 </pre></div>
 </div>
-</div>
-<div class="section" id="sample-decoder-command">
+</section>
+<section id="sample-decoder-command">
 <h4>Sample Decoder Command<a class="headerlink" href="#sample-decoder-command" title="Permalink to this heading">¶</a></h4>
 <p>Decode an h264 encoded file:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./build/u30_xma_decode  -i ~/CSGO_1920x1080_5000kbps.264 -c:v mpsoc_vcu_h264 -o ./CSGO_1920x1080.NV12
@@ -249,13 +250,13 @@ Codec Arguments:
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-</div>
-<div class="section" id="xma-encoder-app">
+</section>
+</section>
+</section>
+<section id="xma-encoder-app">
 <span id="xma-encoder-example"></span><h2><a class="toc-backref" href="#id3">XMA Encoder App</a><a class="headerlink" href="#xma-encoder-app" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">examples/xma/encode_only</span></code> folder contains a standalone encoder application using the C APIs (XMA) of the Xilinx Video SDK to interact with the Xilinx video accelerators.</p>
-<div class="section" id="encoder-build-instructions">
+<section id="encoder-build-instructions">
 <h3>﻿Encoder Build Instructions<a class="headerlink" href="#encoder-build-instructions" title="Permalink to this heading">¶</a></h3>
 <p>Export the XRT and XRM environment variables needed to build the encoder application:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xrt/setup.sh
@@ -271,11 +272,11 @@ make
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./build/u30_xma_enc
 </pre></div>
 </div>
-</div>
-<div class="section" id="encoder-test-instructions">
+</section>
+<section id="encoder-test-instructions">
 <h3>﻿Encoder Test Instructions<a class="headerlink" href="#encoder-test-instructions" title="Permalink to this heading">¶</a></h3>
 <p>The encoder XMA application supports most of the encoder options supported by FFmpeg. The XMA application supports only YUV 4:2:0 semi-planar input and outputs H.264/HEVC encoded elementary stream.</p>
-<div class="section" id="encoder-usage">
+<section id="encoder-usage">
 <h4>Encoder Usage<a class="headerlink" href="#encoder-usage" title="Permalink to this heading">¶</a></h4>
 <p>Before running encoder application, source the xcdr environment:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
@@ -370,8 +371,8 @@ Encoder params:
 
 </pre></div>
 </div>
-</div>
-<div class="section" id="sample-encoder-commands">
+</section>
+<section id="sample-encoder-commands">
 <h4>Sample Encoder Commands<a class="headerlink" href="#sample-encoder-commands" title="Permalink to this heading">¶</a></h4>
 <p>H.264 encoding, best objective score, low latency:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./u30_xma_enc -w 1920 -h 1080  -i input_1080sp.yuv -c:v mpsoc_vcu_h264 -fps 60 -b:v 5000 -profile 2 -level 42 -g 120 -periodicity-idr 120 -qp-mode 0 -scaling-list 0 -bf 0 -o out1.264
@@ -390,9 +391,9 @@ Encoder params:
 </pre></div>
 </div>
 <p>For more examples, refer to the <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.5/examples/xma/encode_only/test/scripts/enc_app_test.sh">examples/xma/encode_only/test/scripts/enc_app_test.sh</a> script.</p>
-</div>
-</div>
-<div class="section" id="limitations-of-the-encoder-app">
+</section>
+</section>
+<section id="limitations-of-the-encoder-app">
 <h3>Limitations of the Encoder App<a class="headerlink" href="#limitations-of-the-encoder-app" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>The encoder application assumes that the input YUV file is in NV12 format.</p></li>
@@ -402,12 +403,12 @@ Encoder params:
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="xma-scaler-app">
+</section>
+</section>
+<section id="xma-scaler-app">
 <span id="xma-scaler-example"></span><h2><a class="toc-backref" href="#id4">XMA Scaler App</a><a class="headerlink" href="#xma-scaler-app" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">examples/xma/scale_only</span></code> folder contains a standalone scaler application using the C APIs (XMA) of the Xilinx Video SDK to interact with the Xilinx video accelerators.</p>
-<div class="section" id="scaler-build-instructions">
+<section id="scaler-build-instructions">
 <h3>﻿Scaler Build Instructions<a class="headerlink" href="#scaler-build-instructions" title="Permalink to this heading">¶</a></h3>
 <p>Export the XRT and XRM environment variables needed to build the scaler application:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xrt/setup.sh
@@ -423,11 +424,11 @@ make
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./build/u30_xma_scale
 </pre></div>
 </div>
-</div>
-<div class="section" id="scaler-test-instructions">
+</section>
+<section id="scaler-test-instructions">
 <h3>﻿Scaler Test Instructions<a class="headerlink" href="#scaler-test-instructions" title="Permalink to this heading">¶</a></h3>
 <p>The scaler XMA application supports most of the scaler options supported by FFmpeg. The XMA application supports only NV12 semi-planar input and outputs NV12 scaled elementary stream.</p>
-<div class="section" id="scaler-usage">
+<section id="scaler-usage">
 <h4>Scaler Usage<a class="headerlink" href="#scaler-usage" title="Permalink to this heading">¶</a></h4>
 <p>Before running scaler application, source the xcdr environment:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
@@ -474,8 +475,8 @@ Output Arguments:
 
 </pre></div>
 </div>
-</div>
-<div class="section" id="sample-scaler-command">
+</section>
+<section id="sample-scaler-command">
 <h4>Sample Scaler Command<a class="headerlink" href="#sample-scaler-command" title="Permalink to this heading">¶</a></h4>
 <p>Scale 1080p nv12 to 720p, 480p, 360p, and 240p nv12:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./u30_xma_scale -w 1920 -h 1080 -i ~/Kimono1_1920x1080_24.yuvNV12 -w 1280 -h \
@@ -483,9 +484,9 @@ Output Arguments:
       640 -h 360 -o Kimono_640x360.NV12 -w 480 -h 240 -o Kimono_480x240.NV12
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="limitations-of-the-scaler-app">
+</section>
+</section>
+<section id="limitations-of-the-scaler-app">
 <h3>Limitations of the Scaler App<a class="headerlink" href="#limitations-of-the-scaler-app" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>The scaler supports nv12 format only</p></li>
@@ -494,12 +495,12 @@ Output Arguments:
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="xma-transcoder-app">
+</section>
+</section>
+<section id="xma-transcoder-app">
 <span id="xma-transcoder-example"></span><h2><a class="toc-backref" href="#id5">XMA Transcoder App</a><a class="headerlink" href="#xma-transcoder-app" title="Permalink to this heading">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">examples/xma/transcode</span></code> folder contains a standalone transcoder application using the C APIs (XMA) of the Xilinx Video SDK to interact with the Xilinx video accelerators.</p>
-<div class="section" id="transcoder-build-instructions">
+<section id="transcoder-build-instructions">
 <h3>Transcoder Build Instructions<a class="headerlink" href="#transcoder-build-instructions" title="Permalink to this heading">¶</a></h3>
 <p>Export the XRT and XRM environment variables needed to build the transcoder application:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xrt/setup.sh
@@ -515,11 +516,11 @@ make
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./build/u30_xma_transcode
 </pre></div>
 </div>
-</div>
-<div class="section" id="transcoder-test-instructions">
+</section>
+<section id="transcoder-test-instructions">
 <h3>﻿Transcoder Test Instructions<a class="headerlink" href="#transcoder-test-instructions" title="Permalink to this heading">¶</a></h3>
 <p>The transcoder XMA application supports most of the options supported by ffmpeg. The XMA application supports only elementary H.264 and HEVC encoded stream input and outputs H.264/HEVC encoded elementary stream.</p>
-<div class="section" id="transcoder-usage">
+<section id="transcoder-usage">
 <h4>Transcoder Usage<a class="headerlink" href="#transcoder-usage" title="Permalink to this heading">¶</a></h4>
 <p>Before running transcoder application, source the xcdr environment:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
@@ -640,8 +641,8 @@ Encoder options:
 
 </pre></div>
 </div>
-</div>
-<div class="section" id="sample-transcoder-commands">
+</section>
+<section id="sample-transcoder-commands">
 <h4>Sample Transcoder Commands<a class="headerlink" href="#sample-transcoder-commands" title="Permalink to this heading">¶</a></h4>
 <p>H.264 to HEVC ABR Transcoder:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./u30_xma_transcode -c:v mpsoc_vcu_h264 -i input_1080p.264 -multiscale_xma -num-output 4 -out_1_width 1280 -out_1_height 720 -out_2_width 848 -out_2_height 480 -out_3_width 640 -out_3_height 360 -out_4_width 288 -out_4_height 160 \
@@ -661,18 +662,18 @@ Encoder options:
 </pre></div>
 </div>
 <p>For more examples, refer to the <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.5/examples/xma/transcode/test/scripts/transcoder_app_test.sh">examples/xma/transcode/test/scripts/transcoder_app_test.sh</a> script.</p>
-</div>
-</div>
-<div class="section" id="limitations-of-the-transcoder-app">
+</section>
+</section>
+<section id="limitations-of-the-transcoder-app">
 <h3>Limitations of the Transcoder App<a class="headerlink" href="#limitations-of-the-transcoder-app" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>The transcoder application supports only elementary H264/HEVC encoded streams as input file. It cannot parse container formats like MP4, AVI, etc.</p></li>
 <li><p>The transcoder outputs only H264/HEVC elementary streams.</p></li>
 <li><p>The lookahead depth should be same for all the channels.</p></li>
 </ul>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
@@ -696,7 +697,7 @@ Encoder options:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on April 21, 2023.
+      <span class="lastupdated">Last updated on May 05, 2023.
       </span></p>
   </div>
 
