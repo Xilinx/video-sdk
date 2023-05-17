@@ -21,10 +21,10 @@ HLS_DIR="/tmp/hls"
 function clean_up {
     echo "Killing $HTTP_SERVER_PID"
     kill -9 $HTTP_SERVER_PID
-    cd ${HLS_DIR}
-    rm -f *
+    cd ${HLS_DIR} && rm -f *
 }
 trap clean_up EXIT INT TERM
+mkdir -p ${HLS_DIR}
 cd ${HLS_DIR}
 echo "Starting basic web-server..."
 python3 -m http.server 8080 2>&1 > /dev/null &
