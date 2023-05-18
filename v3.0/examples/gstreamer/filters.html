@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -133,7 +132,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="gstreamer-examples-using-software-filters">
+  <div class="section" id="gstreamer-examples-using-software-filters">
 <h1>GStreamer Examples using Software Filters<a class="headerlink" href="#gstreamer-examples-using-software-filters" title="Permalink to this heading">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -146,7 +145,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">examples/gstreamer/filters/</span></code> folder contains different examples showing how to use GStreamer combining both Xilinx accelerated functions and software filters.</p>
-<section id="environment-setup">
+<div class="section" id="environment-setup">
 <h2><a class="toc-backref" href="#id1">Environment Setup</a><a class="headerlink" href="#environment-setup" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p>The Xilinx Video SDK examples can be found in the <code class="file docutils literal notranslate"><span class="pre">/opt/xilinx/examples/u30</span></code> folder of your system. If this folder is not present, first <a class="reference internal" href="../../package_feed.html#package-feed-configuration"><span class="std std-ref">make sure your package management client points to the remote package repository</span></a> for the Xilinx Video SDK. Then install the <code class="file docutils literal notranslate"><span class="pre">xilinx-alveo-u30-examples</span></code> package:</p>
@@ -169,36 +168,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </li>
 </ol>
-</section>
-<section id="video-rotation">
+</div>
+<div class="section" id="video-rotation">
 <h2><a class="toc-backref" href="#id2">Video Rotation</a><a class="headerlink" href="#video-rotation" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/filters/01_rotate_video.sh">examples/u30/gstreamer/filters/01_rotate_video.sh</a></p></li>
 </ul>
 <p>This example accepts an 8-bit, YUV420, pre-encoded h264 file and will send the rotated, encoded h.264 output to /tmp/xil_rotate_&lt;N&gt;.mp4 at a rate of 8Mbps.</p>
-</section>
-<section id="logo-overlay">
+</div>
+<div class="section" id="logo-overlay">
 <h2><a class="toc-backref" href="#id3">Logo Overlay</a><a class="headerlink" href="#logo-overlay" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/filters/02_logo_overlay.sh">examples/u30/gstreamer/filters/02_logo_overlay.sh</a></p></li>
 </ul>
 <p>This example accepts an 8-bit, YUV420, pre-encoded h264 file and an image file (“logo”). It will scale the logo to 500x100, place it 16 pixels right and 16 pixels down from the top-left corner of the output video file, which will be an encoded h.264 output saved to /tmp/xil_logo_overlay.mp4 at a rate of 8Mbps.</p>
-</section>
-<section id="crop-and-zoom">
+</div>
+<div class="section" id="crop-and-zoom">
 <h2><a class="toc-backref" href="#id4">Crop and Zoom</a><a class="headerlink" href="#crop-and-zoom" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/filters/03_crop_zoom.sh">examples/u30/gstreamer/filters/03_crop_zoom.sh</a></p></li>
 </ul>
 <p>This example accepts an 8-bit, YUV420, pre-encoded h264 file and will crop a 300x200 sized section of the original video. The section’s top left corner begins at 20 pixels to the right, and 10 pixels down from the top-left corner of the original video. The output video is encoded in 8Mbps, and is saved to /tmp/xil_crop_zoom.mp4</p>
-</section>
-<section id="video-composition">
+</div>
+<div class="section" id="video-composition">
 <h2><a class="toc-backref" href="#id5">Video Composition</a><a class="headerlink" href="#video-composition" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/gstreamer/filters/04_multi_comp.sh">examples/u30/gstreamer/filters/04_multi_comp.sh</a></p></li>
 </ul>
 <p>This example accepts 4x 8-bit, YUV420, pre-encoded h264 files of equal dimensions, and will create an output 2x2 composite video which will be an encoded h.264 output saved to /tmp/xil_2x2_composite.mp4 at a rate of 8Mbps. The output resolution will be equal to the original input.</p>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
@@ -222,7 +221,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 05, 2023.
+      <span class="lastupdated">Last updated on May 18, 2023.
       </span></p>
   </div>
 

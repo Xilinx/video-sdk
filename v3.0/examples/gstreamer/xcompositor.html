@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -132,7 +131,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="gstreamer-compositor-application">
+  <div class="section" id="gstreamer-compositor-application">
 <h1>GStreamer Compositor Application<a class="headerlink" href="#gstreamer-compositor-application" title="Permalink to this heading">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -143,13 +142,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><a class="reference internal" href="#examples" id="id4">Examples</a></p></li>
 </ul>
 </div>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>The <strong class="program">/opt/xilinx/vvas/bin/vvas_xcompositor</strong> application is a command line utility which implements the GStreamer video transcoding pipeline described in the diagram below. This application expects four input video files 60(mp4 with H.264/H.265 or H.264/H.265 elementary stream). The resolution of each input cannot exceed 1080p. The application creates an output stream by first composing the four inputs in a 2x2 grid, then by adding an optional logo and lastly by inserting a time stamp.</p>
 <p>This application is installed through the xilinx-alveo-u30-gstreamer package. If this package is not present on your system, install it by following the steps described in the <a class="reference internal" href="../../package_feed.html#package-feed"><span class="std std-ref">package feed</span></a> page.</p>
 <a class="reference internal image-reference" href="../../_images/gst_xcompositor.png"><img alt="GStreamer pipeline of the vvas_xcompositor application" class="align-center" src="../../_images/gst_xcompositor.png" style="width: 1024px;" /></a>
-</section>
-<section id="host-system-requirement">
+</div>
+<div class="section" id="host-system-requirement">
 <h2><a class="toc-backref" href="#id2">Host System Requirement</a><a class="headerlink" href="#host-system-requirement" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Xilinx Video SDK</p></li>
@@ -169,8 +168,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-</section>
-<section id="usage">
+</div>
+<div class="section" id="usage">
 <h2><a class="toc-backref" href="#id3">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
 <table class="docutils align-default">
 <colgroup>
@@ -265,8 +264,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table>
-</section>
-<section id="examples">
+</div>
+<div class="section" id="examples">
 <h2><a class="toc-backref" href="#id4">Examples</a><a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p>Composition along with logo on top right of video:</p>
@@ -300,8 +299,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </li>
 </ol>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
@@ -325,7 +324,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 05, 2023.
+      <span class="lastupdated">Last updated on May 18, 2023.
       </span></p>
   </div>
 

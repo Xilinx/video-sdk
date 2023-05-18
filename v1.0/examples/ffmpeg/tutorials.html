@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -143,7 +142,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="ffmpeg-tutorials-for-the-xilinx-video-sdk">
+  <div class="section" id="ffmpeg-tutorials-for-the-xilinx-video-sdk">
 <h1>FFmpeg Tutorials for the Xilinx Video SDK<a class="headerlink" href="#ffmpeg-tutorials-for-the-xilinx-video-sdk" title="Permalink to this heading">¶</a></h1>
 <p>This page provides tutorials on how to use FFmpeg with the Xilinx Alveo U30. Detailed documentation for this specific topic can be found in the <a class="reference internal" href="../../using_ffmpeg.html"><span class="doc">Xilinx Video SDK User Guide</span></a>.</p>
 <div class="contents local topic" id="table-of-contents">
@@ -182,7 +181,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <p>The tutorials break down the commands, starting with simple steps using a single device. These are built upon to show 4K, faster than realtime, and multiple operations on the same device.</p>
-<section id="system-setup">
+<div class="section" id="system-setup">
 <h2><a class="toc-backref" href="#id2">System Setup</a><a class="headerlink" href="#system-setup" title="Permalink to this heading">¶</a></h2>
 <p>Ensure you have properly set up the environment via <code class="docutils literal notranslate"><span class="pre">source</span> <span class="pre">/opt/xilinx/xcdr/setup.sh</span></code> as described in the <a class="reference internal" href="../../setup.html"><span class="doc">setup instructions</span></a>.</p>
 <p>Xilinx provides a precompiled binary for ffmpeg, which is moved to the top of the system PATH.</p>
@@ -190,10 +189,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-<section id="simple-ffmpeg-examples">
+</div>
+<div class="section" id="simple-ffmpeg-examples">
 <h2><a class="toc-backref" href="#id3">Simple FFmpeg Examples</a><a class="headerlink" href="#simple-ffmpeg-examples" title="Permalink to this heading">¶</a></h2>
-<section id="decode-only">
+<div class="section" id="decode-only">
 <span id="id1"></span><h3><a class="toc-backref" href="#id4">Decode Only</a><a class="headerlink" href="#decode-only" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/tutorials/01_ffmpeg_decode_only.sh">examples/ffmpeg/tutorials/01_ffmpeg_decode_only.sh</a></p></li>
@@ -246,8 +245,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-</section>
-<section id="encode-only">
+</div>
+<div class="section" id="encode-only">
 <h3><a class="toc-backref" href="#id5">Encode Only</a><a class="headerlink" href="#encode-only" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/tutorials/02_ffmpeg_encode_only_1080p.sh">examples/ffmpeg/tutorials/02_ffmpeg_encode_only_1080p.sh</a></p></li>
@@ -320,8 +319,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-</section>
-<section id="basic-transcode">
+</div>
+<div class="section" id="basic-transcode">
 <h3><a class="toc-backref" href="#id6">Basic Transcode</a><a class="headerlink" href="#basic-transcode" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/tutorials/03_ffmpeg_transcode_only.sh">examples/ffmpeg/tutorials/03_ffmpeg_transcode_only.sh</a></p></li>
@@ -374,8 +373,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-</section>
-<section id="decode-only-into-multiple-resolution-outputs">
+</div>
+<div class="section" id="decode-only-into-multiple-resolution-outputs">
 <span id="decode-and-scale-only"></span><h3><a class="toc-backref" href="#id7">Decode Only Into Multiple-Resolution Outputs</a><a class="headerlink" href="#decode-only-into-multiple-resolution-outputs" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/tutorials/04_ffmpeg_decode_plus_scale.sh">examples/ffmpeg/tutorials/04_ffmpeg_decode_plus_scale.sh</a></p></li>
@@ -448,8 +447,8 @@ out_4_width=288:  out_4_height=160:  out_4_rate=half  \
 </ul>
 </li>
 </ul>
-</section>
-<section id="encode-only-into-multiple-resolution-outputs">
+</div>
+<div class="section" id="encode-only-into-multiple-resolution-outputs">
 <span id="encode-only-multiple-res-outputs"></span><h3><a class="toc-backref" href="#id8">Encode Only Into Multiple-Resolution Outputs</a><a class="headerlink" href="#encode-only-into-multiple-resolution-outputs" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/tutorials/05_ffmpeg_encode_plus_scale_1080p.sh">examples/ffmpeg/tutorials/05_ffmpeg_encode_plus_scale_1080p.sh</a></p></li>
@@ -539,8 +538,8 @@ out_4_width=288:  out_4_height=160: out_4_rate=half    \
 </ul>
 </li>
 </ul>
-</section>
-<section id="transcode-with-multiple-resolution-outputs">
+</div>
+<div class="section" id="transcode-with-multiple-resolution-outputs">
 <h3><a class="toc-backref" href="#id9">Transcode With Multiple-Resolution Outputs</a><a class="headerlink" href="#transcode-with-multiple-resolution-outputs" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/tutorials/06_ffmpeg_transcode_plus_scale.sh">examples/ffmpeg/tutorials/06_ffmpeg_transcode_plus_scale.sh</a></p></li>
@@ -620,8 +619,8 @@ out_4_width=288:  out_4_height=160:  out_4_rate=half  \
 </ul>
 </li>
 </ul>
-</section>
-<section id="lower-latency-transcode-with-multiple-resolution-outputs">
+</div>
+<div class="section" id="lower-latency-transcode-with-multiple-resolution-outputs">
 <h3><a class="toc-backref" href="#id10">Lower-Latency Transcode With Multiple-Resolution Outputs</a><a class="headerlink" href="#lower-latency-transcode-with-multiple-resolution-outputs" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/tutorials/07_ffmpeg_transcode_plus_scale_lowlatency.sh">examples/ffmpeg/tutorials/07_ffmpeg_transcode_plus_scale_lowlatency.sh</a></p></li>
@@ -717,9 +716,9 @@ out_4_width=288:  out_4_height=160: out_4_rate=half    \
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-</section>
-<section id="encoding-streams-to-4k">
+</div>
+</div>
+<div class="section" id="encoding-streams-to-4k">
 <h2><a class="toc-backref" href="#id11">Encoding Streams to 4K</a><a class="headerlink" href="#encoding-streams-to-4k" title="Permalink to this heading">¶</a></h2>
 <p>The U30 Video SDK solution supports real-time decoding and encoding of 4k streams with the following notes:</p>
 <ul class="simple">
@@ -729,7 +728,7 @@ out_4_width=288:  out_4_height=160: out_4_rate=half    \
 <li><p>When encoding 4k streams to H.264, the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-slices"><code class="xref std std-option docutils literal notranslate"><span class="pre">-slices</span></code></a> option is required to sustain real-time performance. A value of 4 is recommended. This option is not required when encoding to HEVC.</p></li>
 <li><p>The lookahead feature is not supported for 4k. FFmpeg will give an error if <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-lookahead_depth"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lookahead_depth</span></code></a> is enabled when encoding to 4k.</p></li>
 </ul>
-<section id="k-h-264-real-time-encode-only">
+<div class="section" id="k-h-264-real-time-encode-only">
 <h3><a class="toc-backref" href="#id12">4k H.264 Real-Time Encode Only</a><a class="headerlink" href="#k-h-264-real-time-encode-only" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/tutorials/08_ffmpeg_encode_only_4k.sh">examples/ffmpeg/tutorials/08_ffmpeg_encode_only_4k.sh</a></p></li>
@@ -744,8 +743,8 @@ out_4_width=288:  out_4_height=160: out_4_rate=half    \
 <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">20</span><span class="n">M</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_h264</span> <span class="o">-</span><span class="n">slices</span> <span class="mi">4</span> <span class="o">-</span><span class="n">f</span> <span class="n">mp4</span> <span class="o">-</span><span class="n">y</span> <span class="o">/</span><span class="n">tmp</span><span class="o">/</span><span class="n">xil_4k_enc_out</span><span class="o">.</span><span class="n">mp4</span>
 </pre></div>
 </div>
-</section>
-<section id="k-h-264-real-time-transcode">
+</div>
+<div class="section" id="k-h-264-real-time-transcode">
 <h3><a class="toc-backref" href="#id13">4k H.264 Real-Time Transcode</a><a class="headerlink" href="#k-h-264-real-time-transcode" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/tutorials/09_ffmpeg_transcode_only_4k.sh">examples/ffmpeg/tutorials/09_ffmpeg_transcode_only_4k.sh</a></p></li>
@@ -763,9 +762,9 @@ out_4_width=288:  out_4_height=160: out_4_rate=half    \
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-</section>
-<section id="running-multiple-ffmpeg-jobs">
+</div>
+</div>
+<div class="section" id="running-multiple-ffmpeg-jobs">
 <span id="multiple-ffmpeg-jobs-example"></span><h2><a class="toc-backref" href="#id14">Running Multiple FFmpeg Jobs</a><a class="headerlink" href="#running-multiple-ffmpeg-jobs" title="Permalink to this heading">¶</a></h2>
 <p>So far we’ve run one job at a time, even if the job does not use all the resources available on the device. The Video SDK makes it possible to run multiple FFmpeg jobs in parallel on a device or across multiple devices.</p>
 <p>This script transcodes three H264 streams to HEVC, sending the outputs to /tmp/xil_xcode_{n}.mp4. The three transcodes are run in parallel in individual xterms. The FFmpeg <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> is used to control on which device each job is run. The first job is run on device #0 and the two others jobs are run on device #1. After the jobs are launched, a JSON system load report is generated.</p>
@@ -839,12 +838,12 @@ out_4_width=288:  out_4_height=160: out_4_rate=half    \
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-<section id="faster-than-realtime">
+</div>
+<div class="section" id="faster-than-realtime">
 <span id="faster-than-realtime-example"></span><h2><a class="toc-backref" href="#id15">Faster than Realtime</a><a class="headerlink" href="#faster-than-realtime" title="Permalink to this heading">¶</a></h2>
 <p>The Alveo U30 card is optimized for low latency “realtime” applications. That is to say, it provides deterministic low latency transcoding, while operating at the FPS the human eye would normally process/watch it. This is ideal for ingesting a live video stream where there is minimal buffering.</p>
 <p>Faster Than Real Time (FTRT) is almost the contrary: you have the entire file/clip saved and can therefore “divide and conquer”. There are two main flags to consider when processing in this flow: <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-cores"><code class="xref std std-option docutils literal notranslate"><span class="pre">-cores</span></code></a> and <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-slices"><code class="xref std std-option docutils literal notranslate"><span class="pre">-slices</span></code></a>.</p>
-<section id="ftrt-on-a-single-alveo-u30-device">
+<div class="section" id="ftrt-on-a-single-alveo-u30-device">
 <h3><a class="toc-backref" href="#id16">FTRT on a single Alveo U30 device</a><a class="headerlink" href="#ftrt-on-a-single-alveo-u30-device" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/tutorials/11_ffmpeg_ftrt_transcode_only.sh">examples/ffmpeg/tutorials/11_ffmpeg_ftrt_transcode_only.sh</a></p></li>
@@ -911,8 +910,8 @@ out_4_width=288:  out_4_height=160: out_4_rate=half    \
 </ul>
 </li>
 </ul>
-</section>
-<section id="ftrt-across-multiple-alveo-u30-devices-for-maximum-fps">
+</div>
+<div class="section" id="ftrt-across-multiple-alveo-u30-devices-for-maximum-fps">
 <h3><a class="toc-backref" href="#id17">FTRT across multiple Alveo U30 devices for maximum FPS</a><a class="headerlink" href="#ftrt-across-multiple-alveo-u30-devices-for-maximum-fps" title="Permalink to this heading">¶</a></h3>
 <p>When processing file-based solutions, where you have the entire clip to operate on in a single command, you have the option to split the video into segments, and distribute the segments to individual encoder instances (for Alveo U30, these would be devices on the card). While there is some overhead in “splitting” the clip to begin with, and “stitching” the output files into a single output file, these costs are almost always outweighed by the improvement in FPS.</p>
 <p>The function below will split the clip on a boundary that ensures no visual quality is lost (a closed GOP boundary), and will distribute the clip across all available Alveo U30 cards in the system. If you inspect the script, you may edit it to apply the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-cores"><code class="xref std std-option docutils literal notranslate"><span class="pre">-cores</span></code></a> and <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-slices"><code class="xref std std-option docutils literal notranslate"><span class="pre">-slices</span></code></a> flags as listed above for an even larger increase in FPS. Remember that <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-slices"><code class="xref std std-option docutils literal notranslate"><span class="pre">-slices</span></code></a> will adversely affect VQ.</p>
@@ -966,14 +965,14 @@ out_4_width=288:  out_4_height=160: out_4_rate=half    \
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-</section>
-<section id="streaming-examples">
+</div>
+</div>
+<div class="section" id="streaming-examples">
 <h2><a class="toc-backref" href="#id18">Streaming Examples</a><a class="headerlink" href="#streaming-examples" title="Permalink to this heading">¶</a></h2>
 <p>Streaming Examples operate largely on the same principles (and commandline strings) as file-based operations. However, the main difference is how streams are received and transmitted.</p>
 <p>These examples is will leverage example #6, which is a full transcode pipeline (decode, scale, encode), however, instead of saving the scaled outputs into monolithic MP4 files, will create a “manifest” file <code class="docutils literal notranslate"><span class="pre">.m3u8</span></code> for streaming along with several <code class="docutils literal notranslate"><span class="pre">.ts</span></code> files with the actual playback data. These manifest files, when inspected, will contain a “playlist” of clips with <code class="docutils literal notranslate"><span class="pre">.ts</span></code> extentions, which are of duration <code class="docutils literal notranslate"><span class="pre">hls_time</span></code>. Creating separate clips enables the remote playback players to “drop quality” instanatneously without any buffering to the viewer, or trying to figure out and seek to “where we are in the clip”. This is how most live streaming is done, however there are other, similar protocolos (e.g. DASH) which operate on similar principles.</p>
 <p>These flags, and others, are defined further on the <a class="reference external" href="https://ffmpeg.org/ffmpeg-formats.html">FFmpeg main help page</a></p>
-<section id="replay-saved-files-with-downscaling">
+<div class="section" id="replay-saved-files-with-downscaling">
 <h3><a class="toc-backref" href="#id19">Replay Saved Files with Downscaling</a><a class="headerlink" href="#replay-saved-files-with-downscaling" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/tutorials/12_ffmpeg_streaming_transcode_from_file.sh">examples/ffmpeg/tutorials/12_ffmpeg_streaming_transcode_from_file.sh</a></p></li>
@@ -1064,9 +1063,9 @@ out_4_width=288:  out_4_height=160:  out_4_rate=half  \
 </ul>
 </li>
 </ul>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>
@@ -1090,7 +1089,7 @@ out_4_width=288:  out_4_height=160:  out_4_rate=half  \
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 05, 2023.
+      <span class="lastupdated">Last updated on May 18, 2023.
       </span></p>
   </div>
 

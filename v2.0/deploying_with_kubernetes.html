@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -118,7 +117,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="deploying-with-kubernetes">
+  <div class="section" id="deploying-with-kubernetes">
 <span id="id1"></span><h1>Deploying with Kubernetes<a class="headerlink" href="#deploying-with-kubernetes" title="Permalink to this heading">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -133,7 +132,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p class="admonition-title">Note</p>
 <p>A new Kubernetes plugin is available for U30 cards. This new plugin no longer requires an exact version number when specifying U30 resource limits. This allows for compatibility of pod description files across all releases of the Xilinx Video SDK. Kubernetes clusters using this plugin will continue to work seamlessly even after an upgrade of the Xilinx Video SDK. <strong>If using Kubernetes, to prevent service degradation, it is necessary to deploy this new plugin (version 1.1.0)</strong> before upgrading to the latest version of the Xilinx Video SDK. For more details, refer to the instructions below.</p>
 </div>
-<section id="overview">
+<div class="section" id="overview">
 <h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
 <p>The Xilinx device plugin for Kubernetes is a daemonset deployed on a Kubernetes cluster which:</p>
 <ul class="simple">
@@ -144,8 +143,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The plugin is available on the ECR repository: <a class="reference external" href="https://gallery.ecr.aws/xilinx_dcg/k8s-device-plugin">https://gallery.ecr.aws/xilinx_dcg/k8s-device-plugin</a></p>
 <p>The following instructions explain how to install the Xilinx device plugin for Kubernetes and how to deploy user pods to access Xilinx devices.</p>
 <p>In addition, a comprehensive step-by-step guide on how to run containerized workloads on Amazon ECS and Amazon EKS can be found on the AWS Compute Blog: <a class="reference external" href="https://aws.amazon.com/blogs/compute/deep-dive-on-amazon-ec2-vt1-instances/">https://aws.amazon.com/blogs/compute/deep-dive-on-amazon-ec2-vt1-instances/</a></p>
-</section>
-<section id="prerequisites">
+</div>
+<div class="section" id="prerequisites">
 <h2><a class="toc-backref" href="#id3">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
 <p>The following instructions assume that your system satisfies the following requirements:</p>
 <ul class="simple">
@@ -164,8 +163,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </dd>
 </dl>
 <p>For information regarding Kubernetes installation refer to <a class="reference external" href="https://github.com/Xilinx/FPGA_as_a_Service/blob/master/k8s-device-plugin/full-tutorial.md">https://github.com/Xilinx/FPGA_as_a_Service/blob/master/k8s-device-plugin/full-tutorial.md</a>. For additional information about Amazon EKS, refer to the Amazon EKS user guide: <a class="reference external" href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html">https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html</a></p>
-</section>
-<section id="installing-the-xilinx-device-plugin-for-kubernetes">
+</div>
+<div class="section" id="installing-the-xilinx-device-plugin-for-kubernetes">
 <span id="dev-plugin"></span><h2><a class="toc-backref" href="#id4">Installing the Xilinx device plugin for Kubernetes</a><a class="headerlink" href="#installing-the-xilinx-device-plugin-for-kubernetes" title="Permalink to this heading">¶</a></h2>
 <p>The following steps require kubectl to be connected to your cluster. After the Xilinx device plugin for Kubernetes is installed, no additional configuration is needed when adding nodes to the cluster.</p>
 <ol class="arabic">
@@ -286,8 +285,8 @@ Allocatable:
 <p>In this example, 2 Alveo U30 cards are available in the node. Furthermore, the granularity of the plugin was set to Device and naming convention to CommonName.</p>
 </li>
 </ol>
-</section>
-<section id="deploying-user-pods">
+</div>
+<div class="section" id="deploying-user-pods">
 <h2><a class="toc-backref" href="#id5">Deploying User Pods</a><a class="headerlink" href="#deploying-user-pods" title="Permalink to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p>Confirm U30AllocUnit type, i.e., Card or Device, by issuing the following:</p>
@@ -352,8 +351,8 @@ xbutil examine
 </div>
 </li>
 </ol>
-</section>
-</section>
+</div>
+</div>
 
 
            </div>
@@ -377,7 +376,7 @@ xbutil examine
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 05, 2023.
+      <span class="lastupdated">Last updated on May 18, 2023.
       </span></p>
   </div>
 

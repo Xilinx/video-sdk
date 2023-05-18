@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -129,7 +128,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="running-multiple-ffmpeg-jobs">
+  <div class="section" id="running-multiple-ffmpeg-jobs">
 <h1>Running Multiple FFmpeg Jobs<a class="headerlink" href="#running-multiple-ffmpeg-jobs" title="Permalink to this heading">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -139,7 +138,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><a class="reference internal" href="#using-job-descriptions" id="id6">Using Job Descriptions</a></p></li>
 </ul>
 </div>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id4">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>The Xilinx Video SDK provides two distinct methods of running multiple FFmpeg jobs simultaneously on one or more devices:</p>
 <ol class="arabic simple">
@@ -153,18 +152,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>When a job ends and releases CU resources to XRM, it takes a few milliseconds before they become available for another job.</p></li>
 <li><p>On certain servers, it may be needed to reduce the stack size (using <code class="docutils literal notranslate"><span class="pre">ulimit</span> <span class="pre">-s</span> <span class="pre">1000</span></code>) in order to run more than 200 processes simultaneously.</p></li>
 </ul>
-</section>
-<section id="using-explicit-device-ids">
+</div>
+<div class="section" id="using-explicit-device-ids">
 <span id="id1"></span><h2><a class="toc-backref" href="#id5">Using Explicit Device IDs</a><a class="headerlink" href="#using-explicit-device-ids" title="Permalink to this heading">¶</a></h2>
 <p>The simplest way to run multiple FFmpeg jobs across all available devices is to use the FFmpeg <a class="reference internal" href="using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option.</p>
 <p>By default (if the option is not specified) the FFmpeg job will be submitted to device 0. When running multiple jobs, device 0 will likely run out resources rapidly and additional jobs will error out due to insufficient resources.</p>
 <p>The <a class="reference internal" href="using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option is used to specify the device on which the job should be run. This makes it easy and straightforward to leverage the entire video acceleration capacity of your system, regardless of the number of cards and devices. In addition, this method allows running different types of jobs on the same device (i.e.: jobs with different resolutions, frame rates, etc…).</p>
 <p>Given that each device has a 2160p60 (4K) input and output bandwidth limit, the user is responsible for only submitting jobs which will not exceed the capacity of the specified device. The section below about <a class="reference internal" href="#managing-resource-utilization">Managing Resource Utilization</a> provides information on how to estimate CU requirements and check current device load.</p>
-<section id="examples-using-explicit-device-ids">
+<div class="section" id="examples-using-explicit-device-ids">
 <h3>Examples using Explicit Device IDs<a class="headerlink" href="#examples-using-explicit-device-ids" title="Permalink to this heading">¶</a></h3>
 <p>Specific examples of how to run multiple FFmpeg processes using explicit device IDs can be found in the <a class="reference internal" href="examples/ffmpeg/tutorials.html#multiple-ffmpeg-jobs-example"><span class="std std-ref">FFmpeg Tutorials</span></a> included in this repository.</p>
-</section>
-<section id="managing-resource-utilization">
+</div>
+<div class="section" id="managing-resource-utilization">
 <h3>Managing Resource Utilization<a class="headerlink" href="#managing-resource-utilization" title="Permalink to this heading">¶</a></h3>
 <p class="rubric">Checking System Load</p>
 <p>To check the current loading of all the devices in your system, use the following command:</p>
@@ -207,16 +206,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 </div>
 <p>Resource loads are reported with a precision of 1/1000000. In the above example, the job requires 25% of the decoder resources and 25% of the encoder resources on the device.</p>
-</section>
-</section>
-<section id="using-job-descriptions">
+</div>
+</div>
+<div class="section" id="using-job-descriptions">
 <span id="id2"></span><h2><a class="toc-backref" href="#id6">Using Job Descriptions</a><a class="headerlink" href="#using-job-descriptions" title="Permalink to this heading">¶</a></h2>
 <p>Job descriptions and the associated job reservation system are an alternate way to run multiple jobs. This method is more involved than using explicit device IDs, and it is intended for users who need to develop custom job management applications.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A current limitation of this method is that only one job description file can be used at a time, and a job description file can only contain a single job description. The system will only manage multiple jobs if they match the same description. Simultaneously managing different job types is not supported currently. The jobs need to be stopped before a new job description can be loaded.</p>
 </div>
-<section id="video-transcode-job-description">
+<div class="section" id="video-transcode-job-description">
 <h3>Video Transcode Job Description<a class="headerlink" href="#video-transcode-job-description" title="Permalink to this heading">¶</a></h3>
 <p>The Alveo U30 video transcode pipeline needs a conjunction of multiple CUs like decoder, scaler, lookahead, and encoder, together forming a CU pool. Based on the input resolution and type of transcode, the load of CUs within a CU pool varies. This in turn determines how many instances of such a job can be run real-time in parallel on all the cards managed by XRM. If there is free capacity, XRM will send the job to an available device.</p>
 <p>The video transcode job description provides information to the resource manager about what kind of transcode is intended to run on the card. With this information the resource manager calculates the CU load for the specified job as well as the maximum possible number of jobs that can be run real-time in parallel.</p>
@@ -303,8 +302,8 @@ This option will be deprecated and removed in a future release. The job-count op
 <li><p><a class="reference internal" href="#using-job-slot-reservations"><span class="std std-ref">Using the job slot reservation application</span></a></p></li>
 <li><p><a class="reference internal" href="#using-ffmpeg-launcher"><span class="std std-ref">The FFmpeg Launcher example</span></a></p></li>
 </ul>
-</section>
-<section id="using-job-slot-reservations">
+</div>
+<div class="section" id="using-job-slot-reservations">
 <span id="id3"></span><h3>Using Job Slot Reservations<a class="headerlink" href="#using-job-slot-reservations" title="Permalink to this heading">¶</a></h3>
 <p>The job slot reservation application takes as input a video transcode job reservation in the form of a JSON file as described in the previous section. The video transcode job description provides information to the resource manager about what kind of transcode is intended to run on the card. With this information the resource manager calculates the CU load for the specified job as well as the maximum possible number of jobs that can be run real-time in parallel.</p>
 <p>Once the maximum possible number of jobs is known, CUs and job slots are reserved, and corresponding reservation IDs are stored in a bash file at <code class="docutils literal notranslate"><span class="pre">/var/tmp/xilinx/xrm_jobReservation.sh</span></code>. A reservation ID is a unique identifier which is valid while the job slot reservation application is running. These reservation IDs are passed to individual FFmpeg process via an environment variable XRM_RESERVE_ID. The FFmpeg processes then use this reservation ID to retrieve the corresponding CUs reserved earlier.</p>
@@ -365,8 +364,8 @@ ffmpeg -c:v mpsoc_vcu_h264 ...
 </pre></div>
 </div>
 <p>This indicates that the job description is ill-formed and needs to be corrected.</p>
-</section>
-<section id="the-ffmpeg-launcher-example">
+</div>
+<div class="section" id="the-ffmpeg-launcher-example">
 <span id="using-ffmpeg-launcher"></span><h3>The FFmpeg Launcher Example<a class="headerlink" href="#the-ffmpeg-launcher-example" title="Permalink to this heading">¶</a></h3>
 <p>The FFmpeg launcher is an example application which automates the dispatching of FFmpeg jobs across multiple devices. It simplifies the process of manually setting up XRM reservation IDs and launching FFmpeg for many video streams. The FFmpeg launcher takes a transcode job description, input source files, corresponding FFmpeg run commands and automatically launches child FFmpeg processes based on the job slot availability on the server. In case there are more input streams listed than available job slots, the excess are queued and launched when a job slot becomes available. Note that only a single launcher per server is supported.</p>
 <div class="admonition note">
@@ -402,9 +401,9 @@ ffmpeg -c:v mpsoc_vcu_h264 ...
 </div>
 </li>
 </ol>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>
@@ -428,7 +427,7 @@ ffmpeg -c:v mpsoc_vcu_h264 ...
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 05, 2023.
+      <span class="lastupdated">Last updated on May 18, 2023.
       </span></p>
   </div>
 

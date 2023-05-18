@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -152,7 +151,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="managing-video-acceleration-compute-resources">
+  <div class="section" id="managing-video-acceleration-compute-resources">
 <h1>Managing Video Acceleration Compute Resources<a class="headerlink" href="#managing-video-acceleration-compute-resources" title="Permalink to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -168,7 +167,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><a class="reference internal" href="#xrm-reference-guide" id="id7">XRM Reference Guide</a></p></li>
 </ul>
 </div>
-<section id="introduction">
+<div class="section" id="introduction">
 <h2><a class="toc-backref" href="#id3">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
 <p>Each Xilinx device on an Alveo U30 card can process an aggregate load of 4K pixels at 60 frames per second. The Xilinx Video SDK supports running multiple jobs simultaenously on a given device if the overall throughput does not exceed the limit of 4kp60. When the user has access to more than one device on a given machine, the Xilinx Video SDK also supports running one or more jobs across multiple devices. In this situation, it becomes important to manage the pool of video acceleration resources in order to get the most out of the total compute bandwidth available in the system.</p>
 <p>The notion of compute units (CUs) and CU pool is central to resource managent. A typical video transcode pipeline needs a conjunction of multiple CUs like decoder, scaler, lookahead, and encoder, together forming a CU pool. Based on the input resolution and type of transcode, the load of CUs within a CU pool varies. This in turn determines how many jobs can be run real-time in parallel, and which devices has enough free resources to run a job.</p>
@@ -186,18 +185,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-<section id="assigning-jobs-to-specific-devices">
+</div>
+<div class="section" id="assigning-jobs-to-specific-devices">
 <span id="using-explicit-device-ids"></span><h2><a class="toc-backref" href="#id4">Assigning Jobs to Specific Devices</a><a class="headerlink" href="#assigning-jobs-to-specific-devices" title="Permalink to this heading">¶</a></h2>
 <p>By default a job is submitted to device 0. When running multiple jobs in parallel, device 0 is bound to run out of resources rapidly and additional jobs will error out due to insufficient resources. By using explicit device identifiers, the different components (decoder, scaler, encoder) of a job can be individually submitted to a specific device. This makes it easy and straightforward to leverage the entire video acceleration capacity of your system, regardless of the number of cards and devices.</p>
 <p>The FFmpeg <a class="reference internal" href="using_ffmpeg.html#cmdoption-lxlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lxlnx_hwdev</span></code></a> and GStreamer <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-dev-idx"><code class="xref std std-option docutils literal notranslate"><span class="pre">dev-idx</span></code></a> options can be used to specify the device on which a specific job component (decoder, scaler, encoder) should be run. This makes it possible to split a job across two devices by mapping some components of the job to one device and other components of the job to another device. This ability is useful when there are not enough compute resources to run the entire job on a single device. Typical use cases include 4K ladders or 1080p ladders with more outputs that can be scaled or encoded on a single device. When splitting a job across two devices, the video frames must be transfered from the first device to the host, and then from the host to the second device. When using FFmpeg, this transfer must be done explicitly using the <a class="reference internal" href="using_ffmpeg.html#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filter. When using GStreamer, this transfer is handled automatically by the plugins.</p>
 <p>The FFmpeg <a class="reference internal" href="using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option is similar to the <a class="reference internal" href="using_ffmpeg.html#cmdoption-lxlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lxlnx_hwdev</span></code></a> option, but it applies globally instead of locally. This option can used to specify the device on which all components of a given job should be run. The <a class="reference internal" href="using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> and <a class="reference internal" href="using_ffmpeg.html#cmdoption-lxlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lxlnx_hwdev</span></code></a> options can be used together. If present, the <a class="reference internal" href="using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option sets the default device index for all job components. Any subsequent <a class="reference internal" href="using_ffmpeg.html#cmdoption-lxlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lxlnx_hwdev</span></code></a> option overwrites the device index for the particular component that it is set on.</p>
 <p>Determining on which device(s) to run a job can be done using either the <a class="reference internal" href="#manual-resource-management"><span class="std std-ref">manual</span></a> or <a class="reference internal" href="#using-job-descriptions"><span class="std std-ref">automated</span></a> methods described in the following sections.</p>
-<section id="performance-considerations">
+<div class="section" id="performance-considerations">
 <h3>Performance Considerations<a class="headerlink" href="#performance-considerations" title="Permalink to this heading">¶</a></h3>
 <p>For higher performance, Xilinx recommends running all the different components on the same device whenever possible. Splitting a job across multiple devices leads to extra data transfers to and from the host which may impact total performance.</p>
-</section>
-<section id="examples-using-explicit-device-ids">
+</div>
+<div class="section" id="examples-using-explicit-device-ids">
 <h3>Examples using Explicit Device IDs<a class="headerlink" href="#examples-using-explicit-device-ids" title="Permalink to this heading">¶</a></h3>
 <p class="rubric">FFmpeg example of two different jobs run on two different devices</p>
 <p>In this example, two different FFmpeg jobs are run in parallel. The <a class="reference internal" href="using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option is used to submit each job to a different device:</p>
@@ -207,12 +206,10 @@ ffmpeg -xlnx_hwdev 1 -c:v mpsoc_vcu_h264 -i INPUT2.h264 -f mp4 -c:v mpsoc_vcu_he
 </div>
 <p class="rubric">FFmpeg example of a 4K ladder split across two devices</p>
 <p>In this example, a 4K ABR ladder with 6 outputs is split across two devices, as shown in the picture below:</p>
-<figure class="align-center" id="id2">
+<div class="figure align-center" id="id2">
 <img alt="4K Ladder Running on Two Devices" src="_images/4k_ladder_on_two_devices.png" />
-<figcaption>
-<p><span class="caption-text">4K ABR ladder split across two devices</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
-</figcaption>
-</figure>
+<p class="caption"><span class="caption-text">4K ABR ladder split across two devices</span><a class="headerlink" href="#id2" title="Permalink to this image">¶</a></p>
+</div>
 <p>This 4K ladder can be implemented in FFmpeg with the command below. The <a class="reference internal" href="using_ffmpeg.html#cmdoption-lxlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lxlnx_hwdev</span></code></a> option is used to map each component of the FFmpeg job to the desired device. Two <a class="reference internal" href="using_ffmpeg.html#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> filters are used since there are scaling operations on both devices. The output of the scaler on device 0 is transfered back to the host with the <a class="reference internal" href="using_ffmpeg.html#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filter. The same data is then automatically copied to the other device since it is used by the second <a class="reference internal" href="using_ffmpeg.html#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> filter:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -re -lxlnx_hwdev 0 -c:v mpsoc_vcu_h264 -i INPUT.h264 -max_muxing_queue_size 1024 -filter_complex &quot; \
   [0]split[a][b]; \
@@ -304,14 +301,14 @@ ffmpeg -xlnx_hwdev 1 -c:v mpsoc_vcu_h264 -i INPUT2.h264 -f mp4 -c:v mpsoc_vcu_he
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-</section>
-<section id="manual-resource-management">
+</div>
+</div>
+<div class="section" id="manual-resource-management">
 <span id="id1"></span><h2><a class="toc-backref" href="#id5">Manual Resource Management</a><a class="headerlink" href="#manual-resource-management" title="Permalink to this heading">¶</a></h2>
 <p>The card management tools included in the Xilinx Video SDK provide ways to query the status and utilization of the compute resources on the Xilinx devices. Using these tools the user can determine which resources are available and thereby determine on which device to submit a job (using <a class="reference internal" href="#using-explicit-device-ids"><span class="std std-ref">explicit device identifies</span></a>, as explained in the previous section).</p>
 <p>Given that each device has a 2160p60 (4K) input and output bandwidth limit, the user is responsible for only submitting jobs which will not exceed the capacity of the specified device. If a job is submitted on a device where there are not enough compute unit resources available to support the job, the job will error out with a message about resource allocation failure.</p>
 <p>The XRM and card management tools provide methods to estimate CU requirements and check current device load.</p>
-<section id="checking-system-load">
+<div class="section" id="checking-system-load">
 <h3>Checking System Load<a class="headerlink" href="#checking-system-load" title="Permalink to this heading">¶</a></h3>
 <p>To check the current loading of all the devices in your system, use the following command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xrmadm /opt/xilinx/xrm/test/list_cmd.json
@@ -338,8 +335,8 @@ ffmpeg -xlnx_hwdev 1 -c:v mpsoc_vcu_h264 -i INPUT2.h264 -f mp4 -c:v mpsoc_vcu_he
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">usedLoad</span></code> value indicates how much of that resource is currently being used. The value will range from 0 (nothing running) to 1000000 (fully loaded). The <code class="docutils literal notranslate"><span class="pre">reservedLoad</span></code> value indicates how much of that resource is being reserved using XRM. The <code class="docutils literal notranslate"><span class="pre">resrvUsedLoad</span></code> value indicates how much of the reserved load is actually being used.</p>
 <p>In the above example, the encoder is 83.14% utilized. An additional job may only be run on this device if it requires less than 17% of the encoder resources.</p>
-</section>
-<section id="insufficient-resources">
+</div>
+<div class="section" id="insufficient-resources">
 <h3>Insufficient Resources<a class="headerlink" href="#insufficient-resources" title="Permalink to this heading">¶</a></h3>
 <p>If there are not enough compute unit resources available on the device to support a FFmpeg job, the job will error out with a message about resource allocation failure:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xrm_allocation: failed to allocate decoder resources from device 0
@@ -347,8 +344,8 @@ ffmpeg -xlnx_hwdev 1 -c:v mpsoc_vcu_h264 -i INPUT2.h264 -f mp4 -c:v mpsoc_vcu_he
 </pre></div>
 </div>
 <p>In this case, you can check the system load (as described in the section below) and look for a device with enough free resources, or wait until another job finishes and releases enough resources to run the desired job.</p>
-</section>
-<section id="job-resource-requirements">
+</div>
+<div class="section" id="job-resource-requirements">
 <h3>Job Resource Requirements<a class="headerlink" href="#job-resource-requirements" title="Permalink to this heading">¶</a></h3>
 <p>The load of a given job can be estimated by taking the resolution of the job as a percentage of the 2160p60 (4K) maximum. For instance, a 1080p60 stream will require 25% of the resources available on a device.</p>
 <p>In addition, it is possible to run FFmpeg with the <a class="reference internal" href="using_ffmpeg.html#cmdoption-loglevel"><code class="xref std std-option docutils literal notranslate"><span class="pre">-loglevel</span></code></a> option set to <code class="docutils literal notranslate"><span class="pre">debug</span></code> to get information about the resource requirements for a given job. The messages generated in the transcript will look as follow:</p>
@@ -360,13 +357,13 @@ ffmpeg -xlnx_hwdev 1 -c:v mpsoc_vcu_h264 -i INPUT2.h264 -f mp4 -c:v mpsoc_vcu_he
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-</section>
-<section id="automated-resource-management">
+</div>
+</div>
+<div class="section" id="automated-resource-management">
 <span id="using-job-descriptions"></span><h2><a class="toc-backref" href="#id6">Automated Resource Management</a><a class="headerlink" href="#automated-resource-management" title="Permalink to this heading">¶</a></h2>
 <p>The Xilinx Video SDK provides a mechanism to automatically determine how many instances of a given job can be submitted to the system and on which device(s) to dispatch each job instance. This mechanism relies on Job Descriptions files and a Job Slot Reservation tool which calculates the resources required for each job, determines on which device each job should be run and reserves the resources accordingly.</p>
 <p><strong>NOTE</strong>: A current limitation of this method is that only one job description file can be used at a time, and a job description file can only contain a single job description. The system will only manage multiple jobs if they match the same description. Simultaneously managing different job types is not supported currently. The jobs need to be stopped before a new job description can be loaded.</p>
-<section id="video-transcode-job-descriptions">
+<div class="section" id="video-transcode-job-descriptions">
 <span id="job-descriptions-files"></span><h3>Video Transcode Job Descriptions<a class="headerlink" href="#video-transcode-job-descriptions" title="Permalink to this heading">¶</a></h3>
 <p>A video transcode job description provides information to the resource manager about what resources are needed to run a particular job. With this information, the resource manager can calculate the CU load for the specified job as well as the maximum possible number of jobs that can be run real-time in parallel.</p>
 <p>A video transcode job description is specified through a JSON file and the key-value pairs specify the functions, formats, and resolutions needed.</p>
@@ -536,8 +533,8 @@ This option will be deprecated and removed in a future release. The job-count op
 <li><p><a class="reference internal" href="#using-job-slot-reservations"><span class="std std-ref">Using the job slot reservation tool</span></a></p></li>
 <li><p>Automated job launcher examples for <a class="reference internal" href="#using-ffmpeg-launcher"><span class="std std-ref">FFmpeg</span></a> and <a class="reference internal" href="#using-gstreamer-launcher"><span class="std std-ref">GStreamer</span></a></p></li>
 </ul>
-</section>
-<section id="the-job-slot-reservation-tool">
+</div>
+<div class="section" id="the-job-slot-reservation-tool">
 <span id="using-job-slot-reservations"></span><h3>The Job Slot Reservation Tool<a class="headerlink" href="#the-job-slot-reservation-tool" title="Permalink to this heading">¶</a></h3>
 <p>The job slot reservation application takes as input a <a class="reference internal" href="#job-descriptions-files"><span class="std std-ref">JSON job description</span></a>. The JSON job description file provides information to the resource manager about what kind of transcode is intended to run on the card. With this information the resource manager calculates the CU load for the specified job as well as the maximum possible number of jobs that can be run real-time in parallel.</p>
 <p>Once the maximum possible number of jobs is known, CUs and job slots are reserved, and corresponding reservation IDs are stored in a bash file at <code class="docutils literal notranslate"><span class="pre">/var/tmp/xilinx/xrm_jobReservation.sh</span></code>. A reservation ID is a unique identifier which is valid while the job slot reservation application is running. These reservation IDs are passed to individual FFmpeg or GStreamer processes via the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">XRM_RESERVE_ID</span></code> environment variable. The FFmpeg or GStreamer processes then use this reservation ID to retrieve and use the corresponding CUs reserved by the job slot reservation tool.</p>
@@ -552,7 +549,7 @@ encoder plugin function=0 fail to run the function
 </pre></div>
 </div>
 <p>This indicates that the job description is ill-formed and needs to be corrected.</p>
-<section id="example-requiring-a-single-device-per-job">
+<div class="section" id="example-requiring-a-single-device-per-job">
 <h4>Example requiring a single device per job<a class="headerlink" href="#example-requiring-a-single-device-per-job" title="Permalink to this heading">¶</a></h4>
 <p>This example uses the <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/launcher/scripts/describe_job/describe_job.json</span></code> file describing a 1080p ABR ladder running on a single device.</p>
 <ol class="arabic">
@@ -600,8 +597,8 @@ ffmpeg -c:v mpsoc_vcu_h264 ...
 </li>
 <li><p>Press <strong>Enter</strong> in the job reservation app terminal to release the resources after the jobs are complete.</p></li>
 </ol>
-</section>
-<section id="example-requiring-two-devices-per-job">
+</div>
+<div class="section" id="example-requiring-two-devices-per-job">
 <h4>Example requiring two devices per job<a class="headerlink" href="#example-requiring-two-devices-per-job" title="Permalink to this heading">¶</a></h4>
 <p>This example uses the <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/launcher/scripts/describe_job/testjob_4k_2dev.json</span></code> file describing a 4K ABR ladder split across two devices.</p>
 <ol class="arabic">
@@ -648,13 +645,13 @@ ffmpeg -lxlnx_hwdev ${var_dev_2_0} -c:v mpsoc_vcu_h264 ... -lxlnx_hwdev ${var_de
 </li>
 <li><p>Press <strong>Enter</strong> in the job reservation app terminal to release the resources after the jobs are complete.</p></li>
 </ol>
-</section>
-</section>
-<section id="automated-job-launching">
+</div>
+</div>
+<div class="section" id="automated-job-launching">
 <span id="launcher-examples"></span><h3>Automated Job Launching<a class="headerlink" href="#automated-job-launching" title="Permalink to this heading">¶</a></h3>
 <p>The Job Slot Reservation tool automatically reserves job slots, but actual jobs still need to be manually launched using the generated reservations IDs. It is possible to create custom orchestration layers to automatically handle the reservation of job slots and the launching of jobs.</p>
 <p>The Xilinx Video SDK includes two examples of “launcher” applications for FFmpeg and GStreamer, respectively. Source code for the FFmpeg Launcher example, the GStreamer Launcher and the Job Slot Reservation tool are included in the Github repository of Xilinx Video SDK and can be used as a starting point for developing custom orchestration layers.</p>
-<section id="the-ffmpeg-launcher-example">
+<div class="section" id="the-ffmpeg-launcher-example">
 <span id="using-ffmpeg-launcher"></span><h4>The FFmpeg Launcher Example<a class="headerlink" href="#the-ffmpeg-launcher-example" title="Permalink to this heading">¶</a></h4>
 <p>The FFmpeg launcher is an example application which automates the dispatching of FFmpeg jobs across multiple devices. It simplifies the process of manually setting up XRM reservation IDs and launching FFmpeg for many video streams. The FFmpeg launcher takes a transcode job description, input source files, corresponding FFmpeg run commands and automatically launches child FFmpeg processes based on the job slot availability on the server. In case there are more input streams listed than available job slots, the excess are queued and launched when a job slot becomes available. Note that only a single launcher per server is supported.</p>
 <div class="admonition note">
@@ -690,8 +687,8 @@ cmdline = ffmpeg -c:v mpsoc_vcu_h264 -i -filter_complex &quot;multiscale_xma=:ou
 </div>
 </li>
 </ol>
-</section>
-<section id="the-gstreamer-launcher-example">
+</div>
+<div class="section" id="the-gstreamer-launcher-example">
 <span id="using-gstreamer-launcher"></span><h4>The GStreamer Launcher Example<a class="headerlink" href="#the-gstreamer-launcher-example" title="Permalink to this heading">¶</a></h4>
 <p>The GStreamer launcher is an example application which automates the dispatching of GStreamer jobs across multiple devices. It simplifies the process of manually setting up XRM reservation IDs and launching GStreamer for many video streams. The GStreamer launcher takes a transcode job description, input source files, corresponding GStreamer run commands and automatically launches child GStreamer processes based on the job slot availability on the server. In case there are more input streams listed than available job slots, the excess are queued and launched when a job slot becomes available. Note that only a single launcher per server is supported.</p>
 <div class="admonition note">
@@ -730,10 +727,10 @@ cmdline = gst-launch-1.0 filesrc ! h264parse ! vvas_xvcudec num-entropy-buf=2 ! 
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-</section>
-</section>
-<section id="xrm-reference-guide">
+</div>
+</div>
+</div>
+<div class="section" id="xrm-reference-guide">
 <span id="xrmadm-and-xrmd-commands"></span><span id="xrm-reference"></span><h2><a class="toc-backref" href="#id7">XRM Reference Guide</a><a class="headerlink" href="#xrm-reference-guide" title="Permalink to this heading">¶</a></h2>
 <p>The Xilinx® FPGA resource manager (XRM) is the software which manages the hardware accelerators available in the system. XRM includes the following components:</p>
 <ul class="simple">
@@ -741,7 +738,7 @@ cmdline = gst-launch-1.0 filesrc ! h264parse ! vvas_xvcudec num-entropy-buf=2 ! 
 <li><p><code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> the command line tool is used to interact with the XRM daemon (<code class="docutils literal notranslate"><span class="pre">xrmd</span></code>).</p></li>
 <li><p>a C Application Programming Interface (API)</p></li>
 </ul>
-<section id="command-line-interface">
+<div class="section" id="command-line-interface">
 <h3>Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this heading">¶</a></h3>
 <p>The XRM <code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> command line tool is used to interact with the XRM daemon (<code class="docutils literal notranslate"><span class="pre">xrmd</span></code>). It provides the following capabilities and uses a JSON file as input for each action:</p>
 <ul class="simple">
@@ -750,15 +747,15 @@ cmdline = gst-launch-1.0 filesrc ! h264parse ! vvas_xvcudec num-entropy-buf=2 ! 
 <li><p>Load and unload the software plugins</p></li>
 </ul>
 <p>The XRM related files are installed under <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/xrm/</span></code> and device-specific XRM commands are available at <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/xcdr/scripts/xrm_commands/</span></code>.</p>
-<section id="setup">
+<div class="section" id="setup">
 <h4>Setup<a class="headerlink" href="#setup" title="Permalink to this heading">¶</a></h4>
 <p>When sourced, the <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/xcdr/setup.sh</span></code> script takes care of setting up the enviroment for the Xilinx Video SDK, including its XRM components:</p>
 <ul class="simple">
 <li><p>The XRM daemon (<code class="docutils literal notranslate"><span class="pre">xrmd</span></code>) is started</p></li>
 <li><p>The hardware accelerators (xclbin) and software plugins are loaded on the Xilinx devices</p></li>
 </ul>
-</section>
-<section id="generating-status-reports">
+</div>
+<div class="section" id="generating-status-reports">
 <h4>Generating Status Reports<a class="headerlink" href="#generating-status-reports" title="Permalink to this heading">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> can generate reports with the status of each device in the system. This capability is particularly useful to check the loading of each hardware accelerator.</p>
 <p>To generate a report for all the devices in the system:</p>
@@ -779,8 +776,8 @@ cmdline = gst-launch-1.0 filesrc ! h264parse ! vvas_xvcudec num-entropy-buf=2 ! 
 }
 </pre></div>
 </div>
-</section>
-<section id="loading-unloading-hardware-accelerators">
+</div>
+<div class="section" id="loading-unloading-hardware-accelerators">
 <h4>Loading/Unloading Hardware Accelerators<a class="headerlink" href="#loading-unloading-hardware-accelerators" title="Permalink to this heading">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> can be used to load or unload the hardware accelerators on the programmable devices of the Alveo U30 card. The hardware accelerators must be reloaded after rebooting a card.</p>
 <p>To load the hardware accelerators on a given device:</p>
@@ -810,8 +807,8 @@ cmdline = gst-launch-1.0 filesrc ! h264parse ! vvas_xvcudec num-entropy-buf=2 ! 
 }
 </pre></div>
 </div>
-</section>
-<section id="loading-unloading-software-plugins">
+</div>
+<div class="section" id="loading-unloading-software-plugins">
 <h4>Loading/Unloading Software Plugins<a class="headerlink" href="#loading-unloading-software-plugins" title="Permalink to this heading">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> can be used to load or unload the software plugins required to manage the compute resources. The software plugins perform resource management functions such as calculating CU load and CU max capacity. Once a plugin is loaded, it becomes usable by a host application through the XRM APIs. The XRM plugins need to be loaded before executing an application (such as FFmpeg/GStreamer) which relies on the plugins.</p>
 <p>To load the plugins:</p>
@@ -822,8 +819,8 @@ cmdline = gst-launch-1.0 filesrc ! h264parse ! vvas_xvcudec num-entropy-buf=2 ! 
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xrmadm /opt/xilinx/xcdr/scripts/xrm_commands/unload_multi_u30_xrm_plugins_cmd.json
 </pre></div>
 </div>
-</section>
-<section id="controlling-the-xrmd-daemon">
+</div>
+<div class="section" id="controlling-the-xrmd-daemon">
 <h4>Controlling the xrmd Daemon<a class="headerlink" href="#controlling-the-xrmd-daemon" title="Permalink to this heading">¶</a></h4>
 <p>The following commands can be used to start, stop, restart, or get the status of the daemon:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo /opt/xilinx/xrm/tools/start_xrmd.sh
@@ -832,14 +829,14 @@ sudo /opt/xilinx/xrm/tools/restart_xrmd.sh
 sudo systemctl status xrmd
 </pre></div>
 </div>
-</section>
-</section>
-<section id="c-application-programming-interface">
+</div>
+</div>
+<div class="section" id="c-application-programming-interface">
 <h3>C Application Programming Interface<a class="headerlink" href="#c-application-programming-interface" title="Permalink to this heading">¶</a></h3>
 <p>XRM provides a C Application Programming Interface (API) to reserve, allocate and release CUs from within a custom application. For complete details about this programming interface, refer to the <a class="reference internal" href="c_apis.html#xrm-api-reference"><span class="std std-ref">XRM API Reference Guide</span></a> section of the documentation.</p>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>
@@ -863,7 +860,7 @@ sudo systemctl status xrmd
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 05, 2023.
+      <span class="lastupdated">Last updated on May 18, 2023.
       </span></p>
   </div>
 

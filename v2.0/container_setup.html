@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -124,7 +123,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="container-setup">
+  <div class="section" id="container-setup">
 <span id="id1"></span><h1>Container Setup<a class="headerlink" href="#container-setup" title="Permalink to this heading">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -142,9 +141,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<section id="working-with-docker-vt1">
+<div class="section" id="working-with-docker-vt1">
 <h2><a class="toc-backref" href="#id2">Working with Docker Amazon EC2 VT1</a><a class="headerlink" href="#working-with-docker-vt1" title="Permalink to this heading">¶</a></h2>
-<section id="creating-a-docker-image-for-vt1-usage">
+<div class="section" id="creating-a-docker-image-for-vt1-usage">
 <h3>Creating a Docker Image for Amazon EC2 VT1 Usage<a class="headerlink" href="#creating-a-docker-image-for-vt1-usage" title="Permalink to this heading">¶</a></h3>
 <ol class="arabic">
 <li><p>If not already available, clone the video-sdk repository on your machine:</p>
@@ -163,8 +162,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </li>
 </ol>
-</section>
-<section id="launching-a-docker-container-on-vt1">
+</div>
+<div class="section" id="launching-a-docker-container-on-vt1">
 <span id="launch-docker-vt1"></span><h3>Launching a Docker Container on Amazon EC2 VT1<a class="headerlink" href="#launching-a-docker-container-on-vt1" title="Permalink to this heading">¶</a></h3>
 <ol class="arabic">
 <li><p>Gather the User BDFs and renderIDs of the Xilinx devices present in your system. For detailled information on how to do this, refer to the instructions for looking-up the <a class="reference internal" href="card_management.html#device-bdf"><span class="std std-ref">User BDF</span></a> and <a class="reference internal" href="card_management.html#device-render-id"><span class="std std-ref">renderID</span></a>.</p>
@@ -196,11 +195,11 @@ xbutil examine
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-</section>
-<section id="working-with-docker-on-premises">
+</div>
+</div>
+<div class="section" id="working-with-docker-on-premises">
 <h2><a class="toc-backref" href="#id3">Working with  Docker On-Premises</a><a class="headerlink" href="#working-with-docker-on-premises" title="Permalink to this heading">¶</a></h2>
-<section id="creating-a-docker-image-for-on-prem-usage">
+<div class="section" id="creating-a-docker-image-for-on-prem-usage">
 <h3>Creating a Docker Image for On-Prem Usage<a class="headerlink" href="#creating-a-docker-image-for-on-prem-usage" title="Permalink to this heading">¶</a></h3>
 <ol class="arabic">
 <li><p>If not already available, clone the video-sdk repository on your machine:</p>
@@ -219,8 +218,8 @@ xbutil examine
 </div>
 </li>
 </ol>
-</section>
-<section id="launching-a-docker-container-on-premises">
+</div>
+<div class="section" id="launching-a-docker-container-on-premises">
 <span id="launch-docker-on-prem"></span><h3>Launching a Docker Container On-Premises<a class="headerlink" href="#launching-a-docker-container-on-premises" title="Permalink to this heading">¶</a></h3>
 <ol class="arabic">
 <li><p>Gather the User BDFs and renderIDs of the Xilinx devices present in your system. For detailled information on how to do this, refer to the instructions for looking-up the <a class="reference internal" href="card_management.html#device-bdf"><span class="std std-ref">User BDF</span></a> and <a class="reference internal" href="card_management.html#device-render-id"><span class="std std-ref">renderID</span></a>.</p>
@@ -257,9 +256,9 @@ xbutil examine
 <li><p>In the case where a single device is mapped to the container, Xilinx recommends against using the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">reset</span></code> command.</p></li>
 <li><p>Mapping the management port using the xclmgmtID allows using to the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> card management utility from within the container. Doing so is optional.</p></li>
 </ul>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>
@@ -283,7 +282,7 @@ xbutil examine
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 05, 2023.
+      <span class="lastupdated">Last updated on May 18, 2023.
       </span></p>
   </div>
 

@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
-
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -137,7 +136,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <section id="sdk-release-notes">
+  <div class="section" id="sdk-release-notes">
 <span id="release-notes"></span><h1>Xilinx Video SDK Release Notes<a class="headerlink" href="#sdk-release-notes" title="Permalink to this heading">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -156,9 +155,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-<section id="what-s-new">
+<div class="section" id="what-s-new">
 <h2><a class="toc-backref" href="#id1">What’s New</a><a class="headerlink" href="#what-s-new" title="Permalink to this heading">¶</a></h2>
-<section id="v2-0-1">
+<div class="section" id="v2-0-1">
 <h3>v2.0.1<a class="headerlink" href="#v2-0-1" title="Permalink to this heading">¶</a></h3>
 <p>This update release provides several bug fixes in the Xilinx Runtime (XRT).</p>
 <p>Upgrade instructions:</p>
@@ -166,8 +165,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>For Amazon EC2 VT1 AMIs: follow the steps for <a class="reference internal" href="getting_started_on_vt1.html#installing-in-existing-ami"><span class="std std-ref">installing in an existing AMI</span></a>.</p></li>
 <li><p>For on-prem systems: follow the step for <a class="reference internal" href="getting_started_on_prem.html#installation-instructions"><span class="std std-ref">installing on-premises</span></a>.</p></li>
 </ul>
-</section>
-<section id="v2-0">
+</div>
+<div class="section" id="v2-0">
 <h3>v2.0<a class="headerlink" href="#v2-0" title="Permalink to this heading">¶</a></h3>
 <p>This version provides various performance and stability improvements and new features including:</p>
 <ul class="simple">
@@ -183,9 +182,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-</section>
-<section id="changed-behavior">
+</div>
+</div>
+<div class="section" id="changed-behavior">
 <h2><a class="toc-backref" href="#id2">Changed Behavior</a><a class="headerlink" href="#changed-behavior" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The encoder plugin has been updated to be thread-safe and is not backwards compatible. The <a class="reference internal" href="c_apis.html#c.xma_enc_session_recv_data" title="xma_enc_session_recv_data"><code class="xref c c-func docutils literal notranslate"><span class="pre">xma_enc_session_recv_data()</span></code></a> function no longer allocates the <a class="reference internal" href="c_apis.html#c.XmaDataBuffer" title="XmaDataBuffer"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaDataBuffer</span></code></a> output. It is now the responsability of the application to allocate the <a class="reference internal" href="c_apis.html#c.XmaDataBuffer" title="XmaDataBuffer"><code class="xref c c-struct docutils literal notranslate"><span class="pre">XmaDataBuffer</span></code></a> data structure. C-based applications developped with earlier versions of the Xilinx Video SDK must be updated accordingly or they will error out with version 2.0.</p></li>
@@ -193,8 +192,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-<section id="supported-platforms-and-operating-systems">
+</div>
+<div class="section" id="supported-platforms-and-operating-systems">
 <h2><a class="toc-backref" href="#id3">Supported Platforms and Operating Systems</a><a class="headerlink" href="#supported-platforms-and-operating-systems" title="Permalink to this heading">¶</a></h2>
 <p>The Xilinx Video SDK currently supports the following platforms:</p>
 <ul class="simple">
@@ -217,8 +216,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-<section id="limitations">
+</div>
+<div class="section" id="limitations">
 <h2><a class="toc-backref" href="#id4">Limitations</a><a class="headerlink" href="#limitations" title="Permalink to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>The Xilinx Video SDK supports both 8 and 10-bit streams, but they cannot be mixed together. The entire pipeline must be either 8 or 10-bits.</p></li>
@@ -250,17 +249,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</section>
-<section id="known-issues">
+</div>
+<div class="section" id="known-issues">
 <h2><a class="toc-backref" href="#id5">Known Issues</a><a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
-<section id="potential-no-u30-devices-found-error-when-sourcing-the-setup-sh-script-on-aws-vt1-instances">
+<div class="section" id="potential-no-u30-devices-found-error-when-sourcing-the-setup-sh-script-on-aws-vt1-instances">
 <h3>Potential “No U30 devices found” error when sourcing the setup.sh script on AWS VT1 instances<a class="headerlink" href="#potential-no-u30-devices-found-error-when-sourcing-the-setup-sh-script-on-aws-vt1-instances" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Description: Sourcing the setup.sh script on AWS VT1 gives a “No U30 devices found” error.</p></li>
 <li><p>Solution: A patch is required to use version 1.5 of the Xilinx Video SDK on AWS VT1 instances running the latest version of the U30 firmware. See instructions <a class="reference internal" href="getting_started_on_vt1.html#patch-for-vt1"><span class="std std-ref">here</span></a>.</p></li>
 </ul>
-</section>
-<section id="potential-failed-error-code-when-sourcing-the-setup-sh-script">
+</div>
+<div class="section" id="potential-failed-error-code-when-sourcing-the-setup-sh-script">
 <h3>Potential “failed” error code when sourcing the setup.sh script<a class="headerlink" href="#potential-failed-error-code-when-sourcing-the-setup-sh-script" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>Description: If you source the setup script on a machine where the Xilinx Video SDK environment has already been initialized, you will see the “failed” status being reported.</p></li>
@@ -282,36 +281,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </li>
 </ul>
-</section>
-<section id="running-xbutil-validate-from-a-vm-with-version-1-5-installed-gives-an-error">
+</div>
+<div class="section" id="running-xbutil-validate-from-a-vm-with-version-1-5-installed-gives-an-error">
 <h3>Running ‘xbutil validate’ from a VM with version 1.5 installed gives an error<a class="headerlink" href="#running-xbutil-validate-from-a-vm-with-version-1-5-installed-gives-an-error" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Description: After the devices have been flashed with the version 2.0, running ‘xbutil validate’ from a virtual machine with version 1.5 installed results in an error. The validation program included in version 1.5 of the Xilinx Video SDK is not forward compatible with version 2.0.</p></li>
 <li><p>Solution: None</p></li>
 </ul>
-</section>
-<section id="custom-rate-control-needs-a-minimum-of-8-lookahead-frames-for-reasonable-picture-quality">
+</div>
+<div class="section" id="custom-rate-control-needs-a-minimum-of-8-lookahead-frames-for-reasonable-picture-quality">
 <h3>Custom rate control needs a minimum of 8 lookahead frames for reasonable picture quality<a class="headerlink" href="#custom-rate-control-needs-a-minimum-of-8-lookahead-frames-for-reasonable-picture-quality" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Description: Custom rate control is automatically enabled when the lookahead depth is set to 1 or more. However, to obtain reasonable picture quality, custom rate control needs a minimum of 8 lookahead frames.</p></li>
 <li><p>Solution: Increase the lookahead depth to 8 frames or more when using custom rate control, or set the control rate to constant when using less a lookahead depth smaller than 8.</p></li>
 </ul>
-</section>
-<section id="the-encoder-adds-duplicate-frames-for-streams-with-fps-and-timescale-parameters-which-do-not-match">
+</div>
+<div class="section" id="the-encoder-adds-duplicate-frames-for-streams-with-fps-and-timescale-parameters-which-do-not-match">
 <h3>The encoder adds duplicate frames for streams with ‘fps’ and ‘timescale’ parameters which do not match<a class="headerlink" href="#the-encoder-adds-duplicate-frames-for-streams-with-fps-and-timescale-parameters-which-do-not-match" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Description: When the ‘fps’ and ‘timescale’ parameters of the input stream do not match, FFmpeg calculates a framerate value which leads to duplicate streams.</p></li>
 <li><p>Solution: Ensure  ‘fps’ and ‘timescale’ parameters match</p></li>
 </ul>
-</section>
-<section id="ffmpeg-jobs-split-across-two-devices-need-the-xvbm-convert-filter-to-move-data-between-devices">
+</div>
+<div class="section" id="ffmpeg-jobs-split-across-two-devices-need-the-xvbm-convert-filter-to-move-data-between-devices">
 <h3>FFmpeg jobs split across two devices need the xvbm_convert filter to move data between devices<a class="headerlink" href="#ffmpeg-jobs-split-across-two-devices-need-the-xvbm-convert-filter-to-move-data-between-devices" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Description: FFmpeg will generate garbage results if a job is split across two devices without using the <a class="reference internal" href="using_ffmpeg.html#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filter to copy the frame buffers between devices.</p></li>
 <li><p>Solution: Use <a class="reference internal" href="using_ffmpeg.html#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filters to ensure the second device operates on valid data, as explained in the <a class="reference internal" href="using_ffmpeg.html#ffmpeg-data-movement"><span class="std std-ref">data movement</span></a> section of the documentation.</p></li>
 </ul>
-</section>
-<section id="initialization-error-with-a-4k-10bit-scaler-hevc-encoder-ffmpeg-pipeline">
+</div>
+<div class="section" id="initialization-error-with-a-4k-10bit-scaler-hevc-encoder-ffmpeg-pipeline">
 <h3>Initialization error with a 4K 10bit Scaler + HEVC encoder FFmpeg pipeline<a class="headerlink" href="#initialization-error-with-a-4k-10bit-scaler-hevc-encoder-ffmpeg-pipeline" title="Permalink to this heading">¶</a></h3>
 <ul>
 <li><p>Description: When running a 4K 10bit Scaler + HEVC encoder pipeline, the following error is seen when the encoder is initialized:</p>
@@ -321,44 +320,44 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 <li><p>Solution: Run FFmpeg with the <code class="docutils literal notranslate"><span class="pre">-slices</span> <span class="pre">4</span> <span class="pre">-cores</span> <span class="pre">4</span></code> encoder options</p></li>
 </ul>
-</section>
-<section id="potential-too-many-packets-buffered-for-output-stream-0-1-error-when-running-ffmpeg">
+</div>
+<div class="section" id="potential-too-many-packets-buffered-for-output-stream-0-1-error-when-running-ffmpeg">
 <h3>Potential “Too many packets buffered for output stream 0:1” error when running FFmpeg<a class="headerlink" href="#potential-too-many-packets-buffered-for-output-stream-0-1-error-when-running-ffmpeg" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Description: Some FFmpeg jobs may fail with a error message indicating “Too many packets buffered for output stream 0:1.”. This is a known FFmpeg issue (<a class="reference external" href="https://trac.ffmpeg.org/ticket/6375">https://trac.ffmpeg.org/ticket/6375</a>) which is not specific to the Xilinx Video SDK.</p></li>
 <li><p>Solution: Run FFmpeg with the <code class="docutils literal notranslate"><span class="pre">-max_muxing_queue_size</span> <span class="pre">9999</span></code> option</p></li>
 </ul>
-</section>
-<section id="multiple-starting-new-cluster-messages-when-encoding-to-matroska">
+</div>
+<div class="section" id="multiple-starting-new-cluster-messages-when-encoding-to-matroska">
 <h3>Multiple “Starting new cluster” messages when encoding to Matroska<a class="headerlink" href="#multiple-starting-new-cluster-messages-when-encoding-to-matroska" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Description: When encoding to .mkv, FFmpeg may have issues synchronizing video and audio data leading to messages of the following form: <code class="docutils literal notranslate"><span class="pre">[matroska</span> <span class="pre">&#64;</span> <span class="pre">0x563b3f675100]</span> <span class="pre">Starting</span> <span class="pre">new</span> <span class="pre">cluster</span></code></p></li>
 <li><p>Solution: Pass <code class="docutils literal notranslate"><span class="pre">-max_interleave_delta</span> <span class="pre">0</span></code> on the FFmpeg command line</p></li>
 </ul>
-</section>
-<section id="streams-with-rotation-metadata-may-cause-a-segfault-while-transcoding">
+</div>
+<div class="section" id="streams-with-rotation-metadata-may-cause-a-segfault-while-transcoding">
 <h3>Streams with rotation metadata may cause a segfault while transcoding<a class="headerlink" href="#streams-with-rotation-metadata-may-cause-a-segfault-while-transcoding" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Description: The hardware transcode pipeline can be unstable on a stream with rotation metadata.</p></li>
 <li><p>Solution: Use the FFmpeg <code class="docutils literal notranslate"><span class="pre">-noautorotate</span></code> option in cases where rotation metadata is present.</p></li>
 </ul>
-</section>
-<section id="abrupt-termination-of-ffmpeg-processes-may-cause-video-resources-to-not-be-released-correctly">
+</div>
+<div class="section" id="abrupt-termination-of-ffmpeg-processes-may-cause-video-resources-to-not-be-released-correctly">
 <h3>Abrupt termination of FFmpeg processes may cause video resources to not be released correctly<a class="headerlink" href="#abrupt-termination-of-ffmpeg-processes-may-cause-video-resources-to-not-be-released-correctly" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Description: Rerunning FFmpeg after abrutly terminating previous runs gives an “xrm_allocation: resource allocation failed” error message indicating that there are not enough video resources available to run this job on the Xilinx device.</p></li>
 <li><p>Solution: Users should terminate all running FFmepg processes before exiting their shell. Otherwise, a SIGHUP will be sent to the running FFmpeg processes and this may result in an unhandled signal leading to non-graceful termination and video resources will not be released correctly.</p></li>
 </ul>
-</section>
-<section id="gstreamer-package-installation-failure-on-rhel-due-to-dependencies">
+</div>
+<div class="section" id="gstreamer-package-installation-failure-on-rhel-due-to-dependencies">
 <h3>GStreamer package installation failure on RHEL due to dependencies<a class="headerlink" href="#gstreamer-package-installation-failure-on-rhel-due-to-dependencies" title="Permalink to this heading">¶</a></h3>
 <ul class="simple">
 <li><p>Description: Package installation may fail as it is required to have an active RHEL subscription to download packages from RHEL’s repositories.</p></li>
 <li><p>Solution: Get a subscription to RHEL and re-run the install script. Refer to <a class="reference external" href="https://access.redhat.com/solutions/253273">https://access.redhat.com/solutions/253273</a></p></li>
 </ul>
-</section>
-</section>
-</section>
+</div>
+</div>
+</div>
 
 
            </div>
@@ -382,7 +381,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 05, 2023.
+      <span class="lastupdated">Last updated on May 18, 2023.
       </span></p>
   </div>
 
