@@ -29,9 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -126,7 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="sdk-release-notes">
-<h1>Xilinx Video SDK Release Notes<a class="headerlink" href="#sdk-release-notes" title="Permalink to this heading">¶</a></h1>
+<h1>Xilinx Video SDK Release Notes<a class="headerlink" href="#sdk-release-notes" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>Version: 1.5 (Production)</p>
@@ -148,7 +146,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line"><br /></div>
 </div>
 <div class="section" id="what-s-new">
-<h2><a class="toc-backref" href="#id1">What’s New</a><a class="headerlink" href="#what-s-new" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">What’s New</a><a class="headerlink" href="#what-s-new" title="Permalink to this headline">¶</a></h2>
 <p>This version provides various performance and stability improvements, including:</p>
 <ul class="simple">
 <li><p>Support for Amazon EC2 VT1 instances as well as Amazon EKS and ECS</p></li>
@@ -162,7 +160,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="supported-platforms-and-operating-systems">
-<h2><a class="toc-backref" href="#id2">Supported Platforms and Operating Systems</a><a class="headerlink" href="#supported-platforms-and-operating-systems" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Supported Platforms and Operating Systems</a><a class="headerlink" href="#supported-platforms-and-operating-systems" title="Permalink to this headline">¶</a></h2>
 <p>The Xilinx Video SDK currently supports the following platforms:</p>
 <ul class="simple">
 <li><p>Xilinx Alveo U30</p></li>
@@ -185,7 +183,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="limitations">
-<h2><a class="toc-backref" href="#id3">Limitations</a><a class="headerlink" href="#limitations" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Limitations</a><a class="headerlink" href="#limitations" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p>The scaler is tuned for downscaling and expects non-increasing resolutions in an ABR ladder. Increasing resolutions between outputs will reduce video quality. For more details see <a class="reference internal" href="using_ffmpeg.html#using-ffmpeg-for-video-scaling"><span class="std std-ref">Using FFmpeg for Video Scaling</span></a>.</p></li>
 <li><p>The Xilinx Video SDK is optimized for live video real-time transcoding. For example, even though a single Alveo U30 card has the capability of running two Ultra HD (4K) transcodes in real-time at 60 frames per second (2x4kp60), running a single 4k stream at 120 fps is not supported. Similarly, a single Alveo U30 card supports up to 8x1080p60 transcodes in real-time, but it does not support fewer streams running at 120fps or beyond.</p></li>
@@ -199,16 +197,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="known-issues">
-<h2><a class="toc-backref" href="#id4">Known Issues</a><a class="headerlink" href="#known-issues" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Known Issues</a><a class="headerlink" href="#known-issues" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="potential-no-u30-devices-found-error-when-sourcing-the-setup-sh-script-on-aws-vt1-instances">
-<h3>Potential “No U30 devices found” error when sourcing the setup.sh script on AWS VT1 instances<a class="headerlink" href="#potential-no-u30-devices-found-error-when-sourcing-the-setup-sh-script-on-aws-vt1-instances" title="Permalink to this heading">¶</a></h3>
+<h3>Potential “No U30 devices found” error when sourcing the setup.sh script on AWS VT1 instances<a class="headerlink" href="#potential-no-u30-devices-found-error-when-sourcing-the-setup-sh-script-on-aws-vt1-instances" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Description: Sourcing the setup.sh script on AWS VT1 gives a “No U30 devices found” error.</p></li>
 <li><p>Solution: A patch is required to use version 1.5 of the Xilinx Video SDK on AWS VT1 instances running the latest version of the U30 firmware. See instructions <a class="reference internal" href="getting_started_on_vt1.html#patch-for-vt1"><span class="std std-ref">here</span></a>.</p></li>
 </ul>
 </div>
 <div class="section" id="potential-failed-error-code-when-sourcing-the-setup-sh-script">
-<h3>Potential “failed” error code when sourcing the setup.sh script<a class="headerlink" href="#potential-failed-error-code-when-sourcing-the-setup-sh-script" title="Permalink to this heading">¶</a></h3>
+<h3>Potential “failed” error code when sourcing the setup.sh script<a class="headerlink" href="#potential-failed-error-code-when-sourcing-the-setup-sh-script" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>Description: If you source the setup script on a machine where the Xilinx Video SDK environment has already been initialized, you will see the “failed” status being reported.</p></li>
 <li><p>Solution: This is not an indication of a problem. This status simply states that your environment is already set up and that the system is ready for use.:</p>
@@ -231,35 +229,35 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="section" id="potential-too-many-packets-buffered-for-output-stream-0-1-error-when-running-ffmpeg">
-<h3>Potential “Too many packets buffered for output stream 0:1” error when running FFmpeg<a class="headerlink" href="#potential-too-many-packets-buffered-for-output-stream-0-1-error-when-running-ffmpeg" title="Permalink to this heading">¶</a></h3>
+<h3>Potential “Too many packets buffered for output stream 0:1” error when running FFmpeg<a class="headerlink" href="#potential-too-many-packets-buffered-for-output-stream-0-1-error-when-running-ffmpeg" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Description: Some FFmpeg jobs may fail with a error message indicating “Too many packets buffered for output stream 0:1.”. This is a known FFmpeg issue (<a class="reference external" href="https://trac.ffmpeg.org/ticket/6375">https://trac.ffmpeg.org/ticket/6375</a>) which is not specific to the Xilinx Video SDK.</p></li>
 <li><p>Solution: Run FFmpeg with the <code class="docutils literal notranslate"><span class="pre">-max_muxing_queue_size</span> <span class="pre">9999</span></code> option</p></li>
 </ul>
 </div>
 <div class="section" id="multiple-starting-new-cluster-messages-when-encoding-to-matroska">
-<h3>Multiple “Starting new cluster” messages when encoding to Matroska<a class="headerlink" href="#multiple-starting-new-cluster-messages-when-encoding-to-matroska" title="Permalink to this heading">¶</a></h3>
+<h3>Multiple “Starting new cluster” messages when encoding to Matroska<a class="headerlink" href="#multiple-starting-new-cluster-messages-when-encoding-to-matroska" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Description: When encoding to .mkv, FFmpeg may have issues synchronizing video and audio data leading to messages of the following form: <code class="docutils literal notranslate"><span class="pre">[matroska</span> <span class="pre">&#64;</span> <span class="pre">0x563b3f675100]</span> <span class="pre">Starting</span> <span class="pre">new</span> <span class="pre">cluster</span></code></p></li>
 <li><p>Solution: Pass <code class="docutils literal notranslate"><span class="pre">-max_interleave_delta</span> <span class="pre">0</span></code> on the FFmpeg command line</p></li>
 </ul>
 </div>
 <div class="section" id="streams-with-rotation-metadata-may-cause-a-segfault-while-transcoding">
-<h3>Streams with rotation metadata may cause a segfault while transcoding<a class="headerlink" href="#streams-with-rotation-metadata-may-cause-a-segfault-while-transcoding" title="Permalink to this heading">¶</a></h3>
+<h3>Streams with rotation metadata may cause a segfault while transcoding<a class="headerlink" href="#streams-with-rotation-metadata-may-cause-a-segfault-while-transcoding" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Description: The hardware transcode pipeline can be unstable on a stream with rotation metadata</p></li>
 <li><p>Solution: Use the FFmpeg <code class="docutils literal notranslate"><span class="pre">-noautorotate</span></code> option in cases where rotation metadata is present.</p></li>
 </ul>
 </div>
 <div class="section" id="generating-a-device-status-report-with-the-xrmadm-tool-does-not-work-on-vt1-instances">
-<h3>Generating a device status report with the xrmadm tool does not work on Amazon EC2 VT1 instances<a class="headerlink" href="#generating-a-device-status-report-with-the-xrmadm-tool-does-not-work-on-vt1-instances" title="Permalink to this heading">¶</a></h3>
+<h3>Generating a device status report with the xrmadm tool does not work on Amazon EC2 VT1 instances<a class="headerlink" href="#generating-a-device-status-report-with-the-xrmadm-tool-does-not-work-on-vt1-instances" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Description: The <code class="docutils literal notranslate"><span class="pre">xrmadm</span> <span class="pre">/opt/xilinx/xrm/test/list_cmd.json</span></code> command fails with a Traceback error message.</p></li>
 <li><p>Solution: None.</p></li>
 </ul>
 </div>
 <div class="section" id="reverting-to-the-golden-image-may-not-work-by-default-on-some-on-prem-systems">
-<h3>Reverting to the golden image may not work by default on some on-prem systems<a class="headerlink" href="#reverting-to-the-golden-image-may-not-work-by-default-on-some-on-prem-systems" title="Permalink to this heading">¶</a></h3>
+<h3>Reverting to the golden image may not work by default on some on-prem systems<a class="headerlink" href="#reverting-to-the-golden-image-may-not-work-by-default-on-some-on-prem-systems" title="Permalink to this headline">¶</a></h3>
 <ul>
 <li><p>Description: The <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">program</span> <span class="pre">--revert-to-golden</span></code> and <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">flash</span> <span class="pre">--factory_reset</span></code> command expects the golden image of the card to be flashed at a particular memory location. If this is not the case, the command will not work.</p></li>
 <li><p>Solution: Relocate the golden image by following the instructions below.</p>
@@ -310,7 +308,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 18, 2023.
+      <span class="lastupdated">Last updated on June 20, 2023.
       </span></p>
   </div>
 

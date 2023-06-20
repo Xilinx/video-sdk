@@ -104,25 +104,27 @@ You are now ready to use the Xilinx video acceleration cards installed in your s
 
 |
 
-***********************
-Working with Containers
-***********************
+*******************************
+Working with Containers and ECS
+*******************************
 
 For instructions on how to work with Docker containers, refer to the :doc:`Container Setup </container_setup>` page of this documentation.
 
-addition, the user guide for Amazon ECS can be found here: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/getting-started.html
+In addition, the user guide for Amazon ECS can be found here: https://docs.aws.amazon.com/AmazonECS/latest/developerguide/getting-started.html
+
+Refer to :ref:`Building ECS AMI <building-ecs-ami>` on how to build your own ECS AMI with the |SDK|.
 
 |
 
-***********************
-Working with Kubernetes
-***********************
+*******************************
+Working with Kubernetes and EKS
+*******************************
 
 For instructions on how to deploy Docker containers with Kubernetes and EKS, refer to the :doc:`Deploying with Kubernetes </deploying_with_kubernetes>` page of this documentation. A comprehensive step-by-step guide on the AWS Compute Blog can be found here: https://aws.amazon.com/blogs/compute/deep-dive-on-amazon-ec2-vt1-instances/  
 
-addition, the user guide for Amazon EKS can be found here: https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
+In addition, the user guide for Amazon EKS can be found here: https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html
 
-
+Refer to :ref:`Building an EKS AMI <building-eks-ami>` on how to build your own EKS AMI with the |SDK|.
 
 ..
   ------------

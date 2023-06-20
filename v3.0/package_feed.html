@@ -29,9 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -124,7 +122,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="distribution-package-feed">
-<span id="package-feed"></span><h1>Distribution Package Feed<a class="headerlink" href="#distribution-package-feed" title="Permalink to this heading">¶</a></h1>
+<span id="package-feed"></span><h1>Distribution Package Feed<a class="headerlink" href="#distribution-package-feed" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
@@ -140,7 +138,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="section" id="package-descriptions">
-<h2><a class="toc-backref" href="#id1">Package Descriptions</a><a class="headerlink" href="#package-descriptions" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Package Descriptions</a><a class="headerlink" href="#package-descriptions" title="Permalink to this headline">¶</a></h2>
 <table class="colwidths-given docutils align-default">
 <colgroup>
 <col style="width: 30%" />
@@ -171,7 +169,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="minimal-required-packages">
-<h2><a class="toc-backref" href="#id2">Minimal Required Packages</a><a class="headerlink" href="#minimal-required-packages" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Minimal Required Packages</a><a class="headerlink" href="#minimal-required-packages" title="Permalink to this headline">¶</a></h2>
 <p>The following table indicates the minimal required packages, on either host or container, to run a video pipeline, using <a class="reference internal" href="c_apis.html#c-api-programming-guide"><span class="std std-ref">C APIs</span></a>. Note that only one running environment at a time can be active.</p>
 <table class="colwidths-given docutils align-default">
 <colgroup>
@@ -201,10 +199,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="configuring-the-package-feed">
-<span id="package-feed-configuration"></span><h2><a class="toc-backref" href="#id3">Configuring the Package Feed</a><a class="headerlink" href="#configuring-the-package-feed" title="Permalink to this heading">¶</a></h2>
+<span id="package-feed-configuration"></span><h2><a class="toc-backref" href="#id3">Configuring the Package Feed</a><a class="headerlink" href="#configuring-the-package-feed" title="Permalink to this headline">¶</a></h2>
 <p>Distribution based package feeds allow for convenient and robust methods to update and upgrade relevant packages of the Xilinx Video SDK. In order to be able to install the Xilinx Video SDK packages from the package feed, point your package management client to the remote Xilinx Video SDK package repository according to the instructions described below.</p>
 <div class="section" id="ubuntu">
-<h3><a class="toc-backref" href="#id4">Ubuntu</a><a class="headerlink" href="#ubuntu" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">Ubuntu</a><a class="headerlink" href="#ubuntu" title="Permalink to this headline">¶</a></h3>
 <p>Add the following line to the <code class="file docutils literal notranslate"><span class="pre">/etc/apt/sources.list.d/xilinx.list</span></code> file:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>deb [trusted=yes] https://packages.xilinx.com/artifactory/debian-packages &lt;distro name&gt; main
 </pre></div>
@@ -212,7 +210,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Where &lt;distro name&gt; can be either <code class="docutils literal notranslate"><span class="pre">bionic</span></code>, <code class="docutils literal notranslate"><span class="pre">focal</span></code> or <code class="docutils literal notranslate"><span class="pre">jammy</span></code>. If needed, the distro name can be found using the <code class="docutils literal notranslate"><span class="pre">lsb_release</span> <span class="pre">-c</span></code> command.</p>
 </div>
 <div class="section" id="red-hat-linux-7-8">
-<h3><a class="toc-backref" href="#id5">Red Hat Linux 7.8</a><a class="headerlink" href="#red-hat-linux-7-8" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Red Hat Linux 7.8</a><a class="headerlink" href="#red-hat-linux-7-8" title="Permalink to this headline">¶</a></h3>
 <p>Add the following lines to the <code class="file docutils literal notranslate"><span class="pre">/etc/yum.repos.d/xilinx.repo</span></code> file:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[MetaArtifactory]
 name=MetaArtifactory
@@ -241,7 +239,7 @@ sslverify=0
 </div>
 </div>
 <div class="section" id="amazon-linux-2">
-<h3><a class="toc-backref" href="#id6">Amazon Linux 2</a><a class="headerlink" href="#amazon-linux-2" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id6">Amazon Linux 2</a><a class="headerlink" href="#amazon-linux-2" title="Permalink to this headline">¶</a></h3>
 <p>Add the following lines to the <code class="file docutils literal notranslate"><span class="pre">/etc/yum.repos.d/xilinx.repo</span></code> file:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[Amzn2Artifactory]
 name=Amzn2Artifactory
@@ -294,7 +292,7 @@ sslverify=0
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 18, 2023.
+      <span class="lastupdated">Last updated on June 20, 2023.
       </span></p>
   </div>
 

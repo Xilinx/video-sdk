@@ -231,6 +231,11 @@ Deploying User Pods
 	source /opt/xilinx/xrt/setup.sh
 	xbutil examine
 
+*************************
+Creating your own EKS AMI
+*************************
+
+Refer to :doc:`Building an EKS AMI </eks>` on how to build your own EKS AMI with the |SDK|.
 
 ..
   ------------

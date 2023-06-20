@@ -29,9 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -157,7 +155,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="xma-examples-for-xilinx-u30">
-<h1>XMA Examples for Xilinx U30<a class="headerlink" href="#xma-examples-for-xilinx-u30" title="Permalink to this heading">¶</a></h1>
+<h1>XMA Examples for Xilinx U30<a class="headerlink" href="#xma-examples-for-xilinx-u30" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
@@ -171,7 +169,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>The examples in the <code class="docutils literal notranslate"><span class="pre">examples/xma</span></code> folder illustrate how C-based applications can natively interact with U30 cards using the U30 plugins and the XMA (Xilinx Media Accelerator) APIs. The examples are for advanced use-cases where using the FFmpeg command-line interface is not appropriate.</p>
 <p>Detailed documentation on the U30 plugin interface and the XMA APIs can be found in the <a class="reference internal" href="../../c_apis.html"><span class="doc">C API Programming Guide</span></a> section of the documentation.</p>
 <div class="section" id="build-and-test-instructions">
-<h2><a class="toc-backref" href="#id1">Build and Test Instructions</a><a class="headerlink" href="#build-and-test-instructions" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Build and Test Instructions</a><a class="headerlink" href="#build-and-test-instructions" title="Permalink to this headline">¶</a></h2>
 <p>To build and test the sample XMA applications, the U30 release packages must be installed on the server, and the U30 devices must to be flashed with the shell provided in the release package.</p>
 <p>To build and test all the XMA applications at once, run the following command from within the <code class="docutils literal notranslate"><span class="pre">./examples/xma</span></code> directory:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">./</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
@@ -182,10 +180,10 @@ The executables are placed in the <code class="docutils literal notranslate"><sp
 <p>To build and test each application individually, refer to the sections below.</p>
 </div>
 <div class="section" id="u30-xma-decoder-app">
-<span id="xma-decoder-example"></span><h2><a class="toc-backref" href="#id2">U30 XMA Decoder App</a><a class="headerlink" href="#u30-xma-decoder-app" title="Permalink to this heading">¶</a></h2>
+<span id="xma-decoder-example"></span><h2><a class="toc-backref" href="#id2">U30 XMA Decoder App</a><a class="headerlink" href="#u30-xma-decoder-app" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">examples/xma/decode_only</span></code> folder contains a standalone XMA-based decoder application for U30.</p>
 <div class="section" id="decoder-build-instructions">
-<h3>Decoder Build Instructions<a class="headerlink" href="#decoder-build-instructions" title="Permalink to this heading">¶</a></h3>
+<h3>Decoder Build Instructions<a class="headerlink" href="#decoder-build-instructions" title="Permalink to this headline">¶</a></h3>
 <p>Export the XRT and XRM to build the decoder application:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
 <span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrm</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
@@ -202,10 +200,10 @@ The executables are placed in the <code class="docutils literal notranslate"><sp
 </div>
 </div>
 <div class="section" id="decoder-test-instructions">
-<h3>Decoder Test Instructions<a class="headerlink" href="#decoder-test-instructions" title="Permalink to this heading">¶</a></h3>
+<h3>Decoder Test Instructions<a class="headerlink" href="#decoder-test-instructions" title="Permalink to this headline">¶</a></h3>
 <p>The XMA decoder application supports most of the decode options supported by FFmpeg. The XMA application supports only NV12 semi-planar input and outputs NV12 encoded elementary stream. It ingests an H.264 or H.265 encoded file and utilizes hardware acceleration to get the decoded output.</p>
 <div class="section" id="decoder-usage">
-<h4>Decoder Usage<a class="headerlink" href="#decoder-usage" title="Permalink to this heading">¶</a></h4>
+<h4>Decoder Usage<a class="headerlink" href="#decoder-usage" title="Permalink to this headline">¶</a></h4>
 <p>Before running decoding application, source the xcdr environment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xcdr</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
@@ -250,7 +248,7 @@ Codec Arguments:
 </div>
 </div>
 <div class="section" id="sample-decoder-command">
-<h4>Sample Decoder Command<a class="headerlink" href="#sample-decoder-command" title="Permalink to this heading">¶</a></h4>
+<h4>Sample Decoder Command<a class="headerlink" href="#sample-decoder-command" title="Permalink to this headline">¶</a></h4>
 <p>Decode an h264 encoded file:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">build</span><span class="o">/</span><span class="n">u30_xma_decode</span>  <span class="o">-</span><span class="n">i</span> <span class="o">~/</span><span class="n">CSGO_1920x1080_5000kbps</span><span class="mf">.264</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_h264</span> <span class="o">-</span><span class="n">o</span> <span class="o">./</span><span class="n">CSGO_1920x1080</span><span class="o">.</span><span class="n">NV12</span>
 </pre></div>
@@ -259,10 +257,10 @@ Codec Arguments:
 </div>
 </div>
 <div class="section" id="u30-xma-encoder-app">
-<span id="xma-encoder-example"></span><h2><a class="toc-backref" href="#id3">U30 XMA Encoder App</a><a class="headerlink" href="#u30-xma-encoder-app" title="Permalink to this heading">¶</a></h2>
+<span id="xma-encoder-example"></span><h2><a class="toc-backref" href="#id3">U30 XMA Encoder App</a><a class="headerlink" href="#u30-xma-encoder-app" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">examples/xma/encode_only</span></code> folder contains a standalone XMA-based encoder application for U30.</p>
 <div class="section" id="encoder-build-instructions">
-<h3>Encoder Build Instructions<a class="headerlink" href="#encoder-build-instructions" title="Permalink to this heading">¶</a></h3>
+<h3>Encoder Build Instructions<a class="headerlink" href="#encoder-build-instructions" title="Permalink to this headline">¶</a></h3>
 <p>Export the XRT and XRM to build the encoder application:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
 <span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrm</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
@@ -279,10 +277,10 @@ Codec Arguments:
 </div>
 </div>
 <div class="section" id="encoder-test-instructions">
-<h3>Encoder Test Instructions<a class="headerlink" href="#encoder-test-instructions" title="Permalink to this heading">¶</a></h3>
+<h3>Encoder Test Instructions<a class="headerlink" href="#encoder-test-instructions" title="Permalink to this headline">¶</a></h3>
 <p>The encoder XMA application supports most of the encoder options supported by FFmpeg. The XMA application supports only YUV 4:2:0 semi-planar input and outputs H.264/HEVC encoded elementary stream.</p>
 <div class="section" id="encoder-usage">
-<h4>Encoder Usage<a class="headerlink" href="#encoder-usage" title="Permalink to this heading">¶</a></h4>
+<h4>Encoder Usage<a class="headerlink" href="#encoder-usage" title="Permalink to this headline">¶</a></h4>
 <p>Before running encoder application, source the xcdr environment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xcdr</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
@@ -377,7 +375,7 @@ Encoder params:
 </div>
 </div>
 <div class="section" id="sample-encoder-commands">
-<h4>Sample Encoder Commands<a class="headerlink" href="#sample-encoder-commands" title="Permalink to this heading">¶</a></h4>
+<h4>Sample Encoder Commands<a class="headerlink" href="#sample-encoder-commands" title="Permalink to this headline">¶</a></h4>
 <p>H.264 encoding, best objective score, low latency:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">u30_xma_enc</span> <span class="o">-</span><span class="n">w</span> <span class="mi">1920</span> <span class="o">-</span><span class="n">h</span> <span class="mi">1080</span>  <span class="o">-</span><span class="n">i</span> <span class="n">input_1080sp</span><span class="o">.</span><span class="n">yuv</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_h264</span> <span class="o">-</span><span class="n">fps</span> <span class="mi">60</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">5000</span> <span class="o">-</span><span class="n">profile</span> <span class="mi">2</span> <span class="o">-</span><span class="n">level</span> <span class="mi">42</span> <span class="o">-</span><span class="n">g</span> <span class="mi">120</span> <span class="o">-</span><span class="n">periodicity</span><span class="o">-</span><span class="n">idr</span> <span class="mi">120</span> <span class="o">-</span><span class="n">qp</span><span class="o">-</span><span class="n">mode</span> <span class="mi">0</span> <span class="o">-</span><span class="n">scaling</span><span class="o">-</span><span class="nb">list</span> <span class="mi">0</span> <span class="o">-</span><span class="n">bf</span> <span class="mi">0</span> <span class="o">-</span><span class="n">o</span> <span class="n">out1</span><span class="mf">.264</span>
 </pre></div>
@@ -398,7 +396,7 @@ Encoder params:
 </div>
 </div>
 <div class="section" id="limitations-of-the-encoder-app">
-<h3>Limitations of the Encoder App<a class="headerlink" href="#limitations-of-the-encoder-app" title="Permalink to this heading">¶</a></h3>
+<h3>Limitations of the Encoder App<a class="headerlink" href="#limitations-of-the-encoder-app" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The encoder application assumes that the input YUV file is in NV12 format.</p></li>
 <li><p>The application outputs only H264/HEVC elementary streams.</p></li>
@@ -407,10 +405,10 @@ Encoder params:
 </div>
 </div>
 <div class="section" id="u30-xma-scaler-app">
-<span id="xma-scaler-example"></span><h2><a class="toc-backref" href="#id4">U30 XMA Scaler App</a><a class="headerlink" href="#u30-xma-scaler-app" title="Permalink to this heading">¶</a></h2>
+<span id="xma-scaler-example"></span><h2><a class="toc-backref" href="#id4">U30 XMA Scaler App</a><a class="headerlink" href="#u30-xma-scaler-app" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">examples/xma/scale_only</span></code> folder contains a standalone XMA-based scaler application for U30.</p>
 <div class="section" id="scaler-build-instructions">
-<h3>Scaler Build Instructions<a class="headerlink" href="#scaler-build-instructions" title="Permalink to this heading">¶</a></h3>
+<h3>Scaler Build Instructions<a class="headerlink" href="#scaler-build-instructions" title="Permalink to this headline">¶</a></h3>
 <p>Export the XRT and XRM to build the scaler application:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
 <span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrm</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
@@ -427,10 +425,10 @@ Encoder params:
 </div>
 </div>
 <div class="section" id="scaler-test-instructions">
-<h3>Scaler Test Instructions<a class="headerlink" href="#scaler-test-instructions" title="Permalink to this heading">¶</a></h3>
+<h3>Scaler Test Instructions<a class="headerlink" href="#scaler-test-instructions" title="Permalink to this headline">¶</a></h3>
 <p>The scaler XMA application supports most of the scaler options supported by FFmpeg. The XMA application supports only NV12 semi-planar input and outputs NV12 scaled elementary stream.</p>
 <div class="section" id="scaler-usage">
-<h4>Scaler Usage<a class="headerlink" href="#scaler-usage" title="Permalink to this heading">¶</a></h4>
+<h4>Scaler Usage<a class="headerlink" href="#scaler-usage" title="Permalink to this headline">¶</a></h4>
 <p>Before running scaler application, source the xcdr environment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xcdr</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
@@ -477,7 +475,7 @@ Output Arguments:
 </div>
 </div>
 <div class="section" id="sample-scaler-command">
-<h4>Sample Scaler Command<a class="headerlink" href="#sample-scaler-command" title="Permalink to this heading">¶</a></h4>
+<h4>Sample Scaler Command<a class="headerlink" href="#sample-scaler-command" title="Permalink to this headline">¶</a></h4>
 <p>Scale 1080p nv12 to 720p, 480p, 360p, and 240p nv12:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">u30_xma_scale</span> <span class="o">-</span><span class="n">w</span> <span class="mi">1920</span> <span class="o">-</span><span class="n">h</span> <span class="mi">1080</span> <span class="o">-</span><span class="n">i</span> <span class="o">~/</span><span class="n">Kimono1_1920x1080_24</span><span class="o">.</span><span class="n">yuvNV12</span> <span class="o">-</span><span class="n">w</span> <span class="mi">1280</span> <span class="o">-</span><span class="n">h</span> \
       <span class="mi">720</span> <span class="o">-</span><span class="n">o</span> <span class="n">Kimono_1280x720</span><span class="o">.</span><span class="n">NV12</span> <span class="o">-</span><span class="n">w</span> <span class="mi">852</span> <span class="o">-</span><span class="n">h</span> <span class="mi">480</span> <span class="o">-</span><span class="n">o</span> <span class="n">Kimono_852x480</span><span class="o">.</span><span class="n">NV12</span> <span class="o">-</span><span class="n">w</span> \
@@ -487,7 +485,7 @@ Output Arguments:
 </div>
 </div>
 <div class="section" id="limitations-of-the-scaler-app">
-<h3>Limitations of the Scaler App<a class="headerlink" href="#limitations-of-the-scaler-app" title="Permalink to this heading">¶</a></h3>
+<h3>Limitations of the Scaler App<a class="headerlink" href="#limitations-of-the-scaler-app" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The scaler supports nv12 format only</p></li>
 <li><p>There may be a performance degradation relative to ffmpeg with a high number of outputs/processes.</p></li>
@@ -495,10 +493,10 @@ Output Arguments:
 </div>
 </div>
 <div class="section" id="u30-xma-transcoder-app">
-<span id="xma-transcoder-example"></span><h2><a class="toc-backref" href="#id5">U30 XMA Transcoder App</a><a class="headerlink" href="#u30-xma-transcoder-app" title="Permalink to this heading">¶</a></h2>
+<span id="xma-transcoder-example"></span><h2><a class="toc-backref" href="#id5">U30 XMA Transcoder App</a><a class="headerlink" href="#u30-xma-transcoder-app" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">examples/xma/transcode</span></code> folder contains a standalone XMA-based transcoder application for U30.</p>
 <div class="section" id="transcoder-build-instructions">
-<h3>Transcoder Build Instructions<a class="headerlink" href="#transcoder-build-instructions" title="Permalink to this heading">¶</a></h3>
+<h3>Transcoder Build Instructions<a class="headerlink" href="#transcoder-build-instructions" title="Permalink to this headline">¶</a></h3>
 <p>Export the XRT and XRM to build the transcoder application:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrt</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
 <span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xrm</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
@@ -515,10 +513,10 @@ Output Arguments:
 </div>
 </div>
 <div class="section" id="transcoder-test-instructions">
-<h3>Transcoder Test Instructions<a class="headerlink" href="#transcoder-test-instructions" title="Permalink to this heading">¶</a></h3>
+<h3>Transcoder Test Instructions<a class="headerlink" href="#transcoder-test-instructions" title="Permalink to this headline">¶</a></h3>
 <p>The transcoder XMA application supports most of the options supported by ffmpeg. The XMA application supports only elementary H.264 and HEVC encoded stream input and outputs H.264/HEVC encoded elementary stream.</p>
 <div class="section" id="transcoder-usage">
-<h4>Transcoder Usage<a class="headerlink" href="#transcoder-usage" title="Permalink to this heading">¶</a></h4>
+<h4>Transcoder Usage<a class="headerlink" href="#transcoder-usage" title="Permalink to this headline">¶</a></h4>
 <p>Before running transcoder application, source the xcdr environment:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">source</span> <span class="o">/</span><span class="n">opt</span><span class="o">/</span><span class="n">xilinx</span><span class="o">/</span><span class="n">xcdr</span><span class="o">/</span><span class="n">setup</span><span class="o">.</span><span class="n">sh</span>
 </pre></div>
@@ -644,7 +642,7 @@ Encoder options:
 </div>
 </div>
 <div class="section" id="sample-transcoder-commands">
-<h4>Sample Transcoder Commands<a class="headerlink" href="#sample-transcoder-commands" title="Permalink to this heading">¶</a></h4>
+<h4>Sample Transcoder Commands<a class="headerlink" href="#sample-transcoder-commands" title="Permalink to this headline">¶</a></h4>
 <p>H.264 to HEVC ABR Transcoder:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">./</span><span class="n">u30_xma_transcode</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_h264</span> <span class="o">-</span><span class="n">i</span> <span class="n">input_1080p</span><span class="mf">.264</span> <span class="o">-</span><span class="n">multiscale_xma</span> <span class="o">-</span><span class="n">num</span><span class="o">-</span><span class="n">output</span> <span class="mi">4</span> <span class="o">-</span><span class="n">out_1_width</span> <span class="mi">1280</span> <span class="o">-</span><span class="n">out_1_height</span> <span class="mi">720</span> <span class="o">-</span><span class="n">out_2_width</span> <span class="mi">848</span> <span class="o">-</span><span class="n">out_2_height</span> <span class="mi">480</span> <span class="o">-</span><span class="n">out_3_width</span> <span class="mi">640</span> <span class="o">-</span><span class="n">out_3_height</span> <span class="mi">360</span> <span class="o">-</span><span class="n">out_4_width</span> <span class="mi">288</span> <span class="o">-</span><span class="n">out_4_height</span> <span class="mi">160</span> \
 <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_hevc</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">4000</span><span class="n">K</span>  <span class="o">-</span><span class="n">o</span> <span class="n">out1_test1</span><span class="mf">.265</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_hevc</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">3000</span><span class="n">K</span> <span class="o">-</span><span class="n">o</span> <span class="n">out1_test2</span><span class="mf">.265</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_hevc</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">2500</span><span class="n">K</span> <span class="o">-</span><span class="n">o</span> <span class="n">out1_test3</span><span class="mf">.265</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_hevc</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">1250</span><span class="n">K</span> <span class="o">-</span><span class="n">o</span> <span class="n">out1_test4</span><span class="mf">.265</span> <span class="o">-</span><span class="n">c</span><span class="p">:</span><span class="n">v</span> <span class="n">mpsoc_vcu_hevc</span> <span class="o">-</span><span class="n">b</span><span class="p">:</span><span class="n">v</span> <span class="mi">625</span><span class="n">K</span> <span class="o">-</span><span class="n">o</span> <span class="n">out1_test5</span><span class="mf">.265</span>
@@ -666,7 +664,7 @@ Encoder options:
 </div>
 </div>
 <div class="section" id="limitations-of-the-transcoder-app">
-<h3>Limitations of the Transcoder App<a class="headerlink" href="#limitations-of-the-transcoder-app" title="Permalink to this heading">¶</a></h3>
+<h3>Limitations of the Transcoder App<a class="headerlink" href="#limitations-of-the-transcoder-app" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The transcoder application supports only elementary H264/HEVC encoded streams as input file. It cannot parse container formats like MP4, AVI, etc.</p></li>
 <li><p>The transcoder outputs only H264/HEVC elementary streams.</p></li>
@@ -698,7 +696,7 @@ Encoder options:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 18, 2023.
+      <span class="lastupdated">Last updated on June 20, 2023.
       </span></p>
   </div>
 

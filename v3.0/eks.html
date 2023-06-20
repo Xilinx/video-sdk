@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Building an EKS AMI for the Xilinx Video SDK &mdash; Xilinx Video SDK 3.0 (Production) documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home"> Xilinx Video SDK
+            <img src="_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
+          </a>
+              <div class="version">
+                3.0
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_prem.html">On Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_vt1.html">Amazon EC2 VT1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container_setup.html">Container Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Tutorials and Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="specs_and_features.html">Specs and Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_ffmpeg.html">Using FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gstreamer.html">Using GStreamer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_video_quality.html">Tuning Video Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_pipeline_latency.html">Tuning Transcode Latency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managing_compute_resources.html">Managing Compute Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploying_with_kubernetes.html">Deploying with Kubernetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="card_management.html">Card Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_feed.html">Package Feed Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Xilinx Video SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Building an EKS AMI for the Xilinx Video SDK</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <div class="section" id="building-an-eks-ami-for-the-sdk">
+<span id="building-eks-ami"></span><h1>Building an EKS AMI for the Xilinx Video SDK<a class="headerlink" href="#building-an-eks-ami-for-the-sdk" title="Permalink to this headline">¶</a></h1>
+<p>This page describes how to create a custom EKS AMI with the Xilinx Video SDK.</p>
+<div class="section" id="instructions">
+<h2>Instructions<a class="headerlink" href="#instructions" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic">
+<li><p>Install and configure the AWS Client. On the development machine, i.e., the machine that initiates the AMI build, install <a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html">AWS CLI</a> and <a class="reference external" href="https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html">Configure AWS CLI</a></p></li>
+<li><p>Install <a class="reference external" href="https://www.packer.io/downloads">Packer</a> on the development machine</p></li>
+<li><p>Install the resources and configuration scripts for building a custom Amazon EKS AMI (see <a class="reference external" href="https://github.com/awslabs/amazon-eks-ami">Amazon EKS AMI</a> for details):</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>git clone https://github.com/awslabs/amazon-eks-ami.git
+</pre></div>
+</div>
+</li>
+<li><p>Edit the <code class="file docutils literal notranslate"><span class="pre">eks-worker-al2-variables.json</span></code> file and update the <code class="docutils literal notranslate"><span class="pre">source_ami_id</span></code> field to the desired value:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>vim eks-worker-al2-variables.json
+</pre></div>
+</div>
+</li>
+<li><p>Build the AMI for the target EKS version, e.g., 1.24:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make 1.24
+</pre></div>
+</div>
+</li>
+<li><p>Create the following Packer YAML file, updating the <code class="docutils literal notranslate"><span class="pre">variables</span></code> section as appropriate:</p>
+<div class="highlight-yaml notranslate"><div class="highlight"><pre><span></span><span class="p p-Indicator">{</span>
+<span class="w"> </span><span class="s">&quot;variables&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span>
+<span class="w">     </span><span class="s">&quot;region&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;[replace</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">target</span><span class="nv"> </span><span class="s">region]&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">     </span><span class="s">&quot;flag&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;eks-1.24&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">     </span><span class="s">&quot;subnet_id&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;[replace</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">your</span><span class="nv"> </span><span class="s">subnet_id]&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">     </span><span class="s">&quot;security_groupids&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;[replace</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">your</span><span class="nv"> </span><span class="s">security_groupids]&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">     </span><span class="s">&quot;build_ami&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;[replace</span><span class="nv"> </span><span class="s">with</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">AMI</span><span class="nv"> </span><span class="s">ID</span><span class="nv"> </span><span class="s">build]&quot;</span>
+<span class="w"> </span><span class="p p-Indicator">},</span>
+<span class="w"> </span><span class="s">&quot;builders&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">     </span><span class="p p-Indicator">{</span>
+<span class="w">         </span><span class="s">&quot;type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;amazon-ebs&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;region&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;{{user</span><span class="nv"> </span><span class="s">`region`}}&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;source_ami&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;{{user</span><span class="nv"> </span><span class="s">`build_ami`}}&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;run_tags&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">{</span>
+<span class="w">             </span><span class="s">&quot;Name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;packer-vt-processor-{{user</span><span class="nv"> </span><span class="s">`flag`}}&quot;</span>
+<span class="w">         </span><span class="p p-Indicator">},</span>
+<span class="w">         </span><span class="s">&quot;subnet_id&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;{{user</span><span class="nv"> </span><span class="s">`subnet_id`}}&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;security_group_ids&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;{{user</span><span class="nv"> </span><span class="s">`security_groupids`}}&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;instance_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;vt1.3xlarge&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;ssh_username&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;ec2-user&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;ami_name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;[Name</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">Your</span><span class="nv"> </span><span class="s">AMI]&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;launch_block_device_mappings&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">             </span><span class="p p-Indicator">{</span>
+<span class="w">                 </span><span class="s">&quot;delete_on_termination&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">true</span><span class="p p-Indicator">,</span>
+<span class="w">                 </span><span class="s">&quot;device_name&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;/dev/xvda&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">                 </span><span class="s">&quot;volume_size&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">200</span><span class="p p-Indicator">,</span>
+<span class="w">                 </span><span class="s">&quot;throughput&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">1000</span><span class="p p-Indicator">,</span>
+<span class="w">                 </span><span class="s">&quot;iops&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">8000</span><span class="p p-Indicator">,</span>
+<span class="w">                 </span><span class="s">&quot;volume_type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;gp3&quot;</span>
+<span class="w">             </span><span class="p p-Indicator">}</span>
+<span class="w">         </span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="p p-Indicator">}</span>
+<span class="w"> </span><span class="p p-Indicator">],</span>
+<span class="w"> </span><span class="s">&quot;provisioners&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">     </span><span class="p p-Indicator">{</span>
+<span class="w">         </span><span class="s">&quot;type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;shell&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;expect_disconnect&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="nv">true</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;inline&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">update</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">amazon-linux-extras</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">lustre2.10</span><span class="nv"> </span><span class="s">epel</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">boost-devel</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">gcc-c++</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">yum-utils</span><span class="nv"> </span><span class="s">cmake</span><span class="nv"> </span><span class="s">sipcalc</span><span class="nv"> </span><span class="s">dkms</span><span class="nv"> </span><span class="s">mdadm</span><span class="nv"> </span><span class="s">git</span><span class="nv"> </span><span class="s">htop</span><span class="nv"> </span><span class="s">hwloc</span><span class="nv"> </span><span class="s">iftop</span><span class="nv"> </span><span class="s">kernel-tools</span><span class="nv"> </span><span class="s">rpm-build</span><span class="nv"> </span><span class="s">rpmdevtools</span><span class="nv"> </span><span class="s">numactl</span><span class="nv"> </span><span class="s">parallel</span><span class="nv"> </span><span class="s">pigz</span><span class="nv"> </span><span class="s">python2-pip</span><span class="nv"> </span><span class="s">python3-pip</span><span class="nv"> </span><span class="s">wget</span><span class="nv"> </span><span class="s">kernel-devel-$(uname</span><span class="nv"> </span><span class="s">-r)</span><span class="nv"> </span><span class="s">kernel-headers-$(uname</span><span class="nv"> </span><span class="s">-r)</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">groupinstall</span><span class="nv"> </span><span class="s">&#39;Development</span><span class="nv"> </span><span class="s">Tools&#39;</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;uname</span><span class="nv"> </span><span class="s">-r&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">shutdown</span><span class="nv"> </span><span class="s">-r</span><span class="nv"> </span><span class="s">now&quot;</span>
+<span class="w">         </span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="p p-Indicator">},</span>
+<span class="w">     </span><span class="p p-Indicator">{</span>
+<span class="w">         </span><span class="s">&quot;type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;shell&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;inline_shebang&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;/bin/bash</span><span class="nv"> </span><span class="s">-xe&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;inline&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;[Amzn2Artifactory]&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;name=Amzn2Artifactory&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;baseurl=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/2&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;enabled=1&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;gpgcheck=0&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/repodata/repomd.xml.key&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;sslverify=0&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;[Artifactory]&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;name=Artifactory&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;baseurl=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;enabled=1&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;gpgcheck=0&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/repodata/repomd.xml.key&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;sslverify=0&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;[BaseArtifactory]&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;name=BaseArtifactory&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;baseurl=https://packages.xilinx.com/artifactory/rpm-packages/noarch/&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;enabled=1&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;gpgcheck=0&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/noarch/repodata/repomd.xml.key&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;sslverify=0&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/yum.repos.d/xilinx.repo&quot;</span>
+<span class="w">         </span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="p p-Indicator">},</span>
+<span class="w">     </span><span class="p p-Indicator">{</span>
+<span class="w">         </span><span class="s">&quot;type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;shell&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;inline_shebang&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;/bin/bash</span><span class="nv"> </span><span class="s">-xe&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;inline&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;</span><span class="nv">    </span><span class="s">StrictHostKeyChecking</span><span class="nv"> </span><span class="s">no&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/ssh/ssh_config&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;</span><span class="nv">    </span><span class="s">HostbasedAuthentication</span><span class="nv"> </span><span class="s">no&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/ssh/ssh_config&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">&#39;</span><span class="nv">    </span><span class="s">CheckHostIP</span><span class="nv"> </span><span class="s">no&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">-a</span><span class="nv"> </span><span class="s">/etc/ssh/ssh_config&quot;</span>
+<span class="w">         </span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="p p-Indicator">},</span>
+<span class="w">     </span><span class="p p-Indicator">{</span>
+<span class="w">         </span><span class="s">&quot;type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;shell&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;inline_shebang&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;/bin/bash</span><span class="nv"> </span><span class="s">-xe&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;inline&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">update</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">kernel-devel-$(uname</span><span class="nv"> </span><span class="s">-r)</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">kernel-headers-$(uname</span><span class="nv"> </span><span class="s">-r)</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">yum-plugin-versionlock</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">xrt-2.11.722-1.x86_64</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">versionlock</span><span class="nv"> </span><span class="s">xrt-2.11.722</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">xilinx-alveo-u30-core</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">xilinx-alveo-u30-ffmpeg</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">xilinx-alveo-u30-gstreamer</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">yum</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">xilinx-alveo-u30-examples</span><span class="nv"> </span><span class="s">-y&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">cp</span><span class="nv"> </span><span class="s">/opt/xilinx/xcdr/xclbins/transcode.xclbin</span><span class="nv"> </span><span class="s">/opt/xilinx/xcdr/xclbins/transcode_lite.xclbin&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">cp</span><span class="nv"> </span><span class="s">/opt/xilinx/xcdr/xclbins/on_prem/transcode.xclbin</span><span class="nv"> </span><span class="s">/opt/xilinx/xcdr/xclbins/transcode.xclbin&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">rm</span><span class="nv"> </span><span class="s">/opt/xilinx/firmware/sc-fw/u30/sc-fw-u30-6.3.8-fe416dd3cea1ac123bfe32afdfb9b9e9.txt&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">rm</span><span class="nv"> </span><span class="s">/opt/xilinx/xrt/share/fw/*&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">rm</span><span class="nv"> </span><span class="s">/opt/xilinx/firmware/u30/gen3x4/base/data/BOOT_golden.BIN&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">rm</span><span class="nv"> </span><span class="s">$HOME/.ssh/authorized_keys&quot;</span>
+<span class="w">         </span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="p p-Indicator">},</span>
+<span class="w">     </span><span class="p p-Indicator">{</span>
+<span class="w">         </span><span class="s">&quot;type&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;shell&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;inline_shebang&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="s">&quot;/bin/bash</span><span class="nv"> </span><span class="s">-xe&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">         </span><span class="s">&quot;inline&quot;</span><span class="p p-Indicator">:</span><span class="w"> </span><span class="p p-Indicator">[</span>
+<span class="w">             </span><span class="s">&quot;distribution=$(.</span><span class="nv"> </span><span class="s">/etc/os-release;echo</span><span class="nv"> </span><span class="s">$ID$VERSION_ID)&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">amazon-linux-extras</span><span class="nv"> </span><span class="s">install</span><span class="nv"> </span><span class="s">docker&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">systemctl</span><span class="nv"> </span><span class="s">enable</span><span class="nv"> </span><span class="s">docker&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;echo</span><span class="nv"> </span><span class="s">-e</span><span class="nv"> </span><span class="s">&#39;{\&quot;default-ulimits\&quot;:{\&quot;memlock\&quot;:{\&quot;Name\&quot;:\&quot;memlock\&quot;,\&quot;Soft\&quot;:-1,\&quot;Hard\&quot;:-1}}}&#39;</span><span class="nv"> </span><span class="s">|</span><span class="nv"> </span><span class="s">sudo</span><span class="nv"> </span><span class="s">tee</span><span class="nv"> </span><span class="s">/etc/docker/daemon.json&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">systemctl</span><span class="nv"> </span><span class="s">restart</span><span class="nv"> </span><span class="s">docker&quot;</span><span class="p p-Indicator">,</span>
+<span class="w">             </span><span class="s">&quot;sudo</span><span class="nv"> </span><span class="s">usermod</span><span class="nv"> </span><span class="s">-aG</span><span class="nv"> </span><span class="s">docker</span><span class="nv"> </span><span class="s">ec2-user&quot;</span>
+<span class="w">         </span><span class="p p-Indicator">]</span>
+<span class="w">     </span><span class="p p-Indicator">}</span>
+<span class="w"> </span><span class="p p-Indicator">]</span>
+<span class="p p-Indicator">}</span>
+</pre></div>
+</div>
+</li>
+<li><p>Build the custom EKS AMI containing the Xilinx Video SDK:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>packer build xilinx-vt-al2-eks.yml
+</pre></div>
+</div>
+<p>After the packer build finishes, the new EKS AMI will be available in the AWS console.</p>
+</li>
+</ol>
+</div>
+</div>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on June 20, 2023.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

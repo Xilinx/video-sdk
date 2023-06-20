@@ -29,9 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -129,7 +127,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="container-setup">
-<span id="id1"></span><h1>Container Setup<a class="headerlink" href="#container-setup" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>Container Setup<a class="headerlink" href="#container-setup" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
@@ -152,7 +150,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 <p>The Xilinx Video SDK supports multiple container orchestration technologies including those based on standard <a class="reference external" href="https://github.com/opencontainers/runc">runc</a> and Xilinx’s own extension to runc, the Xilinx Container Runtime (XCR). The following sections describe both the XCR and the standard Docker methods of instantiating containers.</p>
 <div class="section" id="restrictions">
-<h2><a class="toc-backref" href="#id2">Restrictions</a><a class="headerlink" href="#restrictions" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Restrictions</a><a class="headerlink" href="#restrictions" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li><p><strong>IMPORTANT:</strong> Regardless of selected orchestration method, each Xilinx device can have a single point of access (whether host or container). Having multiple container instances access the same device is not currently supported and can lead to unpredictable errors.</p></li>
 <li><p>On Amazon EC2 VT1 instances</p>
@@ -173,11 +171,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="xilinx-container-runtime-xcr-overview">
-<span id="xcr-overview"></span><h2><a class="toc-backref" href="#id3">Xilinx Container Runtime (XCR) Overview</a><a class="headerlink" href="#xilinx-container-runtime-xcr-overview" title="Permalink to this heading">¶</a></h2>
+<span id="xcr-overview"></span><h2><a class="toc-backref" href="#id3">Xilinx Container Runtime (XCR) Overview</a><a class="headerlink" href="#xilinx-container-runtime-xcr-overview" title="Permalink to this headline">¶</a></h2>
 <p>Starting with version 3.0, the core package of the Xilinx Video SDK includes the <a class="reference external" href="https://github.com/Xilinx/Xilinx_Container_Runtime">Xilinx Container Runtime (XCR)</a>. XCR is an extension of runc container runtime and as such is compatible with all <a class="reference external" href="https://opencontainers.org/">OCI</a> compliant container tools such as Docker, Podman, Singularity, etc.</p>
 <p>XCR provides a convenient method for assigning either individual devices or cards to a container. For details refer to the <a class="reference external" href="https://xilinx.github.io/Xilinx_Container_Runtime/index.html">XCR documentation</a>.</p>
 <div class="section" id="xcr-command-line-tool">
-<span id="xcr-cli"></span><h3><a class="toc-backref" href="#id4">XCR Command Line Tool</a><a class="headerlink" href="#xcr-command-line-tool" title="Permalink to this heading">¶</a></h3>
+<span id="xcr-cli"></span><h3><a class="toc-backref" href="#id4">XCR Command Line Tool</a><a class="headerlink" href="#xcr-command-line-tool" title="Permalink to this headline">¶</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">xilinx-container-runtime</span></code> command line tool allows for interrogating the host system for Xilinx devices and setting up containers in a seamless manner. For example, the following command will list all available cards on a system:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xilinx-container-runtime<span class="w"> </span>lscard
 
@@ -191,7 +189,7 @@ CardIndex<span class="w">       </span>SerialNum<span class="w">       </span>De
 <p>For a complete reference of the <code class="docutils literal notranslate"><span class="pre">xilinx-container-runtime</span></code> command line tool, consult the <a class="reference external" href="https://xilinx.github.io/Xilinx_Container_Runtime/cli.html">xilinx-container-runtime documentation</a></p>
 </div>
 <div class="section" id="setting-xcr-as-docker-runtime">
-<span id="xcr-setup"></span><h3><a class="toc-backref" href="#id5">Setting XCR as Docker Runtime</a><a class="headerlink" href="#setting-xcr-as-docker-runtime" title="Permalink to this heading">¶</a></h3>
+<span id="xcr-setup"></span><h3><a class="toc-backref" href="#id5">Setting XCR as Docker Runtime</a><a class="headerlink" href="#setting-xcr-as-docker-runtime" title="Permalink to this headline">¶</a></h3>
 <p>Follow the steps below to configure Docker to run with XCR:</p>
 <ol class="arabic simple">
 <li><p>Update <code class="file docutils literal notranslate"><span class="pre">/etc/docker/daemon.json</span></code> to contain the following text:</p></li>
@@ -223,7 +221,7 @@ CardIndex<span class="w">       </span>SerialNum<span class="w">       </span>De
 </div>
 </div>
 <div class="section" id="creating-a-docker-image">
-<span id="create-docker-image"></span><h2><a class="toc-backref" href="#id6">Creating a Docker Image</a><a class="headerlink" href="#creating-a-docker-image" title="Permalink to this heading">¶</a></h2>
+<span id="create-docker-image"></span><h2><a class="toc-backref" href="#id6">Creating a Docker Image</a><a class="headerlink" href="#creating-a-docker-image" title="Permalink to this headline">¶</a></h2>
 <p>There are no specific requirements in creating Docker images, for U30. Images need to include application specific packages and access to Xilinx Video SDK.
 As an example, the following is a minimal sample dockerfile, for Ubuntu 18.04 container:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>FROM ubuntu:18.04
@@ -255,10 +253,10 @@ RUN export PATH=/usr/local/bin/:$PATH
 </div>
 </div>
 <div class="section" id="launching-a-docker-container">
-<span id="launch-docker-image"></span><h2><a class="toc-backref" href="#id7">Launching a Docker Container</a><a class="headerlink" href="#launching-a-docker-container" title="Permalink to this heading">¶</a></h2>
+<span id="launch-docker-image"></span><h2><a class="toc-backref" href="#id7">Launching a Docker Container</a><a class="headerlink" href="#launching-a-docker-container" title="Permalink to this headline">¶</a></h2>
 <p>A Docker container can be launched with or without XCR, the Xilinx Container Runtime. XCR provides a convenient method for assigning either individual devices or cards to a container. Launching a Docker image without using the Xilinx Container Runtime requires explicitly assigning one of more devices to the container.</p>
 <div class="section" id="launching-a-docker-container-with-xcr">
-<span id="launch-docker-xcr"></span><h3><a class="toc-backref" href="#id8">Launching a Docker Container with XCR</a><a class="headerlink" href="#launching-a-docker-container-with-xcr" title="Permalink to this heading">¶</a></h3>
+<span id="launch-docker-xcr"></span><h3><a class="toc-backref" href="#id8">Launching a Docker Container with XCR</a><a class="headerlink" href="#launching-a-docker-container-with-xcr" title="Permalink to this headline">¶</a></h3>
 <p>Whether on Amazon EC2 VT1 or on-premises, follow the steps below to launch a container using the Xilinx Container Runtime (XCR):</p>
 <ol class="arabic">
 <li><p>Create Docker image (<code class="docutils literal notranslate"><span class="pre">video_sdk_image:v3</span></code>), as per <a class="reference internal" href="#create-docker-image"><span class="std std-ref">Creating a Docker Image</span></a>.</p></li>
@@ -283,7 +281,7 @@ RUN export PATH=/usr/local/bin/:$PATH
 </ul>
 </div>
 <div class="section" id="launching-a-docker-container-without-xcr-on-vt1">
-<span id="launch-docker-vt1"></span><h3><a class="toc-backref" href="#id9">Launching a Docker Container without XCR on Amazon EC2 VT1</a><a class="headerlink" href="#launching-a-docker-container-without-xcr-on-vt1" title="Permalink to this heading">¶</a></h3>
+<span id="launch-docker-vt1"></span><h3><a class="toc-backref" href="#id9">Launching a Docker Container without XCR on Amazon EC2 VT1</a><a class="headerlink" href="#launching-a-docker-container-without-xcr-on-vt1" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
 <li><p>Create Docker image (<code class="docutils literal notranslate"><span class="pre">video_sdk_image:v3</span></code>), as per <a class="reference internal" href="#create-docker-image"><span class="std std-ref">Creating a Docker Image</span></a>.</p></li>
 <li><p>Gather the User BDFs and renderIDs of the Xilinx devices present in your system. For detailled information on how to do this, refer to the instructions for looking-up the <a class="reference internal" href="card_management.html#device-bdf"><span class="std std-ref">User BDF</span></a> and <a class="reference internal" href="card_management.html#device-render-id"><span class="std std-ref">renderID</span></a>.</p>
@@ -313,7 +311,7 @@ xbutil examine
 </ul>
 </div>
 <div class="section" id="launching-a-docker-container-without-xcr-on-premises">
-<span id="launch-docker-on-prem"></span><h3><a class="toc-backref" href="#id10">Launching a Docker Container without XCR on Premises</a><a class="headerlink" href="#launching-a-docker-container-without-xcr-on-premises" title="Permalink to this heading">¶</a></h3>
+<span id="launch-docker-on-prem"></span><h3><a class="toc-backref" href="#id10">Launching a Docker Container without XCR on Premises</a><a class="headerlink" href="#launching-a-docker-container-without-xcr-on-premises" title="Permalink to this headline">¶</a></h3>
 <ol class="arabic">
 <li><p>Create Docker image (<code class="docutils literal notranslate"><span class="pre">video_sdk_image:v3</span></code>), as per <a class="reference internal" href="#create-docker-image"><span class="std std-ref">Creating a Docker Image</span></a>.</p></li>
 <li><p>Gather the User BDFs and renderIDs of the Xilinx devices present in your system. For detailled information on how to do this, refer to the instructions for looking-up the <a class="reference internal" href="card_management.html#device-bdf"><span class="std std-ref">User BDF</span></a> and <a class="reference internal" href="card_management.html#device-render-id"><span class="std std-ref">renderID</span></a>.</p>
@@ -374,7 +372,7 @@ xbutil examine
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 18, 2023.
+      <span class="lastupdated">Last updated on June 20, 2023.
       </span></p>
   </div>
 

@@ -29,9 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -126,7 +124,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="specs-and-features-of-the-sdk">
-<h1>Specs and Features of the Xilinx Video SDK<a class="headerlink" href="#specs-and-features-of-the-sdk" title="Permalink to this heading">¶</a></h1>
+<h1>Specs and Features of the Xilinx Video SDK<a class="headerlink" href="#specs-and-features-of-the-sdk" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
@@ -142,7 +140,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="section" id="the-sdk">
-<h2><a class="toc-backref" href="#id9">The Xilinx Video SDK</a><a class="headerlink" href="#the-sdk" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id9">The Xilinx Video SDK</a><a class="headerlink" href="#the-sdk" title="Permalink to this headline">¶</a></h2>
 <p>The Xilinx Video SDK is a complete software stack allowing users to seamlessly leverage the features of Xilinx video acceleration units such as the ones available on Alveo U30 cards and Amazon EC2 VT1 instances. It includes the following elements:</p>
 <ul class="simple">
 <li><p>Pre-compiled versions of FFmpeg and GStreamer which integrate key video transcoding plug-ins, enabling simple hardware offloading of compute-intensive workloads using these two popular frameworks. These custom versions of FFmpeg and GStreamer link to a host driver which communicates with the hardware on the PCIe card. No hardware experience is required to run FFmpeg or GStreamer commands with the Xilinx Video SDK.</p></li>
@@ -154,11 +152,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <img alt="FFmpeg Transcoding Application" class="align-center" src="_images/ffmpeg_transcoding_application.png" />
 </div>
 <div class="section" id="the-xilinx-alveo-u30-card">
-<h2><a class="toc-backref" href="#id10">The Xilinx Alveo U30 Card</a><a class="headerlink" href="#the-xilinx-alveo-u30-card" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id10">The Xilinx Alveo U30 Card</a><a class="headerlink" href="#the-xilinx-alveo-u30-card" title="Permalink to this headline">¶</a></h2>
 <p>The Xilinx® Alveo™ U30 data center accelerator card is a low-profile, PCI™-based media accelerator card that delivers a high-density real-time transcoding solution for live streaming video service providers, OEMs, and Content Delivery Network (CDNs).</p>
 <p>The Alveo U30 card is primarily targeted at real-time video workloads. It is expected that one or more sources of video input, either from files or from live video streams, are fed into the transcode pipeline. The encoder encodes one or more output streams from each scaled rendition of the input.</p>
 <div class="section" id="video-codec-unit">
-<span id="id1"></span><h3><a class="toc-backref" href="#id11">Video Codec Unit</a><a class="headerlink" href="#video-codec-unit" title="Permalink to this heading">¶</a></h3>
+<span id="id1"></span><h3><a class="toc-backref" href="#id11">Video Codec Unit</a><a class="headerlink" href="#video-codec-unit" title="Permalink to this headline">¶</a></h3>
 <p>The Alveo U30 data center accelerator card is powered by two Zynq® UltraScale+™ MPSoC devices with H.264/H.265 Video Codec Unit (VCU) cores. Features of the H.264/H.265 VCUs include:</p>
 <ul class="simple">
 <li><p>Video format: YCbCr 4:2:0, 8 or 10-bit per color channel</p></li>
@@ -203,7 +201,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="section" id="adaptive-bitrate-scaler">
-<span id="id2"></span><h3><a class="toc-backref" href="#id12">Adaptive Bitrate Scaler</a><a class="headerlink" href="#adaptive-bitrate-scaler" title="Permalink to this heading">¶</a></h3>
+<span id="id2"></span><h3><a class="toc-backref" href="#id12">Adaptive Bitrate Scaler</a><a class="headerlink" href="#adaptive-bitrate-scaler" title="Permalink to this headline">¶</a></h3>
 <p>For streaming applications, video is distributed in different resolutions and bit rates to adapt to varying network bandwidth conditions. All adaptive bitrate (ABR) transcoding systems require an ABR scaler that downscales an input video stream to several different smaller resolutions that are then re-encoded. These smaller resolutions are referred to as an image pyramid or an ABR ladder.</p>
 <p>The Xilinx ABR scaler is an accelerator capable of generating up to eight lower resolution output images from a single input image. The ABR scaler supports the following features:</p>
 <ul class="simple">
@@ -227,14 +225,14 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="section" id="video-quality">
-<span id="perf-vq"></span><h3><a class="toc-backref" href="#id13">Video Quality</a><a class="headerlink" href="#video-quality" title="Permalink to this heading">¶</a></h3>
+<span id="perf-vq"></span><h3><a class="toc-backref" href="#id13">Video Quality</a><a class="headerlink" href="#video-quality" title="Permalink to this headline">¶</a></h3>
 <p>The Alveo U30 card nominally produces video quality (VQ) that is closely correlated to x264 and x265 faster presets. This video quality is highly dependent on video content so actual results may vary.</p>
 </div>
 <div class="section" id="performance-tables">
-<span id="perf-tables"></span><h3><a class="toc-backref" href="#id14">Performance Tables</a><a class="headerlink" href="#performance-tables" title="Permalink to this heading">¶</a></h3>
+<span id="perf-tables"></span><h3><a class="toc-backref" href="#id14">Performance Tables</a><a class="headerlink" href="#performance-tables" title="Permalink to this headline">¶</a></h3>
 <p>The video processing power of the Alveo U30 cards can be harnessed in many different ways, from running a few high-definition jobs to running many low-resolution ones, with or without scaling. The tables below show how many jobs can be run at real-time speed based on the use case and the number of cards available. All these configurations have been tested and validated by Xilinx and assume normal operating ranges.</p>
 <div class="section" id="performance-tables-for-8-bit-color">
-<h4>Performance Tables for 8-bit Color<a class="headerlink" href="#performance-tables-for-8-bit-color" title="Permalink to this heading">¶</a></h4>
+<h4>Performance Tables for 8-bit Color<a class="headerlink" href="#performance-tables-for-8-bit-color" title="Permalink to this headline">¶</a></h4>
 <table class="colwidths-given docutils align-default" id="id3">
 <caption><span class="caption-text">Number of Real-Time Transcode Jobs (8-bit)</span><a class="headerlink" href="#id3" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -471,7 +469,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </table>
 </div>
 <div class="section" id="performance-tables-for-10-bit-color">
-<h4>Performance Tables for 10-bit Color<a class="headerlink" href="#performance-tables-for-10-bit-color" title="Permalink to this heading">¶</a></h4>
+<h4>Performance Tables for 10-bit Color<a class="headerlink" href="#performance-tables-for-10-bit-color" title="Permalink to this headline">¶</a></h4>
 <table class="colwidths-given docutils align-default" id="id6">
 <caption><span class="caption-text">Number of Real-Time Transcode Jobs (10-bit)</span><a class="headerlink" href="#id6" title="Permalink to this table">¶</a></caption>
 <colgroup>
@@ -733,7 +731,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 18, 2023.
+      <span class="lastupdated">Last updated on June 20, 2023.
       </span></p>
   </div>
 

@@ -29,9 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -149,7 +147,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="xma-examples-for-the-sdk">
-<h1>XMA Examples for the Xilinx Video SDK<a class="headerlink" href="#xma-examples-for-the-sdk" title="Permalink to this heading">¶</a></h1>
+<h1>XMA Examples for the Xilinx Video SDK<a class="headerlink" href="#xma-examples-for-the-sdk" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
@@ -169,7 +167,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>The XMA applications only work with elementary streams. Container formats such as mp4 are not supported.</p></li>
 </ul>
 <div class="section" id="environment-setup">
-<h2><a class="toc-backref" href="#id1">Environment Setup</a><a class="headerlink" href="#environment-setup" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Environment Setup</a><a class="headerlink" href="#environment-setup" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>The Xilinx Video SDK examples can be found in the <code class="file docutils literal notranslate"><span class="pre">/opt/xilinx/examples/u30</span></code> folder of your system. If this folder is not present, first <a class="reference internal" href="../../package_feed.html#package-feed-configuration"><span class="std std-ref">make sure your package management client points to the remote package repository</span></a> for the Xilinx Video SDK. Then install the <code class="file docutils literal notranslate"><span class="pre">xilinx-alveo-u30-examples</span></code> package:</p>
 <ul class="simple">
@@ -195,7 +193,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>Sourcing the setup script should be performed each time you open a new terminal on your system. This is required for the environment to be correctly configured.</p>
 </div>
 <div class="section" id="build-instructions">
-<h2><a class="toc-backref" href="#id2">Build Instructions</a><a class="headerlink" href="#build-instructions" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Build Instructions</a><a class="headerlink" href="#build-instructions" title="Permalink to this headline">¶</a></h2>
 <p class="rubric">Build</p>
 <ol class="arabic">
 <li><p>Create a local copy of the XMA examples:</p>
@@ -223,12 +221,12 @@ make dev
 </div>
 </div>
 <div class="section" id="xma-decoder-app">
-<span id="xma-decoder-example"></span><h2><a class="toc-backref" href="#id3">XMA Decoder App</a><a class="headerlink" href="#xma-decoder-app" title="Permalink to this heading">¶</a></h2>
+<span id="xma-decoder-example"></span><h2><a class="toc-backref" href="#id3">XMA Decoder App</a><a class="headerlink" href="#xma-decoder-app" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="decoder-test-instructions">
-<h3>Decoder Test Instructions<a class="headerlink" href="#decoder-test-instructions" title="Permalink to this heading">¶</a></h3>
+<h3>Decoder Test Instructions<a class="headerlink" href="#decoder-test-instructions" title="Permalink to this headline">¶</a></h3>
 <p>The XMA decoder application supports most of the decode options supported by FFmpeg. The XMA decoder application supports only elementary H.264 or HEVC encoded bitstream and outputs YUV.</p>
 <div class="section" id="decoder-usage">
-<h4>Decoder Usage<a class="headerlink" href="#decoder-usage" title="Permalink to this heading">¶</a></h4>
+<h4>Decoder Usage<a class="headerlink" href="#decoder-usage" title="Permalink to this headline">¶</a></h4>
 <p>Before running decoding application, source the xcdr environment:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
 </pre></div>
@@ -277,7 +275,7 @@ Codec Arguments:
 </div>
 </div>
 <div class="section" id="sample-decoder-command">
-<h4>Sample Decoder Command<a class="headerlink" href="#sample-decoder-command" title="Permalink to this heading">¶</a></h4>
+<h4>Sample Decoder Command<a class="headerlink" href="#sample-decoder-command" title="Permalink to this headline">¶</a></h4>
 <p>Decode an h264 encoded file:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>u30_xma_decode  -i ~/CSGO_1920x1080_5000kbps.264 -c:v mpsoc_vcu_h264 -o ./CSGO_1920x1080.NV12
 </pre></div>
@@ -290,12 +288,12 @@ Codec Arguments:
 </div>
 </div>
 <div class="section" id="xma-encoder-app">
-<span id="xma-encoder-example"></span><h2><a class="toc-backref" href="#id4">XMA Encoder App</a><a class="headerlink" href="#xma-encoder-app" title="Permalink to this heading">¶</a></h2>
+<span id="xma-encoder-example"></span><h2><a class="toc-backref" href="#id4">XMA Encoder App</a><a class="headerlink" href="#xma-encoder-app" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="encoder-test-instructions">
-<h3>Encoder Test Instructions<a class="headerlink" href="#encoder-test-instructions" title="Permalink to this heading">¶</a></h3>
+<h3>Encoder Test Instructions<a class="headerlink" href="#encoder-test-instructions" title="Permalink to this headline">¶</a></h3>
 <p>The encoder XMA application supports most of the encoder options supported by FFmpeg. The XMA application supports only YUV 4:2:0 input and outputs H.264/HEVC encoded elementary stream.</p>
 <div class="section" id="encoder-usage">
-<h4>Encoder Usage<a class="headerlink" href="#encoder-usage" title="Permalink to this heading">¶</a></h4>
+<h4>Encoder Usage<a class="headerlink" href="#encoder-usage" title="Permalink to this headline">¶</a></h4>
 <p>Before running encoder application, source the xcdr environment:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
 </pre></div>
@@ -418,7 +416,7 @@ Encoder params:
 </div>
 </div>
 <div class="section" id="sample-encoder-commands">
-<h4>Sample Encoder Commands<a class="headerlink" href="#sample-encoder-commands" title="Permalink to this heading">¶</a></h4>
+<h4>Sample Encoder Commands<a class="headerlink" href="#sample-encoder-commands" title="Permalink to this headline">¶</a></h4>
 <p>H.264 encoding, ultra low latency - high density, for resolutions up to 1080p60 (Consult the <a class="reference internal" href="../../tuning_pipeline_latency.html#latency-tuning"><span class="std std-ref">Tuning Transcode Latency</span></a> section for more details):</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>u30_xma_encode -w 1920 -h 1080  -i input_1080.yuv -c:v mpsoc_vcu_h264 -fps 60 -b:v 5000 -profile 2 -level 42 -g 120 -periodicity-idr 120 -qp-mode 0 -scaling-list 0 -bf 0 -disable-pipeline 1 -avc-lowlat 0 -o out1.264
 </pre></div>
@@ -458,7 +456,7 @@ Encoder params:
 <p>For more examples, refer to the <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/xma/encoder/test/scripts/encoder_app_test.sh">encoder/test/scripts/encoder_app_test.sh</a> script.</p>
 </div>
 <div class="section" id="dynamic-params-config-file-format-for-the-encoder-app">
-<h4>Dynamic params config file format for the Encoder app<a class="headerlink" href="#dynamic-params-config-file-format-for-the-encoder-app" title="Permalink to this heading">¶</a></h4>
+<h4>Dynamic params config file format for the Encoder app<a class="headerlink" href="#dynamic-params-config-file-format-for-the-encoder-app" title="Permalink to this headline">¶</a></h4>
 <p>The config text file should have dynamic parameters for a frame on each line. It can have single parameter or multiple parameters for a frame on each line:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;frameNumberN1&gt;:&lt;key1&gt;=&lt;value1&gt;
 &lt;frameNumberN2&gt;:&lt;key2&gt;=&lt;value2&gt;,&lt;key3&gt;=&lt;value3&gt;
@@ -511,7 +509,7 @@ Encoder params:
 </div>
 </div>
 <div class="section" id="limitations-of-the-encoder-app">
-<h3>Limitations of the Encoder App<a class="headerlink" href="#limitations-of-the-encoder-app" title="Permalink to this heading">¶</a></h3>
+<h3>Limitations of the Encoder App<a class="headerlink" href="#limitations-of-the-encoder-app" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The encoder application supports only yuv 420 8-bit or 10-bit.</p></li>
 <li><p>The application outputs only H264/HEVC elementary streams.</p></li>
@@ -524,12 +522,12 @@ Encoder params:
 </div>
 </div>
 <div class="section" id="xma-scaler-app">
-<span id="xma-scaler-example"></span><h2><a class="toc-backref" href="#id5">XMA Scaler App</a><a class="headerlink" href="#xma-scaler-app" title="Permalink to this heading">¶</a></h2>
+<span id="xma-scaler-example"></span><h2><a class="toc-backref" href="#id5">XMA Scaler App</a><a class="headerlink" href="#xma-scaler-app" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="scaler-test-instructions">
-<h3>Scaler Test Instructions<a class="headerlink" href="#scaler-test-instructions" title="Permalink to this heading">¶</a></h3>
+<h3>Scaler Test Instructions<a class="headerlink" href="#scaler-test-instructions" title="Permalink to this headline">¶</a></h3>
 <p>The scaler XMA application supports most of the scaler options supported by FFmpeg. The XMA application supports only YUV 4:2:0 input and outputs YUV 4:2:0 scaled elementary stream.</p>
 <div class="section" id="scaler-usage">
-<h4>Scaler Usage<a class="headerlink" href="#scaler-usage" title="Permalink to this heading">¶</a></h4>
+<h4>Scaler Usage<a class="headerlink" href="#scaler-usage" title="Permalink to this headline">¶</a></h4>
 <p>Before running scaler application, source the xcdr environment:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
 </pre></div>
@@ -584,7 +582,7 @@ Output Arguments:
 </div>
 </div>
 <div class="section" id="sample-scaler-command">
-<h4>Sample Scaler Command<a class="headerlink" href="#sample-scaler-command" title="Permalink to this heading">¶</a></h4>
+<h4>Sample Scaler Command<a class="headerlink" href="#sample-scaler-command" title="Permalink to this headline">¶</a></h4>
 <p>Scale 1080p nv12 to 720p, 480p, 360p, and 240p nv12:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>u30_xma_scale -w 1920 -h 1080 -i ~/Kimono1_1920x1080_24.yuvNV12 -w 1280 -h \
       720 -o Kimono_1280x720.NV12 -w 852 -h 480 -o Kimono_852x480.NV12 -w \
@@ -595,7 +593,7 @@ Output Arguments:
 </div>
 </div>
 <div class="section" id="limitations-of-the-scaler-app">
-<h3>Limitations of the Scaler App<a class="headerlink" href="#limitations-of-the-scaler-app" title="Permalink to this heading">¶</a></h3>
+<h3>Limitations of the Scaler App<a class="headerlink" href="#limitations-of-the-scaler-app" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>There may be a performance degradation relative to ffmpeg with a high number of outputs/processes.</p></li>
 </ul>
@@ -605,12 +603,12 @@ Output Arguments:
 </div>
 </div>
 <div class="section" id="xma-transcoder-app">
-<span id="xma-transcoder-example"></span><h2><a class="toc-backref" href="#id6">XMA Transcoder App</a><a class="headerlink" href="#xma-transcoder-app" title="Permalink to this heading">¶</a></h2>
+<span id="xma-transcoder-example"></span><h2><a class="toc-backref" href="#id6">XMA Transcoder App</a><a class="headerlink" href="#xma-transcoder-app" title="Permalink to this headline">¶</a></h2>
 <div class="section" id="transcoder-test-instructions">
-<h3>Transcoder Test Instructions<a class="headerlink" href="#transcoder-test-instructions" title="Permalink to this heading">¶</a></h3>
+<h3>Transcoder Test Instructions<a class="headerlink" href="#transcoder-test-instructions" title="Permalink to this headline">¶</a></h3>
 <p>The transcoder XMA application supports most of the options supported by ffmpeg. The XMA application supports only elementary H.264 and HEVC encoded stream input and outputs H.264/HEVC encoded elementary stream.</p>
 <div class="section" id="transcoder-usage">
-<h4>Transcoder Usage<a class="headerlink" href="#transcoder-usage" title="Permalink to this heading">¶</a></h4>
+<h4>Transcoder Usage<a class="headerlink" href="#transcoder-usage" title="Permalink to this headline">¶</a></h4>
 <p>Before running transcoder application, source the xcdr environment:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
 </pre></div>
@@ -767,7 +765,7 @@ Encoder options:
 </div>
 </div>
 <div class="section" id="sample-transcoder-commands">
-<h4>Sample Transcoder Commands<a class="headerlink" href="#sample-transcoder-commands" title="Permalink to this heading">¶</a></h4>
+<h4>Sample Transcoder Commands<a class="headerlink" href="#sample-transcoder-commands" title="Permalink to this headline">¶</a></h4>
 <p>Ultra Low Latecy H.264 to HEVC Transcoder:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>u30_xma_transcode -c:v mpsoc_vcu_h264 -low-latency 1 -i input_1080p.264 -c:v mpsoc_vcu_hevc -bf 0 -disable-pipeline 1 -latency_logging 1 -o out_ull.h265
 </pre></div>
@@ -798,7 +796,7 @@ Encoder options:
 <p>For more examples, refer to the <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/xma/transcoder/test/scripts/transcoder_app_test.sh">transcoder/test/scripts/transcoder_app_test.sh</a> script.</p>
 </div>
 <div class="section" id="dynamic-params-config-file-format-for-the-transcoder-app">
-<h4>Dynamic params config file format for the Transcoder app<a class="headerlink" href="#dynamic-params-config-file-format-for-the-transcoder-app" title="Permalink to this heading">¶</a></h4>
+<h4>Dynamic params config file format for the Transcoder app<a class="headerlink" href="#dynamic-params-config-file-format-for-the-transcoder-app" title="Permalink to this headline">¶</a></h4>
 <p>The config text file should have dynamic parameters for a frame on each line. It can have single parameter or multiple parameters for a frame on each line:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&lt;frameNumberN1&gt;:&lt;key1&gt;=&lt;value1&gt;
 &lt;frameNumberN2&gt;:&lt;key2&gt;=&lt;value2&gt;,&lt;key3&gt;=&lt;value3&gt;
@@ -851,7 +849,7 @@ Encoder options:
 </div>
 </div>
 <div class="section" id="limitations-of-the-transcoder-app">
-<h3>Limitations of the Transcoder App<a class="headerlink" href="#limitations-of-the-transcoder-app" title="Permalink to this heading">¶</a></h3>
+<h3>Limitations of the Transcoder App<a class="headerlink" href="#limitations-of-the-transcoder-app" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>The transcoder application supports only elementary H264/HEVC encoded streams as input file. It cannot parse container formats like MP4, AVI, etc.</p></li>
 <li><p>The transcoder outputs only H264/HEVC elementary streams.</p></li>
@@ -884,7 +882,7 @@ Encoder options:
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 18, 2023.
+      <span class="lastupdated">Last updated on June 20, 2023.
       </span></p>
   </div>
 

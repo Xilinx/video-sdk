@@ -29,9 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
         <script src="../../_static/jquery.js"></script>
         <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -142,7 +140,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="video-quality-examples">
-<h1>Video Quality Examples<a class="headerlink" href="#video-quality-examples" title="Permalink to this heading">¶</a></h1>
+<h1>Video Quality Examples<a class="headerlink" href="#video-quality-examples" title="Permalink to this headline">¶</a></h1>
 <p>This page is dedicated to explaining some of the details behind Video Quality (VQ), how it is measured, and how you can optimize your FFmpeg commands with the Alveo U30 card to maximize its performance.</p>
 <p>Further documentation on this topic can be found in the <a class="reference internal" href="../../using_ffmpeg.html#tuning-encoder-options"><span class="std std-ref">Tuning Encoder Options</span></a> section of the Xilinx Video SDK user guide.</p>
 <div class="contents local topic" id="table-of-contents">
@@ -167,7 +165,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="section" id="introduction-to-video-quality">
-<h2><a class="toc-backref" href="#id1">Introduction to Video Quality</a><a class="headerlink" href="#introduction-to-video-quality" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id1">Introduction to Video Quality</a><a class="headerlink" href="#introduction-to-video-quality" title="Permalink to this headline">¶</a></h2>
 <p>There has been a longstanding goal for video engineers to quantitatively determine the output quality of an encoder without having to watch and inspect every individual frame. This has led to an evolution of algorithmic solutions, the most common of which are:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Peak_signal-to-noise_ratio">Peak Signal to Noise Ratio (PSNR)</a></p></li>
@@ -180,12 +178,12 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <p>This page discusses the Xilinx Video SDK command line flags used to optimize for objective quality (scores) and subjective quality (visual appeal) and provides additional details as to what is happening behind the scenes and why.</p>
 </div>
 <div class="section" id="optimized-settings-for-the-xilinx-video-sdk">
-<h2><a class="toc-backref" href="#id2">Optimized Settings for the Xilinx Video SDK</a><a class="headerlink" href="#optimized-settings-for-the-xilinx-video-sdk" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Optimized Settings for the Xilinx Video SDK</a><a class="headerlink" href="#optimized-settings-for-the-xilinx-video-sdk" title="Permalink to this headline">¶</a></h2>
 <p>It is highly recommended to perform encoding on raw video clips; that is, clips that have not undergone a transform/compression/encoding in the past. This ensures that the clips are in a universally known state in order to fairly compare encoders.</p>
 <p>Alternatively, you can add the flags to decode before encoding, and the results will remain accurate as long as the same pre-encoded file is used as the source across all encoders under test. Information on this process can be found on the <a class="reference internal" href="tutorials.html"><span class="doc">FFmpeg tutorial page</span></a>.</p>
 <p>Flags not illustrated in this page are covered in the <a class="reference internal" href="../../using_ffmpeg.html"><span class="doc">Using FFmpeg</span></a> chapter of the Xilinx Video SDK user guide.</p>
 <div class="section" id="subjective-quality">
-<h3><a class="toc-backref" href="#id3">Subjective Quality</a><a class="headerlink" href="#subjective-quality" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id3">Subjective Quality</a><a class="headerlink" href="#subjective-quality" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Example script for H264 streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/quality_analysis/h264_subjective.sh">examples/ffmpeg/quality_analysis/h264_subjective.sh</a></p></li>
 <li><p>Example script for HEVC streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/quality_analysis/hevc_subjective.sh">examples/ffmpeg/quality_analysis/hevc_subjective.sh</a></p></li>
@@ -290,7 +288,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="section" id="objective-quality">
-<h3><a class="toc-backref" href="#id4">Objective Quality</a><a class="headerlink" href="#objective-quality" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id4">Objective Quality</a><a class="headerlink" href="#objective-quality" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p>Example script for H264 streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/quality_analysis/h264_objective.sh">examples/ffmpeg/quality_analysis/h264_objective.sh</a></p></li>
 <li><p>Example script for HEVC streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/quality_analysis/hevc_objective.sh">examples/ffmpeg/quality_analysis/hevc_objective.sh</a></p></li>
@@ -387,7 +385,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="section" id="setting-differences-between-objective-and-subjective-quality">
-<h3><a class="toc-backref" href="#id5">Setting Differences Between Objective and Subjective Quality</a><a class="headerlink" href="#setting-differences-between-objective-and-subjective-quality" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id5">Setting Differences Between Objective and Subjective Quality</a><a class="headerlink" href="#setting-differences-between-objective-and-subjective-quality" title="Permalink to this headline">¶</a></h3>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">-bf</span></code></p>
 <ul>
@@ -421,7 +419,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="running-psnr-ssim-vmaf-scores">
-<h2><a class="toc-backref" href="#id6">Running PSNR/SSIM/VMAF scores</a><a class="headerlink" href="#running-psnr-ssim-vmaf-scores" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id6">Running PSNR/SSIM/VMAF scores</a><a class="headerlink" href="#running-psnr-ssim-vmaf-scores" title="Permalink to this headline">¶</a></h2>
 <p>Due to licensing reasons, the FFmpeg binary delivered in this package does not include a comprehensive set of codecs or plugins required for scoring video quality. You have many options:</p>
 <ol class="arabic simple">
 <li><p>(Easiest) Download a static FFmpeg build from <a class="reference external" href="https://johnvansickle.com/ffmpeg/">John Van Sickle</a>  which has VMAF (among other plugins) precompiled + installed</p></li>
@@ -521,7 +519,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="section" id="quality-vs-latency">
-<h2><a class="toc-backref" href="#id7">Quality vs. Latency</a><a class="headerlink" href="#quality-vs-latency" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id7">Quality vs. Latency</a><a class="headerlink" href="#quality-vs-latency" title="Permalink to this headline">¶</a></h2>
 <p>A given encoder’s “quality” is often a function of many different algorithms/functions/features. It is quite possible (and often seen) that an encoder can produce an h.264/HEVC compliant stream but have drastically different quality from one to another.</p>
 <p>Some of these features add latency, either by adding “pitstops” on the way to an outputted stream, or by increasing the complexity of the core-encoding functions. Most things in the video realm are content-dependent, or use-case-dependent, so the designer needs to determine what is best for them… a gradient of:</p>
 <ul class="simple">
@@ -529,9 +527,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>lower quality with lowest latency.</p></li>
 </ul>
 <div class="section" id="xilinx-specific-latency-flags">
-<h3><a class="toc-backref" href="#id8">Xilinx-Specific Latency Flags</a><a class="headerlink" href="#xilinx-specific-latency-flags" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id8">Xilinx-Specific Latency Flags</a><a class="headerlink" href="#xilinx-specific-latency-flags" title="Permalink to this headline">¶</a></h3>
 <div class="section" id="decoder-options">
-<h4>Decoder Options<a class="headerlink" href="#decoder-options" title="Permalink to this heading">¶</a></h4>
+<h4>Decoder Options<a class="headerlink" href="#decoder-options" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">-low_latency</span></code></p>
 <ul>
@@ -541,7 +539,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="section" id="encoder-options">
-<h4>Encoder Options<a class="headerlink" href="#encoder-options" title="Permalink to this heading">¶</a></h4>
+<h4>Encoder Options<a class="headerlink" href="#encoder-options" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">-control-rate</span> <span class="pre">low-latency</span></code></p>
 <ul>
@@ -579,10 +577,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="optimized-settings-for-low-latency-streams">
-<h3><a class="toc-backref" href="#id9">Optimized Settings for Low Latency Streams</a><a class="headerlink" href="#optimized-settings-for-low-latency-streams" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id9">Optimized Settings for Low Latency Streams</a><a class="headerlink" href="#optimized-settings-for-low-latency-streams" title="Permalink to this headline">¶</a></h3>
 <p>With the above information in hand, below are the optimized commands for general types of video. Your content may require modifications to optimize fully.</p>
 <div class="section" id="low-latency-subjective-quality">
-<h4>Low Latency Subjective Quality<a class="headerlink" href="#low-latency-subjective-quality" title="Permalink to this heading">¶</a></h4>
+<h4>Low Latency Subjective Quality<a class="headerlink" href="#low-latency-subjective-quality" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Example script for H264 streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/quality_analysis/h264_ll_subjective.sh">examples/ffmpeg/quality_analysis/h264_ll_subjective.sh</a></p></li>
 <li><p>Example script for HEVC streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/quality_analysis/hevc_ll_subjective.sh">examples/ffmpeg/quality_analysis/hevc_ll_subjective.sh</a></p></li>
@@ -607,7 +605,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="low-latency-objective-quality">
-<h4>Low Latency Objective Quality<a class="headerlink" href="#low-latency-objective-quality" title="Permalink to this heading">¶</a></h4>
+<h4>Low Latency Objective Quality<a class="headerlink" href="#low-latency-objective-quality" title="Permalink to this headline">¶</a></h4>
 <ul class="simple">
 <li><p>Example script for H264 streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/quality_analysis/h264_ll_objective.sh">examples/ffmpeg/quality_analysis/h264_ll_objective.sh</a></p></li>
 <li><p>Example script for HEVC streams: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/quality_analysis/hevc_ll_objective.sh">examples/ffmpeg/quality_analysis/hevc_ll_objective.sh</a></p></li>
@@ -633,10 +631,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="measuring-latency">
-<h3><a class="toc-backref" href="#id10">Measuring Latency</a><a class="headerlink" href="#measuring-latency" title="Permalink to this heading">¶</a></h3>
+<h3><a class="toc-backref" href="#id10">Measuring Latency</a><a class="headerlink" href="#measuring-latency" title="Permalink to this headline">¶</a></h3>
 <p>Each of the plugins from Xilinx (Decoder, Scaler, and Encoder) has the flag <code class="docutils literal notranslate"><span class="pre">-latency_logging</span></code>. When this is enabled, tags are added to the syslog <code class="docutils literal notranslate"><span class="pre">(/var/log/syslog)</span></code>. The script <code class="docutils literal notranslate"><span class="pre">latency_test.sh</span></code> will parse the syslog and report on each stage’s latency, as measured in milliseconds.</p>
 <div class="section" id="latency-measurement-script">
-<h4>Latency Measurement Script<a class="headerlink" href="#latency-measurement-script" title="Permalink to this heading">¶</a></h4>
+<h4>Latency Measurement Script<a class="headerlink" href="#latency-measurement-script" title="Permalink to this headline">¶</a></h4>
 <p>You will need to identify the PID for the <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> context and have <code class="docutils literal notranslate"><span class="pre">sudo</span></code> to access the syslog to use this script. <code class="docutils literal notranslate"><span class="pre">ps</span> <span class="pre">-aux</span> <span class="pre">|</span> <span class="pre">grep</span> <span class="pre">ffmpeg</span></code> should return the PIDs of all instances of <code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code> running on your system.</p>
 <ul class="simple">
 <li><p>Example script: <a class="reference external" href="https://github.com/Xilinx/video-sdk/blob/v1.0/examples/ffmpeg/quality_analysis/latency_test.sh">examples/ffmpeg/quality_analysis/latency_test.sh</a></p></li>
@@ -686,7 +684,7 @@ Total average latency =  203 ms
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 18, 2023.
+      <span class="lastupdated">Last updated on June 20, 2023.
       </span></p>
   </div>
 

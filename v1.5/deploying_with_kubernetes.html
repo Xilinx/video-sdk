@@ -29,9 +29,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
         <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
         <script src="_static/jquery.js"></script>
         <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
         <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -117,7 +115,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
            <div itemprop="articleBody">
              
   <div class="section" id="deploying-with-kubernetes">
-<span id="id1"></span><h1>Deploying with Kubernetes<a class="headerlink" href="#deploying-with-kubernetes" title="Permalink to this heading">¶</a></h1>
+<span id="id1"></span><h1>Deploying with Kubernetes<a class="headerlink" href="#deploying-with-kubernetes" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
@@ -128,7 +126,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </div>
 <div class="section" id="overview">
-<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id2">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The Xilinx device plugin for Kubernetes is a daemonset deployed on a Kubernetes cluster which:</p>
 <ul class="simple">
 <li><p>Discovers the Xilinx cards inserted in each node of the cluster and expose information about the devices and their properties</p></li>
@@ -143,7 +141,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="prerequisites">
-<h2><a class="toc-backref" href="#id3">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id3">Prerequisites</a><a class="headerlink" href="#prerequisites" title="Permalink to this headline">¶</a></h2>
 <p>The following instructions assume that your system satisfies the following requirements:</p>
 <ul class="simple">
 <li><p>An Amazon EKS cluster is created and the Xilinx Video SDK is installed on all Amazon EC2 VT1 worker nodes</p></li>
@@ -161,7 +159,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </div>
 </div>
 <div class="section" id="installing-the-xilinx-device-plugin-for-kubernetes">
-<h2><a class="toc-backref" href="#id4">Installing the Xilinx device plugin for Kubernetes</a><a class="headerlink" href="#installing-the-xilinx-device-plugin-for-kubernetes" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id4">Installing the Xilinx device plugin for Kubernetes</a><a class="headerlink" href="#installing-the-xilinx-device-plugin-for-kubernetes" title="Permalink to this headline">¶</a></h2>
 <p>The following steps require kubectl to be connected to your EKS cluster. After the Xilinx device plugin for Kubernetes is installed, no additional configuration is needed when adding nodes to the cluster.</p>
 <ol class="arabic">
 <li><p>Create a file called xilinx-device-plugin.yml and paste the following content in it:</p>
@@ -253,7 +251,7 @@ Allocatable:
 </div>
 </div>
 <div class="section" id="deploying-user-pods">
-<h2><a class="toc-backref" href="#id5">Deploying User Pods</a><a class="headerlink" href="#deploying-user-pods" title="Permalink to this heading">¶</a></h2>
+<h2><a class="toc-backref" href="#id5">Deploying User Pods</a><a class="headerlink" href="#deploying-user-pods" title="Permalink to this headline">¶</a></h2>
 <ol class="arabic">
 <li><p>Paste and customize the content below in a pod-description yaml file:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>apiVersion: v1
@@ -329,7 +327,7 @@ xbutil examine
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 18, 2023.
+      <span class="lastupdated">Last updated on June 20, 2023.
       </span></p>
   </div>
 
