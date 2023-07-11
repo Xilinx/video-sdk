@@ -6,13 +6,13 @@
  
    ::
  
-     sudo apt-get install xilinx-alveo-u30-example   
+     sudo apt-get install xilinx-alveo-u30-examples   
  
    + RHEL and Amazon Linux 2
  
    ::
  
-     sudo yum install xilinx-alveo-u30-example   
+     sudo yum install xilinx-alveo-u30-examples   
 
 #. Configure the environment to use the |SDK|::
 
