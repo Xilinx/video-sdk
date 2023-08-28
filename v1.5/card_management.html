@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -134,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="card-management">
+  <section id="card-management">
 <h1>Card Management<a class="headerlink" href="#card-management" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -150,10 +151,10 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><a class="reference internal" href="#recovering-a-card" id="id15">Recovering a Card</a></p></li>
 </ul>
 </div>
-<div class="section" id="overview">
+<section id="overview">
 <h2><a class="toc-backref" href="#id7">Overview</a><a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
 <p>The Xilinx Video SDK builds on the Xilinx Runtime (XRT) and the Xilinx Resource Manager (XRM) to interface with Xilinx video acceleration cards. The Xilinx Video SDK includes the <code class="docutils literal notranslate"><span class="pre">xbutil</span></code>, <code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> and <code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> command line tools for card installation, upgrade, and management.</p>
-<div class="section" id="xbutil-and-xbmgmt">
+<section id="xbutil-and-xbmgmt">
 <h3>xbutil and xbmgmt<a class="headerlink" href="#xbutil-and-xbmgmt" title="Permalink to this headline">¶</a></h3>
 <p>The Xilinx® Board Utility (<code class="docutils literal notranslate"><span class="pre">xbutil</span></code>) and the Xilinx® Board Management Utility (<code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code>) are standalone command line tools used to query and administer Xilinx acceleration cards such as the Alveo U30.</p>
 <ul class="simple">
@@ -175,19 +176,19 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>PCI Function number in hexadecimal. Only this last digit will differ between the User BDF and the Management BDF.</p></li>
 </ul>
 <p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span></code> command expects the User BDF of the targeted device while the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> command expects the Management BDF of the targeted device.</p>
-</div>
-<div class="section" id="xrmadm-and-xrmd">
+</section>
+<section id="xrmadm-and-xrmd">
 <h3>xrmadm and xrmd<a class="headerlink" href="#xrmadm-and-xrmd" title="Permalink to this headline">¶</a></h3>
 <p>The Xilinx® FPGA resource manager (XRM) is the software which manages the hardware accelerators available in the system. The XRM daemon (<code class="docutils literal notranslate"><span class="pre">xrmd</span></code>) is a background process supporting reservation, allocation, and release of hardware acceleration resources. The XRM <code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> command line tool is used to interact with the XRM daemon (<code class="docutils literal notranslate"><span class="pre">xrmd</span></code>) in order to check status and generate resource utilization reports.</p>
 <p>For more details about the XRM commands specific to the Xilinx Video SDK refer to the <a class="reference internal" href="managing_compute_resources.html#xrm-reference"><span class="std std-ref">XRM Command Reference Guide</span></a>.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="card-and-device-identifiers">
+</section>
+</section>
+<section id="card-and-device-identifiers">
 <h2><a class="toc-backref" href="#id8">Card and Device Identifiers</a><a class="headerlink" href="#card-and-device-identifiers" title="Permalink to this headline">¶</a></h2>
-<div class="section" id="device-user-bdf">
+<section id="device-user-bdf">
 <span id="device-bdf"></span><h3>Device User BDF<a class="headerlink" href="#device-user-bdf" title="Permalink to this headline">¶</a></h3>
 <p>The list of all installed Xilinx devices, including their User BDF is obtained with the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> command.</p>
 <p>For example, the command below detected 4 devices and lists the Management BDF for each of them:</p>
@@ -203,8 +204,8 @@ Devices present
 </pre></div>
 </div>
 <p>The last device listed has a User BDF of 0000:21:00.1, which describes Domain 0, Bus 21, Device 00, Function 1.</p>
-</div>
-<div class="section" id="device-management-bdf">
+</section>
+<section id="device-management-bdf">
 <span id="id1"></span><h3>Device Management BDF<a class="headerlink" href="#device-management-bdf" title="Permalink to this headline">¶</a></h3>
 <p>The list of all installed Xilinx devices, including their Management BDF is obtained with the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span></code> command.</p>
 <p>For example, the command below detected 4 devices and lists the Management BDF for each of them:</p>
@@ -221,8 +222,8 @@ Devices present
 </div>
 <p>The last device listed has a Management BDF of 0000:21:00.0, which describes Domain 0, Bus 21, Device 00, Function 0.</p>
 <p>Note that only the last digit (PCI Function) will differ between the User BDF and the Management BDF.</p>
-</div>
-<div class="section" id="device-renderid">
+</section>
+<section id="device-renderid">
 <span id="device-render-id"></span><h3>Device renderID<a class="headerlink" href="#device-renderid" title="Permalink to this headline">¶</a></h3>
 <p>You can look-up the renderID of a device by using its User BDF and running the following command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ls /sys/bus/pci/devices/&lt;Domain&gt;\:&lt;Bus&gt;\:&lt;Device&gt;.&lt;Function&gt;/drm
@@ -239,8 +240,8 @@ card4  renderD131
 </li>
 <li><p>The renderID of this device is 131</p></li>
 </ul>
-</div>
-<div class="section" id="device-xclmgmtid">
+</section>
+<section id="device-xclmgmtid">
 <span id="device-xclmgmt-id"></span><h3>Device xclmgmtID<a class="headerlink" href="#device-xclmgmtid" title="Permalink to this headline">¶</a></h3>
 <p>You can look-up the xclmgmtID of a device by using its Management BDF and running the following command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cat /sys/bus/pci/devices/&lt;Domain&gt;\:&lt;Bus&gt;\:&lt;Device&gt;.&lt;Function&gt;/instance
@@ -260,8 +261,8 @@ card4  renderD131
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="card-serial-number">
+</section>
+<section id="card-serial-number">
 <span id="id2"></span><h3>Card Serial Number<a class="headerlink" href="#card-serial-number" title="Permalink to this headline">¶</a></h3>
 <p>You can look-up the serial number of a card by using the User BDF of a device located on the card and running the following command:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>cat /sys/bus/pci/devices/&lt;Domain&gt;\:&lt;Bus&gt;\:&lt;Device&gt;.&lt;Function&gt;/xmc.u.&lt;xxx&gt;/serial_num
@@ -281,9 +282,9 @@ XFL1RT5PHT31
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="checking-system-status">
+</section>
+</section>
+<section id="checking-system-status">
 <span id="examining-cards"></span><h2><a class="toc-backref" href="#id9">Checking System Status</a><a class="headerlink" href="#checking-system-status" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">examine</span></code> commands provides useful details about your environment and can be used to ensure that your cards and devices are properly detected. In the example below, four devices are found and usable:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>$ xbutil examine
@@ -317,8 +318,8 @@ Devices present
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="inspecting-device-details">
+</section>
+<section id="inspecting-device-details">
 <span id="device-details"></span><h2><a class="toc-backref" href="#id10">Inspecting Device Details</a><a class="headerlink" href="#inspecting-device-details" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">xbmgmt</span> <span class="pre">examine</span> <span class="pre">-d</span> <span class="pre">&lt;Management</span> <span class="pre">BDF&gt;</span></code> commands provides additional details about the status and configuration of each Xilinx device installed.</p>
 <p>For example, for the device with Management BDF 0000:e3:00.0:</p>
@@ -346,8 +347,8 @@ Flashable partitions installed in system
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="checking-and-validating-devices">
+</section>
+<section id="checking-and-validating-devices">
 <span id="xbutil-validate"></span><h2><a class="toc-backref" href="#id11">Checking and Validating Devices</a><a class="headerlink" href="#checking-and-validating-devices" title="Permalink to this headline">¶</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">validate</span></code> command can be used to check and validate the health of the devices on your Alveo U30 cards by executing a special built-in test. In order to run this command, the XRM daemon must first be stopped, otherwise the test will error with <code class="docutils literal notranslate"><span class="pre">xclbin</span> <span class="pre">on</span> <span class="pre">card</span> <span class="pre">is</span> <span class="pre">in</span> <span class="pre">use</span></code> and <code class="docutils literal notranslate"><span class="pre">failed</span> <span class="pre">to</span> <span class="pre">load</span> <span class="pre">xclbin</span></code> messages.</p>
 <ol class="arabic">
@@ -376,8 +377,8 @@ source /opt/xilinx/xcdr/setup.sh
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="mapping-devices-to-cards">
+</section>
+<section id="mapping-devices-to-cards">
 <span id="id3"></span><h2><a class="toc-backref" href="#id12">Mapping Devices to Cards</a><a class="headerlink" href="#mapping-devices-to-cards" title="Permalink to this headline">¶</a></h2>
 <p>Knowing which devices are on which card is useful to selectively reset or recover a card. This is done by mapping the BDFs of the devices to the serial number of the cards as explained in the instructions below:</p>
 <ol class="arabic">
@@ -401,8 +402,8 @@ XFL1RT5PHT31
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="managing-resource-utilization">
+</section>
+<section id="managing-resource-utilization">
 <span id="managing-resources"></span><h2><a class="toc-backref" href="#id13">Managing Resource Utilization</a><a class="headerlink" href="#managing-resource-utilization" title="Permalink to this headline">¶</a></h2>
 <p>Given that each device has a 2160p60 (4K) input and output bandwidth limit, the user is responsible for only submitting jobs which will not exceed the capacity of the specified device. This section provides information on how to estimate CU requirements and check current device load.</p>
 <p class="rubric">Checking System Load</p>
@@ -449,8 +450,8 @@ XFL1RT5PHT31
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="resetting-a-card">
+</section>
+<section id="resetting-a-card">
 <span id="card-reset"></span><h2><a class="toc-backref" href="#id14">Resetting a Card</a><a class="headerlink" href="#resetting-a-card" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -484,15 +485,15 @@ XFL1RT5PHT31
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="recovering-a-card">
+</section>
+<section id="recovering-a-card">
 <span id="card-recovery"></span><h2><a class="toc-backref" href="#id15">Recovering a Card</a><a class="headerlink" href="#recovering-a-card" title="Permalink to this headline">¶</a></h2>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This action is only available on-premises and is not supported on Amazon EC2 VT1 instances.</p>
 </div>
 <p>In the event that your card has become corrupted and that a reset is not sufficient, you will need to recover it. This is normally be done in-band via a set of simple commands. Should the card’s flash devices become corrupted to the point where it is no longer detected by PCIe, out-of-band recovery with a JTAG cable may be required.</p>
-<div class="section" id="standard-recovery-flow">
+<section id="standard-recovery-flow">
 <span id="id4"></span><h3>Standard Recovery Flow<a class="headerlink" href="#standard-recovery-flow" title="Permalink to this headline">¶</a></h3>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -518,13 +519,13 @@ XFL1RT5PHT31
 </li>
 <li><p>Cold boot the machine when all desired devices have been reverted to factory settings.</p></li>
 </ol>
-</div>
-<div class="section" id="advanced-recovery-flow">
+</section>
+<section id="advanced-recovery-flow">
 <span id="id5"></span><h3>Advanced Recovery Flow<a class="headerlink" href="#advanced-recovery-flow" title="Permalink to this headline">¶</a></h3>
 <p>Should there be an issue with the standard in-band recovery process, it is still possible to recover the card using out-of-band methods. Please <a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">contact Xilinx</a> for more details.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
@@ -540,7 +541,7 @@ XFL1RT5PHT31
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 16, 2023.
+      <span class="lastupdated">Last updated on August 28, 2023.
       </span></p>
   </div>
 

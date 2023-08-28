@@ -469,19 +469,79 @@ Note: You will need to identify the PID for the ``ffmpeg`` context and have ``su
 
     sudo ./latency_test.sh /var/log/syslog <PID>
 
-    $ ./latency_test.sh /var/log/syslog 20796
-    rm: cannot remove '*.log': No such file or directory
-    Ladder contexts =  0x555b83c37c10   0x555b83d29550
-    ================== Generating logs for ./syslog log file =========================
+The following example transcodes an AVC input file into 2 separate AVC formats, at different resolutions. Furthermore, it generates timing information for the decoder, scaler and each rung of the encoder. Note that the scaler accelerator always creates a single report.
+
+Command Line::
+
+   ffmpeg -nostdin -y -c:v mpsoc_vcu_h264 -latency_logging 1 -i <Input AVC Video mp4 File> \
+    -filter_complex "multiscale_xma=outputs=2: \
+      out_1_width=840: out_1_height=480: out_1_rate=full: \
+      out_2_width=420: out_2_height=240: out_2_rate=full:latency_logging=1 [a][b]" \
+    -map "[a]"  -c:v mpsoc_vcu_h264  -latency_logging 1 -f mp4 /dev/null \
+    -map "[b]"  -c:v mpsoc_vcu_h264  -latency_logging 1 -f mp4 /dev/null \
+    & wait && \
+   (cd /opt/xilinx/examples/u30/ffmpeg/quality_analysis && echo $! && \
+     sudo ./latency_test.sh /var/log/syslog $!)
+   
+   ...
+   
+   Input #0, mov,mp4,m4a,3gp,3g2,mj2, from '/home/nastooha/work/1080p-cont.mp4':
+     Metadata:
+       major_brand     : isom
+       minor_version   : 512
+       compatible_brands: isomiso2avc1mp41
+       encoder         : Lavf58.76.100
+     Duration: 00:00:10.00, start: 0.000000, bitrate: 534 kb/s
+     Stream #0:0(und): Video: h264 (Main) (avc1 / 0x31637661), yuv420p(tv), 1280x720 [SAR 1:1 DAR 16:9], 533 kb/s, 25 fps, 25 tbr, 12800 tbn, 50 tbc (default)
+       Metadata:
+         handler_name    : VideoHandler
+         vendor_id       : [0][0][0][0]
+   [MPSOC H.264 decoder @ 0x5571eb66d000] timing information from stream is not available
+   Stream mapping:
+     Stream #0:0 (mpsoc_vcu_h264) -> multiscale_xma
+     multiscale_xma:output0 -> Stream #0:0 (mpsoc_vcu_h264)
+     multiscale_xma:output1 -> Stream #1:0 (mpsoc_vcu_h264)
+   [mpsoc_vcu_h264 @ 0x5571eb5c1000] Custom Rate Control Mode is Disabled
+   Output #0, mp4, to '/dev/null':
+     Metadata:
+       major_brand     : isom
+       minor_version   : 512
+       compatible_brands: isomiso2avc1mp41
+       encoder         : Lavf58.76.100
+     Stream #0:0: Video: h264 (avc1 / 0x31637661), xlnx_xvbm_8(progressive), 840x480 [SAR 1:1 DAR 7:4], q=2-31, 5000 kb/s, 25 fps, 12800 tbn (default)
+       Metadata:
+         encoder         : Lavc58.134.100 mpsoc_vcu_h264
+   ...
+
+   Output #1, mp4, to '/dev/null':
+     Metadata:
+       major_brand     : isom
+       minor_version   : 512
+       compatible_brands: isomiso2avc1mp41
+       encoder         : Lavf58.76.100
+     Stream #1:0: Video: h264 (avc1 / 0x31637661), xlnx_xvbm_8(progressive), 420x240 [SAR 1:1 DAR 7:4], q=2-31, 5000 kb/s, 25 fps, 12800 tbn (default)
+       Metadata:
+         encoder         : Lavc58.134.100 mpsoc_vcu_h264
+   frame=  250 fps=0.0 q=-0.0 Lq=-0.0 size=     601kB time=00:00:09.92 bitrate= 496.7kbits/s speed=10.1x    
+   video:890kB audio:0kB subtitle:0kB other streams:0kB global headers:0kB muxing overhead: unknown
+   ...
+
+    ================== Generating logs for /var/log/syslog log file ========================= 
     =============== Done generating logs! Measuring now... =======================
-    Frames decoded =  4757
-    Average decoding latency =  125 ms
-    ============== decoder done ===============
-    Frames encoded =  4750
-    Average encoding latency =  45 ms
-    ============== encoder 1 done =============
-    Total frames encoded =  4750
-    Total average latency =  203 ms
+   Frames decoded =  250
+   Average decoding latency =  41 ms
+   ============== decoder done ===============
+   Frames scaled =  250
+   Average scaling latency =  1 ms
+   ============== scaler done ===============
+   Frames encoded =  250
+   Average encoding latency =  14 ms
+   ============== encoder 1 done =============
+   Frames encoded =  250
+   Average encoding latency =  14 ms
+   ============== encoder 2 done ===============
+   Total frames encoded =  250
+   Total average latency =  58 ms
 
 ..
   ------------

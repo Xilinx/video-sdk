@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -122,7 +123,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="tuning-video-quality">
+  <section id="tuning-video-quality">
 <span id="id1"></span><h1>Tuning Video Quality<a class="headerlink" href="#tuning-video-quality" title="Permalink to this headline">¶</a></h1>
 <div class="contents local topic" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
@@ -144,20 +145,22 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><a class="reference internal" href="examples/ffmpeg/quality_analysis.html"><span class="doc">FFmpeg quality analysis examples</span></a>.</p></li>
 <li><p><a class="reference internal" href="examples/gstreamer/quality_analysis.html"><span class="doc">GStreamer quality analysis examples</span></a>.</p></li>
 </ul>
-<div class="section" id="abr-scaling">
+<section id="abr-scaling">
 <span id="tuning-abr-scaling"></span><h2><a class="toc-backref" href="#id4">ABR Scaling</a><a class="headerlink" href="#abr-scaling" title="Permalink to this headline">¶</a></h2>
 <p>The figure below illustrates a scaling ladder with a 1920x1080 input and 4 outputs with resolutions of 1280x720, 852x480, 640x360, and 416x240, respectively.</p>
-<div class="figure align-center" id="id3">
+<figure class="align-center" id="id3">
 <img alt="output from one rung is passed to the next for further scaling" src="_images/abr_ladder.png" />
-<p class="caption"><span class="caption-text">Scaling ladder: the output from one rung is passed to the next for further scaling</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
-</div>
+<figcaption>
+<p><span class="caption-text">Scaling ladder: the output from one rung is passed to the next for further scaling</span><a class="headerlink" href="#id3" title="Permalink to this image">¶</a></p>
+</figcaption>
+</figure>
 <p>For the complete list of features and capabilities of the Xilinx hardware scaler, refer to the <a class="reference internal" href="specs_and_features.html#adaptive-bitrate-scaler"><span class="std std-ref">Adaptive Bitrate Scaler features</span></a> section of the <a class="reference internal" href="specs_and_features.html"><span class="doc">Specs and Features</span></a> chapter of the documentation.</p>
 <p class="rubric">Scaling Order</p>
 <p>The scaler is tuned for downscaling and expects non-increasing resolutions in an ABR ladder. Increasing resolutions between outputs is supported but will reduce video quality. For best results, the outputs must be configured in descending order. The frame rate and resolution of a given output should be smaller or equal than the rate of the previous output. Since the output of one scaling stage is passed as an input to the next, video quality will be negatively affected if frame rate is increased after it has been lowered.</p>
 <p class="rubric">Scaling Ratio</p>
 <p>Down scale ratios greater than 3 lead to poor visual quality. To address this issue, multiple number of arms must be added to the scaler ladder, where each arm accommodates down scale ratios of up to 3. For example, to down scale from 1920x1080 to 512x288, 2 scaler arms are required in order to preserve high visual quality.</p>
-</div>
-<div class="section" id="number-of-b-frames">
+</section>
+<section id="number-of-b-frames">
 <span id="tuning-b-frames"></span><h2><a class="toc-backref" href="#id5">Number of B Frames</a><a class="headerlink" href="#number-of-b-frames" title="Permalink to this headline">¶</a></h2>
 <p>The default number of B frames is 2, but for most streams, the optimal number of B frames is 1. This provides the best tradeoffs for both video quality and objective quality use cases. The number of B frames can be adjusted according to the amount of motion in the video content. Generally, more B-frames helps compression, but hurts very high motion scenes. Xilinx recommends the following B frames settings:</p>
 <ul class="simple">
@@ -171,8 +174,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>When using GStreamer, use the <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-6"><code class="xref std std-option docutils literal notranslate"><span class="pre">b-frames</span></code></a> option</p></li>
 </ul>
 <p>The number of B frames can also be adjusted as noted in <a class="reference internal" href="#dyn-parameters"><span class="std std-ref">Dynamic Encoder Parameters</span></a>, or dynamically, <a class="reference internal" href="#dynamic-gop"><span class="std std-ref">Dynamic GOP</span></a>.</p>
-</div>
-<div class="section" id="lookahead">
+</section>
+<section id="lookahead">
 <span id="tuning-lookahead"></span><h2><a class="toc-backref" href="#id6">Lookahead</a><a class="headerlink" href="#lookahead" title="Permalink to this headline">¶</a></h2>
 <p>Lookahead is used to improve the accuracy of rate control by enabling the encoder to buffer a specified number of frames (using the parameter). Spatial and temporal complexity measures are computed for these frames. The rate control uses these measures to distribute more bits to frames which are hard to encode, and less bits to frames which are easy to encode. This redistribution results in better video quality. For spatial and temporal <a class="reference internal" href="#tuning-aq"><span class="std std-ref">adaptive quantization</span></a> to take effect, the lookahead depth must be set to at least 1. When latency is tolerable in applications, Xilinx recommends using the maximum lookahead depth to get optimum video quality.</p>
 <p>The maximum lookahead value allowed is 1/3 of the stream frame rate. Therefore, the lookhead depth can be set up to 20 for streams with 60fps, and up to 10 for streams with 30fps.</p>
@@ -181,8 +184,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>When using FFmpeg, use the <a class="reference internal" href="using_ffmpeg.html#cmdoption-lookahead_depth"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lookahead_depth</span></code></a> option</p></li>
 <li><p>When using GStreamer, use the <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-lookahead-depth"><code class="xref std std-option docutils literal notranslate"><span class="pre">lookahead-depth</span></code></a> option</p></li>
 </ul>
-</div>
-<div class="section" id="adaptive-quantization">
+</section>
+<section id="adaptive-quantization">
 <span id="tuning-aq"></span><h2><a class="toc-backref" href="#id7">Adaptive Quantization</a><a class="headerlink" href="#adaptive-quantization" title="Permalink to this headline">¶</a></h2>
 <p>This feature improves the video qualitity by changing the quantization parameter (QP) within a frame. The QP for each frame is determined by the rate control, and adaptive quantization (AQ) adjusts QP on top of that for different regions within a frame. It exploits the fact that the human eye is more sensitive to certain regions of a frame and redistributes more bits to those regions. The Xilinx video encoders support two types of AQ: Spatial Adaptive Quantization and Temporal Adaptive Quantization.</p>
 <p>Adaptive Quantization is enabled by setting <a class="reference internal" href="using_ffmpeg.html#cmdoption-qp-mode"><code class="xref std std-option docutils literal notranslate"><span class="pre">-qp-mode</span></code></a> to <code class="docutils literal notranslate"><span class="pre">relative-load</span></code> or <code class="docutils literal notranslate"><span class="pre">auto</span></code> (default) and when <a class="reference internal" href="using_ffmpeg.html#cmdoption-lookahead_depth"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lookahead_depth</span></code></a> &gt;= 1. When AQ is enabled, Spatial AQ and Temporal AQ can be individually controlled as described in the following sections.</p>
@@ -204,8 +207,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>When using GStreamer, use the <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-temporal-aq"><code class="xref std std-option docutils literal notranslate"><span class="pre">temporal-aq</span></code></a> option to enable or disable temporal AQ</p></li>
 </ul>
 <p>Temporal quantization can also be adjusted dynamically. Consult the <a class="reference internal" href="#dyn-parameters"><span class="std std-ref">Dynamic Encoder Parameters</span></a> section for more details on how to change this option during runtime.</p>
-</div>
-<div class="section" id="scaling-list">
+</section>
+<section id="scaling-list">
 <span id="tuning-scaling-list"></span><h2><a class="toc-backref" href="#id8">Scaling List</a><a class="headerlink" href="#scaling-list" title="Permalink to this headline">¶</a></h2>
 <p>Scaling list offers a mechanism to scale the transform coefficients by specifying scaling matrices. This influences the quality of encoded video. There are two options to specify the scaling lists mode: flat (0) and default (1).</p>
 <p>For subjective video quality, the scaling list mode must be set to default. The default scaling mode gives more importance to low-frequency coefficients and less importance to high-frequency coefficients.</p>
@@ -215,8 +218,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>When using FFmpeg, use the <a class="reference internal" href="using_ffmpeg.html#cmdoption-scaling-list"><code class="xref std std-option docutils literal notranslate"><span class="pre">-scaling-list</span></code></a> option (0 = flat, 1 = default)</p></li>
 <li><p>When using GStreamer, use the <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-scaling-list"><code class="xref std std-option docutils literal notranslate"><span class="pre">scaling-list</span></code></a> option (0 = flat, 1 = default)</p></li>
 </ul>
-</div>
-<div class="section" id="dynamic-encoder-parameters">
+</section>
+<section id="dynamic-encoder-parameters">
 <span id="dyn-parameters"></span><h2><a class="toc-backref" href="#id9">Dynamic Encoder Parameters</a><a class="headerlink" href="#dynamic-encoder-parameters" title="Permalink to this headline">¶</a></h2>
 <p>Dynamic parameters are parameters which can be changed during runtime. This is useful to optimize video quality and compression rate for different segments of the video. This capability is supported through FFmpeg, GStreamer and the Video SDK C APIs.</p>
 <p>The following encoder parameters can be dynamically modified:</p>
@@ -383,8 +386,8 @@ typedef struct XlnxDynParams {
                   -c:v mpsoc_vcu_h264 -b:v 4000K -expert-options dynamic-params=cmdfile.txt -qp-mode 2 -lookahead-depth 16 -temporal-aq 1 -spatial-aq 1 -spatial-aq-gain 75 -o out_dp_test2.h264
 </pre></div>
 </div>
-</div>
-<div class="section" id="dynamic-idr-frame-insertion">
+</section>
+<section id="dynamic-idr-frame-insertion">
 <span id="dyn-idr-frame"></span><h2><a class="toc-backref" href="#id10">Dynamic IDR Frame Insertion</a><a class="headerlink" href="#dynamic-idr-frame-insertion" title="Permalink to this headline">¶</a></h2>
 <p>The dynamic IDR frame insertion feature allows encoding any incoming frame as IDR at runtime. This capability is supported through FFmpeg, GStreamer and the Video SDK C APIs.</p>
 <p>Dynamic IDR frame insertion resets the GOP position. That is, if the stream is running with a GOP size of 120 (an IDR frame every 120 frames) and if an IDR frame is dynamically inserted at frame 50, the next IDR frame would be at frame 170 instead of 120.</p>
@@ -428,8 +431,8 @@ la_in_frame.is_idr = 1;
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>u30_xma_transcode -c:v mpsoc_vcu_h264 -i input.264 -c:v mpsoc_vcu_h264 -b:v 6000K -force_key_frame &quot;(200,300,250,200,180,400)&quot; -o out.264
 </pre></div>
 </div>
-</div>
-<div class="section" id="dynamic-gop">
+</section>
+<section id="dynamic-gop">
 <span id="id2"></span><h2><a class="toc-backref" href="#id11">Dynamic GOP</a><a class="headerlink" href="#dynamic-gop" title="Permalink to this headline">¶</a></h2>
 <p>The ability to change the composition of a GOP, in response to the content of a video, is of great benefit in video compression. U30 family of devices offer variable number of B frames, 0 to 2, in response to variations in motion vectors, within the lookahead buffer. Specifically, the inserted number of B frames is inversely proportional to variations in motion vector. Control parameter <a class="reference internal" href="using_ffmpeg.html#cmdoption-dynamic-gop"><code class="xref std std-option docutils literal notranslate"><span class="pre">-dynamic-gop</span></code></a> enables and disables this feature. Note that this parameter is not compatible with <a class="reference internal" href="using_ffmpeg.html#cmdoption-bf"><code class="xref std std-option docutils literal notranslate"><span class="pre">-bf</span></code></a> and requires a minimal lookahead depth of 5 frames.
 Various examples illustrating the effect of these settings can be found here:</p>
@@ -438,8 +441,8 @@ Various examples illustrating the effect of these settings can be found here:</p
 <li><p>When using GStreamer, the <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-dynamic-gop"><code class="xref std std-option docutils literal notranslate"><span class="pre">dynamic-gop</span></code></a> option can be set to 1 to enable this feature. This parameter is not compatible with <a class="reference internal" href="using_gstreamer.html#cmdoption-arg-6"><code class="xref std std-option docutils literal notranslate"><span class="pre">b-frames</span></code></a> and requires a minimal lookahead depth of 5 frames.</p></li>
 <li><p><a class="reference internal" href="examples/ffmpeg/tutorials.html"><span class="doc">FFmpeg quality analysis examples</span></a>.</p></li>
 </ul>
-</div>
-<div class="section" id="objective-metrics-versus-subjective-quality">
+</section>
+<section id="objective-metrics-versus-subjective-quality">
 <span id="objective-vs-subjective"></span><h2><a class="toc-backref" href="#id12">Objective Metrics versus Subjective Quality</a><a class="headerlink" href="#objective-metrics-versus-subjective-quality" title="Permalink to this headline">¶</a></h2>
 <p>Encoder settings can be used to optimize for objective quality (metrics such as PSNR, SSIM or VMAF) or subjective quality (visual appeal). This section summarizes recommended settings for these two goals.</p>
 <p class="rubric">Optimizing for Objective Metrics</p>
@@ -453,8 +456,8 @@ Various examples illustrating the effect of these settings can be found here:</p
 <p>Adaptive Quantization (AQ) exploits the fact that the human eye is more sensitive to certain regions of a frame. This method drops information from high-frequency locations and keeps more information in low-frequency locations in a frame. The result appears more visually appealing. The Spatial AQ Gain parameter controls the strength of the redistribution of data within the frame. Setting too high a value may have a consequence of blurring edges. Experimentation across your clips is recommended if you wish to tune this parameter.</p>
 <p>The default scaling list is used to scale up low-frequency data in the stream such that when it is quantized down during the encoding process, detail is retained.</p>
 <p>For more details about <a class="reference internal" href="#tuning-aq"><span class="std std-ref">Adaptive Quantization</span></a> and the <a class="reference internal" href="#tuning-scaling-list"><span class="std std-ref">Scaling List</span></a>, refer to the corresponding sections.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -470,7 +473,7 @@ Various examples illustrating the effect of these settings can be found here:</p
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 16, 2023.
+      <span class="lastupdated">Last updated on August 28, 2023.
       </span></p>
   </div>
 

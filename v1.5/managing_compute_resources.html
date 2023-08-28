@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -134,7 +135,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="managing-video-acceleration-compute-resources">
+  <section id="managing-video-acceleration-compute-resources">
 <h1>Managing Video Acceleration Compute Resources<a class="headerlink" href="#managing-video-acceleration-compute-resources" title="Permalink to this headline">¶</a></h1>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -149,7 +150,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><a class="reference internal" href="#xrm-reference-guide" id="id7">XRM Reference Guide</a></p></li>
 </ul>
 </div>
-<div class="section" id="introduction">
+<section id="introduction">
 <h2><a class="toc-backref" href="#id4">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
 <p>Each Xilinx device on an Alveo U30 card can process an aggregate load of 4K pixels at 60 frames per second. The Xilinx Video SDK supports running multiple jobs simultaenously on a given device if the overall throughput does not exceed the limit of 4kp60. When the user has access to more than one device on a given machine, the Xilinx Video SDK also supports running multiple jobs across multiple devices. In this situation, it becomes important to manage the pool of video acceleration resources in order to get the most out of the total compute bandwidth available in the system.</p>
 <p>The Xilinx Video SDK provides two distinct methods of managing resources and mapping transcoding jobs to Xilinx devices:</p>
@@ -166,32 +167,32 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="using-explicit-device-ids">
+</section>
+<section id="using-explicit-device-ids">
 <span id="id1"></span><h2><a class="toc-backref" href="#id5">Using Explicit Device IDs</a><a class="headerlink" href="#using-explicit-device-ids" title="Permalink to this headline">¶</a></h2>
 <p>The simplest way to run multiple FFmpeg jobs across all available devices is to use the <a class="reference internal" href="using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option.</p>
 <p>By default (if the option is not specified) the job will be submitted to device 0. When running multiple jobs, device 0 will likely run out resources rapidly and additional jobs will error out due to insufficient resources.</p>
 <p>The <a class="reference internal" href="using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option is used to specify the device on which the job should be run. This makes it easy and straightforward to leverage the entire video acceleration capacity of your system, regardless of the number of cards and devices. In addition, this method allows running different types of jobs on the same device (i.e.: jobs with different resolutions, frame rates, etc…).</p>
-<div class="section" id="examples-using-explicit-device-ids">
+<section id="examples-using-explicit-device-ids">
 <h3>Examples using Explicit Device IDs<a class="headerlink" href="#examples-using-explicit-device-ids" title="Permalink to this headline">¶</a></h3>
 <p>Specific examples of how to run multiple FFmpeg processes using explicit device IDs can be found in the <a class="reference internal" href="examples/ffmpeg/tutorials.html#multiple-ffmpeg-jobs-example"><span class="std std-ref">FFmpeg Tutorials</span></a> included in this repository.</p>
-</div>
-<div class="section" id="managing-resource-utilization">
+</section>
+<section id="managing-resource-utilization">
 <h3>Managing Resource Utilization<a class="headerlink" href="#managing-resource-utilization" title="Permalink to this headline">¶</a></h3>
 <p>Given that each device has a 2160p60 (4K) input and output bandwidth limit, the user is responsible for only submitting jobs which will not exceed the capacity of the specified device. The <a class="reference internal" href="card_management.html#managing-resources"><span class="std std-ref">Managing Resource Utilization</span></a> section of the Card Management guide provides information on how to estimate CU requirements and check current device load.</p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="using-job-descriptions">
+</section>
+</section>
+<section id="using-job-descriptions">
 <span id="id2"></span><h2><a class="toc-backref" href="#id6">Using Job Descriptions</a><a class="headerlink" href="#using-job-descriptions" title="Permalink to this headline">¶</a></h2>
 <p>Job descriptions and the associated job reservation system are an alternate way to manage resources and run multiple jobs across one or more devices. This method is more involved than using explicit device IDs, and it is intended for users who need to develop custom job management applications.</p>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>A current limitation of this method is that only one job description file can be used at a time, and a job description file can only contain a single job description. The system will only manage multiple jobs if they match the same description. Simultaneously managing different job types is not supported currently. The jobs need to be stopped before a new job description can be loaded.</p>
 </div>
-<div class="section" id="video-transcode-job-description">
+<section id="video-transcode-job-description">
 <h3>Video Transcode Job Description<a class="headerlink" href="#video-transcode-job-description" title="Permalink to this headline">¶</a></h3>
 <p>The Xilinx video transcode pipeline needs a conjunction of multiple compute units (CUs) like decoder, scaler, lookahead, and encoder, together forming a CU pool. Based on the input resolution and type of transcode, the load of CUs within a CU pool varies. This in turn determines how many instances of such a job can be run real-time in parallel on all the cards managed by XRM. If there is free capacity, XRM will send the job to an available device.</p>
 <p>The video transcode job description provides information to the resource manager about what kind of transcode is intended to run on the card. With this information, XRM calculates the CU load for the specified job as well as the maximum possible number of jobs that can be run real-time in parallel.</p>
@@ -278,8 +279,8 @@ This option will be deprecated and removed in a future release. The job-count op
 <li><p><a class="reference internal" href="#using-job-slot-reservations"><span class="std std-ref">Using the job slot reservation application</span></a></p></li>
 <li><p><a class="reference internal" href="#using-ffmpeg-launcher"><span class="std std-ref">The FFmpeg Launcher example</span></a></p></li>
 </ul>
-</div>
-<div class="section" id="using-job-slot-reservations">
+</section>
+<section id="using-job-slot-reservations">
 <span id="id3"></span><h3>Using Job Slot Reservations<a class="headerlink" href="#using-job-slot-reservations" title="Permalink to this headline">¶</a></h3>
 <p>The job slot reservation application takes as input a video transcode job reservation in the form of a JSON file as described in the previous section. The video transcode job description provides information to the resource manager about what kind of transcode is intended to run on the card. With this information the resource manager calculates the CU load for the specified job as well as the maximum possible number of jobs that can be run real-time in parallel.</p>
 <p>Once the maximum possible number of jobs is known, CUs and job slots are reserved, and corresponding reservation IDs are stored in a bash file at <code class="docutils literal notranslate"><span class="pre">/var/tmp/xilinx/xrm_jobReservation.sh</span></code>. A reservation ID is a unique identifier which is valid while the job slot reservation application is running. These reservation IDs are passed to individual FFmpeg process via an environment variable XRM_RESERVE_ID. The FFmpeg processes then use this reservation ID to retrieve the corresponding CUs reserved earlier.</p>
@@ -341,8 +342,8 @@ encoder plugin function=0 fail to run the function
 </pre></div>
 </div>
 <p>This indicates that the job description is ill-formed and needs to be corrected.</p>
-</div>
-<div class="section" id="the-ffmpeg-launcher-example">
+</section>
+<section id="the-ffmpeg-launcher-example">
 <span id="using-ffmpeg-launcher"></span><h3>The FFmpeg Launcher Example<a class="headerlink" href="#the-ffmpeg-launcher-example" title="Permalink to this headline">¶</a></h3>
 <p>The FFmpeg launcher is an example application which automates the dispatching of FFmpeg jobs across multiple devices. It simplifies the process of manually setting up XRM reservation IDs and launching FFmpeg for many video streams. The FFmpeg launcher takes a transcode job description, input source files, corresponding FFmpeg run commands and automatically launches child FFmpeg processes based on the job slot availability on the server. In case there are more input streams listed than available job slots, the excess are queued and launched when a job slot becomes available. Note that only a single launcher per server is supported.</p>
 <div class="admonition note">
@@ -381,9 +382,9 @@ cmdline = ffmpeg -c:v mpsoc_vcu_h264 -i -filter_complex &quot;multiscale_xma=:ou
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-</div>
-<div class="section" id="xrm-reference-guide">
+</section>
+</section>
+<section id="xrm-reference-guide">
 <span id="xrmadm-and-xrmd-commands"></span><span id="xrm-reference"></span><h2><a class="toc-backref" href="#id7">XRM Reference Guide</a><a class="headerlink" href="#xrm-reference-guide" title="Permalink to this headline">¶</a></h2>
 <p>The Xilinx® FPGA resource manager (XRM) is the software which manages the hardware accelerators available in the system. XRM includes the following components:</p>
 <ul class="simple">
@@ -391,7 +392,7 @@ cmdline = ffmpeg -c:v mpsoc_vcu_h264 -i -filter_complex &quot;multiscale_xma=:ou
 <li><p><code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> the command line tool is used to interact with the XRM daemon (<code class="docutils literal notranslate"><span class="pre">xrmd</span></code>).</p></li>
 <li><p>a C Application Programming Interface (API)</p></li>
 </ul>
-<div class="section" id="command-line-interface">
+<section id="command-line-interface">
 <h3>Command Line Interface<a class="headerlink" href="#command-line-interface" title="Permalink to this headline">¶</a></h3>
 <p>The XRM <code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> command line tool is used to interact with the XRM daemon (<code class="docutils literal notranslate"><span class="pre">xrmd</span></code>). It provides the following capabilities and uses a JSON file as input for each action:</p>
 <ul class="simple">
@@ -400,15 +401,15 @@ cmdline = ffmpeg -c:v mpsoc_vcu_h264 -i -filter_complex &quot;multiscale_xma=:ou
 <li><p>Load and unload the software plugins</p></li>
 </ul>
 <p>The XRM related files are installed under <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/xrm/</span></code> and device-specific XRM commands are available at <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/xcdr/scripts/xrm_commands/</span></code>.</p>
-<div class="section" id="setup">
+<section id="setup">
 <h4>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h4>
 <p>When sourced, the <code class="docutils literal notranslate"><span class="pre">/opt/xilinx/xcdr/setup.sh</span></code> script takes care of setting up the enviroment for the Xilinx Video SDK, including its XRM components:</p>
 <ul class="simple">
 <li><p>The XRM daemon (<code class="docutils literal notranslate"><span class="pre">xrmd</span></code>) is started</p></li>
 <li><p>The hardware accelerators (xclbin) and software plugins are loaded on the Xilinx devices</p></li>
 </ul>
-</div>
-<div class="section" id="generating-status-reports">
+</section>
+<section id="generating-status-reports">
 <h4>Generating Status Reports<a class="headerlink" href="#generating-status-reports" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> can generate reports with the status of each device in the system. This capability is particularly useful to check the loading of each hardware accelerator.</p>
 <p>To generate a report for all the devices in the system:</p>
@@ -429,8 +430,8 @@ cmdline = ffmpeg -c:v mpsoc_vcu_h264 -i -filter_complex &quot;multiscale_xma=:ou
 }
 </pre></div>
 </div>
-</div>
-<div class="section" id="loading-unloading-hardware-accelerators">
+</section>
+<section id="loading-unloading-hardware-accelerators">
 <h4>Loading/Unloading Hardware Accelerators<a class="headerlink" href="#loading-unloading-hardware-accelerators" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> can be used to load or unload the hardware accelerators on the programmable devices of the Alveo U30 card. The hardware accelerators must be reloaded after rebooting a card.</p>
 <p>To load the hardware accelerators on a given device:</p>
@@ -460,8 +461,8 @@ cmdline = ffmpeg -c:v mpsoc_vcu_h264 -i -filter_complex &quot;multiscale_xma=:ou
 }
 </pre></div>
 </div>
-</div>
-<div class="section" id="loading-unloading-software-plugins">
+</section>
+<section id="loading-unloading-software-plugins">
 <h4>Loading/Unloading Software Plugins<a class="headerlink" href="#loading-unloading-software-plugins" title="Permalink to this headline">¶</a></h4>
 <p><code class="docutils literal notranslate"><span class="pre">xrmadm</span></code> can be used to load or unload the software plugins required to manage the compute resources. The software plugins perform resource management functions such as calculating CU load and CU max capacity. Once a plugin is loaded, it becomes usable by a host application through the XRM APIs. The XRM plugins need to be loaded before executing an application (such as FFmpeg) which relies on the plugins.</p>
 <p>To load the plugins:</p>
@@ -472,8 +473,8 @@ cmdline = ffmpeg -c:v mpsoc_vcu_h264 -i -filter_complex &quot;multiscale_xma=:ou
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xrmadm /opt/xilinx/xcdr/scripts/xrm_commands/unload_multi_u30_xrm_plugins_cmd.json
 </pre></div>
 </div>
-</div>
-<div class="section" id="controlling-the-xrmd-daemon">
+</section>
+<section id="controlling-the-xrmd-daemon">
 <h4>Controlling the xrmd Daemon<a class="headerlink" href="#controlling-the-xrmd-daemon" title="Permalink to this headline">¶</a></h4>
 <p>The following commands can be used to start, stop, restart, or get the status of the daemon:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo /opt/xilinx/xrm/tools/start_xrmd.sh
@@ -482,14 +483,14 @@ sudo /opt/xilinx/xrm/tools/restart_xrmd.sh
 sudo systemctl status xrmd
 </pre></div>
 </div>
-</div>
-</div>
-<div class="section" id="c-application-programming-interface">
+</section>
+</section>
+<section id="c-application-programming-interface">
 <h3>C Application Programming Interface<a class="headerlink" href="#c-application-programming-interface" title="Permalink to this headline">¶</a></h3>
 <p>XRM provides a C Application Programming Interface (API) to reserve, allocate and release CUs from within a custom application. For complete details about this programming interface, refer to the <a class="reference internal" href="c_apis.html#xrm-api-reference"><span class="std std-ref">XRM API Reference Guide</span></a> section of the documentation.</p>
-</div>
-</div>
-</div>
+</section>
+</section>
+</section>
 
 
            </div>
@@ -505,7 +506,7 @@ sudo systemctl status xrmd
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 16, 2023.
+      <span class="lastupdated">Last updated on August 28, 2023.
       </span></p>
   </div>
 
