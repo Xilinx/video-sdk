@@ -471,6 +471,11 @@ Note: You will need to identify the PID for the ``ffmpeg`` context and have ``su
 
 The following example transcodes an AVC input file into 2 separate AVC formats, at different resolutions. Furthermore, it generates timing information for the decoder, scaler and each rung of the encoder. Note that the scaler accelerator always creates a single report.
 
+For accurate reporting, log files must be sufficiently large to ensure accurate measurement, e.g., if using journal files, use the following configuration::
+
+   RateLimitInterval=0
+   RateLimitBurst=0
+
 Command Line::
 
    ffmpeg -nostdin -y -c:v mpsoc_vcu_h264 -latency_logging 1 -i <Input AVC Video mp4 File> \

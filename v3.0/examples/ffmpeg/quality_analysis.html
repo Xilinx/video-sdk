@@ -660,6 +660,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 </div>
 <p>The following example transcodes an AVC input file into 2 separate AVC formats, at different resolutions. Furthermore, it generates timing information for the decoder, scaler and each rung of the encoder. Note that the scaler accelerator always creates a single report.</p>
+<p>For accurate reporting, log files must be sufficiently large to ensure accurate measurement, e.g., if using journal files, use the following configuration:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RateLimitInterval=0
+RateLimitBurst=0
+</pre></div>
+</div>
 <p>Command Line:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -nostdin -y -c:v mpsoc_vcu_h264 -latency_logging 1 -i &lt;Input AVC Video mp4 File&gt; \
  -filter_complex &quot;multiscale_xma=outputs=2: \
@@ -750,7 +755,7 @@ Total average latency =  58 ms
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on August 28, 2023.
+      <span class="lastupdated">Last updated on September 11, 2023.
       </span></p>
   </div>
 
