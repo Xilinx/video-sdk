@@ -471,7 +471,7 @@ Note: You will need to identify the PID for the ``ffmpeg`` context and have ``su
 
 The following example transcodes an AVC input file into 2 separate AVC formats, at different resolutions. Furthermore, it generates timing information for the decoder, scaler and each rung of the encoder. Note that the scaler accelerator always creates a single report.
 
-For accurate reporting, log files must be sufficiently large to ensure accurate measurement, e.g., if using journal files, use the following configuration::
+For accurate reporting, log files must be sufficiently large to ensure accurate measurement, e.g., if using journal files, use the following configuration, in /etc/systemd/journald.conf::
 
    RateLimitInterval=0
    RateLimitBurst=0

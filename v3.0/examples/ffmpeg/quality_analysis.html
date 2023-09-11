@@ -660,7 +660,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </pre></div>
 </div>
 <p>The following example transcodes an AVC input file into 2 separate AVC formats, at different resolutions. Furthermore, it generates timing information for the decoder, scaler and each rung of the encoder. Note that the scaler accelerator always creates a single report.</p>
-<p>For accurate reporting, log files must be sufficiently large to ensure accurate measurement, e.g., if using journal files, use the following configuration:</p>
+<p>For accurate reporting, log files must be sufficiently large to ensure accurate measurement, e.g., if using journal files, use the following configuration, in /etc/systemd/journald.conf:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>RateLimitInterval=0
 RateLimitBurst=0
 </pre></div>
