@@ -1,0 +1,58 @@
+{
+    "request": {
+        "name": "describe_job_h264",
+        "request_id": 1,
+        "parameters": {
+            "name": "testjob",
+            "job-count": 4,
+            "resources": 
+            [
+                {
+                    "function": "DECODER",
+                    "format":   "H264",
+                    "resolution": { "input": { "width": 1920, "height": 1080, "frame-rate": { "num":60, "den":1} } }
+                },
+                {
+                    "function": "SCALER",
+                    "format":   "yuv420p",
+                    "resolution": 
+                    {
+                        "input": { "width": 1920, "height": 1080, "frame-rate": { "num":60, "den":1} },
+                        "output": 
+                        [
+                            { "width": 1280, "height": 720, "frame-rate": { "num":60, "den":1} },
+                            { "width":  848, "height": 480, "frame-rate": { "num":60, "den":1} },
+                            { "width":  640, "height": 360, "frame-rate": { "num":60, "den":1} },
+                            { "width":  288, "height": 160, "frame-rate": { "num":60, "den":1} }
+                        ]
+                    }
+                },
+                {
+                    "function": "ENCODER",
+                    "format":   "H264",
+                    "resolution": { "input": { "width": 1280, "height": 720, "frame-rate": { "num":60, "den":1} } } 
+                },
+                {
+                    "function": "ENCODER",
+                    "format":   "H264",
+                    "resolution": { "input": { "width": 1280, "height": 720, "frame-rate": { "num":30, "den":1} } } 
+                },
+                {
+                    "function": "ENCODER",
+                    "format":   "H264",
+                    "resolution": { "input": { "width":  848, "height": 480, "frame-rate": { "num":30, "den":1} } }  
+                },
+                {
+                    "function": "ENCODER",
+                    "format":   "H264",
+                    "resolution": { "input": { "width":  640, "height": 360, "frame-rate": { "num":30, "den":1} } } 
+                },
+                {
+                    "function": "ENCODER",
+                    "format":   "H264",
+                    "resolution": { "input": { "width":  288, "height": 160, "frame-rate": { "num":30, "den":1} } }  
+                }
+            ]
+        }
+    }
+}

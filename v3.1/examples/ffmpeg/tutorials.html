@@ -1,0 +1,1266 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>FFmpeg Introductory Tutorials &mdash; Xilinx Video SDK 3.1 (Production) documentation</title>
+      <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="../../_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/documentation_options.js?v=d2dc9114"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+    <link rel="next" title="FFmpeg Examples using Software Filters" href="filters.html" />
+    <link rel="prev" title="Tutorials and Examples" href="../../examples.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="../../index.html" class="icon icon-home"> Xilinx Video SDK
+          </a>
+              <div class="version">
+                3.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started_on_prem.html">On Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../getting_started_on_vt1.html">Amazon EC2 VT1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../container_setup.html">Container Setup</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../examples.html">Tutorials and Examples</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">FFmpeg Introductory Tutorials</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#environment-setup">Environment Setup</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#simple-ffmpeg-examples">Simple FFmpeg Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#decode-only">Decode Only</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encode-only">Encode Only</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#basic-transcode">Basic Transcode</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#decode-only-into-multiple-resolution-outputs">Decode Only Into Multiple-Resolution Outputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#encode-only-into-multiple-resolution-outputs">Encode Only Into Multiple-Resolution Outputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#transcode-with-multiple-resolution-outputs">Transcode With Multiple-Resolution Outputs</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#ultra-low-latency-transcode-pipeline">Ultra Low-Latency Transcode Pipeline</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#encoding-streams-to-4k">Encoding Streams to 4K</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#k-h-264-real-time-encode-only">4k H.264 Real-Time Encode Only</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#k-h-264-real-time-transcode">4k H.264 Real-Time Transcode</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#running-on-multiple-devices">Running on Multiple Devices</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#explicit-device-management">Explicit Device Management</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#splitting-a-job-across-two-devices">Splitting a Job across Two Devices</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#using-the-job-slot-reservation-tool">Using the Job Slot Reservation Tool</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#faster-than-real-time">Faster than Real-Time</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streaming-examples">Streaming Examples</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="#replay-saved-files-with-downscaling">Replay Saved Files with Downscaling</a></li>
+<li class="toctree-l4"><a class="reference internal" href="#live-hls-streaming">Live HLS Streaming</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="filters.html">FFmpeg Software Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="quality_analysis.html">FFmpeg Video Quality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gstreamer/tutorials.html">GStreamer Introductory Tutorials</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gstreamer/filters.html">GStreamer Software Filters</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gstreamer/quality_analysis.html">GStreamer Video Quality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gstreamer/xcompositor.html">GStreamer Compositor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gstreamer/xabrladder.html">GStreamer ABR Ladder</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../xma/xma_apps.html">C-Based Applications</a></li>
+</ul>
+</li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../specs_and_features.html">Specs and Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using_ffmpeg.html">Using FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../using_gstreamer.html">Using GStreamer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tuning_video_quality.html">Tuning Video Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../tuning_pipeline_latency.html">Tuning Transcode Latency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../managing_compute_resources.html">Managing Compute Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../deploying_with_kubernetes.html">Deploying with Kubernetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../card_management.html">Card Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../package_feed.html">Package Feed Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Xilinx Video SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="../../examples.html">Tutorials and Examples</a> &raquo;</li>
+      <li>FFmpeg Introductory Tutorials</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="ffmpeg-introductory-tutorials">
+<h1>FFmpeg Introductory Tutorials<a class="headerlink" href="#ffmpeg-introductory-tutorials" title="Link to this heading">¶</a></h1>
+<p>This page provides tutorials on how to use FFmpeg with the Xilinx Video SDK. The complete reference guide for the FFmpeg version included in the Xilinx Video SDK can be found <a class="reference internal" href="../../using_ffmpeg.html"><span class="doc">here</span></a>.</p>
+<p>The tutorials break down the commands, starting with simple steps using a single device. These are built upon to show 4K, faster than real-time, and multiple operations on the same device.</p>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#environment-setup" id="id2">Environment Setup</a></p></li>
+<li><p><a class="reference internal" href="#simple-ffmpeg-examples" id="id3">Simple FFmpeg Examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#decode-only" id="id4">Decode Only</a></p></li>
+<li><p><a class="reference internal" href="#encode-only" id="id5">Encode Only</a></p></li>
+<li><p><a class="reference internal" href="#basic-transcode" id="id6">Basic Transcode</a></p></li>
+<li><p><a class="reference internal" href="#decode-only-into-multiple-resolution-outputs" id="id7">Decode Only Into Multiple-Resolution Outputs</a></p></li>
+<li><p><a class="reference internal" href="#encode-only-into-multiple-resolution-outputs" id="id8">Encode Only Into Multiple-Resolution Outputs</a></p></li>
+<li><p><a class="reference internal" href="#transcode-with-multiple-resolution-outputs" id="id9">Transcode With Multiple-Resolution Outputs</a></p></li>
+<li><p><a class="reference internal" href="#ultra-low-latency-transcode-pipeline" id="id10">Ultra Low-Latency Transcode Pipeline</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#encoding-streams-to-4k" id="id11">Encoding Streams to 4K</a></p>
+<ul>
+<li><p><a class="reference internal" href="#k-h-264-real-time-encode-only" id="id12">4k H.264 Real-Time Encode Only</a></p></li>
+<li><p><a class="reference internal" href="#k-h-264-real-time-transcode" id="id13">4k H.264 Real-Time Transcode</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#running-on-multiple-devices" id="id14">Running on Multiple Devices</a></p>
+<ul>
+<li><p><a class="reference internal" href="#explicit-device-management" id="id15">Explicit Device Management</a></p></li>
+<li><p><a class="reference internal" href="#splitting-a-job-across-two-devices" id="id16">Splitting a Job across Two Devices</a></p></li>
+<li><p><a class="reference internal" href="#using-the-job-slot-reservation-tool" id="id17">Using the Job Slot Reservation Tool</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#faster-than-real-time" id="id18">Faster than Real-Time</a></p></li>
+<li><p><a class="reference internal" href="#streaming-examples" id="id19">Streaming Examples</a></p>
+<ul>
+<li><p><a class="reference internal" href="#replay-saved-files-with-downscaling" id="id20">Replay Saved Files with Downscaling</a></p></li>
+<li><p><a class="reference internal" href="#live-hls-streaming" id="id21">Live HLS Streaming</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<section id="environment-setup">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Environment Setup</a><a class="headerlink" href="#environment-setup" title="Link to this heading">¶</a></h2>
+<ol class="arabic">
+<li><p>The Xilinx Video SDK examples can be found in the <code class="file docutils literal notranslate"><span class="pre">/opt/xilinx/examples/u30</span></code> folder of your system. If this folder is not present, first <a class="reference internal" href="../../package_feed.html#package-feed-configuration"><span class="std std-ref">make sure your package management client points to the remote package repository</span></a> for the Xilinx Video SDK. Then install the <code class="file docutils literal notranslate"><span class="pre">xilinx-alveo-u30-examples</span></code> package:</p>
+<ul class="simple">
+<li><p>Ubuntu</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt-get install xilinx-alveo-u30-example
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>RHEL and Amazon Linux 2</p></li>
+</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo yum install xilinx-alveo-u30-example
+</pre></div>
+</div>
+</li>
+<li><p>Configure the environment to use the Xilinx Video SDK:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
+</pre></div>
+</div>
+</li>
+</ol>
+<p>The setup script exports important environment variables, starts the Xilinx Resource Manager (XRM) daemon, and ensures that the Xilinx devices and the XRM plugins are properly loaded. It also moves to the top of the system PATH the FFmpeg binary provided as part of the Xilinx Video SDK.</p>
+<p>Sourcing the setup script should be performed each time you open a new terminal on your system. This is required for the environment to be correctly configured.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="simple-ffmpeg-examples">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Simple FFmpeg Examples</a><a class="headerlink" href="#simple-ffmpeg-examples" title="Link to this heading">¶</a></h2>
+<p>Some of the examples read or write RAW files from disk (encode-only or decode-only pipelines). There is a chance that due to the massive bandwidth required for operating on these RAW files, you will notice a drop in FPS; this is not due to the Xilinx Video SDK but the disk speeds. We recommend reading/writing from <code class="docutils literal notranslate"><span class="pre">/dev/shm</span></code> which is a RAM disk.</p>
+<section id="decode-only">
+<span id="id1"></span><h3><a class="toc-backref" href="#id4" role="doc-backlink">Decode Only</a><a class="headerlink" href="#decode-only" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/01_ffmpeg_decode_only.sh">examples/u30/ffmpeg/tutorials/01_ffmpeg_decode_only.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./01_ffmpeg_decode_only.sh &lt;1080p60 H.264 file&gt;
+</pre></div>
+</div>
+<p>This example accepts a clip that is already encoded in H.264, and will decode the file into a RAW format and save it to disk.</p>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264 -i &lt;INPUT&gt; \
+-vf xvbm_convert -pix_fmt yuv420p -y /tmp/xil_dec_out.yuv
+</pre></div>
+</div>
+<p>Explanation of the flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code></p>
+<ul>
+<li><p>The ffmpeg application, which is provided by Xilinx, and moved to the top of the PATH when you sourced the setup.sh script</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span></code></p>
+<ul>
+<li><p>Declares the decoder’s codec for video (as opposed to audio <code class="docutils literal notranslate"><span class="pre">-c:a</span> <span class="pre">...</span></code>) is the hardware-accelerated decoder in the Xilinx device</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;INPUT&gt;</span></code></p>
+<ul>
+<li><p>The input file to be transcoded</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-vf</span> <span class="pre">xvbm_convert</span></code></p>
+<ul>
+<li><p>Internally, the decoder operates on Xilinx-typed buffers to improve performance and enable scalable options for future accelerated filters. To convert back to a host-buffer, you must execute this filter.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-pix_fmt</span> <span class="pre">yuv420p</span></code></p>
+<ul>
+<li><p>We need to define the color space in the output</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-y</span></code></p>
+<ul>
+<li><p>Enable overwrite without prompting the user if they’re sure</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/tmp/xil_dec_out.yuv</span></code></p>
+<ul>
+<li><p>The decoder will save the file to the path above</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="encode-only">
+<h3><a class="toc-backref" href="#id5" role="doc-backlink">Encode Only</a><a class="headerlink" href="#encode-only" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/02_ffmpeg_encode_only_1080p.sh">examples/u30/ffmpeg/tutorials/02_ffmpeg_encode_only_1080p.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./02_ffmpeg_encode_only_1080p.sh &lt;1080p60 YUV file&gt;
+</pre></div>
+</div>
+<p>This example accepts a RAW 1080p60 clip in YUV420 format. It will pass the clip to the encoder to produce an H.264 encoded MP4 output with a target bitrate of 8Mbps and save it to disk.</p>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -f rawvideo -s 1920x1080 -r 60 -pix_fmt yuv420p -i &lt;INPUT&gt; \
+-b:v 8M -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_enc_out.mp4
+</pre></div>
+</div>
+<p>Explanation of the flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code></p>
+<ul>
+<li><p>The ffmpeg application, which is provided by Xilinx, and moved to the top of the PATH when you sourced the setup.sh script</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">rawvideo</span></code></p>
+<ul>
+<li><p>This signifies that the video is in a raw format, without container or other metadata/information about the clip</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">1920x1080</span></code></p>
+<ul>
+<li><p>Since there is no container or metadata in a RAW clip, the user must define the input clip’s resolution/size. This example states the input is 1080p</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">60</span></code></p>
+<ul>
+<li><p>Again, without metadata, the encoder requires the framerate of the incoming stream</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-pix_fmt</span> <span class="pre">yuv420p</span></code></p>
+<ul>
+<li><p>The color space of the encoder is by default yuv420p. this example is defining the input clip as being this same color space</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;INPUT&gt;</span></code></p>
+<ul>
+<li><p>The input file to be transcoded</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">mp4</span></code></p>
+<ul>
+<li><p>Sets the output video container to MP4</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b:v</span> <span class="pre">8M</span></code></p>
+<ul>
+<li><p>The target bitrate of the encoded stream. 8M signifies a target bitrate of 8 Megabits per second. You can also use 8000K or 8000000.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span></code></p>
+<ul>
+<li><p>Declares the encoder’s codec for video (as opposed to audio <code class="docutils literal notranslate"><span class="pre">-c:a</span> <span class="pre">...</span></code>) is the hardware-accelerated encoder in the Xilinx device</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-y</span></code></p>
+<ul>
+<li><p>Enable overwrite without prompting the user if they’re sure</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/tmp/xil_enc_out.mp4</span></code></p>
+<ul>
+<li><p>Save the output in the path above</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="basic-transcode">
+<h3><a class="toc-backref" href="#id6" role="doc-backlink">Basic Transcode</a><a class="headerlink" href="#basic-transcode" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/03_ffmpeg_transcode_only.sh">examples/u30/ffmpeg/tutorials/03_ffmpeg_transcode_only.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./03_ffmpeg_transcode_only.sh &lt;1080p60 H.264 file&gt;
+</pre></div>
+</div>
+<p>This example takes an H.264 clip and reencodes it to H.264 with a new bitrate of 8Mbps. The output is written into <code class="file docutils literal notranslate"><span class="pre">/tmp/xil_xcode.mp4</span></code>.</p>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264 -i &lt;INPUT&gt; \
+-f mp4 -b:v 8M -c:v mpsoc_vcu_h264 -y /tmp/xil_xcode.mp4
+</pre></div>
+</div>
+<p>Explanation of the flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code></p>
+<ul>
+<li><p>The ffmpeg application, which is provided by Xilinx, and moved to the top of the PATH when you sourced the setup.sh script</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span></code></p>
+<ul>
+<li><p>Declares the decoder’s codec for video (as opposed to audio <code class="docutils literal notranslate"><span class="pre">-c:a</span> <span class="pre">...</span></code>) is the hardware-accelerated decoder in the Xilinx device</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;INPUT&gt;</span></code></p>
+<ul>
+<li><p>The input file to be transcoded</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b:v</span> <span class="pre">8M</span></code></p>
+<ul>
+<li><p>The target bitrate of the encoded stream. 8M signifies a target bitrate of 8 Megabits per second. You can also use 8000K or 8000000.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span></code></p>
+<ul>
+<li><p>Declares the encoder’s codec for video (as opposed to audio <code class="docutils literal notranslate"><span class="pre">-c:a</span> <span class="pre">...</span></code>) is the hardware-accelerated encoder in the Xilinx device</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-y</span></code></p>
+<ul>
+<li><p>Enable overwrite without prompting the user if they’re sure</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/tmp/xil_xcode.mp4</span></code></p>
+<ul>
+<li><p>This is the output path; most scripts will route here. Change to any output path at your discretion.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="decode-only-into-multiple-resolution-outputs">
+<span id="decode-and-scale-only"></span><h3><a class="toc-backref" href="#id7" role="doc-backlink">Decode Only Into Multiple-Resolution Outputs</a><a class="headerlink" href="#decode-only-into-multiple-resolution-outputs" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/04_ffmpeg_decode_plus_scale.sh">examples/u30/ffmpeg/tutorials/04_ffmpeg_decode_plus_scale.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./04_ffmpeg_decode_plus_scale.sh &lt;1080p60 h264 clip&gt;
+</pre></div>
+</div>
+<p>This example decodes an existing H.264 file and then scales it into multiple resolutions as defined below. It will not re-encode them, but save the RAW outputs to disk under <code class="docutils literal notranslate"><span class="pre">/tmp/xil_dec_scale&lt;res&gt;.yuv</span></code></p>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264 -i $1 \
+-filter_complex &quot;multiscale_xma=outputs=4: \
+out_1_width=1280: out_1_height=720:  out_1_rate=full: \
+out_2_width=848:  out_2_height=480:  out_2_rate=half: \
+out_3_width=640:  out_3_height=360:  out_3_rate=half: \
+out_4_width=288:  out_4_height=160:  out_4_rate=half  \
+[a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]; \
+[aa]xvbm_convert[aa1];[abb]xvbm_convert[abb1];[b]xvbm_convert[b1];[c]xvbm_convert[c1]; \
+[d]xvbm_convert[d1]&quot; \
+-map &quot;[aa1]&quot;  -pix_fmt yuv420p -f rawvideo /tmp/xil_dec_scale_720p60.yuv \
+-map &quot;[abb1]&quot; -pix_fmt yuv420p -f rawvideo /tmp/xil_dec_scale_720p30.yuv \
+-map &quot;[b1]&quot;   -pix_fmt yuv420p -f rawvideo /tmp/xil_dec_scale_480p30.yuv \
+-map &quot;[c1]&quot;   -pix_fmt yuv420p -f rawvideo /tmp/xil_dec_scale_360p30.yuv \
+-map &quot;[d1]&quot;   -pix_fmt yuv420p -f rawvideo /tmp/xil_dec_scale_288p30.yuv
+</pre></div>
+</div>
+<p>Explanation of the flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code></p>
+<ul>
+<li><p>The ffmpeg application, which is provided by Xilinx, and moved to the top of the PATH when you sourced the setup.sh script</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span></code></p>
+<ul>
+<li><p>Declares the decoder’s codec for video (as opposed to audio <code class="docutils literal notranslate"><span class="pre">-c:a</span> <span class="pre">...</span></code>) is the hardware-accelerated decoder in the Xilinx device</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;INPUT&gt;</span></code></p>
+<ul>
+<li><p>The input file to be transcoded</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-filter_complex</span></code></p>
+<ul>
+<li><p>The FFmpeg <code class="docutils literal notranslate"><span class="pre">-filter_complex</span></code> flag allows combining multiple filters together using a graph-like syntax. This example uses the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a>, <code class="docutils literal notranslate"><span class="pre">split</span></code>, <code class="docutils literal notranslate"><span class="pre">fps</span></code> and <code class="docutils literal notranslate"><span class="pre">xvbm_convert</span></code> filters to create 5 output resolutions from the input stream.</p></li>
+<li><p>The <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> filter configures the Xilinx hardware-accelerated scaler to produce 4 output resolutions (1280x720p60, 848x480p30, 640x360p30, and 288x160p30). For each output, the width, height and frame rate are defined with <code class="docutils literal notranslate"><span class="pre">out_&lt;n&gt;_width</span></code>, <code class="docutils literal notranslate"><span class="pre">out_&lt;n&gt;_height</span></code> and <code class="docutils literal notranslate"><span class="pre">out_&lt;n&gt;_rate</span></code>. The 4 outputs of the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> filter are identified as <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code> and <code class="docutils literal notranslate"><span class="pre">d</span></code> respectively.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">split</span></code> and <code class="docutils literal notranslate"><span class="pre">fps</span></code> software filters are used to split the <code class="docutils literal notranslate"><span class="pre">a</span></code> stream into <code class="docutils literal notranslate"><span class="pre">aa</span></code> and <code class="docutils literal notranslate"><span class="pre">ab</span></code> and then drop the framerate of <code class="docutils literal notranslate"><span class="pre">ab</span></code> to 30 fps to produce the <code class="docutils literal notranslate"><span class="pre">abb</span></code> 1280x720p30 stream.</p></li>
+<li><p>The <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filters are used to transfer the outputs of the hardware scaler back to the host and convert them to AV frames for further processing by FFmpeg</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-map</span> <span class="pre">&quot;[ID]&quot;</span></code></p>
+<ul>
+<li><p>Selects an output of the filter graph. The flags that follow apply to the selected stream.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-pix_fmt</span> <span class="pre">yuv420p</span></code></p>
+<ul>
+<li><p>Use a yuv420p output format</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">rawvideo</span></code></p>
+<ul>
+<li><p>This tells ffmpeg to output the video into a RAW video file</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/tmp/xil_dec_scale_&lt;resolution&gt;&lt;fps&gt;.yuv</span></code></p>
+<ul>
+<li><p>Save the output files to the paths listed</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="encode-only-into-multiple-resolution-outputs">
+<span id="encode-only-multiple-res-outputs"></span><h3><a class="toc-backref" href="#id8" role="doc-backlink">Encode Only Into Multiple-Resolution Outputs</a><a class="headerlink" href="#encode-only-into-multiple-resolution-outputs" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/05_ffmpeg_encode_plus_scale_1080p.sh">examples/u30/ffmpeg/tutorials/05_ffmpeg_encode_plus_scale_1080p.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./05_ffmpeg_encode_plus_scale_1080p.sh &lt;1080p60 YUV file&gt;
+</pre></div>
+</div>
+<p>This example takes a raw 1080p60 YUV file, scales it down to different resolutions and frame rates, encodes each of the scaled streams to H.264 and saves them to disk under <code class="file docutils literal notranslate"><span class="pre">xil_scale_enc_&lt;resolution&gt;.mp4</span></code></p>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -f rawvideo -s 1920x1080 -r 60 -pix_fmt yuv420p -i $1 \
+-filter_complex &quot;multiscale_xma=outputs=4: \
+out_1_width=1280: out_1_height=720: out_1_rate=full:   \
+out_2_width=848:  out_2_height=480: out_2_rate=half:   \
+out_3_width=640:  out_3_height=360: out_3_rate=half:   \
+out_4_width=288:  out_4_height=160: out_4_rate=half    \
+[a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]&quot;  \
+-map &quot;[aa]&quot;  -b:v 4M    -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_scale_enc_720p60.mp4 \
+-map &quot;[abb]&quot; -b:v 3M    -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_scale_enc_720p30.mp4 \
+-map &quot;[b]&quot;   -b:v 2500K -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_scale_enc_480p30.mp4 \
+-map &quot;[c]&quot;   -b:v 1250K -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_scale_enc_360p30.mp4 \
+-map &quot;[d]&quot;   -b:v 625K  -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_scale_enc_288p30.mp4
+</pre></div>
+</div>
+<p>Explanation of the flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code></p>
+<ul>
+<li><p>The ffmpeg application, which is provided by Xilinx, and moved to the top of the PATH when you sourced the setup.sh script</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">rawvideo</span></code></p>
+<ul>
+<li><p>This signifies that the video is in a raw format, without container or other metadata/information about the clip</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">1920x1080</span></code></p>
+<ul>
+<li><p>Since there is no container or metadata in a RAW clip, the user must define the input clip’s resolution/size. This example states the input is 1080p</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-r</span> <span class="pre">60</span></code></p>
+<ul>
+<li><p>Without metadata, the encoder requires the framerate of the incoming stream</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;INPUT&gt;</span></code></p>
+<ul>
+<li><p>The input file to be transcoded</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-filter_complex</span></code></p>
+<ul>
+<li><p>The FFmpeg <code class="docutils literal notranslate"><span class="pre">-filter_complex</span></code> flag allows combining multiple filters together using a graph-like syntax. This example uses the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a>, <code class="docutils literal notranslate"><span class="pre">split</span></code> and <code class="docutils literal notranslate"><span class="pre">fps</span></code> filters to create 5 output resolutions from the input stream.</p></li>
+<li><p>The <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> filter configures the Xilinx hardware-accelerated scaler to produce 4 output resolutions (1280x720p60, 848x480p30, 640x360p30, and 288x160p30). For each output, the width, height and frame rate are defined with <code class="docutils literal notranslate"><span class="pre">out_&lt;n&gt;_width</span></code>, <code class="docutils literal notranslate"><span class="pre">out_&lt;n&gt;_height</span></code> and  <code class="docutils literal notranslate"><span class="pre">out_&lt;n&gt;_rate</span></code>. The 4 outputs of the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> filter are identified as <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code> and <code class="docutils literal notranslate"><span class="pre">d</span></code> respectively.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">split</span></code> and <code class="docutils literal notranslate"><span class="pre">fps</span></code> software filters are used to split the <code class="docutils literal notranslate"><span class="pre">a</span></code> stream into <code class="docutils literal notranslate"><span class="pre">aa</span></code> and <code class="docutils literal notranslate"><span class="pre">ab</span></code> and then drop the framerate of <code class="docutils literal notranslate"><span class="pre">ab</span></code> to 30 fps to produce the <code class="docutils literal notranslate"><span class="pre">abb</span></code> 1280x720p30 stream.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-map</span> <span class="pre">&quot;[ID]&quot;</span></code></p>
+<ul>
+<li><p>Selects an output of the filter graph. The flags that follow apply to the selected stream.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b:v</span> <span class="pre">&lt;SIZE&gt;</span></code></p>
+<ul>
+<li><p>The flag signifies the desired output bitrate for each mapped stream</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span></code></p>
+<ul>
+<li><p>Declares the encoder’s codec for video (as opposed to audio <code class="docutils literal notranslate"><span class="pre">-c:a</span> <span class="pre">...</span></code>) is the hardware-accelerated encoder in the Xilinx device</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">mp4</span></code></p>
+<ul>
+<li><p>Sets the output video container to MP4</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-y</span></code></p>
+<ul>
+<li><p>Enable overwrite without prompting the user if they’re sure</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/tmp/xil_scale_enc_&lt;resolution&gt;&lt;fps&gt;.mp4</span></code></p>
+<ul>
+<li><p>Saves the output clips to the location listed</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="transcode-with-multiple-resolution-outputs">
+<span id="transcode-with-abr-ladder"></span><h3><a class="toc-backref" href="#id9" role="doc-backlink">Transcode With Multiple-Resolution Outputs</a><a class="headerlink" href="#transcode-with-multiple-resolution-outputs" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/06_ffmpeg_transcode_plus_scale.sh">examples/u30/ffmpeg/tutorials/06_ffmpeg_transcode_plus_scale.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./06_ffmpeg_transcode_plus_scale.sh &lt;1080p60 h264 clip&gt;
+</pre></div>
+</div>
+<p>This example implements a complete transcoding pipeline on an 1080p60 H.264 input. It decodes the input stream, scales it down to different resolutions and frame rates, encodes each of the scaled streams to H.264 and saves them to disk under <code class="file docutils literal notranslate"><span class="pre">xil_xcode_scale_&lt;resolution&gt;.mp4</span></code></p>
+<p>The command included in the script doesn’t handle the audio channel of the input video. For an example of how to include audio in the output streams, refer to the example commented out at the bottom of the script and to the section of the documentation about <a class="reference internal" href="../../using_ffmpeg.html#mapping-audio-streams"><span class="std std-ref">Mapping Audio Streams</span></a>.</p>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264 -i $1 \
+-filter_complex &quot;multiscale_xma=outputs=4: \
+out_1_width=1280: out_1_height=720: out_1_rate=full: \
+out_2_width=848:  out_2_height=480: out_2_rate=half: \
+out_3_width=640:  out_3_height=360: out_3_rate=half: \
+out_4_width=288:  out_4_height=160: out_4_rate=half  \
+[a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]&quot; \
+-map &quot;[aa]&quot;  -b:v 4M    -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_720p60.mp4 \
+-map &quot;[abb]&quot; -b:v 3M    -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_720p30.mp4 \
+-map &quot;[b]&quot;   -b:v 2500K -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_480p30.mp4 \
+-map &quot;[c]&quot;   -b:v 1250K -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_360p30.mp4 \
+-map &quot;[d]&quot;   -b:v 625K  -c:v mpsoc_vcu_h264 -f mp4 -y /tmp/xil_xcode_scale_288p30.mp4
+</pre></div>
+</div>
+<p>Explanation of the flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code></p>
+<ul>
+<li><p>The ffmpeg application, which is provided by Xilinx, and moved to the top of the PATH when you sourced the setup.sh script</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span></code></p>
+<ul>
+<li><p>Declares the decoder’s codec for video (as opposed to audio <code class="docutils literal notranslate"><span class="pre">-c:a</span> <span class="pre">...</span></code>) is the hardware-accelerated decoder in the Xilinx device</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-i</span> <span class="pre">&lt;INPUT&gt;</span></code></p>
+<ul>
+<li><p>The input file to be transcoded</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-filter_complex</span></code></p>
+<ul>
+<li><p>The FFmpeg <code class="docutils literal notranslate"><span class="pre">-filter_complex</span></code> flag allows combining multiple filters together using a graph-like syntax. This example uses the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a>, <code class="docutils literal notranslate"><span class="pre">split</span></code> and <code class="docutils literal notranslate"><span class="pre">fps</span></code> filters to create 5 output resolutions from the input stream along with the corresponding audio streams.</p></li>
+<li><p>The <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> filter configures the Xilinx hardware-accelerated scaler to produce 4 output resolutions (1280x720p60, 848x480p30, 640x360p30, and 288x160p30). For each output, the width, height and frame rate are defined with <code class="docutils literal notranslate"><span class="pre">out_&lt;n&gt;_width</span></code>, <code class="docutils literal notranslate"><span class="pre">out_&lt;n&gt;_height</span></code> and  <code class="docutils literal notranslate"><span class="pre">out_&lt;n&gt;_rate</span></code>. The 4 outputs of the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-arg-multiscale_xma"><code class="xref std std-option docutils literal notranslate"><span class="pre">multiscale_xma</span></code></a> filter are identified as <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code> and <code class="docutils literal notranslate"><span class="pre">d</span></code> respectively.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">split</span></code> and <code class="docutils literal notranslate"><span class="pre">fps</span></code> software filters are used to split the <code class="docutils literal notranslate"><span class="pre">a</span></code> stream into <code class="docutils literal notranslate"><span class="pre">aa</span></code> and <code class="docutils literal notranslate"><span class="pre">ab</span></code> and then drop the framerate of <code class="docutils literal notranslate"><span class="pre">ab</span></code> to 30 fps to produce the <code class="docutils literal notranslate"><span class="pre">abb</span></code> 1280x720p30 stream.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-map</span> <span class="pre">&quot;[ID]&quot;</span></code></p>
+<ul>
+<li><p>Selects a video output of the filter graph. The flags that follow apply to the selected stream.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b:v</span> <span class="pre">&lt;SIZE&gt;</span></code></p>
+<ul>
+<li><p>The flag signifies the desired output bitrate for each mapped stream</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span></code></p>
+<ul>
+<li><p>Selects an audio output of the filter graph. The selected audio stream will be combined with the selected video stream.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">mp4</span></code></p>
+<ul>
+<li><p>Sets the output video container to MP4</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-y</span></code></p>
+<ul>
+<li><p>Enable overwrite without prompting the user if they’re sure</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/tmp/xil_scale_enc_&lt;resolution&gt;&lt;fps&gt;.mp4</span></code></p>
+<ul>
+<li><p>Saves the output clips to the location listed</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="ultra-low-latency-transcode-pipeline">
+<h3><a class="toc-backref" href="#id10" role="doc-backlink">Ultra Low-Latency Transcode Pipeline</a><a class="headerlink" href="#ultra-low-latency-transcode-pipeline" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/07_ffmpeg_transcode_lowlatency.sh">examples/u30/ffmpeg/tutorials/07_ffmpeg_transcode_lowlatency.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./07_ffmpeg_transcode_lowlatency.sh
+</pre></div>
+</div>
+<p>This example utilizes low latency flags in both the decoder via <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-low_latency"><code class="xref std std-option docutils literal notranslate"><span class="pre">-low_latency</span></code></a> along with <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-splitbuff_mode"><code class="xref std std-option docutils literal notranslate"><span class="pre">-splitbuff_mode</span></code></a> and encoder via <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-disable-pipeline"><code class="xref std std-option docutils literal notranslate"><span class="pre">-disable-pipeline</span></code></a> along with <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-avc-lowlat"><code class="xref std std-option docutils literal notranslate"><span class="pre">-avc-lowlat</span></code></a>.</p>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264  -low_latency 1 -splitbuff_mode 1 -latency_logging 1 \
+ -i $1 -c:v mpsoc_vcu_h264  -disable-pipeline 1 -avc-lowlat 0 \
+ -bf 0 -latency_logging 1 -f mp4 /tmp/low_latency.mp4
+</pre></div>
+</div>
+<p>Explanation of the flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ffmpeg</span></code></p>
+<ul>
+<li><p>The ffmpeg application, which is provided by Xilinx, and moved to the top of the PATH when you sourced the setup.sh script</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span></code></p>
+<ul>
+<li><p>Declares the decoder’s codec for video (as opposed to audio <code class="docutils literal notranslate"><span class="pre">-c:a</span> <span class="pre">...</span></code>) is the hardware-accelerated decoder in the Xilinx device</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-low_latency</span> <span class="pre">1</span></code></p>
+<ul>
+<li><p>This flag enables low-latency decoding</p></li>
+<li><p><strong>B-frames are not supported in this mode</strong>.</p></li>
+<li><p>Remove <code class="docutils literal notranslate"><span class="pre">-low_latency</span> <span class="pre">1</span></code> from the command line if your input has B-Frames</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-splitbuff_mode</span> <span class="pre">1</span></code></p>
+<ul>
+<li><p>This flag configures the decoder in split/unsplit input buffer mode, which reduces latency by handing off buffers to the next pipeline stage earlier.</p></li>
+<li><p>This flag must be enabled together with the <code class="docutils literal notranslate"><span class="pre">low_latency</span></code> one to reduce decoding latency.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-disable-pipeline</span></code></p>
+<ul>
+<li><p>This flag enables Ultra Low Latency in the encoder.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-avc-lowlat</span></code></p>
+<ul>
+<li><p>This flag is needed, when encoding to AVC. See <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-avc-lowlat"><code class="xref std std-option docutils literal notranslate"><span class="pre">-avc-lowlat</span></code></a>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-bf</span> <span class="pre">0</span></code></p>
+<ul>
+<li><p>The number of b-frames inserted in the output stream not only increases encode latency in the Xilinx device, but decode latency on the player. Setting it to 0 removes them.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-latency_logging</span> <span class="pre">1</span></code></p>
+<ul>
+<li><p>The option, which is applicable to both the encoder and decoder, enables latency specific logs, observable via journalctl.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+</section>
+<section id="encoding-streams-to-4k">
+<h2><a class="toc-backref" href="#id11" role="doc-backlink">Encoding Streams to 4K</a><a class="headerlink" href="#encoding-streams-to-4k" title="Link to this heading">¶</a></h2>
+<p>The Xilinx Video SDK supports real-time decoding and encoding of 4k streams with the following notes:</p>
+<ul class="simple">
+<li><p>The Xilinx video pipeline is optimized for live-streaming use cases. For 4k streams with bitrates significantly higher than the ones typically used for live streaming, it may not be possible to sustain real-time performance.</p></li>
+<li><p>When decoding 4k streams with a high bitrate, increasing the number of entropy buffers using the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-entropy_buffers_count"><code class="xref std std-option docutils literal notranslate"><span class="pre">-entropy_buffers_count</span></code></a> option can help improve performance</p></li>
+<li><p>When encoding raw video to 4k, set the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-s"><code class="xref std std-option docutils literal notranslate"><span class="pre">-s</span></code></a> option to <code class="docutils literal notranslate"><span class="pre">3840x2160</span></code> to specify the desired resolution.</p></li>
+<li><p>When encoding 4k streams to H.264, the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-slices"><code class="xref std std-option docutils literal notranslate"><span class="pre">-slices</span></code></a> option is required to sustain real-time performance. A value of 4 is recommended. This option is not required when encoding to HEVC.</p></li>
+</ul>
+<section id="k-h-264-real-time-encode-only">
+<h3><a class="toc-backref" href="#id12" role="doc-backlink">4k H.264 Real-Time Encode Only</a><a class="headerlink" href="#k-h-264-real-time-encode-only" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/08_ffmpeg_encode_only_4k.sh">examples/u30/ffmpeg/tutorials/08_ffmpeg_encode_only_4k.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./08_ffmpeg_encode_only_4k.sh &lt;2160p60 YUV file&gt;
+</pre></div>
+</div>
+<p>This example takes an 8-bit, YUV420, 2160p60 RAW file, encodes it to H.264 at a rate of 20Mbps and writes the result into <code class="file docutils literal notranslate"><span class="pre">/tmp/xil_4k_enc_out.mp4</span></code>. The <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-slices"><code class="xref std std-option docutils literal notranslate"><span class="pre">-slices</span></code></a> option is required to sustain real-time performance when encoding a 4k stream to H.264.</p>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -f rawvideo -s 3840x2160 -r 60 -pix_fmt yuv420p -i &lt;INPUT&gt; \
+-b:v 20M -c:v mpsoc_vcu_h264 -slices 4 -f mp4 -y /tmp/xil_4k_enc_out.mp4
+</pre></div>
+</div>
+</section>
+<section id="k-h-264-real-time-transcode">
+<h3><a class="toc-backref" href="#id13" role="doc-backlink">4k H.264 Real-Time Transcode</a><a class="headerlink" href="#k-h-264-real-time-transcode" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/09_ffmpeg_transcode_only_4k.sh">examples/u30/ffmpeg/tutorials/09_ffmpeg_transcode_only_4k.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./09_ffmpeg_transcode_only_4k.sh &lt;2160p60 HEVC file&gt;
+</pre></div>
+</div>
+<p>This example takes an 2160p60 HEVC file, transcodes it to H.264 at a rate of 20Mbps and writes the result into <code class="file docutils literal notranslate"><span class="pre">/tmp/xil_4k_enc_out.mp4</span></code>. The <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-slices"><code class="xref std std-option docutils literal notranslate"><span class="pre">-slices</span></code></a> option is required to sustain real-time performance when encoding a 4k stream to H.264.</p>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_hevc -i &lt;INPUT&gt; \
+-b:v 20M -c:v mpsoc_vcu_h264 -slices 4 -f mp4 -y /tmp/xil_4k_xcode.mp4
+</pre></div>
+</div>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="running-on-multiple-devices">
+<span id="ffmpeg-device-id-examples"></span><h2><a class="toc-backref" href="#id14" role="doc-backlink">Running on Multiple Devices</a><a class="headerlink" href="#running-on-multiple-devices" title="Link to this heading">¶</a></h2>
+<section id="explicit-device-management">
+<h3><a class="toc-backref" href="#id15" role="doc-backlink">Explicit Device Management</a><a class="headerlink" href="#explicit-device-management" title="Link to this heading">¶</a></h3>
+<p>The Xilinx Video SDK supports running multiple jobs simultaenously on a given device if the overall throughput does not exceed an aggregate load of 4K pixels at 60 frames per second. It is also possible to running multiple jobs across multiple devices when more than one device is available in the system.</p>
+<p>This example shows how run multiple jobs in parallel while explicitly specifying on which device each job should be run in order to manage compture resources.</p>
+<p>This script transcodes three H264 streams to HEVC, sending the outputs to <code class="file docutils literal notranslate"><span class="pre">/tmp/xil_xcode_</span><em><span class="pre">n</span></em><span class="pre">.mp4</span></code>. The three transcodes are run in parallel in individual xterms. The <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option is used to control on which device each job is run. The first job is run on device #0 and the two others jobs are run on device #1. After the jobs are launched, a JSON system load report is generated.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>This example leverages the <code class="docutils literal notranslate"><span class="pre">xterm</span></code> program. Make sure it is installed on your system before proceeding.</p>
+</div>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/10_ffmpeg_multiple_jobs.sh">examples/u30/ffmpeg/tutorials/10_ffmpeg_multiple_jobs.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./10_ffmpeg_multiple_jobs.sh &lt;input_h264_1_mp4&gt; &lt;input_h264_2_mp4&gt; &lt;input_h264_3_mp4&gt;
+</pre></div>
+</div>
+<p><strong>Commands</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span># Launch the three jobs in parallel
+xterm -fa mono:size=9 -e &quot;ffmpeg -xlnx_hwdev 0 -c:v mpsoc_vcu_h264 -i $1 -f mp4 -c:v mpsoc_vcu_hevc -y /tmp/xil_xcode_1.mp4; sleep 5s&quot; &amp;
+xterm -fa mono:size=9 -e &quot;ffmpeg -xlnx_hwdev 1 -c:v mpsoc_vcu_h264 -i $2 -f mp4 -c:v mpsoc_vcu_hevc -y /tmp/xil_xcode_2.mp4; sleep 5s&quot; &amp;
+xterm -fa mono:size=9 -e &quot;ffmpeg -xlnx_hwdev 1 -c:v mpsoc_vcu_h264 -i $3 -f mp4 -c:v mpsoc_vcu_hevc -y /tmp/xil_xcode_3.mp4; sleep 5s&quot; &amp;
+
+# Wait until the jobs are started to generate a system load report
+sleep 2s
+xrmadm /opt/xilinx/xrm/test/list_cmd.json &amp;
+</pre></div>
+</div>
+<p><strong>Tutorial steps</strong></p>
+<ul>
+<li><p>Prepare 3 input H264 videos with the following resolutions: 4k60, 1080p60 and 720p30</p></li>
+<li><p>Confirm that there are a least two devices available in your system:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xbutil examine
+</pre></div>
+</div>
+</li>
+<li><p>Run the - - Example script  with the 3 input videos:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./10_ffmpeg_multiple_jobs.sh 4k60.mp4 1080p60.mp4 720p30.mp4
+</pre></div>
+</div>
+</li>
+<li><p>The script opens three xterm windows and runs a transcode job in each of them. After 2 seconds, to ensure all jobs are running, the script executes the <code class="docutils literal notranslate"><span class="pre">xrmadm</span> <span class="pre">/opt/xilinx/xrm/test/list_cmd.json</span></code> command to generate a report of the system load.</p></li>
+<li><p>In each of the xterm windows, inspect the FFmpeg transcript and observe that it indicates on which device the job is run:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>device_id   :  0
+</pre></div>
+</div>
+</li>
+<li><p>Inspect the system load report (in JSON format) in the main terminal. For each device, the loading percentage is reported in the <code class="docutils literal notranslate"><span class="pre">usedLoad</span></code> field for each of the decoder, scaler, and encoder compute units. A value of 0 indicates that a particular resources is completely free. A value of 1000000 indicates that a particular resource is fully loaded and can no longer accept jobs. In the example shown below, the decoder is 25% utilized and can therefore accept more jobs.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>&quot;cu_3&quot;: {
+    &quot;cuId         &quot;: &quot;3&quot;,
+    &quot;cuType       &quot;: &quot;IP Kernel&quot;,
+    &quot;kernelName   &quot;: &quot;decoder&quot;,
+    &quot;kernelAlias  &quot;: &quot;DECODER_MPSOC&quot;,
+    &quot;instanceName &quot;: &quot;decoder_1&quot;,
+    &quot;cuName       &quot;: &quot;decoder:decoder_1&quot;,
+    &quot;kernelPlugin &quot;: &quot;/opt/xilinx/xma_plugins/libvcu-xma-dec-plg.so&quot;,
+    &quot;maxCapacity  &quot;: &quot;497664000&quot;,
+    &quot;numChanInuse &quot;: &quot;1&quot;,
+    &quot;usedLoad     &quot;: &quot;250000 of 1000000&quot;,
+    &quot;reservedLoad &quot;: &quot;0 of 1000000&quot;,
+    &quot;resrvUsedLoad&quot;: &quot;0 of 1000000&quot;
+}
+</pre></div>
+</div>
+</li>
+<li><p>Close the three xterm windows</p></li>
+<li><p>Now rerun the script with the input files in a different order:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./10_ffmpeg_multiple_jobs.sh 720p30.mp4 4k60.mp4 1080p60.mp4
+</pre></div>
+</div>
+<p>This will try to simultaneously run the 4k60 and the 1080p60 jobs on device #1. The compute requirements of these two combined jobs will exceed the capacity of a single device. Only one of the two jobs will proceed and the second one will error out due to insufficient resources.</p>
+</li>
+</ul>
+</section>
+<section id="splitting-a-job-across-two-devices">
+<span id="ffmpeg-tutorial-splitting-across-two-devices"></span><h3><a class="toc-backref" href="#id16" role="doc-backlink">Splitting a Job across Two Devices</a><a class="headerlink" href="#splitting-a-job-across-two-devices" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/14_ffmpeg_multidevice_abr_ladder.sh">examples/u30/ffmpeg/tutorials/14_ffmpeg_multidevice_abr_ladder.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./14_ffmpeg_multidevice_abr_ladder.sh &lt;4Kp60 HEVC clip&gt;
+</pre></div>
+</div>
+<p>This example builds upon the ABR ladder concepts presented in example #6 and the 4K considerations presented in #9. The script accepts a pre-encoded 4K60 file and generates 7 different output resolutions encoded to HEVC. The processing requirement of this job cannot be accomodated by a single device. This example shows how to split the job across two devices.</p>
+<p>The first device is used to decode the input, encode it to 4K60 HEVC and scale it to 1080p60. The scaled 1080p60 output is sent to the second device, where it goes through an ABR ladder and is scaled and encoded into multiple resolutions. Scaling the 4K60 input  to 1080p60 on device 0 reduces the size of the buffer which needs to be transferred from device 0 to device 1, which is better for overall performance.</p>
+<p>The 4K60 input is scaled down to the following resolutions, framerates, and bitrates (respectively):</p>
+<ul class="simple">
+<li><p>Device 0:    4K60    16 Mbps</p></li>
+<li><p>Device 1: 1080p60     6 Mbps</p></li>
+<li><p>Device 1:  720p60     4 Mbps</p></li>
+<li><p>Device 1:  720p60     3 Mbps</p></li>
+<li><p>Device 1:  480p60  2500 Kbps</p></li>
+<li><p>Device 1:  360p60  1250 Kbps</p></li>
+<li><p>Device 1:  160p60   625 Kbps</p></li>
+</ul>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -re -c:v mpsoc_vcu_hevc -lxlnx_hwdev 0 -i $1 -max_muxing_queue_size 1024 \
+-filter_complex &quot;[0]split=2[dec1][dec2]; \
+                 [dec2]multiscale_xma=outputs=1:lxlnx_hwdev=0:out_1_width=1920:out_1_height=1080:out_1_rate=full[scal]; \
+                 [scal]xvbm_convert[host]; [host]split=2[scl1][scl2]; \
+                 [scl2]multiscale_xma=outputs=4:lxlnx_hwdev=1:out_1_width=1280:out_1_height=720:out_1_rate=full:\
+                                                              out_2_width=848:out_2_height=480:out_2_rate=half:\
+                                                              out_3_width=640:out_3_height=360:out_3_rate=half:\
+                                                              out_4_width=288:out_4_height=160:out_4_rate=half \
+                 [a][b30][c30][d30]; [a]split[a60][aa];[aa]fps=30[a30]&quot; \
+-map &#39;[dec1]&#39; -c:v mpsoc_vcu_hevc -b:v 16M   -max-bitrate 16M   -lxlnx_hwdev 0 -slices 4 -cores 4 -max_interleave_delta 0 -f mp4 -y /tmp/xil_multidevice_ladder_4k.mp4 \
+-map &#39;[scl1]&#39; -c:v mpsoc_vcu_hevc -b:v 6M    -max-bitrate 6M    -lxlnx_hwdev 1 -max_interleave_delta 0 -f mp4 -y /tmp/xil_multidevice_ladder_1080p60.mp4               \
+-map &#39;[a60]&#39;  -c:v mpsoc_vcu_hevc -b:v 4M    -max-bitrate 4M    -lxlnx_hwdev 1 -max_interleave_delta 0 -f mp4 -y /tmp/xil_multidevice_ladder_720p60.mp4                \
+-map &#39;[a30]&#39;  -c:v mpsoc_vcu_hevc -b:v 3M    -max-bitrate 3M    -lxlnx_hwdev 1 -max_interleave_delta 0 -f mp4 -y /tmp/xil_multidevice_ladder_720p30.mp4                \
+-map &#39;[b30]&#39;  -c:v mpsoc_vcu_hevc -b:v 2500K -max-bitrate 2500K -lxlnx_hwdev 1 -max_interleave_delta 0 -f mp4 -y /tmp/xil_multidevice_ladder_480p30.mp4                \
+-map &#39;[c30]&#39;  -c:v mpsoc_vcu_hevc -b:v 1250K -max-bitrate 1250K -lxlnx_hwdev 1 -max_interleave_delta 0 -f mp4 -y /tmp/xil_multidevice_ladder_360p30.mp4                \
+-map &#39;[d30]&#39;  -c:v mpsoc_vcu_hevc -b:v 625K  -max-bitrate 625K  -lxlnx_hwdev 1 -max_interleave_delta 0 -f mp4 -y /tmp/xil_multidevice_ladder_160p30.mp4
+</pre></div>
+</div>
+<p>Explanation of key flags not covered in previous examples:</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="../../using_ffmpeg.html#cmdoption-lxlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lxlnx_hwdev</span></code></a></p>
+<ul>
+<li><p>This option is used to specify on which device each specific operation must be executed. For more details about this option, refer to the documentation regarding <a class="reference internal" href="../../managing_compute_resources.html#using-explicit-device-ids"><span class="std std-ref">Assigning Jobs to Specific Devices</span></a>.</p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="../../using_ffmpeg.html#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a></p>
+<ul>
+<li><p>This filter is used to transfer frame buffers from a device back to the host. In this example, the buffers are then automatically transfered to the other device for further processing. For more details about this filter, refer to the documentation regarding <a class="reference internal" href="../../using_ffmpeg.html#ffmpeg-explicit-data-movement"><span class="std std-ref">Explicit Data Movement with FFmpeg</span></a>.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="using-the-job-slot-reservation-tool">
+<span id="ffmpeg-tutorial-job-slot-reservation"></span><h3><a class="toc-backref" href="#id17" role="doc-backlink">Using the Job Slot Reservation Tool</a><a class="headerlink" href="#using-the-job-slot-reservation-tool" title="Link to this heading">¶</a></h3>
+<p>This example demonstrates two features of the Xilinx Video SDK:</p>
+<ul class="simple">
+<li><p>How to split a job across two devices</p></li>
+<li><p>How to use the job slot reservation tool to reserve the required resources for running multiple instances of a given job</p></li>
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/15_ffmpeg_transcode_2dev_4k.sh">examples/u30/ffmpeg/tutorials/15_ffmpeg_transcode_2dev_4k.sh</a></p></li>
+</ul>
+<p>The <code class="file docutils literal notranslate"><span class="pre">15_ffmpeg_transcode_2dev_4k.sh</span></code> script takes two arguments:</p>
+<ol class="arabic simple">
+<li><p>The full path to a pre-encoded 4K60 YUV420 HEVC file</p></li>
+<li><p>The ID of a job slot separately allocated using the job slot reservation tool and the <code class="file docutils literal notranslate"><span class="pre">15_ffmpeg_transcode_2dev_4k.json</span></code> file associated with this example</p></li>
+</ol>
+<p>The FFmpeg command uses two devices to transcode the input stream to 4K H264 and 1080p HEVC. The first device is used to decode the 4K60 input, scale it to 1080p60 and encode the 4K H264 output. The second device is used to encode the 1080p60 HEVC output. The <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-lxlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lxlnx_hwdev</span></code></a> option is used to specify the device on which a specific job component (decoder, scaler, encoder) should be run.</p>
+<p>Instead of being hardcoded to specific device IDs, the values for the <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-lxlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-lxlnx_hwdev</span></code></a> options are taken from variables set by the <code class="file docutils literal notranslate"><span class="pre">/var/tmp/xilinx/xrm_jobReservation.sh</span></code> script, which itself is generated by the <a class="reference internal" href="../../managing_compute_resources.html#using-job-slot-reservations"><span class="std std-ref">job slot reservation tool</span></a> based on the accompanying <a class="reference internal" href="../../managing_compute_resources.html#job-descriptions-files"><span class="std std-ref">JSON job description</span></a>.</p>
+<p>The <code class="file docutils literal notranslate"><span class="pre">15_ffmpeg_transcode_2dev_4k.json</span></code> JSON job description file specifies the video resources needed by the job, allowing the job slot reservation tool to reserve the resources needed to run as many instances as possible of the specified job on your system. The number of total possible jobs depends on the number of cards in the system and the load of each device. For instance, on a server with a single card, only one instance of this specific example can be run in parallel. On a 2 card server, up to 3 instances of this job can be run in parallel. And on a 8 card server, up to 12 jobs can be run. The job slot reservation tool will reserve the corresponding resources and assign specific reservation IDs in the <code class="file docutils literal notranslate"><span class="pre">/var/tmp/xilinx/xrm_jobReservation.sh</span></code> script.</p>
+<p><strong>Tutorial steps</strong></p>
+<ul>
+<li><p>Prepare at least one 4K60 YUV420 HEVC input video</p></li>
+<li><p>Confirm that there are a least two devices available in your system:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xbutil examine
+</pre></div>
+</div>
+</li>
+<li><p>Run the job slot reservation tool:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>jobSlotReservation ./15_ffmpeg_transcode_2dev_4k.json
+</pre></div>
+</div>
+<p>The tool will print out the maximum number of jobs which can be run in parallel and will generate the reservation IDs in the <code class="file docutils literal notranslate"><span class="pre">/var/tmp/xilinx/xrm_jobReservation.sh</span></code> script. In that file, for is a given job slot {n}, <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">XRM_RESERVE_ID_{n}</span></code> indicates the reservation ID generated by XRM while <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">var_dev_{n}_0</span></code> and <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">var_dev_{n}_1</span></code> indicate the identifiers of the two devices which should be used. For more details, consult the <a class="reference internal" href="../../managing_compute_resources.html#using-job-slot-reservations"><span class="std std-ref">job slot reservation tool documentation</span></a>.</p>
+<p>The resources will stay reserved until the job slot reservation tool is ended.</p>
+</li>
+<li><p>Open a new terminal, and launch the job on the first reserved job slot:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./15_ffmpeg_transcode_2dev_4k.sh &lt;4Kp60 HEVC clip&gt; 1
+</pre></div>
+</div>
+<p>The script automatically sources the <code class="file docutils literal notranslate"><span class="pre">/var/tmp/xilinx/xrm_jobReservation.sh</span></code> script and uses the <span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">XRM_RESERVE_ID_{n}</span></code>, <span class="target" id="index-4"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">var_dev_{n}_0</span></code> and <span class="target" id="index-5"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">var_dev_{n}_1</span></code> reservation variables corresponding to the specified slot.</p>
+</li>
+<li><p>If your system has enough devices to run more than one job, open a new terminal and launch the job on the second reserved job slot:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./15_ffmpeg_transcode_2dev_4k.sh &lt;4Kp60 HEVC clip&gt; 2
+</pre></div>
+</div>
+</li>
+<li><p>After the first job finishes, the corresponding resources can be used to run another instance of the job. In the same terminal where the first job was run, launch another instance using the first job slot:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./15_ffmpeg_transcode_2dev_4k.sh &lt;4Kp60 HEVC clip&gt; 1
+</pre></div>
+</div>
+</li>
+<li><p>Press <strong>Enter</strong> in the job reservation app terminal to release the resources after all the jobs are complete.</p></li>
+</ul>
+<p>NOTE: The <code class="file docutils literal notranslate"><span class="pre">15_ffmpeg_transcode_2dev_4k_run_all.sh</span></code> script can also be used to run all the above steps automatically.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="faster-than-real-time">
+<span id="faster-than-realtime-example"></span><h2><a class="toc-backref" href="#id18" role="doc-backlink">Faster than Real-Time</a><a class="headerlink" href="#faster-than-real-time" title="Link to this heading">¶</a></h2>
+<p>Xilinx devices and the Xilinx Video SDK are optimized for low latency “real-time” applications. That is to say, they provide deterministic low latency transcoding, while operating at the FPS the human eye would normally process/watch it. This is ideal for ingesting a live video stream where there is minimal buffering.</p>
+<p>When processing file-based video clips, it is possible to run faster than real time (FTRT) by using a map-reduce approach. With this method, the file-based video clip is split into multiple smaller segments, and each of these segments is individually transcoded. The more devices are available, the more segments can be processed in parallel and the faster the process is. While there is some overhead in “splitting” the clip into segments, and “stitching” the results of each segment into a single output file, these costs are almost always outweighed by the improvement in FPS.</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">13_ffmpeg_transcode_only_split_stitch.py</span></code> script starts by automatically detecting the number of devices available in the system and then determines how many jobs can be run on each device based on the resolution of the input file. The input file is then split in as many segments aligning on GOP boundaries. Parallel FFmpeg jobs are submited to transcode all the segments simultaneously. The <a class="reference internal" href="../../using_ffmpeg.html#cmdoption-xlnx_hwdev"><code class="xref std std-option docutils literal notranslate"><span class="pre">-xlnx_hwdev</span></code></a> option is used to dispatch each job on a specific device. Once all the segments have been processed, FFmpeg is used to concatenate the results and form the final output stream.</p>
+<p>This - - Example script  is provided for demonstration purposes. It is not intended to work for all input clips and all use cases.</p>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/13_ffmpeg_transcode_only_split_stitch.py">examples/u30/ffmpeg/tutorials/13_ffmpeg_transcode_only_split_stitch.py</a></p></li>
+</ul>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>python3 13_ffmpeg_transcode_only_split_stitch.py -s &lt;INPUT_FILE&gt; -d &lt;OUTPUT_FILE&gt; -c &lt;OUTPUT_CODEC&gt; -b &lt;BITRATE&gt;
+</pre></div>
+</div>
+<p>Explanation of the flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-s</span> <span class="pre">&lt;INPUT_FILE&gt;</span></code></p>
+<ul>
+<li><p>This is the name of the pre-encoded input file (not RAW) in either H.264 or HEVC format.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-d</span> <span class="pre">&lt;OUTPUT_FILE&gt;</span></code></p>
+<ul>
+<li><p>This is the name of the output file. The default output file name is “out.mp4”.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c</span> <span class="pre">&lt;OUTPUT_CODEC&gt;</span></code></p>
+<ul>
+<li><p>This defines the desired output encoder format: supported formats are <code class="docutils literal notranslate"><span class="pre">h264</span></code>, <code class="docutils literal notranslate"><span class="pre">hevc</span></code>, and <code class="docutils literal notranslate"><span class="pre">h265</span></code>. Note that <code class="docutils literal notranslate"><span class="pre">h265</span></code> and <code class="docutils literal notranslate"><span class="pre">hevc</span></code> are identical; they are provided for ease of customer use. The default output codec is <code class="docutils literal notranslate"><span class="pre">hevc</span></code>.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b</span> <span class="pre">&lt;BITRATE&gt;</span></code></p>
+<ul>
+<li><p>This is a float or integer value which defines the output file’s target bitrate in Mbits/s. Valid values are comprised between 1.0 and 25.0. The default value is 5.0. Example: use -b 3 to specify an output bitrate of 3Mbits/s.</p></li>
+</ul>
+</li>
+</ul>
+<p>In addition to the primary flags listed above, the script also supports the following optional flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-j</span> <span class="pre">&lt;NUM_JOBS&gt;</span></code></p>
+<ul>
+<li><p>Number of transcode jobs per device. By default the script estimates how many jobs can be run simultaneously on each device. Using this option allows to overwrite to number computed by the script.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">&lt;NUM_DEVICES&gt;</span></code></p>
+<ul>
+<li><p>Number of devices on which to transcode the segments. By default the script will use all available devices. Using this options allows running the script on a subset of the available devices. For example, use <code class="docutils literal notranslate"><span class="pre">-n</span> <span class="pre">12</span></code> to run on 12 out of 16 available devices in a vt1.24xlarge instance.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-x</span> <span class="pre">&lt;ENCODE_OPTIONS&gt;</span></code></p>
+<ul>
+<li><p>Additional options for the encoder, specified as a string. For example, use <code class="docutils literal notranslate"><span class="pre">-x</span> <span class="pre">&quot;-bf</span> <span class="pre">1&quot;</span></code> to set the number of B frames to 1 in the output video. Bitrate values set with this options take precedence over values set with -b.</p></li>
+</ul>
+</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="streaming-examples">
+<h2><a class="toc-backref" href="#id19" role="doc-backlink">Streaming Examples</a><a class="headerlink" href="#streaming-examples" title="Link to this heading">¶</a></h2>
+<p>Streaming Examples operate largely on the same principles (and command line strings) as file-based operations. However, the main difference is how streams are received and transmitted.</p>
+<p>These examples is will leverage example #6, which is a full transcode pipeline (decode, scale, encode), however, instead of saving the scaled outputs into monolithic MP4 files, will create a “manifest” file <code class="docutils literal notranslate"><span class="pre">.m3u8</span></code> for streaming along with several <code class="docutils literal notranslate"><span class="pre">.ts</span></code> files with the actual playback data. These manifest files, when inspected, will contain a “playlist” of clips with <code class="docutils literal notranslate"><span class="pre">.ts</span></code> extensions, which are of duration <code class="docutils literal notranslate"><span class="pre">hls_time</span></code>. Creating separate clips enables the remote playback players to “drop quality” instantaneously without any buffering to the viewer, or trying to figure out and seek to “where we are in the clip”. This is how most live streaming is done, however there are other, similar protocols (e.g. DASH) which operate on similar principles.</p>
+<p>These flags, and others, are defined further on the <a class="reference external" href="https://ffmpeg.org/ffmpeg-formats.html">FFmpeg main help page</a></p>
+<section id="replay-saved-files-with-downscaling">
+<h3><a class="toc-backref" href="#id20" role="doc-backlink">Replay Saved Files with Downscaling</a><a class="headerlink" href="#replay-saved-files-with-downscaling" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/12_ffmpeg_streaming_transcode_from_file.sh">examples/u30/ffmpeg/tutorials/12_ffmpeg_streaming_transcode_from_file.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./12_ffmpeg_streaming_transcode_from_file.sh &lt;1080p60 h264 clip&gt;
+</pre></div>
+</div>
+<p>The flows is for representative use.</p>
+<p>The command included in the script doesn’t handle the audio channel of the input video. For an example of how to include audio in the output streams, refer to the example commented out at the bottom of the script and to the section of the documentation about <a class="reference internal" href="../../using_ffmpeg.html#mapping-audio-streams"><span class="std std-ref">Mapping Audio Streams</span></a>.</p>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg -c:v mpsoc_vcu_h264 -i  $1 \
+-filter_complex &quot;multiscale_xma=outputs=4: \
+out_1_width=1280: out_1_height=720:  out_1_rate=full: \
+out_2_width=848:  out_2_height=480:  out_2_rate=half: \
+out_3_width=640:  out_3_height=360:  out_3_rate=half: \
+out_4_width=288:  out_4_height=160:  out_4_rate=half  \
+[a][b][c][d]; [a]split[aa][ab]; [ab]fps=30[abb]&quot; \
+-map &quot;[aa]&quot;  -b:v 4M    -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_720p60.m3u8 \
+-map &quot;[abb]&quot; -b:v 3M    -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_720p30.m3u8 \
+-map &quot;[b]&quot;   -b:v 2500K -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_480p30.m3u8 \
+-map &quot;[c]&quot;   -b:v 1250K -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_360p30.m3u8 \
+-map &quot;[d]&quot;   -b:v 625K  -c:v mpsoc_vcu_h264 -f hls -hls_time 4 -hls_list_size 5 -hls_flags delete_segments -y /var/www/html/xil_xcode_stream_scale_288p30.m3u8
+</pre></div>
+</div>
+<p>Explanation of the flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">ffmpeg</span> <span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span> <span class="pre">-i</span> <span class="pre">$1</span></code></p>
+<ul>
+<li><p>This calls the Xilinx FFmpeg, decodes using the Xilinx hardware decoder, an input file <code class="docutils literal notranslate"><span class="pre">$1</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-filter_complex</span></code></p>
+<ul>
+<li><p>This takes the 1080p60 input, converts it to 5x video streams of 720p60, 720p30, 480p30, 360p30, and 160p30 and creates the corresponding audio streams</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b:v</span> <span class="pre">&lt;SIZE&gt;</span></code></p>
+<ul>
+<li><p>The flag signifies the desired output bitrate for each mapped stream</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-c:v</span> <span class="pre">mpsoc_vcu_h264</span></code></p>
+<ul>
+<li><p>Declares the encoder’s codec for video (as opposed to audio <code class="docutils literal notranslate"><span class="pre">-c:a</span> <span class="pre">...</span></code>) is the hardware-accelerated encoder in the Xilinx device</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">hls</span></code></p>
+<ul>
+<li><p>Sets the output video container to an HLS manifest file <code class="docutils literal notranslate"><span class="pre">.m3u8</span></code> and the actual clip data <code class="docutils literal notranslate"><span class="pre">.ts</span></code> files.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-hls_time</span> <span class="pre">4</span></code></p>
+<ul>
+<li><p>This sets the duration of all the HLS clips to 4 seconds</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-hls_list_size</span> <span class="pre">5</span></code></p>
+<ul>
+<li><p>This sets the list of accessible/available clips to 5. Can be used to prebuffer the player at the remote end.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-hls</span> <span class="pre">flags</span> <span class="pre">delete_segments</span></code></p>
+<ul>
+<li><p>This flag will delete all segments after the <code class="docutils literal notranslate"><span class="pre">hls_list_size</span></code> is reached, saving disk space.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-y</span></code></p>
+<ul>
+<li><p>Enable overwrite without prompting the user if they’re sure</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">/var/www/html/xil_xcode_stream_scale&lt;resolution&gt;&lt;fps&gt;.m3u8</span></code></p>
+<ul>
+<li><p>Saves the output clips, split into size of <code class="docutils literal notranslate"><span class="pre">hls_time</span></code> into <code class="docutils literal notranslate"><span class="pre">.ts</span></code> clips, indexed by the <code class="docutils literal notranslate"><span class="pre">.m3u8</span></code> manifest file.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="live-hls-streaming">
+<h3><a class="toc-backref" href="#id21" role="doc-backlink">Live HLS Streaming</a><a class="headerlink" href="#live-hls-streaming" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Example script : <a class="reference external" href="https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/ffmpeg/tutorials/16_ffmpeg_live_hls.sh">examples/u30/ffmpeg/tutorials/16_ffmpeg_live_hls.sh</a></p></li>
+</ul>
+<p><strong>Usage</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./16_ffmpeg_live_hls.sh
+</pre></div>
+</div>
+<p>This script begins by starting a simple web server to serve HLS segments that will be located under ${HLS_DIR}. It then proceeds to generate live HLS using test video and audio signals, for duration specified by variable ${DUR}.</p>
+<p><strong>Command Line</strong>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ffmpeg  -f lavfi -i &quot;testsrc=duration=${DUR}:size=1920x1080:rate=30&quot; \
+-f lavfi -i &quot;sine=frequency=5000:duration=${DUR}&quot; \
+-f lavfi -i &quot;sine=frequency=4000:duration=${DUR}&quot; \
+-f lavfi -i &quot;sine=frequency=3000:duration=${DUR}&quot; \
+-f lavfi -i &quot;sine=frequency=2000:duration=${DUR}&quot; \
+-f lavfi -i &quot;sine=frequency=1000:duration=${DUR}&quot; \
+-filter_complex &quot;multiscale_xma=outputs=5: \
+ out_1_width=1920: out_1_height=1080: out_1_rate=full: \
+ out_2_width=1280: out_2_height=720:  out_2_rate=full: \
+ out_3_width=848:  out_3_height=480:  out_3_rate=full: \
+ out_4_width=640:  out_4_height=360:  out_4_rate=full: \
+ out_5_width=288:  out_5_height=160:  out_5_rate=full  \
+ [vid1][vid2][vid3][vid4][vid5]; [1]volume=1[aud1]; [2]volume=1[aud2]; [3]volume=1[aud3]; [4]volume=1[aud4]; [5]volume=1[aud5]&quot; \
+-map &quot;[vid1]&quot; -b:v:0 2M   -minrate:v:0 2M   -maxrate:v:0 2M   -bufsize:v:0 4M   -c:v:0 mpsoc_vcu_h264 \
+-map &quot;[vid2]&quot; -b:v:1 1M   -minrate:v:1 1M   -maxrate:v:1 1M   -bufsize:v:1 1M   -c:v:1 mpsoc_vcu_h264 \
+-map &quot;[vid3]&quot; -b:v:2 750K -minrate:v:2 750K -maxrate:v:2 750K -bufsize:v:2 750K -c:v:2 mpsoc_vcu_h264 \
+-map &quot;[vid4]&quot; -b:v:3 375K -minrate:v:2 375K -maxrate:v:2 375K -bufsize:v:3 375K -c:v:3 mpsoc_vcu_h264 \
+-map &quot;[vid5]&quot; -b:v:4 250k -minrate:v:4 250k -maxrate:v:4 250k -bufsize:v:4 250k -c:v:4 mpsoc_vcu_h264 \
+-map &quot;[aud1]&quot; -c:a:0 aac \
+-map &quot;[aud2]&quot; -c:a:1 aac \
+-map &quot;[aud3]&quot; -c:a:2 aac \
+-map &quot;[aud4]&quot; -c:a:3 aac \
+-map &quot;[aud5]&quot; -c:a:4 aac \
+-var_stream_map &quot;v:0,a:0 v:1,a:1 v:2,a:2 v:3,a:3 v:4,a:4&quot; \
+-f hls \
+-hls_wrap 5 \
+-hls_time 6 \
+-master_pl_name &quot;test.m3u8&quot; -hls_segment_filename  &quot;${HLS_DIR}/test_%v-%d.ts&quot; &quot;${HLS_DIR}/test_%v.m3u8&quot;
+</pre></div>
+</div>
+<p>Explanation of the flags:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">lavfi</span> <span class="pre">-i</span> <span class="pre">testsrc=duration=${DUR}:size=1920x1080:rate=30</span></code></p>
+<ul>
+<li><p>This filter generates a 1080p30 test card with a running timer, for duration of <code class="docutils literal notranslate"><span class="pre">${DUR}</span></code> seconds</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-f</span> <span class="pre">lavfi</span> <span class="pre">-i</span> <span class="pre">&quot;sine=frequency=XXXX:duration=${DUR}&quot;</span></code></p>
+<ul>
+<li><p>This filter generates a single tone of frequency <code class="docutils literal notranslate"><span class="pre">XXXX</span></code>, for duration of <code class="docutils literal notranslate"><span class="pre">${DUR}</span></code> seconds</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">[X]volume=1[audX]</span></code></p>
+<ul>
+<li><p>This filter maps audio stream <code class="docutils literal notranslate"><span class="pre">X</span></code> to stream aud <code class="docutils literal notranslate"><span class="pre">X</span></code> with unity gain</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-b:v:X</span> <span class="pre">YM</span>&#160;&#160; <span class="pre">-minrate:v:X</span> <span class="pre">YM</span>&#160;&#160; <span class="pre">-maxrate:v:X</span> <span class="pre">YM</span>&#160;&#160; <span class="pre">-bufsize:v:X</span> <span class="pre">ZM</span></code></p>
+<ul>
+<li><p>The above combination requests a CBR stream of <code class="docutils literal notranslate"><span class="pre">Y</span></code> Mbps for stream index <code class="docutils literal notranslate"><span class="pre">X</span></code>, using buffer size <code class="docutils literal notranslate"><span class="pre">Z</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-map</span> <span class="pre">&quot;[audY]&quot;</span> <span class="pre">-c:a:X</span> <span class="pre">aac</span></code></p>
+<ul>
+<li><p>The above encodes raw audio stream aud <code class="docutils literal notranslate"><span class="pre">Y</span></code> to aac with stream index <code class="docutils literal notranslate"><span class="pre">X</span></code></p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-var_stream_map</span> <span class="pre">&quot;v:0,a:0</span> <span class="pre">v:1,a:1</span> <span class="pre">v:2,a:2</span> <span class="pre">v:3,a:3</span> <span class="pre">v:4,a:4&quot;</span></code></p>
+<ul>
+<li><p>This directive groups pair of audio and video streams into a single container</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-hls_wrap</span> <span class="pre">5</span></code></p>
+<ul>
+<li><p>This specifies the number of segments within the moving window.</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-master_pl_name</span></code></p>
+<ul>
+<li><p>This sets the name of the master playlist file</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">-hls_segment_filename</span>&#160; <span class="pre">&quot;${HLS_DIR}/test_%v-%d.ts&quot;</span></code></p>
+<ul>
+<li><p>Sets the name of the moving-window TS segments</p></li>
+</ul>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">${HLS_DIR}/test_%v.m3u8&quot;</span></code></p>
+<ul>
+<li><p>Assigns the name of each variant m3u8 file</p></li>
+</ul>
+</li>
+</ul>
+<p>To play back the generated HLS, simply point your player or browser to <code class="docutils literal notranslate"><span class="pre">http://SERVER_IP:8080/test.m3u8</span></code>. If you browser is attempting to download the manifest file instead of playing it, ensure that you have a proper plugin installed, e.g., Native HLS. If you are not able to access port 8080, from outside, you may tunnel and forward this port to your client machine using:
+<code class="docutils literal notranslate"><span class="pre">ssh</span> <span class="pre">-AfNL</span> <span class="pre">8080:localhost:8080</span> <span class="pre">USER_NAME&#64;SERVER_IP</span></code>
+Once the tunnel is established, you may access the manifest file through <code class="docutils literal notranslate"><span class="pre">http://localhost:8080/test.m3u8</span></code></p>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="../../examples.html" class="btn btn-neutral float-left" title="Tutorials and Examples" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="filters.html" class="btn btn-neutral float-right" title="FFmpeg Examples using Software Filters" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on October 16, 2024.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,11 +1,11 @@
 
-all: v1.0 v1.5 v2.0 v3.0
-	
-v%:
-	rm -rf ../$@
-	make -C ../sources/$@ html
-	mv ../sources/$@/_build/html ../$@
-	rm -rf ../sources/$@/_build
-
-view:
-	firefox ../index.html &
+html:
+	rm -rf ../v$(VER)
+	make -C ../sources/v$(VER) html
+	mv ../sources/v$(VER)/_build/html ../v$(VER)
+	rm -rf ../sources/v$(VER)/_build
+pub:
+	git push origin
+sandbox:
+	rsync -a --delete ../sources/v$(VER)/ ../sandbox/video-sdk/sources/v$(VER)/
+	rsync -a --delete ../v$(VER)/ ../sandbox/video-sdk/v$(VER)/

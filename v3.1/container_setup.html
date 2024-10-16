@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Container Setup &mdash; Xilinx Video SDK 3.1 (Production) documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/documentation_options.js?v=d2dc9114"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Tutorials and Examples" href="examples.html" />
+    <link rel="prev" title="Getting Started on Amazon EC2 VT1" href="getting_started_on_vt1.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home"> Xilinx Video SDK
+          </a>
+              <div class="version">
+                3.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="release_notes.html">Release Notes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_prem.html">On Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_vt1.html">Amazon EC2 VT1</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Container Setup</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#restrictions">Restrictions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#xilinx-container-runtime-xcr-overview">Xilinx Container Runtime (XCR) Overview</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#xcr-command-line-tool">XCR Command Line Tool</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#setting-xcr-as-docker-runtime">Setting XCR as Docker Runtime</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#creating-a-docker-image">Creating a Docker Image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#launching-a-docker-container">Launching a Docker Container</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#launching-a-docker-container-with-xcr">Launching a Docker Container with XCR</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launching-a-docker-container-without-xcr-on-vt1">Launching a Docker Container without XCR on Amazon EC2 VT1</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#launching-a-docker-container-without-xcr-on-premises">Launching a Docker Container without XCR on Premises</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Tutorials and Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="specs_and_features.html">Specs and Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_ffmpeg.html">Using FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gstreamer.html">Using GStreamer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_video_quality.html">Tuning Video Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_pipeline_latency.html">Tuning Transcode Latency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managing_compute_resources.html">Managing Compute Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploying_with_kubernetes.html">Deploying with Kubernetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="card_management.html">Card Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_feed.html">Package Feed Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Xilinx Video SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Container Setup</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="container-setup">
+<span id="id1"></span><h1>Container Setup<a class="headerlink" href="#container-setup" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#restrictions" id="id2">Restrictions</a></p></li>
+<li><p><a class="reference internal" href="#xilinx-container-runtime-xcr-overview" id="id3">Xilinx Container Runtime (XCR) Overview</a></p>
+<ul>
+<li><p><a class="reference internal" href="#xcr-command-line-tool" id="id4">XCR Command Line Tool</a></p></li>
+<li><p><a class="reference internal" href="#setting-xcr-as-docker-runtime" id="id5">Setting XCR as Docker Runtime</a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#creating-a-docker-image" id="id6">Creating a Docker Image</a></p></li>
+<li><p><a class="reference internal" href="#launching-a-docker-container" id="id7">Launching a Docker Container</a></p>
+<ul>
+<li><p><a class="reference internal" href="#launching-a-docker-container-with-xcr" id="id8">Launching a Docker Container with XCR</a></p></li>
+<li><p><a class="reference internal" href="#launching-a-docker-container-without-xcr-on-vt1" id="id9">Launching a Docker Container without XCR on Amazon EC2 VT1</a></p></li>
+<li><p><a class="reference internal" href="#launching-a-docker-container-without-xcr-on-premises" id="id10">Launching a Docker Container without XCR on Premises</a></p></li>
+</ul>
+</li>
+</ul>
+</nav>
+<p>The Xilinx Video SDK supports multiple container orchestration technologies including those based on standard <a class="reference external" href="https://github.com/opencontainers/runc">runc</a> and Xilinx’s own extension to runc, the Xilinx Container Runtime (XCR). The following sections describe both the XCR and the standard Docker methods of instantiating containers.</p>
+<section id="restrictions">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Restrictions</a><a class="headerlink" href="#restrictions" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p><strong>IMPORTANT:</strong> Regardless of selected orchestration method, each Xilinx device can have a single point of access (whether host or container). Having multiple container instances access the same device is not currently supported and can lead to unpredictable errors.</p></li>
+<li><p>On Amazon EC2 VT1 instances</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> card management functions are not supported either on the host or within containers.</p></li>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">reset</span></code> command is not supported and should not be used within containers. The command will kill any job running on the devices, but it will not reset the devices.</p></li>
+</ul>
+</li>
+<li><p>On-premises</p>
+<ul>
+<li><p>The <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">reset</span></code> command will reset the specified device as well as all other devices present on the same Xilinx card, even if these other devices are not mapped to the container. In order to avoid reset conflicts, Xilinx strongly recommends mapping all the devices of a given card when running the container. For details on how to determine which devices are on the same card, consult the following instructions: <a class="reference internal" href="card_management.html#mapping-devices-to-cards"><span class="std std-ref">Mapping Devices to Cards</span></a>.</p></li>
+<li><p>In the case where a single device is mapped to the container, Xilinx recommends against using the <code class="docutils literal notranslate"><span class="pre">xbutil</span> <span class="pre">reset</span></code> command.</p></li>
+</ul>
+</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="xilinx-container-runtime-xcr-overview">
+<span id="xcr-overview"></span><h2><a class="toc-backref" href="#id3" role="doc-backlink">Xilinx Container Runtime (XCR) Overview</a><a class="headerlink" href="#xilinx-container-runtime-xcr-overview" title="Link to this heading">¶</a></h2>
+<p>Starting with version 3.0, the core package of the Xilinx Video SDK includes the <a class="reference external" href="https://github.com/Xilinx/Xilinx_Container_Runtime">Xilinx Container Runtime (XCR)</a>. XCR is an extension of runc container runtime and as such is compatible with all <a class="reference external" href="https://opencontainers.org/">OCI</a> compliant container tools such as Docker, Podman, Singularity, etc.</p>
+<p>XCR provides a convenient method for assigning either individual devices or cards to a container. For details refer to the <a class="reference external" href="https://xilinx.github.io/Xilinx_Container_Runtime/index.html">XCR documentation</a>.</p>
+<section id="xcr-command-line-tool">
+<span id="xcr-cli"></span><h3><a class="toc-backref" href="#id4" role="doc-backlink">XCR Command Line Tool</a><a class="headerlink" href="#xcr-command-line-tool" title="Link to this heading">¶</a></h3>
+<p>The <code class="docutils literal notranslate"><span class="pre">xilinx-container-runtime</span></code> command line tool allows for interrogating the host system for Xilinx devices and setting up containers in a seamless manner. For example, the following command will list all available cards on a system:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>xilinx-container-runtime<span class="w"> </span>lscard
+
+CardIndex<span class="w">       </span>SerialNum<span class="w">       </span>DeviceBDF<span class="w">       </span>UserPF<span class="w">                  </span>MgmtPF<span class="w">                  </span>ShellVersion
+<span class="m">0</span><span class="w">               </span>XFL1VCYC4XSP<span class="w">    </span><span class="m">0000</span>:21:00.1<span class="w">    </span>/dev/dri/renderD128<span class="w">     </span>/dev/xclmgmt8448<span class="w">        </span>xilinx_u30_gen3x4_base_2<span class="o">(</span>ama_u30<span class="o">)</span>
+<span class="m">0</span><span class="w">               </span>XFL1VCYC4XSP<span class="w">    </span><span class="m">0000</span>:22:00.1<span class="w">    </span>/dev/dri/renderD129<span class="w">     </span>/dev/xclmgmt8704<span class="w">        </span>xilinx_u30_gen3x4_base_2<span class="o">(</span>ama_u30<span class="o">)</span>
+<span class="m">1</span><span class="w">               </span>XFL1RT5PHT31<span class="w">    </span><span class="m">0000</span>:e2:00.1<span class="w">    </span>/dev/dri/renderD130<span class="w">     </span>/dev/xclmgmt57856<span class="w">       </span>xilinx_u30_gen3x4_base_2<span class="o">(</span>ama_u30<span class="o">)</span>
+<span class="m">1</span><span class="w">               </span>XFL1RT5PHT31<span class="w">    </span><span class="m">0000</span>:e3:00.1<span class="w">    </span>/dev/dri/renderD131<span class="w">     </span>/dev/xclmgmt58112<span class="w">       </span>xilinx_u30_gen3x4_base_2<span class="o">(</span>ama_u30<span class="o">)</span>
+</pre></div>
+</div>
+<p>For a complete reference of the <code class="docutils literal notranslate"><span class="pre">xilinx-container-runtime</span></code> command line tool, consult the <a class="reference external" href="https://xilinx.github.io/Xilinx_Container_Runtime/cli.html">xilinx-container-runtime documentation</a></p>
+</section>
+<section id="setting-xcr-as-docker-runtime">
+<span id="xcr-setup"></span><h3><a class="toc-backref" href="#id5" role="doc-backlink">Setting XCR as Docker Runtime</a><a class="headerlink" href="#setting-xcr-as-docker-runtime" title="Link to this heading">¶</a></h3>
+<p>Follow the steps below to configure Docker to run with XCR:</p>
+<ol class="arabic simple">
+<li><p>Update <code class="file docutils literal notranslate"><span class="pre">/etc/docker/daemon.json</span></code> to contain the following text:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-json notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
+<span class="w">    </span><span class="nt">&quot;runtimes&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">&quot;xilinx&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="nt">&quot;path&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;/usr/bin/xilinx-container-runtime&quot;</span><span class="p">,</span>
+<span class="w">            </span><span class="nt">&quot;runtimeArgs&quot;</span><span class="p">:</span><span class="w"> </span><span class="p">[]</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div></blockquote>
+<ol class="arabic simple" start="2">
+<li><p>Restart the Docker service:</p></li>
+</ol>
+<blockquote>
+<div><div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo<span class="w"> </span>systemctl<span class="w"> </span>restart<span class="w"> </span>docker
+</pre></div>
+</div>
+</div></blockquote>
+<p>For more details see the <a class="reference external" href="https://xilinx.github.io/Xilinx_Container_Runtime/docker.html">XCR docker integration guide</a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="creating-a-docker-image">
+<span id="create-docker-image"></span><h2><a class="toc-backref" href="#id6" role="doc-backlink">Creating a Docker Image</a><a class="headerlink" href="#creating-a-docker-image" title="Link to this heading">¶</a></h2>
+<p>There are no specific requirements in creating Docker images, for U30. Images need to include application specific packages and access to Xilinx Video SDK.
+As an example, the following is a minimal sample dockerfile, for Ubuntu 18.04 container:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>FROM ubuntu:18.04
+ARG DEBIAN_FRONTEND=&quot;noninteractive&quot;
+
+SHELL [&quot;/bin/bash&quot;, &quot;-c&quot;]
+RUN echo &#39;deb [trusted=yes] https://packages.xilinx.com/artifactory/debian-packages bionic main&#39; &gt; /etc/apt/sources.list.d/xilinx.list
+RUN echo &#39;Acquire { https::Verify-Peer false }&#39; &gt; /etc/apt/apt.conf.d/99verify-peer.conf
+RUN apt-get update
+RUN apt-get -y install git apt-utils sudo xrt=2.11.722 xilinx-alveo-u30-core xilinx-alveo-u30-examples &amp;&amp; \
+    apt-mark hold xrt
+RUN git clone https://github.com/gdraheim/docker-systemctl-replacement.git /usr/local/share/docker-systemctl-replacement
+RUN echo &quot;alias systemctl=&#39;python3 /usr/local/share/docker-systemctl-replacement/files/docker/systemctl3.py&#39;&quot; &gt;&gt; /root/.bashrc
+RUN ln -s /usr/local/share/docker-systemctl-replacement/files/docker/systemctl3.py /usr/local/bin/systemctl
+#These two lines are needed only for cent, rhl or al2
+#RUN mv /usr/bin/systemctl /usr/bin/systemctl.fac
+#RUN ln -s /usr/local/bin/systemctl /usr/bin/systemctl
+RUN export PATH=/usr/local/bin/:$PATH
+</pre></div>
+</div>
+<p>Once a dockerfile is created, the corresponding Docker image is built as follows:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker build -t video_sdk_image:v3 -f &lt;DOCKERFILE_PATH&gt; .
+</pre></div>
+</div>
+<p>, where (<code class="docutils literal notranslate"><span class="pre">video_sdk_image:v3</span></code>) is the name assigned to the Docker image and &lt;DOCKERFILE_PATH&gt; is the path to the customized dockerfile</p>
+<p>NOTE: To create and instantiate a Docker image, a working <a class="reference external" href="https://docs.docker.com/engine/install/">installation</a> of Docker is required.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="launching-a-docker-container">
+<span id="launch-docker-image"></span><h2><a class="toc-backref" href="#id7" role="doc-backlink">Launching a Docker Container</a><a class="headerlink" href="#launching-a-docker-container" title="Link to this heading">¶</a></h2>
+<p>A Docker container can be launched with or without XCR, the Xilinx Container Runtime. XCR provides a convenient method for assigning either individual devices or cards to a container. Launching a Docker image without using the Xilinx Container Runtime requires explicitly assigning one of more devices to the container.</p>
+<section id="launching-a-docker-container-with-xcr">
+<span id="launch-docker-xcr"></span><h3><a class="toc-backref" href="#id8" role="doc-backlink">Launching a Docker Container with XCR</a><a class="headerlink" href="#launching-a-docker-container-with-xcr" title="Link to this heading">¶</a></h3>
+<p>Whether on Amazon EC2 VT1 or on-premises, follow the steps below to launch a container using the Xilinx Container Runtime (XCR):</p>
+<ol class="arabic">
+<li><p>Create Docker image (<code class="docutils literal notranslate"><span class="pre">video_sdk_image:v3</span></code>), as per <a class="reference internal" href="#create-docker-image"><span class="std std-ref">Creating a Docker Image</span></a>.</p></li>
+<li><p>Configure Docker to use XCR, as per <a class="reference internal" href="#xcr-setup"><span class="std std-ref">Setting XCR as Docker Runtime</span></a>.</p></li>
+<li><p>Run the Docker container using either the <span class="target" id="index-0"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">XILINX_VISIBLE_CARDS</span></code> or the <span class="target" id="index-1"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">XILINX_VISIBLE_DEVICES</span></code> environment variable:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker run -it --rm --runtime=xilinx -e XILINX_VISIBLE_DEVICES=0,1 video_sdk_image:v3 /bin/bash -c &quot;. /opt/xilinx/xrt/setup.sh &amp;&amp; xbutil examine&quot;
+</pre></div>
+</div>
+</li>
+</ol>
+<blockquote>
+<div><ul class="simple">
+<li><p>The <span class="target" id="index-2"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">XILINX_VISIBLE_CARDS</span></code> variable is used to specify a list of cards to be mapped</p></li>
+<li><p>The <span class="target" id="index-3"></span><code class="xref std std-envvar docutils literal notranslate"><span class="pre">XILINX_VISIBLE_DEVICES</span></code> variable is used to specify a list of devices to be mapped</p></li>
+<li><p>Both variables either take <code class="docutils literal notranslate"><span class="pre">all</span></code> or comma separated indices for card or devices</p></li>
+<li><p>In the example above, the command maps devices 0 and 1 to the launched container</p></li>
+</ul>
+</div></blockquote>
+<p class="rubric">NOTES</p>
+<ul class="simple">
+<li><p>By default, XCR will perform exclusive assignment of devices to containers: a device will be locked to the specific container from the time of container being created till the container is stopped. While this mode can be <a class="reference external" href="https://xilinx.github.io/Xilinx_Container_Runtime/docker.html#disable-device-exclusive-mode">disabled</a>, Xilinx recommends against doing so, as having different containers access the same device is not supported for U30 cards.</p></li>
+</ul>
+</section>
+<section id="launching-a-docker-container-without-xcr-on-vt1">
+<span id="launch-docker-vt1"></span><h3><a class="toc-backref" href="#id9" role="doc-backlink">Launching a Docker Container without XCR on Amazon EC2 VT1</a><a class="headerlink" href="#launching-a-docker-container-without-xcr-on-vt1" title="Link to this heading">¶</a></h3>
+<ol class="arabic">
+<li><p>Create Docker image (<code class="docutils literal notranslate"><span class="pre">video_sdk_image:v3</span></code>), as per <a class="reference internal" href="#create-docker-image"><span class="std std-ref">Creating a Docker Image</span></a>.</p></li>
+<li><p>Gather the User BDFs and renderIDs of the Xilinx devices present in your system. For detailled information on how to do this, refer to the instructions for looking-up the <a class="reference internal" href="card_management.html#device-bdf"><span class="std std-ref">User BDF</span></a> and <a class="reference internal" href="card_management.html#device-render-id"><span class="std std-ref">renderID</span></a>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xbutil examine
+...
+ls /sys/bus/pci/devices/&lt;Domain&gt;\:&lt;Bus&gt;\:&lt;Device&gt;.&lt;Function&gt;/drm
+</pre></div>
+</div>
+</li>
+<li><p>Run the Docker container using the <code class="docutils literal notranslate"><span class="pre">--device</span></code> option with the renderID (user function port) of the desired devices to make them accessible by the container:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker run -it --device=/dev/dri/renderD&lt;ID1&gt;:/dev/dri/renderD&lt;ID1&gt;
+               --device=/dev/dri/renderD&lt;ID2&gt;:/dev/dri/renderD&lt;ID2&gt;
+               video_sdk_image:v3 /bin/bash
+</pre></div>
+</div>
+</li>
+<li><p>Once in the container, validate that the desired devices have been successfully mapped and can properly be used:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xrt/setup.sh
+xbutil examine
+</pre></div>
+</div>
+</li>
+</ol>
+<p class="rubric">NOTES</p>
+<ul class="simple">
+<li><p>AWS has created a script to automatically generate the <code class="docutils literal notranslate"><span class="pre">--device</span></code> option with the renderID of all available devices. The script can be found <a class="reference external" href="https://raw.githubusercontent.com/Xilinx/Xilinx_Base_Runtime/master/utilities/xilinx_aws_docker_setup.sh">here</a> Details about how to use this script can be found on the AWS Compute Blog: <a class="reference external" href="https://aws.amazon.com/blogs/compute/deep-dive-on-amazon-ec2-vt1-instances/">https://aws.amazon.com/blogs/compute/deep-dive-on-amazon-ec2-vt1-instances/</a></p></li>
+</ul>
+</section>
+<section id="launching-a-docker-container-without-xcr-on-premises">
+<span id="launch-docker-on-prem"></span><h3><a class="toc-backref" href="#id10" role="doc-backlink">Launching a Docker Container without XCR on Premises</a><a class="headerlink" href="#launching-a-docker-container-without-xcr-on-premises" title="Link to this heading">¶</a></h3>
+<ol class="arabic">
+<li><p>Create Docker image (<code class="docutils literal notranslate"><span class="pre">video_sdk_image:v3</span></code>), as per <a class="reference internal" href="#create-docker-image"><span class="std std-ref">Creating a Docker Image</span></a>.</p></li>
+<li><p>Gather the User BDFs and renderIDs of the Xilinx devices present in your system. For detailled information on how to do this, refer to the instructions for looking-up the <a class="reference internal" href="card_management.html#device-bdf"><span class="std std-ref">User BDF</span></a> and <a class="reference internal" href="card_management.html#device-render-id"><span class="std std-ref">renderID</span></a>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xbutil examine
+...
+ls /sys/bus/pci/devices/&lt;Domain&gt;\:&lt;Bus&gt;\:&lt;Device&gt;.&lt;Function&gt;/drm
+</pre></div>
+</div>
+</li>
+<li><p>Gather the Management BDFs and xclmgmtID of the Xilinx devices present in your system. For detailled information on how to do this, refer to the instructions for looking-up the <a class="reference internal" href="card_management.html#device-management-bdf"><span class="std std-ref">Management BDF</span></a> and <a class="reference internal" href="card_management.html#device-xclmgmt-id"><span class="std std-ref">xclmgmtID</span></a>.</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>xbmgmt examine
+...
+cat /sys/bus/pci/devices/&lt;Domain&gt;\:&lt;Bus&gt;\:&lt;Device&gt;.&lt;Function&gt;/instance
+</pre></div>
+</div>
+</li>
+<li><p>Run the Docker container using the <code class="docutils literal notranslate"><span class="pre">--device</span></code> option with the renderID (user function port) and the xclmgmtID (management function port) of the desired devices to make them accessible by the container:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>docker run -it --device=/dev/dri/renderD&lt;ID1&gt;:/dev/dri/renderD&lt;ID1&gt; --device=/dev/xclmgmt&lt;ID1&gt;:/dev/xclmgmt&lt;ID1&gt;
+               --device=/dev/dri/renderD&lt;ID2&gt;:/dev/dri/renderD&lt;ID2&gt; --device=/dev/xclmgmt&lt;ID2&gt;:/dev/xclmgmt&lt;ID2&gt;
+               video_sdk_image:v3 /bin/bash
+</pre></div>
+</div>
+</li>
+<li><p>Once in the container, validate that the desired devices have been successfully mapped and can properly be used:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xrt/setup.sh
+xbutil examine
+</pre></div>
+</div>
+</li>
+</ol>
+<p class="rubric">NOTES</p>
+<ul class="simple">
+<li><p>Mapping the management port using the xclmgmtID allows using to the <code class="docutils literal notranslate"><span class="pre">xbmgmt</span></code> card management utility from within the container. Doing so is optional.</p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="getting_started_on_vt1.html" class="btn btn-neutral float-left" title="Getting Started on Amazon EC2 VT1" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="examples.html" class="btn btn-neutral float-right" title="Tutorials and Examples" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on October 16, 2024.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
