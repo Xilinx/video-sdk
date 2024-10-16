@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  
+<!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
+
+<script src="https://cdn.cookielaw.org/scripttemplates/otSDKStub.js" data-document-language="true" type="text/javascript" charset="UTF-8" data-domain-script="03af8d57-0a04-47a6-8f10-322fa00d8fc7" ></script>
+<script type="text/javascript">
+function OptanonWrapper() { }
+</script>
+<!-- OneTrust Cookies Consent Notice end for xilinx.github.io -->
+<!-- Google Tag Manager -->
+<script type="text/plain" class="optanon-category-C0002">(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5RHQV7');</script>
+<!-- End Google Tag Manager -->
+  <title>Xilinx Video SDK Release Notes &mdash; Xilinx Video SDK 3.1 (Production) documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+      <link rel="stylesheet" href="_static/_static/custom.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="_static/documentation_options.js?v=d2dc9114"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Getting Started with Alveo U30 on Premises" href="getting_started_on_prem.html" />
+    <link rel="prev" title="Xilinx Video SDK" href="index.html" /> 
+</head>
+
+<body class="wy-body-for-nav">
+
+<!-- Google Tag Manager -->
+<noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-5RHQV7" height="0" width="0" style="display:none;visibility:hidden" class="optanon-category-C0002"></iframe></noscript>
+<!-- End Google Tag Manager --> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+            <a href="index.html" class="icon icon-home"> Xilinx Video SDK
+          </a>
+              <div class="version">
+                3.1
+              </div>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Get Started</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Release Notes</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-s-new">What’s New</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#changed-behavior">Changed Behavior</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#new-k8s-device-plugin">New k8s-device-plugin</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="#supported-platforms-and-operating-systems">Supported Platforms and Operating Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#limitations">Limitations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#known-issues">Known Issues</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#potential-failed-error-code-when-sourcing-the-setup-sh-script">Potential “failed” error code when sourcing the setup.sh script</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#running-xbutil-validate-from-a-vm-with-version-1-5-installed-gives-an-error">Running ‘xbutil validate’ from a VM with version 1.5 installed gives an error</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#custom-rate-control-needs-a-minimum-of-8-lookahead-frames-for-reasonable-picture-quality">Custom rate control needs a minimum of 8 lookahead frames for reasonable picture quality</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#the-encoder-adds-duplicate-frames-for-streams-with-fps-and-timescale-parameters-which-do-not-match">The encoder adds duplicate frames for streams with ‘fps’ and ‘timescale’ parameters which do not match</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ffmpeg-jobs-split-across-two-devices-need-the-xvbm-convert-filter-to-move-data-between-devices">FFmpeg jobs split across two devices need the xvbm_convert filter to move data between devices</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#initialization-error-when-encoding-to-4k">Initialization error when encoding to 4K</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#potential-too-many-packets-buffered-for-output-stream-0-1-error-when-running-ffmpeg">Potential “Too many packets buffered for output stream 0:1” error when running FFmpeg</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#ffmpeg-rtmp-origin-lip-sync-issue">FFmpeg RTMP Origin Lip Sync Issue</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#multiple-starting-new-cluster-messages-when-encoding-to-matroska">Multiple “Starting new cluster” messages when encoding to Matroska</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#streams-with-rotation-metadata-may-cause-a-segfault-while-transcoding">Streams with rotation metadata may cause a segfault while transcoding</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#abrupt-termination-of-ffmpeg-processes-may-cause-video-resources-to-not-be-released-correctly">Abrupt termination of FFmpeg processes may cause video resources to not be released correctly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#gstreamer-package-installation-failure-on-rhel-due-to-dependencies">GStreamer package installation failure on RHEL due to dependencies</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_prem.html">On Premises</a></li>
+<li class="toctree-l1"><a class="reference internal" href="getting_started_on_vt1.html">Amazon EC2 VT1</a></li>
+<li class="toctree-l1"><a class="reference internal" href="container_setup.html">Container Setup</a></li>
+<li class="toctree-l1"><a class="reference internal" href="examples.html">Tutorials and Examples</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Reference Guides</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="specs_and_features.html">Specs and Features</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_ffmpeg.html">Using FFmpeg</a></li>
+<li class="toctree-l1"><a class="reference internal" href="using_gstreamer.html">Using GStreamer</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_video_quality.html">Tuning Video Quality</a></li>
+<li class="toctree-l1"><a class="reference internal" href="tuning_pipeline_latency.html">Tuning Transcode Latency</a></li>
+<li class="toctree-l1"><a class="reference internal" href="managing_compute_resources.html">Managing Compute Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="deploying_with_kubernetes.html">Deploying with Kubernetes</a></li>
+<li class="toctree-l1"><a class="reference internal" href="c_apis.html">C API Programming Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="card_management.html">Card Management</a></li>
+<li class="toctree-l1"><a class="reference internal" href="package_feed.html">Package Feed Setup</a></li>
+</ul>
+<p class="caption" role="heading"><span class="caption-text">Support</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">File an issue</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributing</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://xilinx.github.io/video-sdk/browse.html">Other versions</a></li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu"  style="background: black" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Xilinx Video SDK</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+      <li>Xilinx Video SDK Release Notes</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="sdk-release-notes">
+<h1>Xilinx Video SDK Release Notes<a class="headerlink" href="#sdk-release-notes" title="Link to this heading">¶</a></h1>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>Version: 3.1 (Production)</p>
+</div>
+<nav class="contents local" id="table-of-contents">
+<p class="topic-title">Table of Contents</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#what-s-new" id="id1">What’s New</a></p></li>
+<li><p><a class="reference internal" href="#changed-behavior" id="id2">Changed Behavior</a></p></li>
+<li><p><a class="reference internal" href="#supported-platforms-and-operating-systems" id="id3">Supported Platforms and Operating Systems</a></p></li>
+<li><p><a class="reference internal" href="#limitations" id="id4">Limitations</a></p></li>
+<li><p><a class="reference internal" href="#known-issues" id="id5">Known Issues</a></p></li>
+</ul>
+</nav>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+<section id="what-s-new">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">What’s New</a><a class="headerlink" href="#what-s-new" title="Link to this heading">¶</a></h2>
+<p>This version provides various performance and stability improvements and new features including:</p>
+<ul class="simple">
+<li><p>Support for deployment and installation through package feed</p></li>
+<li><p>Dynamic GOP</p></li>
+<li><p>Ultra low latency (ULL) encoding</p></li>
+<li><p>Min/max frame QP bounding</p></li>
+<li><p>Enhanced operating system support</p></li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="changed-behavior">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Changed Behavior</a><a class="headerlink" href="#changed-behavior" title="Link to this heading">¶</a></h2>
+<section id="new-k8s-device-plugin">
+<h3>New k8s-device-plugin<a class="headerlink" href="#new-k8s-device-plugin" title="Link to this heading">¶</a></h3>
+<p>A new Kubernetes plugin is available for U30 cards. This new plugin no longer requires an exact version number when specifying U30 resource limits. This allows for compatibility of pod description files across all releases of the Xilinx Video SDK. Kubernetes clusters using this plugin will continue to work seamlessly even after an upgrade of the Xilinx Video SDK. <strong>If using Kubernetes, to prevent service degradation, it is necessary to deploy this new plugin (version 1.1.0)</strong>  before upgrading to the latest version of the Xilinx Video SDK. For more details, refer to the instructions for <a class="reference internal" href="deploying_with_kubernetes.html#deploying-with-kubernetes"><span class="std std-ref">deploying with Kubernetes</span></a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+</section>
+<section id="supported-platforms-and-operating-systems">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Supported Platforms and Operating Systems</a><a class="headerlink" href="#supported-platforms-and-operating-systems" title="Link to this heading">¶</a></h2>
+<p>The Xilinx Video SDK currently supports the following platforms:</p>
+<ul class="simple">
+<li><p>Xilinx Alveo U30</p></li>
+<li><p>Amazon EC2 VT1</p></li>
+</ul>
+<p>The Xilinx Video SDK currently supports the following software tools:</p>
+<ul class="simple">
+<li><p>FFmpeg 4.4</p></li>
+<li><p>GStreamer 1.16.2</p></li>
+</ul>
+<p>The Xilinx Video SDK has been tested and validated by Xilinx on the following operating environments:</p>
+<ul class="simple">
+<li><p>Amazon Linux 2 (Kernel 4.14 and 5.10)</p></li>
+<li><p>Ubuntu 22.04 (Kernel 5.15)</p></li>
+<li><p>Ubuntu 20.04.4 (Kernel 5.13)</p></li>
+<li><p>Ubuntu 20.04.3 (Kernel 5.11)</p></li>
+<li><p>Ubuntu 20.04.1 (Kernel 5.4)</p></li>
+<li><p>Ubuntu 20.04.0 (Kernel 5.4)</p></li>
+<li><p>Ubuntu 18.04.5 (Kernel 5.4)</p></li>
+<li><p>RHEL 7.8 (Kernel 4.9.184)</p></li>
+</ul>
+<p>The above list of validated operating environments is not intended to be exclusionary. If you choose to run the Xilinx Video SDK using a different operating environment and encounter issues, please <a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">file a GitHub issue</a>.</p>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="limitations">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Limitations</a><a class="headerlink" href="#limitations" title="Link to this heading">¶</a></h2>
+<ul class="simple">
+<li><p>The Xilinx Video SDK supports both 8 and 10-bit streams, but they cannot be mixed together. The entire pipeline must be either 8 or 10-bits.</p></li>
+<li><p>The Xilinx Video SDK is optimized for live video real-time transcoding. Even though a single Alveo U30 card has the capability of running two Ultra HD (4K) transcodes in real-time at 60 frames per second (2x4kp60), running a single 4k stream at 120 fps is not supported. Similarly, a single Alveo U30 card supports up to 8x1080p60 transcodes in real-time, but it does not support fewer streams running at 120fps or beyond.</p></li>
+<li><p>The maximum aggregate bandwidth bitrate tested per device is 35 Mb/s for 4kp60 for 8-bit and 10-bit streams. Performance of video encoding is not qualified for higher bitrates.</p></li>
+<li><p>When using 10-bit streams, real-time performance for an aggregate bandwidth of 4kp60 per device is not be guaranteed.</p>
+<ul>
+<li><p>Techniques to improve performance include: enabling pipelining when using the scaler, using low latency input streams, adjusting the output bitrate, increasing the number of entropy buffers in the decoder and reducing the number of B-frames in the encoder and the input stream.</p></li>
+</ul>
+</li>
+<li><p>When decoding streams with a high bitrate or with a large number of B-frames, jobs may not meet real-time performance when 2 entropy buffers are used (default setting). In this case, it is recommended to use more entropy buffers. The maximum number of entropy buffers in the decoder is 10.</p></li>
+<li><p>4K60 encode-only and decode-only use cases involve significant transfers of raw data between the host and the device. This may impact the overall performance.</p></li>
+<li><p>When encoding 4k streams to H.264, the <a class="reference internal" href="using_ffmpeg.html#cmdoption-slices"><code class="xref std std-option docutils literal notranslate"><span class="pre">-slices</span></code></a> option is required to sustain real-time performance. A value of 4 is recommended. This option is not required when encoding to HEVC.</p></li>
+<li><p>Transcode pipelines split across two devices involving a H264 codec will not meet realtime performance for 10-bit streams.</p></li>
+<li><p>When processing a 1080p60 stream, the scaler can only sustain a rate of 60fps for up to 5 outputs. Therefore, given 4 1080p60 input streams, real-time performance is only possible for up to 20 scaled outputs.</p></li>
+<li><p>The scaler is tuned for downscaling and expects non-increasing resolutions in an ABR ladder. Increasing resolutions between outputs is supported but will reduce video quality.</p></li>
+<li><p>The lookahead depth must be less than the periodicity of Intra and IDR frames.</p></li>
+<li><p>If the decoded input stream has fps information in both the container and the VUI header, the decoder takes the fps information from the container instead of the VUI header.</p></li>
+<li><p>HDR10/10+ is supported only for transcode uses cases (involving both the hardware decoder and encoder) and with the following restrictions:</p>
+<ul>
+<li><p>Ambient Viewing Environment SEI not supported</p></li>
+<li><p>Tone mapping Info SEI not supported</p></li>
+<li><p>Color Remapping Info SEI not supported</p></li>
+<li><p>HDR10+ Data caching for frame rate conversion is not supported</p></li>
+<li><p>Metadata adaptation for resolution scaling is not supported</p></li>
+<li><p>Transfer characteristics other than AL_TRANSFER_CHARAC_BT_2100_PQ (16) and AL_TRANSFER_CHARAC_BT_2100_HLG (18) are not supported. If any other value is specified, the encoder defaults to AL_TRANSFER_CHARAC_UNSPECIFIED (2).</p></li>
+<li><p>Color matrix coefficients other than AL_COLOUR_MAT_COEFF_BT_2100_YCBCR (9) are not supported. If any other value is specified, the encoder defaults to AL_COLOUR_MAT_COEFF_UNSPECIFIED (2).</p></li>
+</ul>
+</li>
+</ul>
+<div class="line-block">
+<div class="line"><br /></div>
+</div>
+</section>
+<section id="known-issues">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Known Issues</a><a class="headerlink" href="#known-issues" title="Link to this heading">¶</a></h2>
+<section id="potential-failed-error-code-when-sourcing-the-setup-sh-script">
+<h3>Potential “failed” error code when sourcing the setup.sh script<a class="headerlink" href="#potential-failed-error-code-when-sourcing-the-setup-sh-script" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p>Description: If you source the setup script on a machine where the Xilinx Video SDK environment has already been initialized, you will see the “failed” status being reported.</p></li>
+<li><p>Solution: This is not an indication of a problem. This status simply states that your environment is already set up and that the system is ready for use.:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-----Load xrm plugins-----
+{
+    &quot;response&quot;: {
+        &quot;name&quot;: &quot;loadXrmPlugins&quot;,
+        &quot;requestId&quot;: &quot;1&quot;,
+        &quot;status&quot;: &quot;failed&quot;,
+        &quot;data&quot;: {
+            &quot;failed&quot;: &quot;plugin xrmU30DecPlugin (version 2) is already loaded&quot;
+        }
+    }
+}
+
+---------------------------------------
+</pre></div>
+</div>
+</li>
+</ul>
+</section>
+<section id="running-xbutil-validate-from-a-vm-with-version-1-5-installed-gives-an-error">
+<h3>Running ‘xbutil validate’ from a VM with version 1.5 installed gives an error<a class="headerlink" href="#running-xbutil-validate-from-a-vm-with-version-1-5-installed-gives-an-error" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Description: After the devices have been flashed with the version 2.0 or newer, running ‘xbutil validate’ from a virtual machine with version 1.5 installed results in an error. The validation program included in version 1.5 of the Xilinx Video SDK is not forward compatible with version 2.0 or newer.</p></li>
+<li><p>Solution: None</p></li>
+</ul>
+</section>
+<section id="custom-rate-control-needs-a-minimum-of-8-lookahead-frames-for-reasonable-picture-quality">
+<h3>Custom rate control needs a minimum of 8 lookahead frames for reasonable picture quality<a class="headerlink" href="#custom-rate-control-needs-a-minimum-of-8-lookahead-frames-for-reasonable-picture-quality" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Description: Custom rate control is automatically enabled when the lookahead depth is set to 1 or more. However, to obtain reasonable picture quality, custom rate control needs a minimum of 8 lookahead frames.</p></li>
+<li><p>Solution: Increase the lookahead depth to 8 frames or more when using custom rate control, or set the control rate to constant when using less a lookahead depth smaller than 8.</p></li>
+</ul>
+</section>
+<section id="the-encoder-adds-duplicate-frames-for-streams-with-fps-and-timescale-parameters-which-do-not-match">
+<h3>The encoder adds duplicate frames for streams with ‘fps’ and ‘timescale’ parameters which do not match<a class="headerlink" href="#the-encoder-adds-duplicate-frames-for-streams-with-fps-and-timescale-parameters-which-do-not-match" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Description: When the ‘fps’ and ‘timescale’ parameters of the input stream do not match, FFmpeg calculates a framerate value which leads to duplicate streams.</p></li>
+<li><p>Solution: Ensure  ‘fps’ and ‘timescale’ parameters match</p></li>
+</ul>
+</section>
+<section id="ffmpeg-jobs-split-across-two-devices-need-the-xvbm-convert-filter-to-move-data-between-devices">
+<h3>FFmpeg jobs split across two devices need the xvbm_convert filter to move data between devices<a class="headerlink" href="#ffmpeg-jobs-split-across-two-devices-need-the-xvbm-convert-filter-to-move-data-between-devices" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Description: FFmpeg will generate garbage results if a job is split across two devices without using the <a class="reference internal" href="using_ffmpeg.html#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filter to copy the frame buffers between devices.</p></li>
+<li><p>Solution: Use <a class="reference internal" href="using_ffmpeg.html#cmdoption-arg-xvbm_convert"><code class="xref std std-option docutils literal notranslate"><span class="pre">xvbm_convert</span></code></a> filters to ensure the second device operates on valid data, as explained in the <a class="reference internal" href="using_ffmpeg.html#ffmpeg-data-movement"><span class="std std-ref">data movement</span></a> section of the documentation.</p></li>
+</ul>
+</section>
+<section id="initialization-error-when-encoding-to-4k">
+<h3>Initialization error when encoding to 4K<a class="headerlink" href="#initialization-error-when-encoding-to-4k" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p>Description: When running a 4K pipeline, the following error is seen when the encoder is initialized:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[XMA] ERROR:  ** xma-vcu-encoder VCU_INIT failed : device error: Channel creation failed, processing power of the available cores insufficient.
+</pre></div>
+</div>
+</li>
+<li><p>Solution: 4k30 encoding requires 2 cores and 4k60 encoding requires 4 cores. Set the <code class="docutils literal notranslate"><span class="pre">-slices</span></code> and <code class="docutils literal notranslate"><span class="pre">-cores</span></code> encoder options accordingly.</p></li>
+</ul>
+</section>
+<section id="potential-too-many-packets-buffered-for-output-stream-0-1-error-when-running-ffmpeg">
+<h3>Potential “Too many packets buffered for output stream 0:1” error when running FFmpeg<a class="headerlink" href="#potential-too-many-packets-buffered-for-output-stream-0-1-error-when-running-ffmpeg" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Description: Some FFmpeg jobs may fail with a error message indicating “Too many packets buffered for output stream 0:1.”. This is a known FFmpeg issue (<a class="reference external" href="https://trac.ffmpeg.org/ticket/6375">https://trac.ffmpeg.org/ticket/6375</a>) which is not specific to the Xilinx Video SDK.</p></li>
+<li><p>Solution: Run FFmpeg with the <code class="docutils literal notranslate"><span class="pre">-max_muxing_queue_size</span> <span class="pre">9999</span></code> option</p></li>
+</ul>
+</section>
+<section id="ffmpeg-rtmp-origin-lip-sync-issue">
+<h3>FFmpeg RTMP Origin Lip Sync Issue<a class="headerlink" href="#ffmpeg-rtmp-origin-lip-sync-issue" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Description: On some rtmp streaming sources, lip sync issue may be observed.</p></li>
+<li><p>Solution: To resolve this issue add <code class="docutils literal notranslate"><span class="pre">-vsync</span> <span class="pre">cfr</span></code> option to the decoder.</p></li>
+</ul>
+</section>
+<section id="multiple-starting-new-cluster-messages-when-encoding-to-matroska">
+<h3>Multiple “Starting new cluster” messages when encoding to Matroska<a class="headerlink" href="#multiple-starting-new-cluster-messages-when-encoding-to-matroska" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Description: When encoding to .mkv, FFmpeg may have issues synchronizing video and audio data leading to messages of the following form: <code class="docutils literal notranslate"><span class="pre">[matroska</span> <span class="pre">&#64;</span> <span class="pre">0x563b3f675100]</span> <span class="pre">Starting</span> <span class="pre">new</span> <span class="pre">cluster</span></code></p></li>
+<li><p>Solution: Pass <code class="docutils literal notranslate"><span class="pre">-max_interleave_delta</span> <span class="pre">0</span></code> on the FFmpeg command line</p></li>
+</ul>
+</section>
+<section id="streams-with-rotation-metadata-may-cause-a-segfault-while-transcoding">
+<h3>Streams with rotation metadata may cause a segfault while transcoding<a class="headerlink" href="#streams-with-rotation-metadata-may-cause-a-segfault-while-transcoding" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Description: The hardware transcode pipeline can be unstable on a stream with rotation metadata.</p></li>
+<li><p>Solution: Use the FFmpeg <code class="docutils literal notranslate"><span class="pre">-noautorotate</span></code> option in cases where rotation metadata is present.</p></li>
+</ul>
+</section>
+<section id="abrupt-termination-of-ffmpeg-processes-may-cause-video-resources-to-not-be-released-correctly">
+<h3>Abrupt termination of FFmpeg processes may cause video resources to not be released correctly<a class="headerlink" href="#abrupt-termination-of-ffmpeg-processes-may-cause-video-resources-to-not-be-released-correctly" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Description: Rerunning FFmpeg after abrutly terminating previous runs gives an “xrm_allocation: resource allocation failed” error message indicating that there are not enough video resources available to run this job on the Xilinx device.</p></li>
+<li><p>Solution: Users should terminate all running FFmepg processes before exiting their shell. Otherwise, a SIGHUP will be sent to the running FFmpeg processes and this may result in an unhandled signal leading to non-graceful termination and video resources will not be released correctly.</p></li>
+</ul>
+</section>
+<section id="gstreamer-package-installation-failure-on-rhel-due-to-dependencies">
+<span id="rhel-subscription"></span><h3>GStreamer package installation failure on RHEL due to dependencies<a class="headerlink" href="#gstreamer-package-installation-failure-on-rhel-due-to-dependencies" title="Link to this heading">¶</a></h3>
+<ul class="simple">
+<li><p>Description: Package installation may fail as it is required to have an active RHEL subscription to download packages from RHEL’s repositories.</p></li>
+<li><p>Solution: Get a subscription to RHEL and re-run the installation. Refer to <a class="reference external" href="https://access.redhat.com/solutions/253273">https://access.redhat.com/solutions/253273</a></p></li>
+</ul>
+</section>
+</section>
+</section>
+
+
+           </div>
+          </div>
+          
+                  <style>
+                        .footer {
+                        position: fixed;
+                        left: 0;
+                        bottom: 0;
+                        width: 100%;
+                        }
+                  </style>
+				  
+				  <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="index.html" class="btn btn-neutral float-left" title="Xilinx Video SDK" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+        <a href="getting_started_on_prem.html" class="btn btn-neutral float-right" title="Getting Started with Alveo U30 on Premises" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right" aria-hidden="true"></span></a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on October 16, 2024.
+      </span></p>
+  </div>
+
+
+
+										<div class="aem-Grid aem-Grid--16">
+											<div class="aem-GridColumn aem-GridColumn--xxxlarge--none aem-GridColumn--xsmall--16 aem-GridColumn--offset--xsmall--0 aem-GridColumn--xlarge--none aem-GridColumn--xxlarge--none aem-GridColumn--default--none aem-GridColumn--offset--large--1 aem-GridColumn--xlarge--12 aem-GridColumn--offset--default--0 aem-GridColumn--xxlarge--10 aem-GridColumn--offset--xlarge--2 aem-GridColumn--offset--xxlarge--3 aem-GridColumn--offset--xxxlarge--4 aem-GridColumn--xsmall--none aem-GridColumn--large--none aem-GridColumn aem-GridColumn--large--14 aem-GridColumn--xxxlarge--8 aem-GridColumn--default--16">
+												<div class="container-fluid sub-footer">
+
+													                    <div class="row">
+                        <div class="col-xs-24">
+                          <p><a target="_blank" href="https://www.amd.com/en/corporate/copyright">Terms and Conditions</a> | <a target="_blank" href="https://www.amd.com/en/corporate/privacy">Privacy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/cookies">Cookie Policy</a> | <a target="_blank" href="https://www.amd.com/en/corporate/trademarks">Trademarks</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/statement-human-trafficking-forced-labor.pdf">Statement on Forced Labor</a> | <a target="_blank" href="https://www.amd.com/en/corporate/competition">Fair and Open Competition</a> | <a target="_blank" href="https://www.amd.com/system/files/documents/amd-uk-tax-strategy.pdf">UK Tax Strategy</a> | <a target="_blank" href="https://docs.xilinx.com/v/u/9x6YvZKuWyhJId7y7RQQKA">Inclusive Terminology</a> | <a href="#cookiessettings" class="ot-sdk-show-settings">Cookies Settings</a></p>
+                        </div>
+                    </div>
+												</div>
+											</div>
+										</div>
+										
+</br>
+
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script>
+ <script type="text/javascript">
+    $(document).ready(function() {
+        $(".toggle > *").hide();
+        $(".toggle .header").show();
+        $(".toggle .header").click(function() {
+            $(this).parent().children().not(".header").toggle(400);
+            $(this).parent().children(".header").toggleClass("open");
+        })
+    });
+</script>
+
+
+</body>
+</html>
