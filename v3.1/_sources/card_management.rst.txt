@@ -197,7 +197,7 @@ The ``xbutil examine`` commands provides useful details about your environment a
       Version              : 2.11.722
       Branch               : 2021.1
       Hash                 : d1ecc641da7b8805e778926e3354e8dd3fdaa6a8
-      Hash Date            : 2023-01-25 15:37:52
+      Hash Date            : 2024-01-25 15:37:52
       XOCL                 : 2.11.722, d1ecc641da7b8805e778926e3354e8dd3fdaa6a8
       XCLMGMT              : 2.11.722, d1ecc641da7b8805e778926e3354e8dd3fdaa6a8
 
@@ -443,7 +443,7 @@ Should there be an issue with the standard in-band recovery process, it is still
 ..
   ------------
   
-  © Copyright 2020-2023, Advanced Micro Devices, Inc.
+  © Copyright 2020-2024, Advanced Micro Devices, Inc.
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   

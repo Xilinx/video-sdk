@@ -93,7 +93,7 @@ See the :ref:`tutorials and examples <tutorials-and-examples>` page to learn how
 ..
   ------------
   
-  © Copyright 2020-2023, Advanced Micro Devices, Inc.
+  © Copyright 2020-2024, Advanced Micro Devices, Inc.
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   

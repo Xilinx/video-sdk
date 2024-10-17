@@ -81,6 +81,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li class="toctree-l3"><a class="reference internal" href="#multiple-starting-new-cluster-messages-when-encoding-to-matroska">Multiple “Starting new cluster” messages when encoding to Matroska</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#streams-with-rotation-metadata-may-cause-a-segfault-while-transcoding">Streams with rotation metadata may cause a segfault while transcoding</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#abrupt-termination-of-ffmpeg-processes-may-cause-video-resources-to-not-be-released-correctly">Abrupt termination of FFmpeg processes may cause video resources to not be released correctly</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#occasional-thread-error-message">Occasional thread error message</a></li>
 <li class="toctree-l3"><a class="reference internal" href="#gstreamer-package-installation-failure-on-rhel-due-to-dependencies">GStreamer package installation failure on RHEL due to dependencies</a></li>
 </ul>
 </li>
@@ -337,6 +338,17 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p>Solution: Users should terminate all running FFmepg processes before exiting their shell. Otherwise, a SIGHUP will be sent to the running FFmpeg processes and this may result in an unhandled signal leading to non-graceful termination and video resources will not be released correctly.</p></li>
 </ul>
 </section>
+<section id="occasional-thread-error-message">
+<h3>Occasional thread error message<a class="headerlink" href="#occasional-thread-error-message" title="Link to this heading">¶</a></h3>
+<ul>
+<li><p>Description: Occasionally, an error message may occur at the end of an FFMpeg/XMA operation:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[XMA] ERROR: ffmpeg xmaapi XMA thread1 failed-3. Session XMA private pointer is NULL
+</pre></div>
+</div>
+</li>
+<li><p>Solution: This message is a known cosmetic issue and does not impact quality or performance output.</p></li>
+</ul>
+</section>
 <section id="gstreamer-package-installation-failure-on-rhel-due-to-dependencies">
 <span id="rhel-subscription"></span><h3>GStreamer package installation failure on RHEL due to dependencies<a class="headerlink" href="#gstreamer-package-installation-failure-on-rhel-due-to-dependencies" title="Link to this heading">¶</a></h3>
 <ul class="simple">
@@ -368,8 +380,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on October 16, 2024.
+    <p>&#169; Copyright 2020-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on November 12, 2024.
       </span></p>
   </div>
 

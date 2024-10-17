@@ -33,16 +33,45 @@
 
 #. Ensure your package management client points to the remote package repository for the |SDK|, according to the instructions described in the :ref:`package feed configuration <package-feed-configuration>` page. 
 
-#. Install the core package of the |SDK|. **Note**: it is imperative for the XRT package to be set to version 2.11.722.
+#. Install the core package of the |SDK|. **Note**: it is imperative for the XRT package to be set to version 2.11.730.
 
    + Ubuntu
 
    ::
 
     sudo apt-get update
-    sudo apt-get install xrt=2.11.722
+    sudo apt-get install xrt=2.11.730
     sudo apt-mark hold xrt
     sudo apt-get install xilinx-alveo-u30-core   
+
+   .. note::
+   
+      If you are not able to install some of the SDK packages, and are seeing a message similar to the following::
+      
+         Err:10 https://packages.xilinx.com/artifactory/debian-packages focal/main ...
+         403  Forbidden [IP: xxx.xxx.xxx.xxx 443]
+      
+      This is due to a known `bug <https://bugs.launchpad.net/ubuntu/+source/apt/+bug/1950095>`__ in ``apt``. To resolve this issue, proceed as follows:
+      
+      **Ubuntu 20.04**: Update your ``apt`` version using ``ppa:gpxbv/apt-urlfix`` PPA, by following the instructions noted below:
+      
+      #. sudo apt install software-properties-common
+      #. sudo add-apt-repository ppa:gpxbv/apt-urlfix
+      #. sudo apt install apt apt-utils
+      #. Proceed with the SDK installation
+      
+      **Ubuntu 18.04**: Update your ``apt`` version using the ``focal`` feed:
+      
+      #. Add the following lines to ``/etc/apt/sources.list.d/xilinx.list``::
+   
+            deb http://cz.archive.ubuntu.com/ubuntu focal main
+            deb http://us.archive.ubuntu.com/ubuntu/ focal main restricted
+            deb http://us.archive.ubuntu.com/ubuntu/ focal-updates main restricted
+      
+      #. sudo apt-get update
+      #. sudo apt install apt
+
+
 
    + RHEL and Amazon Linux 2
 
@@ -50,8 +79,8 @@
 
     sudo yum update
     sudo yum install yum-plugin-versionlock
-    sudo yum install xrt-2.11.722-1.x86_64
-    sudo yum versionlock xrt-2.11.722
+    sudo yum install xrt-2.11.730-1.x86_64
+    sudo yum versionlock xrt-2.11.730
     sudo yum install xilinx-alveo-u30-core
 
 #. Optionally install the other packages of the |SDK|. Refer to the :ref:`package description <package-feed>` table for more details on the different packages included in the |SDK|.  **Note**: on RHEL, installing the GStreamer package requires an :ref:`active RHEL subscription <rhel-subscription>`.
@@ -77,7 +106,7 @@
 ..
   ------------
   
-  © Copyright 2020-2023, Advanced Micro Devices, Inc.
+  © Copyright 2020-2024, Advanced Micro Devices, Inc.
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   

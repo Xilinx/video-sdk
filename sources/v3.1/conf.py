@@ -27,7 +27,7 @@ sys.path.insert(0, os.path.abspath('docs'))
 # Enter project name in next line, replacing example text
 project = 'Xilinx Video SDK'
 # Enter copyright date range in next line. All years that your project has been released should be included.
-copyright = '2020-2023, Advanced Micro Devices, Inc'
+copyright = '2020-2024, Advanced Micro Devices, Inc'
 author = 'Advanced Micro Devices, Inc'
 
 # The short X.Y version
@@ -285,7 +285,7 @@ def setup(app):
     app.add_transform(AutoStructify)
 
 #
-# © Copyright 2020-2023, Advanced Micro Devices, Inc.
+# © Copyright 2020-2024, Advanced Micro Devices, Inc.
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.

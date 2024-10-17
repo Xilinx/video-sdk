@@ -7,5 +7,7 @@ html:
 pub:
 	git push origin
 sandbox:
-	rsync -a --delete ../sources/v$(VER)/ ../sandbox/video-sdk/sources/v$(VER)/
-	rsync -a --delete ../v$(VER)/ ../sandbox/video-sdk/v$(VER)/
+	$(eval BRANCH := $(shell git rev-parse --abbrev-ref HEAD))
+	cd ../sandbox/video-sdk/ && git checkout $(BRANCH) --
+	rsync -a --delete --exclude  .git --exclude sandbox --exclude .cproject --exclude .externalToolBuilders --exclude  .project --exclude  .pydevproject ../ ../sandbox/video-sdk/
+

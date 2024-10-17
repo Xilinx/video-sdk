@@ -229,6 +229,15 @@ Abrupt termination of FFmpeg processes may cause video resources to not be relea
 
 - Solution: Users should terminate all running FFmepg processes before exiting their shell. Otherwise, a SIGHUP will be sent to the running FFmpeg processes and this may result in an unhandled signal leading to non-graceful termination and video resources will not be released correctly.
 
+Occasional thread error message
+===============================
+.. https://jira.xilinx.com/browse/CR-1216943
+
+- Description: Occasionally, an error message may occur at the end of an FFMpeg/XMA operation::
+
+  [XMA] ERROR: ffmpeg xmaapi XMA thread1 failed-3. Session XMA private pointer is NULL
+
+- Solution: This message is a known cosmetic issue and does not impact quality or performance output.
 
 .. _rhel-subscription:
 
@@ -243,7 +252,7 @@ GStreamer package installation failure on RHEL due to dependencies
 ..
   ------------
   
-  © Copyright 2020-2023, Advanced Micro Devices, Inc.
+  © Copyright 2020-2024, Advanced Micro Devices, Inc.
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   

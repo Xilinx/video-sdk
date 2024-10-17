@@ -16,6 +16,14 @@ Overview
 
 The |SDK| provides a C-based application programming interface (API) which facilitates the integration of Xilinx transcoding capabilities in proprietary frameworks. This API is provided in the form of plugins leveraging the Xilinx Media Accelerator (XMA) library and the Xilinx Resource Manager (XRM) library.
 
+.. rubric:: Prerequisites
+
+The following dependencies need to be satisfied to be able to build and run XMA based applications:
+
+#. ``cmake``
+#. ``nasm``
+#. ``ncurses`` development packages
+
 .. rubric:: The XMA Library
 
 The XMA library (libxmaapi) is meant to simplify the development of applications managing and controlling video accelerators such as decoders, scalers, filters, and encoders. The libxmaapi is comprised of two API interfaces: the lower-edge interface and the upper-edge interface: 
@@ -151,7 +159,7 @@ These should add the following switches to your gcc commands::
 ..
   ------------
   
-  © Copyright 2020-2023, Advanced Micro Devices, Inc.
+  © Copyright 2020-2024, Advanced Micro Devices, Inc.
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   

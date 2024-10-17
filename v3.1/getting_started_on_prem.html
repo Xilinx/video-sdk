@@ -174,23 +174,51 @@ sudo yum remove xrm xilinx-container-runtime xilinx-xvbm xilinx-u30-xrm-decoder 
 </div>
 </li>
 <li><p>Ensure your package management client points to the remote package repository for the Xilinx Video SDK, according to the instructions described in the <a class="reference internal" href="package_feed.html#package-feed-configuration"><span class="std std-ref">package feed configuration</span></a> page.</p></li>
-<li><p>Install the core package of the Xilinx Video SDK. <strong>Note</strong>: it is imperative for the XRT package to be set to version 2.11.722.</p>
+<li><p>Install the core package of the Xilinx Video SDK. <strong>Note</strong>: it is imperative for the XRT package to be set to version 2.11.730.</p>
 <ul class="simple">
 <li><p>Ubuntu</p></li>
 </ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt-get update
-sudo apt-get install xrt=2.11.722
+sudo apt-get install xrt=2.11.730
 sudo apt-mark hold xrt
 sudo apt-get install xilinx-alveo-u30-core
 </pre></div>
+</div>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>If you are not able to install some of the SDK packages, and are seeing a message similar to the following:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Err:10 https://packages.xilinx.com/artifactory/debian-packages focal/main ...
+403  Forbidden [IP: xxx.xxx.xxx.xxx 443]
+</pre></div>
+</div>
+<p>This is due to a known <a class="reference external" href="https://bugs.launchpad.net/ubuntu/+source/apt/+bug/1950095">bug</a> in <code class="docutils literal notranslate"><span class="pre">apt</span></code>. To resolve this issue, proceed as follows:</p>
+<p><strong>Ubuntu 20.04</strong>: Update your <code class="docutils literal notranslate"><span class="pre">apt</span></code> version using <code class="docutils literal notranslate"><span class="pre">ppa:gpxbv/apt-urlfix</span></code> PPA, by following the instructions noted below:</p>
+<ol class="arabic simple">
+<li><p>sudo apt install software-properties-common</p></li>
+<li><p>sudo add-apt-repository ppa:gpxbv/apt-urlfix</p></li>
+<li><p>sudo apt install apt apt-utils</p></li>
+<li><p>Proceed with the SDK installation</p></li>
+</ol>
+<p><strong>Ubuntu 18.04</strong>: Update your <code class="docutils literal notranslate"><span class="pre">apt</span></code> version using the <code class="docutils literal notranslate"><span class="pre">focal</span></code> feed:</p>
+<ol class="arabic">
+<li><p>Add the following lines to <code class="docutils literal notranslate"><span class="pre">/etc/apt/sources.list.d/xilinx.list</span></code>:</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>deb http://cz.archive.ubuntu.com/ubuntu focal main
+deb http://us.archive.ubuntu.com/ubuntu/ focal main restricted
+deb http://us.archive.ubuntu.com/ubuntu/ focal-updates main restricted
+</pre></div>
+</div>
+</li>
+<li><p>sudo apt-get update</p></li>
+<li><p>sudo apt install apt</p></li>
+</ol>
 </div>
 <ul class="simple">
 <li><p>RHEL and Amazon Linux 2</p></li>
 </ul>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo yum update
 sudo yum install yum-plugin-versionlock
-sudo yum install xrt-2.11.722-1.x86_64
-sudo yum versionlock xrt-2.11.722
+sudo yum install xrt-2.11.730-1.x86_64
+sudo yum versionlock xrt-2.11.730
 sudo yum install xilinx-alveo-u30-core
 </pre></div>
 </div>
@@ -302,8 +330,8 @@ sudo /opt/xilinx/xrm/tools/restart_xrmd.sh
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on October 16, 2024.
+    <p>&#169; Copyright 2020-2024, Advanced Micro Devices, Inc.
+      <span class="lastupdated">Last updated on November 12, 2024.
       </span></p>
   </div>
 
