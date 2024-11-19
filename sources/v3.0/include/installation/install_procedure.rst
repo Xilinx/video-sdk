@@ -44,7 +44,7 @@
     sudo apt-get update
     sudo apt-get install xrt=2.11.722
     sudo apt-mark hold xrt
-    sudo apt-get install xilinx-alveo-u30-core=3.0.1
+    sudo apt-get install xilinx-alveo-u30-core
 
    + RHEL and Amazon Linux 2
 
@@ -54,7 +54,7 @@
     sudo yum install yum-plugin-versionlock
     sudo yum install xrt-2.11.722-1.x86_64
     sudo yum versionlock xrt-2.11.722
-    sudo yum install xilinx-alveo-u30-core-3.0.1
+    sudo yum install xilinx-alveo-u30-core
 
 #. Optionally install the other packages of the |SDK|. Refer to the :ref:`package description <package-feed>` table for more details on the different packages included in the |SDK|.  **Note**: on RHEL, installing the GStreamer package requires an :ref:`active RHEL subscription <rhel-subscription>`.
 
@@ -63,17 +63,17 @@
 
    ::
 
-    sudo apt-get install xilinx-alveo-u30-ffmpeg=3.0.0
-    sudo apt-get install xilinx-alveo-u30-gstreamer=3.0.0
-    sudo apt-get install xilinx-alveo-u30-examples=3.0.0
+    sudo apt-get install xilinx-alveo-u30-ffmpeg
+    sudo apt-get install xilinx-alveo-u30-gstreamer
+    sudo apt-get install xilinx-alveo-u30-examples
 
    + RHEL and Amazon Linux 2
 
    ::
 
-    sudo yum install xilinx-alveo-u30-ffmpeg-3.0.0
-    sudo yum install xilinx-alveo-u30-gstreamer-3.0.0
-    sudo yum install xilinx-alveo-u30-examples-3.0.0
+    sudo yum install xilinx-alveo-u30-ffmpeg
+    sudo yum install xilinx-alveo-u30-gstreamer
+    sudo yum install xilinx-alveo-u30-examples
 
 
 ..
