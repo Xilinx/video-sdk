@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,12 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/documentation_options.js?v=66dd70a4"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -49,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="index.html" class="icon icon-home"> Xilinx Video SDK
-            <img src="_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 3.0
@@ -121,9 +118,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="getting-started-on-vt1">
-<span id="id1"></span><h1>Getting Started on Amazon EC2 VT1<a class="headerlink" href="#getting-started-on-vt1" title="Permalink to this heading">¶</a></h1>
-<div class="contents local topic" id="table-of-contents">
+  <section id="getting-started-on-vt1">
+<span id="id1"></span><h1>Getting Started on Amazon EC2 VT1<a class="headerlink" href="#getting-started-on-vt1" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#vt1-configurations" id="id2">Amazon EC2 VT1 Configurations</a></p></li>
@@ -133,16 +130,16 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><a class="reference internal" href="#working-with-containers" id="id6">Working with Containers</a></p></li>
 <li><p><a class="reference internal" href="#working-with-kubernetes" id="id7">Working with Kubernetes</a></p></li>
 </ul>
-</div>
-<div class="section" id="vt1-configurations">
-<h2><a class="toc-backref" href="#id2">Amazon EC2 VT1 Configurations</a><a class="headerlink" href="#vt1-configurations" title="Permalink to this heading">¶</a></h2>
+</nav>
+<section id="vt1-configurations">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Amazon EC2 VT1 Configurations</a><a class="headerlink" href="#vt1-configurations" title="Link to this heading">¶</a></h2>
 <p>The following table summarizes the number of Alveo U30 cards and Xilinx devices for each of the different instance sizes of the Amazon EC2 VT1 family.
 For more details about the transcoding performance of these different configurations, refer to the <a class="reference internal" href="specs_and_features.html#perf-tables"><span class="std std-ref">performance tables</span></a> in the <a class="reference internal" href="specs_and_features.html"><span class="doc">Specs and Features</span></a> page of this documentation.</p>
-<table class="colwidths-given docutils align-default">
+<table class="docutils align-default">
 <colgroup>
-<col style="width: 34%" />
-<col style="width: 33%" />
-<col style="width: 33%" />
+<col style="width: 34.0%" />
+<col style="width: 33.0%" />
+<col style="width: 33.0%" />
 </colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Instance Type</p></th>
@@ -168,9 +165,9 @@ For more details about the transcoding performance of these different configurat
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="quick-start-guide-for-vt1">
-<h2><a class="toc-backref" href="#id3">Quick Start Guide for Amazon EC2 VT1</a><a class="headerlink" href="#quick-start-guide-for-vt1" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="quick-start-guide-for-vt1">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Quick Start Guide for Amazon EC2 VT1</a><a class="headerlink" href="#quick-start-guide-for-vt1" title="Link to this heading">¶</a></h2>
 <p>Launch an Amazon EC2 VT1 Instance</p>
 <ul class="simple">
 <li><p>Follow the instructions at <a class="reference external" href="https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/EC2_GetStarted.html#ec2-launch-instance">Launch an Amazon EC2 Instance</a></p></li>
@@ -201,9 +198,9 @@ For more details about the transcoding performance of these different configurat
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="installing-the-sdk-on-an-existing-ami">
-<h2><a class="toc-backref" href="#id4">Installing the Xilinx Video SDK on an existing AMI</a><a class="headerlink" href="#installing-the-sdk-on-an-existing-ami" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="installing-the-sdk-on-an-existing-ami">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Installing the Xilinx Video SDK on an existing AMI</a><a class="headerlink" href="#installing-the-sdk-on-an-existing-ami" title="Link to this heading">¶</a></h2>
 <p>In order to use a custom AMI on a Amazon EC2 VT1 instance, it is necessary to install the Xilinx Video SDK in the AMI. This section explains how to do this. These steps are not necessary when using the public Xilinx Video SDK AMI since it already includes a complete installation of the Xilinx Video SDK and can readily be used on a Amazon EC2 VT1 instance.</p>
 <p>Additionally, AWS provides Packer scripts to make it easy for customers to build their own AMI’s for use with VT1 instances. Those scripts can be found at the following repo: <a class="reference external" href="https://github.com/aws-samples/aws-vt-baseami-pipeline">https://github.com/aws-samples/aws-vt-baseami-pipeline</a></p>
 <ol class="arabic">
@@ -246,7 +243,7 @@ sudo yum remove xrm xilinx-container-runtime xilinx-xvbm xilinx-u30-xrm-decoder 
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt-get update
 sudo apt-get install xrt=2.11.722
 sudo apt-mark hold xrt
-sudo apt-get install xilinx-alveo-u30-core
+sudo apt-get install xilinx-alveo-u30-core=3.0.1
 </pre></div>
 </div>
 <ul class="simple">
@@ -256,7 +253,7 @@ sudo apt-get install xilinx-alveo-u30-core
 sudo yum install yum-plugin-versionlock
 sudo yum install xrt-2.11.722-1.x86_64
 sudo yum versionlock xrt-2.11.722
-sudo yum install xilinx-alveo-u30-core
+sudo yum install xilinx-alveo-u30-core-3.0.1
 </pre></div>
 </div>
 </li>
@@ -264,17 +261,17 @@ sudo yum install xilinx-alveo-u30-core
 <ul class="simple">
 <li><p>Ubuntu</p></li>
 </ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt-get install xilinx-alveo-u30-ffmpeg
-sudo apt-get install xilinx-alveo-u30-gstreamer
-sudo apt-get install xilinx-alveo-u30-examples
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo apt-get install xilinx-alveo-u30-ffmpeg=3.0.0
+sudo apt-get install xilinx-alveo-u30-gstreamer=3.0.0
+sudo apt-get install xilinx-alveo-u30-examples=3.0.0
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>RHEL and Amazon Linux 2</p></li>
 </ul>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo yum install xilinx-alveo-u30-ffmpeg
-sudo yum install xilinx-alveo-u30-gstreamer
-sudo yum install xilinx-alveo-u30-examples
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>sudo yum install xilinx-alveo-u30-ffmpeg-3.0.0
+sudo yum install xilinx-alveo-u30-gstreamer-3.0.0
+sudo yum install xilinx-alveo-u30-examples-3.0.0
 </pre></div>
 </div>
 </li>
@@ -283,9 +280,9 @@ sudo yum install xilinx-alveo-u30-examples
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="setting-up-the-runtime-environment">
-<h2><a class="toc-backref" href="#id5">Setting Up the Runtime Environment</a><a class="headerlink" href="#setting-up-the-runtime-environment" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="setting-up-the-runtime-environment">
+<h2><a class="toc-backref" href="#id5" role="doc-backlink">Setting Up the Runtime Environment</a><a class="headerlink" href="#setting-up-the-runtime-environment" title="Link to this heading">¶</a></h2>
 <p>Note: These steps below should be performed each time you open a new terminal on your system.</p>
 <p>Set up the runtime environment:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>source /opt/xilinx/xcdr/setup.sh
@@ -299,21 +296,21 @@ sudo yum install xilinx-alveo-u30-examples
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="working-with-containers">
-<h2><a class="toc-backref" href="#id6">Working with Containers</a><a class="headerlink" href="#working-with-containers" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="working-with-containers">
+<h2><a class="toc-backref" href="#id6" role="doc-backlink">Working with Containers</a><a class="headerlink" href="#working-with-containers" title="Link to this heading">¶</a></h2>
 <p>For instructions on how to work with Docker containers, refer to the <a class="reference internal" href="container_setup.html"><span class="doc">Container Setup</span></a> page of this documentation.</p>
 <p>addition, the user guide for Amazon ECS can be found here: <a class="reference external" href="https://docs.aws.amazon.com/AmazonECS/latest/developerguide/getting-started.html">https://docs.aws.amazon.com/AmazonECS/latest/developerguide/getting-started.html</a></p>
 <div class="line-block">
 <div class="line"><br /></div>
 </div>
-</div>
-<div class="section" id="working-with-kubernetes">
-<h2><a class="toc-backref" href="#id7">Working with Kubernetes</a><a class="headerlink" href="#working-with-kubernetes" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="working-with-kubernetes">
+<h2><a class="toc-backref" href="#id7" role="doc-backlink">Working with Kubernetes</a><a class="headerlink" href="#working-with-kubernetes" title="Link to this heading">¶</a></h2>
 <p>For instructions on how to deploy Docker containers with Kubernetes and EKS, refer to the <a class="reference internal" href="deploying_with_kubernetes.html"><span class="doc">Deploying with Kubernetes</span></a> page of this documentation. A comprehensive step-by-step guide on the AWS Compute Blog can be found here: <a class="reference external" href="https://aws.amazon.com/blogs/compute/deep-dive-on-amazon-ec2-vt1-instances/">https://aws.amazon.com/blogs/compute/deep-dive-on-amazon-ec2-vt1-instances/</a></p>
 <p>addition, the user guide for Amazon EKS can be found here: <a class="reference external" href="https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html">https://docs.aws.amazon.com/eks/latest/userguide/getting-started.html</a></p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -337,7 +334,7 @@ sudo yum install xilinx-alveo-u30-examples
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 18, 2023.
+      <span class="lastupdated">Last updated on November 18, 2024.
       </span></p>
   </div>
 

@@ -75,11 +75,11 @@ extensions = [
 
 extlinks = {
     # For public repo
-    'url_to_repo': ('https://github.com/Xilinx/video-sdk/blob/v3.0/%s', ''),
-    'url_to_repo_folder': ('https://github.com/Xilinx/video-sdk/tree/v3.0/%s', ''),
-    'url_to_examples': ('https://github.com/Xilinx/video-sdk-u30-examples/blob/main/%s', ''),
-    'url_to_xma_apps': ('https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/xma/%s', ''),
-    'url_to_lib_dyn_enc_params': ('https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/xma/lib-dyn-enc-params/%s', ''),
+    'url_to_repo': ('https://github.com/Xilinx/video-sdk/blob/v3.0/%s', '%s'),
+    'url_to_repo_folder': ('https://github.com/Xilinx/video-sdk/tree/v3.0/%s', '%s'),
+    'url_to_examples': ('https://github.com/Xilinx/video-sdk-u30-examples/blob/main/%s', '%s'),
+    'url_to_xma_apps': ('https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/xma/%s', '%s'),
+    'url_to_lib_dyn_enc_params': ('https://github.com/Xilinx/video-sdk-u30-examples/blob/main/examples/u30/xma/lib-dyn-enc-params/%s', '%s'),
 }
 
 extlinks_detect_hardcoded_links = True
