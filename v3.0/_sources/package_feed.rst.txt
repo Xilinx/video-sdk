@@ -61,78 +61,85 @@ Distribution based package feeds allow for convenient and robust methods to upda
 Ubuntu
 ------
 
-Add the following line to the :file:`/etc/apt/sources.list.d/xilinx.list` file::
+#. Add Xilinx key::
 
-  deb [trusted=yes] https://packages.xilinx.com/artifactory/debian-packages <distro name> main
+      wget -qO - https://www.xilinx.com/support/download/2018-2-1/xilinx-master-signing-key.asc | sudo apt-key add -
 
-Where <distro name> can be either ``bionic``, ``focal`` or ``jammy``. If needed, the distro name can be found using the ``lsb_release -c`` command.
+#. Add Xilinx PPA feed::
 
+      echo "deb [trusted=yes] https://packages.xilinx.com/artifactory/debian-packages $(lsb_release -sc) main" sudo tee /etc/apt/sources.list.d/xilinx.list
 
 Red Hat Linux 7.8
 -----------------
 
-Add the following lines to the :file:`/etc/yum.repos.d/xilinx.repo` file::
+#. Add Xilinx key::
 
-  [MetaArtifactory]
-  name=MetaArtifactory
-  baseurl=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/7/
-  enabled=1
-  gpgcheck=0
-  gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/7/repodata/repomd.xml.key
-  sslverify=0
+      sudo rpm --import https://www.xilinx.com/support/download/2018-2-1/xilinx-master-signing-key.asc
 
-  [Artifactory]
-  name=Artifactory
-  baseurl=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/
-  enabled=1
-  gpgcheck=0
-  gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/repodata/repomd.xml.key
-  sslverify=0
+#. Add the following lines to the :file:`/etc/yum.repos.d/xilinx.repo` file::
 
-  [BaseArtifactory]
-  name=BaseArtifactory
-  baseurl=https://packages.xilinx.com/artifactory/rpm-packages/noarch/
-  enabled=1
-  gpgcheck=0
-  gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/noarch/repodata/repomd.xml.key
-  sslverify=0
+     [MetaArtifactory]
+     name=MetaArtifactory
+     baseurl=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/7/
+     enabled=1
+     gpgcheck=0
+     gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/7/repodata/repomd.xml.key
+     sslverify=0
+   
+     [Artifactory]
+     name=Artifactory
+     baseurl=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/
+     enabled=1
+     gpgcheck=0
+     gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/repodata/repomd.xml.key
+     sslverify=0
+   
+     [BaseArtifactory]
+     name=BaseArtifactory
+     baseurl=https://packages.xilinx.com/artifactory/rpm-packages/noarch/
+     enabled=1
+     gpgcheck=0
+     gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/noarch/repodata/repomd.xml.key
+     sslverify=0
 
 
 Amazon Linux 2
 --------------
 
-Add the following lines to the :file:`/etc/yum.repos.d/xilinx.repo` file::
+#. Add Xilinx key::
 
-  [Amzn2Artifactory]
-  name=Amzn2Artifactory
-  baseurl=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/2
-  enabled=1
-  gpgcheck=0
-  gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/repodata/repomd.xml.key
-  sslverify=0
-   
-  [Artifactory]
-  name=Artifactory
-  baseurl=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/
-  enabled=1
-  gpgcheck=0
-  gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/repodata/repomd.xml.key
-  sslverify=0
-   
-  [BaseArtifactory]
-  name=BaseArtifactory
-  baseurl=https://packages.xilinx.com/artifactory/rpm-packages/noarch/
-  enabled=1
-  gpgcheck=0
-  gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/noarch/repodata/repomd.xml.key
-  sslverify=0
+      sudo rpm --import https://www.xilinx.com/support/download/2018-2-1/xilinx-master-signing-key.asc
 
+#. Add the following lines to the :file:`/etc/yum.repos.d/xilinx.repo` file::
 
+     [Amzn2Artifactory]
+     name=Amzn2Artifactory
+     baseurl=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/2
+     enabled=1
+     gpgcheck=0
+     gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/repodata/repomd.xml.key
+     sslverify=0
+      
+     [Artifactory]
+     name=Artifactory
+     baseurl=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/
+     enabled=1
+     gpgcheck=0
+     gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/x86_64/repodata/repomd.xml.key
+     sslverify=0
+      
+     [BaseArtifactory]
+     name=BaseArtifactory
+     baseurl=https://packages.xilinx.com/artifactory/rpm-packages/noarch/
+     enabled=1
+     gpgcheck=0
+     gpgkey=https://packages.xilinx.com/artifactory/rpm-packages/noarch/repodata/repomd.xml.key
+     sslverify=0
 
 ..
   ------------
   
-  © Copyright 2020-2023, Advanced Micro Devices, Inc.
+  © Copyright 2020-2024, Advanced Micro Devices, Inc.
   
   Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at
   
