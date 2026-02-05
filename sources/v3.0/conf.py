@@ -43,6 +43,11 @@ rst_prolog = """
 .. |XRT_VER| replace:: 2.11.722 # Sadly, not meant to be :(
 """
 
+rst_prolog += """
+.. attention:: This product has reached its End Of Life. All new designs  should migrate to `MA35D <https://amd.github.io/ama-sdk/latest/index.html>`_.
+"""
+
+
 # -- General configuration ---------------------------------------------------
 
 # If your documentation needs a minimal Sphinx version, state it here.
