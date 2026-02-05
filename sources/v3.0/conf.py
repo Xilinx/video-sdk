@@ -44,7 +44,7 @@ rst_prolog = """
 """
 
 rst_prolog += """
-.. attention:: This product has reached its End Of Life. All new designs  should migrate to `MA35D <https://amd.github.io/ama-sdk/latest/index.html>`_.
+.. attention:: This product has reached its End Of Life. All new designs should migrate to `MA35D <https://amd.github.io/ama-sdk/latest/index.html>`_.
 """
 
 

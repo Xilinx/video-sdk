@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,12 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
-        <script src="_static/jquery.js"></script>
-        <script src="_static/underscore.js"></script>
-        <script src="_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="_static/doctools.js"></script>
-        <script src="_static/sphinx_highlight.js"></script>
+        <script src="_static/documentation_options.js?v=014ce00a"></script>
+        <script src="_static/doctools.js?v=888ff710"></script>
+        <script src="_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="_static/js/theme.js"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
@@ -49,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="index.html" class="icon icon-home"> Xilinx Video SDK
-            <img src="_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 1.0
@@ -118,32 +115,36 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="xilinx-video-sdk-installation-instructions">
-<span id="installation-instructions"></span><h1>Xilinx Video SDK Installation Instructions<a class="headerlink" href="#xilinx-video-sdk-installation-instructions" title="Permalink to this heading">¶</a></h1>
+  <div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>This product has reached its End Of Life. All new designs should migrate to <a class="reference external" href="https://amd.github.io/ama-sdk/latest/index.html">MA35D</a>.</p>
+</div>
+<section id="xilinx-video-sdk-installation-instructions">
+<span id="installation-instructions"></span><h1>Xilinx Video SDK Installation Instructions<a class="headerlink" href="#xilinx-video-sdk-installation-instructions" title="Link to this heading">¶</a></h1>
 <p>This page contains instructions on how to download the Xilinx Video SDK packages and install them on the supported Operating Systems:</p>
 <ul class="simple">
 <li><p>Ubuntu 20.04 (Kernel 5.4)</p></li>
 <li><p>Ubuntu 18.04 (Kernel 5.4)</p></li>
 <li><p>RHEL 7.8 (Kernel 4.9.184)</p></li>
 </ul>
-<div class="contents local topic" id="table-of-contents">
+<nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#important-information-and-prerequisites" id="id3">Important Information and Prerequisites</a></p></li>
 <li><p><a class="reference internal" href="#id2" id="id4">Installation Instructions</a></p></li>
 </ul>
-</div>
-<div class="section" id="important-information-and-prerequisites">
-<h2><a class="toc-backref" href="#id3">Important Information and Prerequisites</a><a class="headerlink" href="#important-information-and-prerequisites" title="Permalink to this heading">¶</a></h2>
+</nav>
+<section id="important-information-and-prerequisites">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Important Information and Prerequisites</a><a class="headerlink" href="#important-information-and-prerequisites" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Each Alveo U30 card has 2 PCIe Gen 3x4 compliant interfaces. The host sever must support PCIe bifurcation on each slot with a Alveo U30.</p></li>
 <li><p>The installation instructions require a bash shell. Make sure to be using one when installing the packages.</p></li>
 <li><p>The installation instructions provided should only be used with the OEM version of the Alveo U30 card. If you do not have an OEM card, or if you are unsure of which card version you have, please <a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">contact Xilinx</a>.</p></li>
 <li><p>If you need to upgrade a system with version 0.95.0 (Alpha) or older installed, please <a class="reference external" href="https://github.com/Xilinx/video-sdk/issues">contact Xilinx</a>.</p></li>
 </ul>
-</div>
-<div class="section" id="id2">
-<h2><a class="toc-backref" href="#id4">Installation Instructions</a><a class="headerlink" href="#id2" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="id2">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Installation Instructions</a><a class="headerlink" href="#id2" title="Link to this heading">¶</a></h2>
 <ol class="arabic">
 <li><p>Download the packages by cloning this repository:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">Xilinx</span><span class="o">/</span><span class="n">video</span><span class="o">-</span><span class="n">sdk</span> <span class="o">-</span><span class="n">b</span> <span class="n">v1</span><span class="mf">.0</span> <span class="o">--</span><span class="n">depth</span> <span class="mi">1</span>
@@ -187,8 +188,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </li>
 </ol>
 <p id="end-of-installation">You are now ready to use the Alveo U30 cards installed in your system. See the <a class="reference internal" href="examples/ffmpeg/tutorials.html"><span class="doc">FFmpeg tutorials page</span></a> to learn how to run jobs on your system.</p>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -212,7 +213,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 18, 2023.
+      <span class="lastupdated">Last updated on February 05, 2026.
       </span></p>
   </div>
 

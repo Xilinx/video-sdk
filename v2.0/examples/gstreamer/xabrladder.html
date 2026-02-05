@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html class="writer-html5" lang="en" >
 <head>
-  <meta charset="utf-8" />
+  <meta charset="utf-8" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   
 <!-- OneTrust Cookies Consent Notice start for xilinx.github.io -->
@@ -26,12 +27,9 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
     <script src="../../_static/js/html5shiv.min.js"></script>
   <![endif]-->
   
-        <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
-        <script src="../../_static/jquery.js"></script>
-        <script src="../../_static/underscore.js"></script>
-        <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
-        <script src="../../_static/doctools.js"></script>
-        <script src="../../_static/sphinx_highlight.js"></script>
+        <script src="../../_static/documentation_options.js?v=53906433"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../genindex.html" />
     <link rel="search" title="Search" href="../../search.html" />
@@ -49,7 +47,6 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
       <div class="wy-side-scroll">
         <div class="wy-side-nav-search">
             <a href="../../index.html" class="icon icon-home"> Xilinx Video SDK
-            <img src="../../_static/xilinx-header-logo.svg" class="logo" alt="Logo"/>
           </a>
               <div class="version">
                 2.0.1
@@ -132,9 +129,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
              
-  <div class="section" id="gstreamer-abr-ladder-application">
-<span id="gst-abrladder"></span><h1>GStreamer ABR Ladder Application<a class="headerlink" href="#gstreamer-abr-ladder-application" title="Permalink to this heading">¶</a></h1>
-<div class="contents local topic" id="table-of-contents">
+  <div class="admonition attention">
+<p class="admonition-title">Attention</p>
+<p>This product has reached its End Of Life. All new designs should migrate to <a class="reference external" href="https://amd.github.io/ama-sdk/latest/index.html">MA35D</a>.</p>
+</div>
+<section id="gstreamer-abr-ladder-application">
+<span id="gst-abrladder"></span><h1>GStreamer ABR Ladder Application<a class="headerlink" href="#gstreamer-abr-ladder-application" title="Link to this heading">¶</a></h1>
+<nav class="contents local" id="table-of-contents">
 <p class="topic-title">Table of Contents</p>
 <ul class="simple">
 <li><p><a class="reference internal" href="#introduction" id="id1">Introduction</a></p></li>
@@ -142,18 +143,18 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <li><p><a class="reference internal" href="#usage" id="id3">Usage</a></p></li>
 <li><p><a class="reference internal" href="#examples" id="id4">Examples</a></p></li>
 </ul>
-</div>
-<div class="section" id="introduction">
-<h2><a class="toc-backref" href="#id1">Introduction</a><a class="headerlink" href="#introduction" title="Permalink to this heading">¶</a></h2>
+</nav>
+<section id="introduction">
+<h2><a class="toc-backref" href="#id1" role="doc-backlink">Introduction</a><a class="headerlink" href="#introduction" title="Link to this heading">¶</a></h2>
 <p>The <strong class="program">vvas_xabrladder</strong> application is a command line utility which implements the GStreamer video transcoding pipeline described in the diagram below. This application expects an input video file (mp4 with H.264/H.265 or H.264/H.265 elementary stream) and produces 5 different H.264/H.265 elementary streams. The resolution of each output stream is configured using a JSON file (by default: <code class="file docutils literal notranslate"><span class="pre">/opt/xilinx/vvas/share/vvas-examples/abrladder.json</span></code>). The output streams produced by this application are saved in the <code class="file docutils literal notranslate"><span class="pre">/tmp/ladder_outputs/</span></code> folder.</p>
 <a class="reference internal image-reference" href="../../_images/gst_xabrladder.png"><img alt="GStreamer pipeline of the vvas_xabrladder application" class="align-center" src="../../_images/gst_xabrladder.png" style="width: 1024px;" /></a>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
 <p>This example supports only input files of type mp4 with H.264/H.265 elementary stream in it. No other formats are supported</p>
 </div>
-</div>
-<div class="section" id="host-system-requirement">
-<h2><a class="toc-backref" href="#id2">Host System Requirement</a><a class="headerlink" href="#host-system-requirement" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="host-system-requirement">
+<h2><a class="toc-backref" href="#id2" role="doc-backlink">Host System Requirement</a><a class="headerlink" href="#host-system-requirement" title="Link to this heading">¶</a></h2>
 <ul class="simple">
 <li><p>Xilinx Video SDK</p></li>
 <li><p>GStreamer 1.16.2</p></li>
@@ -173,16 +174,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </ul>
 </li>
 </ul>
-</div>
-<div class="section" id="usage">
-<h2><a class="toc-backref" href="#id3">Usage</a><a class="headerlink" href="#usage" title="Permalink to this heading">¶</a></h2>
+</section>
+<section id="usage">
+<h2><a class="toc-backref" href="#id3" role="doc-backlink">Usage</a><a class="headerlink" href="#usage" title="Link to this heading">¶</a></h2>
 <p>Below are the input parameters required to run the application.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 27%" />
-<col style="width: 13%" />
-<col style="width: 60%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>Parameter</p></th>
 <th class="head"><p>Short Form</p></th>
@@ -192,13 +188,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 <tbody>
 <tr class="row-even"><td><dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-devidx">
-<span class="sig-name descname"><span class="pre">--devidx</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-devidx" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">--devidx</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-devidx" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </td>
 <td><dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-i">
-<span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-i" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-i</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-i" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </td>
@@ -213,13 +209,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr class="row-odd"><td><dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-json">
-<span class="sig-name descname"><span class="pre">--json</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-json" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">--json</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-json" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </td>
 <td><dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-j">
-<span class="sig-name descname"><span class="pre">-j</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-j" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-j</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-j" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </td>
@@ -234,13 +230,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr class="row-even"><td><dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-lookahead_enable">
-<span id="cmdoption-lookahead-enable"></span><span class="sig-name descname"><span class="pre">--lookahead_enable</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-lookahead_enable" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">--lookahead_enable</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-lookahead_enable" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </td>
 <td><dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-l">
-<span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-l" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-l</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-l" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </td>
@@ -255,13 +251,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr class="row-odd"><td><dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-codectype">
-<span class="sig-name descname"><span class="pre">--codectype</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-codectype" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">--codectype</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-codectype" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </td>
 <td><dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-c">
-<span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-c" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-c</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-c" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </td>
@@ -276,13 +272,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr class="row-even"><td><dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-file">
-<span class="sig-name descname"><span class="pre">--file</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-file" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">--file</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-file" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </td>
 <td><dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-f">
-<span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-f" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-f</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-f" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </td>
@@ -297,13 +293,13 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 <tr class="row-odd"><td><dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-forcekeyframe">
-<span class="sig-name descname"><span class="pre">--forcekeyframe</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-forcekeyframe" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">--forcekeyframe</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-forcekeyframe" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </td>
 <td><dl class="std option">
 <dt class="sig sig-object std" id="cmdoption-k">
-<span class="sig-name descname"><span class="pre">-k</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-k" title="Permalink to this definition">¶</a></dt>
+<span class="sig-name descname"><span class="pre">-k</span></span><span class="sig-prename descclassname"></span><a class="headerlink" href="#cmdoption-k" title="Link to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </td>
@@ -318,8 +314,8 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
 </tr>
 </tbody>
 </table>
-<div class="section" id="json-usage">
-<h3>JSON Usage<a class="headerlink" href="#json-usage" title="Permalink to this heading">¶</a></h3>
+<section id="json-usage">
+<h3>JSON Usage<a class="headerlink" href="#json-usage" title="Link to this heading">¶</a></h3>
 <p>The json file provided with <code class="docutils literal notranslate"><span class="pre">--json</span></code> option allows user to specify the ladder configuration with init time and run time (dynamic) property setting for each ladder.
 The default json file that showcase basic ladder configuration (without run time property) is shown below.</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>{
@@ -446,10 +442,6 @@ The default json file that showcase basic ladder configuration (without run time
 </div>
 <p>The JSON entries are explained in table below.</p>
 <table class="docutils align-default">
-<colgroup>
-<col style="width: 12%" />
-<col style="width: 88%" />
-</colgroup>
 <thead>
 <tr class="row-odd"><th class="head"><p>JSON Key</p></th>
 <th class="head"><p>Description</p></th>
@@ -512,10 +504,10 @@ The default json file that showcase basic ladder configuration (without run time
 </tr>
 </tbody>
 </table>
-</div>
-</div>
-<div class="section" id="examples">
-<h2><a class="toc-backref" href="#id4">Examples</a><a class="headerlink" href="#examples" title="Permalink to this heading">¶</a></h2>
+</section>
+</section>
+<section id="examples">
+<h2><a class="toc-backref" href="#id4" role="doc-backlink">Examples</a><a class="headerlink" href="#examples" title="Link to this heading">¶</a></h2>
 <p>Below are example commands for the ABR ladder use case. The output files are stored in <code class="file docutils literal notranslate"><span class="pre">/tmp/ladder_outputs/</span></code> folder. Ensure that enough space is availabe in this folder.</p>
 <ol class="arabic">
 <li><p>Running one ABR ladder on one device with lookahead (enabled by default):</p>
@@ -571,8 +563,8 @@ vvas_xabrladder --devidx 0 --lookahead_enable 0 --codectype 1 --file &lt;path to
 </div>
 </li>
 </ol>
-</div>
-</div>
+</section>
+</section>
 
 
            </div>
@@ -596,7 +588,7 @@ vvas_xabrladder --devidx 0 --lookahead_enable 0 --codectype 1 --file &lt;path to
 
   <div role="contentinfo">
     <p>&#169; Copyright 2020-2023, Advanced Micro Devices, Inc.
-      <span class="lastupdated">Last updated on May 18, 2023.
+      <span class="lastupdated">Last updated on February 05, 2026.
       </span></p>
   </div>
 
